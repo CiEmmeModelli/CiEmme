@@ -28,7 +28,7 @@ import org.jboss.shrinkwrap.descriptor.spi.node.Node;
  */
 public class EngineDefImpl extends ArquillianDescriptorImpl implements EngineDef {
     private static final String EXPORT_PATH = "property@name=deploymentExportPath";
-    private static final String exportExploded = "property@name=deploymentExportExploded";
+    private static final String EXPORT_EXPLODED = "property@name=deploymentExportExploded";
     private static final String maxTestClasses = "property@name=maxTestClassesBeforeRestart";
 
     private Node engine;
