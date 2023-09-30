@@ -17,9 +17,11 @@
   <artifactId>arquillian-parent</artifactId>
   <version>1.6.1.Final-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>Arquillian Aggregator</name>
+  <!-- <name>Arquillian Aggregator</name> -->
+  <name>CiEmme</name>
+ <description>CiEmme</description>
   <url>http://arquillian.org</url>
-  <description>Arquillian Aggregator</description>
+  <!-- <description>Arquillian Aggregator</description> -->
 
   <properties>
     <!-- jboss-parent override -->
