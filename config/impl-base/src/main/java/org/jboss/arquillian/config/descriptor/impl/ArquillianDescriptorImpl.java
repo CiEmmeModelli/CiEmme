@@ -39,6 +39,7 @@ public class ArquillianDescriptorImpl extends NodeDescriptorImplBase implements 
     //-------------------------------------------------------------------------------------||
 
     private Node model;
+    private static String defaultProtocol = "defaultProtocol";
 
     //-------------------------------------------------------------------------------------||
     // Constructor ------------------------------------------------------------------------||
@@ -66,7 +67,7 @@ public class ArquillianDescriptorImpl extends NodeDescriptorImplBase implements 
      */
     @Override
     public DefaultProtocolDef defaultProtocol(String type) {
-        return new DefaultProtocolDefImpl(getDescriptorName(), model, model.getOrCreate("defaultProtocol")).setType(type);
+        return new DefaultProtocolDefImpl(getDescriptorName(), model, model.getOrCreate(defaultProtocol)).setType(type);
     }
 
     /* (non-Javadoc)
@@ -74,8 +75,8 @@ public class ArquillianDescriptorImpl extends NodeDescriptorImplBase implements 
      */
     @Override
     public DefaultProtocolDef getDefaultProtocol() {
-        if (model.getSingle("defaultProtocol") != null) {
-            return new DefaultProtocolDefImpl(getDescriptorName(), model, model.getSingle("defaultProtocol"));
+        if (model.getSingle(defaultProtocol) != null) {
+            return new DefaultProtocolDefImpl(getDescriptorName(), model, model.getSingle(defaultProtocol));
         }
         return null;
     }
