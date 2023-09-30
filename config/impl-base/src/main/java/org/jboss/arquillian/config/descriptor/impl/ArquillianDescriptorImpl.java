@@ -39,7 +39,7 @@ public class ArquillianDescriptorImpl extends NodeDescriptorImplBase implements 
     //-------------------------------------------------------------------------------------||
 
     private Node model;
-    private static String defaultProtocol = "defaultProtocol";
+    private final String defaultProtocol = "defaultProtocol";
 
     //-------------------------------------------------------------------------------------||
     // Constructor ------------------------------------------------------------------------||
