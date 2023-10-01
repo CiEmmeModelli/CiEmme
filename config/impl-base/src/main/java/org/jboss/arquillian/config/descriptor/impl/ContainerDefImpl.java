@@ -33,9 +33,9 @@ import org.jboss.shrinkwrap.descriptor.spi.node.Node;
  */
 public class ContainerDefImpl extends ArquillianDescriptorImpl implements ContainerDef {
     private Node container;
-    private static String dependencies_static="dependencies";
-    private static String configuration_static="configuration";
-    private static String property_name="property@name=";
+    private static String dependenciesStatic="dependencies";
+    private static String configurationStatic="configuration";
+    private static String propertyName="property@name=";
 
     // test only
     public ContainerDefImpl(String descriptorName) {
@@ -111,7 +111,7 @@ public class ContainerDefImpl extends ArquillianDescriptorImpl implements Contai
      */
     @Override
     public ContainerDef dependency(String artifactId) {
-        container.getOrCreate(dependencies_static).getOrCreate("dependency=" + artifactId);
+        container.getOrCreate(dependenciesStatic).getOrCreate("dependency=" + artifactId);
         return this;
     }
 
@@ -132,7 +132,7 @@ public class ContainerDefImpl extends ArquillianDescriptorImpl implements Contai
      */
     @Override
     public ContainerDef property(String name, String value) {
-        container.getOrCreate(configuration_static).getOrCreate(property_name+ name).text(value);
+        container.getOrCreate(configurationStatic).getOrCreate(propertyName+ name).text(value);
         return this;
     }
 
@@ -141,8 +141,8 @@ public class ContainerDefImpl extends ArquillianDescriptorImpl implements Contai
      */
     @Override
     public ContainerDef overrideProperty(String name, String value) {
-        container.getOrCreate(configuration_static).removeChild(property_name + name);
-        container.getOrCreate(configuration_static).getOrCreate(property_name + name).text(value);
+        container.getOrCreate(configurationStatic).removeChild(propertyName + name);
+        container.getOrCreate(configurationStatic).getOrCreate(propertyName + name).text(value);
         return this;
     }
 
@@ -151,7 +151,7 @@ public class ContainerDefImpl extends ArquillianDescriptorImpl implements Contai
      */
     @Override
     public Map<String, String> getContainerProperties() {
-        Node props = container.getSingle(configuration_static);
+        Node props = container.getSingle(configurationStatic);
         Map<String, String> properties = new HashMap<String, String>();
 
         if (props != null) {
@@ -164,9 +164,9 @@ public class ContainerDefImpl extends ArquillianDescriptorImpl implements Contai
 
     @Override
     public String getContainerProperty(String name) {
-        Node props = container.getSingle(configuration_static);
+        Node props = container.getSingle(configurationStatic);
         if (props != null) {
-            final Node value = props.getSingle(property_name + name);
+            final Node value = props.getSingle(propertyName + name);
             return value != null ? value.getText() : null;
         } else {
             return null;
@@ -191,8 +191,8 @@ public class ContainerDefImpl extends ArquillianDescriptorImpl implements Contai
     @Override
     public List<String> getDependencies() {
         List<String> dependencies = new ArrayList<String>();
-        if (container.getSingle(dependencies_static) != null) {
-            for (Node dep : container.getSingle(dependencies_static).get("dependency")) {
+        if (container.getSingle(dependenciesStatic) != null) {
+            for (Node dep : container.getSingle(dependenciesStatic).get("dependency")) {
                 dependencies.add(dep.getText());
             }
         }
