@@ -34,6 +34,7 @@ import org.jboss.shrinkwrap.descriptor.spi.node.Node;
 public class ContainerDefImpl extends ArquillianDescriptorImpl implements ContainerDef {
     private Node container;
     private static String DEPENDENCIES="dependencies";
+    private static String CONFIGURATION="configuration";
 
     // test only
     public ContainerDefImpl(String descriptorName) {
@@ -130,7 +131,7 @@ public class ContainerDefImpl extends ArquillianDescriptorImpl implements Contai
      */
     @Override
     public ContainerDef property(String name, String value) {
-        container.getOrCreate("configuration").getOrCreate("property@name=" + name).text(value);
+        container.getOrCreate(CONFIGURATION).getOrCreate("property@name=" + name).text(value);
         return this;
     }
 
@@ -139,8 +140,8 @@ public class ContainerDefImpl extends ArquillianDescriptorImpl implements Contai
      */
     @Override
     public ContainerDef overrideProperty(String name, String value) {
-        container.getOrCreate("configuration").removeChild("property@name=" + name);
-        container.getOrCreate("configuration").getOrCreate("property@name=" + name).text(value);
+        container.getOrCreate(CONFIGURATION).removeChild("property@name=" + name);
+        container.getOrCreate(CONFIGURATION).getOrCreate("property@name=" + name).text(value);
         return this;
     }
 
@@ -149,7 +150,7 @@ public class ContainerDefImpl extends ArquillianDescriptorImpl implements Contai
      */
     @Override
     public Map<String, String> getContainerProperties() {
-        Node props = container.getSingle("configuration");
+        Node props = container.getSingle(CONFIGURATION);
         Map<String, String> properties = new HashMap<String, String>();
 
         if (props != null) {
@@ -162,7 +163,7 @@ public class ContainerDefImpl extends ArquillianDescriptorImpl implements Contai
 
     @Override
     public String getContainerProperty(String name) {
-        Node props = container.getSingle("configuration");
+        Node props = container.getSingle(CONFIGURATION);
         if (props != null) {
             final Node value = props.getSingle("property@name=" + name);
             return value != null ? value.getText() : null;
