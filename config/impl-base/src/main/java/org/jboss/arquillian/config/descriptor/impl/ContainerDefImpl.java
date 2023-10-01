@@ -35,6 +35,7 @@ public class ContainerDefImpl extends ArquillianDescriptorImpl implements Contai
     private Node container;
     private static String DEPENDENCIES="dependencies";
     private static String CONFIGURATION="configuration";
+    private static String PROPERTY_NAME="property@name=";
 
     // test only
     public ContainerDefImpl(String descriptorName) {
@@ -131,7 +132,7 @@ public class ContainerDefImpl extends ArquillianDescriptorImpl implements Contai
      */
     @Override
     public ContainerDef property(String name, String value) {
-        container.getOrCreate(CONFIGURATION).getOrCreate("property@name=" + name).text(value);
+        container.getOrCreate(CONFIGURATION).getOrCreate(PROPERTY_NAME+ name).text(value);
         return this;
     }
 
@@ -140,8 +141,8 @@ public class ContainerDefImpl extends ArquillianDescriptorImpl implements Contai
      */
     @Override
     public ContainerDef overrideProperty(String name, String value) {
-        container.getOrCreate(CONFIGURATION).removeChild("property@name=" + name);
-        container.getOrCreate(CONFIGURATION).getOrCreate("property@name=" + name).text(value);
+        container.getOrCreate(CONFIGURATION).removeChild(PROPERTY_NAME + name);
+        container.getOrCreate(CONFIGURATION).getOrCreate(PROPERTY_NAME + name).text(value);
         return this;
     }
 
@@ -165,7 +166,7 @@ public class ContainerDefImpl extends ArquillianDescriptorImpl implements Contai
     public String getContainerProperty(String name) {
         Node props = container.getSingle(CONFIGURATION);
         if (props != null) {
-            final Node value = props.getSingle("property@name=" + name);
+            final Node value = props.getSingle(PROPERTY_NAME + name);
             return value != null ? value.getText() : null;
         } else {
             return null;
