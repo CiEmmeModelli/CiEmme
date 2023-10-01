@@ -33,6 +33,7 @@ import org.jboss.shrinkwrap.descriptor.spi.node.Node;
  */
 public class ContainerDefImpl extends ArquillianDescriptorImpl implements ContainerDef {
     private Node container;
+    private static String DEPENDENCIES="dependencies";
 
     // test only
     public ContainerDefImpl(String descriptorName) {
@@ -108,7 +109,7 @@ public class ContainerDefImpl extends ArquillianDescriptorImpl implements Contai
      */
     @Override
     public ContainerDef dependency(String artifactId) {
-        container.getOrCreate("dependencies").getOrCreate("dependency=" + artifactId);
+        container.getOrCreate(DEPENDENCIES).getOrCreate("dependency=" + artifactId);
         return this;
     }
 
@@ -188,8 +189,8 @@ public class ContainerDefImpl extends ArquillianDescriptorImpl implements Contai
     @Override
     public List<String> getDependencies() {
         List<String> dependencies = new ArrayList<String>();
-        if (container.getSingle("dependencies") != null) {
-            for (Node dep : container.getSingle("dependencies").get("dependency")) {
+        if (container.getSingle(DEPENDENCIES) != null) {
+            for (Node dep : container.getSingle(DEPENDENCIES).get("dependency")) {
                 dependencies.add(dep.getText());
             }
         }
