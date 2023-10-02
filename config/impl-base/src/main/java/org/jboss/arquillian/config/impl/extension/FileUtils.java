@@ -31,6 +31,8 @@ import java.util.Properties;
  * @version $Revision: $
  */
 class FileUtils {
+    private FileUtils(){
+    }
     static Properties loadArquillianProperties(String propertyName, String defaultName) {
         Properties props = new Properties();
         FileName resourceName = getConfigFileName(propertyName, defaultName);
