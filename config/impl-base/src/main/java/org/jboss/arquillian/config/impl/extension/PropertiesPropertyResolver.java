@@ -32,49 +32,42 @@ class PropertiesPropertyResolver implements PropertyResolver {
     }
 
     public String getValue(String key) {
-
         String value;
-
+    
         if (FILE_SEPARATOR_ALIAS.equals(key)) {
             value = FILE_SEPARATOR;
         } else if (PATH_SEPARATOR_ALIAS.equals(key)) {
             value = PATH_SEPARATOR;
         } else {
-            // check from the properties
-            if (props != null) {
-                value = props.getProperty(key);
-            } else {
-                value = System.getProperty(key);
-            }
-
+            value = getValueFromProperties(key);
             if (value == null) {
-                // Check for a default value ${key:default}
-                int colon = key.indexOf(':');
-                if (colon > 0) {
-                    String realKey = key.substring(0, colon);
-                    if (props != null) {
-                        value = props.getProperty(realKey);
-                    } else {
-                        value = System.getProperty(realKey);
-                    }
-
-                    if (value == null) {
-                        // Check for a composite key, "key1,key2"
-                        value = resolveCompositeKey(realKey, props);
-
-                        // Not a composite key either, use the specified default
-                        if (value == null) {
-                            value = key.substring(colon + 1);
-                        }
-                    }
-                } else {
-                    // No default, check for a composite key, "key1,key2"
-                    value = resolveCompositeKey(key, props);
-                }
+                value = resolveDefaultValue(key);
             }
         }
-
+    
         return value;
+    }
+
+    private String getValueFromProperties(String key) {
+        if (props != null) {
+            return props.getProperty(key);
+        } else {
+            return System.getProperty(key);
+        }
+    }
+    private String resolveDefaultValue(String key) {
+        int colon = key.indexOf(':');
+        if (colon > 0) {
+            String realKey = key.substring(0, colon);
+            String defaultValue = key.substring(colon + 1);
+            String value = getValueFromProperties(realKey);
+            if (value == null) {
+                value = resolveCompositeKey(realKey,props);
+            }
+            return (value != null) ? value : defaultValue;
+        } else {
+            return resolveCompositeKey(key,props);
+        }
     }
 
     /**
