@@ -71,12 +71,6 @@ class PropertiesPropertyResolver implements PropertyResolver {
     }
 
     /**
-     * Try to resolve a "key" from the provided properties by
-     * checking if it is actually a "key1,key2", in which case
-     * try first "key1", then "key2". If all fails, return null.
-     * <p>
-     * It also accepts "key1," and ",key2".
-     *
      * @param key
      *     the key to resolve
      * @param props
