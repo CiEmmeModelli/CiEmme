@@ -17,6 +17,7 @@ class ClasspathPropertyResolver implements PropertyResolver {
         if (key.startsWith(CLASSPATH)) {
             final ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
             String classpathResource = key.substring(CLASSPATH.length(), key.length() - 1);
+            try{
             final URL resource = contextClassLoader.getResource(classpathResource);
 
             //If resource is not found it is returned as null so no change is applicable.
@@ -26,6 +27,11 @@ class ClasspathPropertyResolver implements PropertyResolver {
             }
 
             return resource.toString();
+        } catch (NullPointerException e){
+            logger.warning(String.format("NullPointerException occurred while trying to access resource for key: %s", key));
+            return null;
+
+        }
         }
 
         return null;
