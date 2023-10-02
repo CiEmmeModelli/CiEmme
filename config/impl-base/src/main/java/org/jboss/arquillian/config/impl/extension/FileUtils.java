@@ -16,13 +16,16 @@
  * limitations under the License.
  */
 package org.jboss.arquillian.config.impl.extension;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+
+
+
+
 
 /**
  * FileUtils
@@ -33,6 +36,8 @@ import java.util.Properties;
 class FileUtils {
     private FileUtils(){
     }
+    
+
     static Properties loadArquillianProperties(String propertyName, String defaultName) {
         Properties props = new Properties();
         FileName resourceName = getConfigFileName(propertyName, defaultName);
@@ -41,7 +46,7 @@ class FileUtils {
             try {
                 props.load(input);
             } catch (IOException e) {
-                throw new RuntimeException("Could not load Arquillian properties file, " + resourceName.getName(), e);
+                throw new ArquillianPropertiesLoadException("Could not load Arquillian properties file, " + resourceName.getName(), e);
             }
         }
         props.putAll(System.getProperties());
@@ -110,4 +115,6 @@ class FileUtils {
             return isDefault;
         }
     }
+    
+
 }
