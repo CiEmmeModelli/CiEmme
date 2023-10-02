@@ -5,8 +5,8 @@ import java.util.logging.Logger;
 
 class ClasspathPropertyResolver implements PropertyResolver {
 
-    private final static Logger logger = Logger.getLogger(ClasspathConfigurationPlaceholderResolver.class.getName());
-
+    //private final static Logger logger = Logger.getLogger(ClasspathConfigurationPlaceholderResolver.class.getName());
+    private final static Logger logger = Logger.getLogger(ClasspathPropertyResolver.class.getName());
     /**
      * Classpath base property
      */
