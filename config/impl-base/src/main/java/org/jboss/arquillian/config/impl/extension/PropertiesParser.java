@@ -49,7 +49,7 @@ import org.jboss.arquillian.config.descriptor.api.ProtocolDef;
  * <p>
  * arq.engine.[property_name]
  * <p>
- * You can use special constant {@value #originalValue} to replace placeholder with previous value of property defined
+ * You can use special constant {@value #origValue} to replace placeholder with previous value of property defined
  * in arquillian.xml. For example:
  * <p>
  *     arq.container.[qualifier].configuration.[property_name]=[ORIGINAL] new-values
@@ -75,7 +75,7 @@ class PropertiesParser {
     private static String arqDefaultProtocol = "arq\\.defaultprotocol\\.(.*)\\.(.*)";
     private static String arqExtension = "arq\\.extension\\.(.*)\\.(.*)";
 
-    private static String originalValue = "[ORIGINAL]";
+    private static String origValue = "[ORIGINAL]";
 
     private static String exceptionMessageSuffix = "] with value[";
     private static String exceptionMessagePrefix = "Unknown arquillian container attribute[";
@@ -139,8 +139,8 @@ class PropertiesParser {
 
             final DefaultProtocolDef defaultProtocolDef = descriptor.defaultProtocol(typeName);
             final String originalValue = defaultProtocolDef.getProperty(propertyName);
-            if (value.contains(originalValue)) {
-                defaultProtocolDef.property(propertyName, value.replace(originalValue, originalValue != null ? originalValue : ""));
+            if (value.contains(origValue)) {
+                defaultProtocolDef.property(propertyName, value.replace(origValue, originalValue != null ? originalValue : ""));
             } else {
                 defaultProtocolDef.property(propertyName, value);
             }
@@ -200,8 +200,8 @@ class PropertiesParser {
 
             final ProtocolDef protocolDef = descriptor.group(groupName).container(containerName).protocol(protocolName);
             final String originalValue = protocolDef.getProtocolProperty(propertyName);
-            if (value.contains(originalValue)) {
-                protocolDef.property(propertyName, value.replace(originalValue, originalValue != null ? originalValue : ""));
+            if (value.contains(origValue)) {
+                protocolDef.property(propertyName, value.replace(origValue, originalValue != null ? originalValue : ""));
             } else {
                 protocolDef.property(propertyName, value);
             }
@@ -221,8 +221,8 @@ class PropertiesParser {
 
             final ContainerDef containerDef = descriptor.group(groupName).container(containerName);
             final String originalValue = containerDef.getContainerProperty(propertyName);
-            if (value.contains(originalValue)) {
-                containerDef.property(propertyName, value.replace(originalValue, originalValue != null ? originalValue : ""));
+            if (value.contains(origValue)) {
+                containerDef.property(propertyName, value.replace(origValue, originalValue != null ? originalValue : ""));
             } else {
                 containerDef.property(propertyName, value);
             }
@@ -241,8 +241,8 @@ class PropertiesParser {
 
             final ExtensionDef extensionDef = descriptor.extension(extensionName);
             final String originalValue = extensionDef.getExtensionProperty(propertyName);
-            if (value.contains(originalValue)) {
-                extensionDef.property(propertyName, value.replace(originalValue, originalValue != null ? originalValue : ""));
+            if (value.contains(origValue)) {
+                extensionDef.property(propertyName, value.replace(origValue, originalValue != null ? originalValue : ""));
             } else {
                 extensionDef.property(propertyName, value);
             }
@@ -282,8 +282,8 @@ class PropertiesParser {
 
             final ProtocolDef protocolDef = descriptor.container(containerName).protocol(protocolName);
             final String originalValue = protocolDef.getProtocolProperty(propertyName);
-            if (value.contains(originalValue)) {
-                protocolDef.property(propertyName, value.replace(originalValue, originalValue != null ? originalValue : ""));
+            if (value.contains(origValue)) {
+                protocolDef.property(propertyName, value.replace(origValue, originalValue != null ? originalValue : ""));
             } else {
                 protocolDef.property(propertyName, value);
             }
@@ -302,8 +302,8 @@ class PropertiesParser {
 
             final ContainerDef containerDef = descriptor.container(containerName);
             final String originalValue = containerDef.getContainerProperty(propertyName);
-            if (value.contains(originalValue)) {
-                containerDef.property(propertyName, value.replace(originalValue, originalValue != null ? originalValue : ""));
+            if (value.contains(origValue)) {
+                containerDef.property(propertyName, value.replace(origValue, originalValue != null ? originalValue : ""));
             } else {
                 containerDef.property(propertyName, value);
             }
