@@ -60,6 +60,7 @@ public class ConfigurationRegistrar {
     public void loadConfiguration(@Observes ManagerStarted event) {
         //Placeholder resolver
         ArquillianDescriptor resolvedDesc = loadConfiguration();
+        event.toString();
 
         final List<ConfigurationPlaceholderResolver> configurationPlaceholderResolvers =
             loadAndOrderPlaceholderResolvers();
@@ -70,7 +71,7 @@ public class ConfigurationRegistrar {
 
         descriptorInst.set(resolvedDesc);
     }
-    @SuppressWarnings("unused")
+
     public ArquillianDescriptor loadConfiguration() {
         final InputStream input = FileUtils.loadArquillianXml(ARQUILLIAN_XML_PROPERTY, ARQUILLIAN_XML_DEFAULT);
 
@@ -122,8 +123,4 @@ public class ConfigurationRegistrar {
         this.systemEnvironmentVars = variables;
     }
 
-    void testingLoadConfiguration(){
-        ManagerStarted event = new ManagerStarted(); 
-        this.loadConfiguration(event);
-    }
 }
