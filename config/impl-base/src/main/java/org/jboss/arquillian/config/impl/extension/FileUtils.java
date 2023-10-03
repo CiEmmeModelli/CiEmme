@@ -49,6 +49,7 @@ class FileUtils {
                 try {
                     throw new ArquillianPropertiesLoadException("Could not load Arquillian properties file, " + resourceName.getName(), e);
                 } catch (ArquillianPropertiesLoadException e1) {
+                    throw new RuntimeException("Error during prop file loading", e);
                 }
             }
         }
