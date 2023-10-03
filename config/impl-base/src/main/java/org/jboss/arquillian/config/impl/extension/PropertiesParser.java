@@ -323,8 +323,7 @@ class PropertiesParser {
             } else if ("maxTestClassesBeforeRestart".equals(propertyName)) {
                 descriptor.engine().maxTestClassesBeforeRestart(Integer.parseInt(value));
             } else {
-                throw new RuntimeException(
-                        "Unknown arquillian engine property[" + propertyName + "] with value[" + value + "]");
+                throw new ArquillianConfigurationException("Unknown arquillian engine property[" + propertyName + "] with value[" + value + "]");
             }
         }
     }
