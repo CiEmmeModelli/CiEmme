@@ -157,8 +157,7 @@ class PropertiesParser {
             if ("default".equals(attributeName)) {
                 descriptor.group(groupName).setGroupDefault();
             } else {
-                throw new RuntimeException(
-                        "Unknown arquillian container attribute[" + attributeName + "] with value[" + value + "]");
+                throw new ArquillianConfigurationException("Unknown arquillian container attribute[" + attributeName + "] with value[" + value + "]");
             }
         }
     }
