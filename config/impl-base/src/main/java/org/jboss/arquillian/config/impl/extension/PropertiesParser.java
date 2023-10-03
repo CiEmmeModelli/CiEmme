@@ -58,7 +58,7 @@ import org.jboss.arquillian.config.descriptor.api.ProtocolDef;
  * @version $Revision: $
  */
 class PropertiesParser {
-    private static String ARQ_PROPERTY = "arq\\..*";
+    private static String arqProperty = "arq\\..*";
 
     private static String ARQ_ENGINE_PROPERTY = "arq\\.engine\\.(.*)";
 
@@ -114,7 +114,7 @@ class PropertiesParser {
     private Set<Entry<Object, Object>> filterProperties(Properties properties) {
         Set<Entry<Object, Object>> filtered = new HashSet<Entry<Object, Object>>();
         for (Entry<Object, Object> entry : properties.entrySet()) {
-            if (String.valueOf(entry.getKey()).matches(ARQ_PROPERTY)) {
+            if (String.valueOf(entry.getKey()).matches(arqProperty)) {
                 filtered.add(entry);
             }
         }
