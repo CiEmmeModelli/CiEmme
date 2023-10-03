@@ -77,8 +77,8 @@ class PropertiesParser {
 
     private static String ORIGINAL_VALUE = "[ORIGINAL]";
 
-    private static String exception_message_suffix = "] with value[";
-    private static String exception_message_prefix = "Unknown arquillian container attribute[";
+    private static String exceptionMessageSuffix = "] with value[";
+    private static String exceptionMessagePrefix = "Unknown arquillian container attribute[";
 
     private Handler[] handlers = new Handler[]{
             new EngineProperty(ARQ_ENGINE_PROPERTY),
@@ -160,7 +160,7 @@ class PropertiesParser {
             if ("default".equals(attributeName)) {
                 descriptor.group(groupName).setGroupDefault();
             } else {
-                throw new ArquillianConfigurationException("exception_message_prefix" + attributeName + "exception_message_suffix" + value + "]");
+                throw new ArquillianConfigurationException(exceptionMessagePrefix + attributeName + exceptionMessageSuffix + value + "]");
             }
         }
     }
@@ -181,7 +181,7 @@ class PropertiesParser {
             } else if ("default".equals(attributeName)) {
                 descriptor.group(groupName).container(containerName).setDefault();
             } else {
-                throw new ArquillianConfigurationException("exception_message_prefix" + attributeName + "exception_message_suffix" + value + "]");
+                throw new ArquillianConfigurationException(exceptionMessagePrefix + attributeName + exceptionMessageSuffix + value + "]");
             }
         }
     }
@@ -264,7 +264,7 @@ class PropertiesParser {
             } else if ("default".equals(attributeName)) {
                 descriptor.container(containerName).setDefault();
             } else {
-                throw new ArquillianConfigurationException("exception_message_prefix" + attributeName + "exception_message_suffix" + value + "]");
+                throw new ArquillianConfigurationException(exceptionMessagePrefix + attributeName + exceptionMessageSuffix + value + "]");
             }
         }
     }
