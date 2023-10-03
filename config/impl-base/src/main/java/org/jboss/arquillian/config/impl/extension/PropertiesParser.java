@@ -72,7 +72,7 @@ class PropertiesParser {
             "arq\\.group\\.(.*)\\.container\\.(.*)\\.configuration\\.(.*)";
     private static String arqGroupContainerProtocol = "arq\\.group\\.(.*)\\.container\\.(.*)\\.protocol\\.(.*)\\.(.*)";
 
-    private static String ARQ_DEFAULT_PROTOCOL = "arq\\.defaultprotocol\\.(.*)\\.(.*)";
+    private static String arqDefaultProtocol = "arq\\.defaultprotocol\\.(.*)\\.(.*)";
     private static String ARQ_EXTENSION = "arq\\.extension\\.(.*)\\.(.*)";
 
     private static String ORIGINAL_VALUE = "[ORIGINAL]";
@@ -90,7 +90,7 @@ class PropertiesParser {
             new GroupContainerProtocol(arqGroupContainerProtocol),
             new GroupContainer(arqGroupContainer),
             new Group(arqGroup),
-            new DefaultProtocol(ARQ_DEFAULT_PROTOCOL)
+            new DefaultProtocol(arqDefaultProtocol)
     };
 
     void addProperties(ArquillianDescriptor descriptor, Properties properties) {
