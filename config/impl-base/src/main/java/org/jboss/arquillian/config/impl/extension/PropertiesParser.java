@@ -63,7 +63,7 @@ class PropertiesParser {
     private static String arqEngineProperty = "arq\\.engine\\.(.*)";
 
     private static String arqContainer = "arq\\.container\\.(.*)\\.(.*)";
-    private static String ARQ_CONTAINER_CONFIGURATION = "arq\\.container\\.(.*)\\.configuration\\.(.*)";
+    private static String arqContainerConfiguration = "arq\\.container\\.(.*)\\.configuration\\.(.*)";
     private static String ARQ_CONTAINER_PROTOCOL = "arq\\.container\\.(.*)\\.protocol\\.(.*)\\.(.*)";
 
     private static String ARQ_GROUP = "arq\\.group\\.(.*)\\.(.*)";
@@ -82,7 +82,7 @@ class PropertiesParser {
 
     private Handler[] handlers = new Handler[]{
             new EngineProperty(arqEngineProperty),
-            new ContainerConfiguration(ARQ_CONTAINER_CONFIGURATION),
+            new ContainerConfiguration(arqContainerConfiguration),
             new ContainerProtocol(ARQ_CONTAINER_PROTOCOL),
             new Container(arqContainer),
             new Extension(ARQ_EXTENSION),
