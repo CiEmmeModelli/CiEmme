@@ -60,7 +60,7 @@ import org.jboss.arquillian.config.descriptor.api.ProtocolDef;
 class PropertiesParser {
     private static String arqProperty = "arq\\..*";
 
-    private static String ARQ_ENGINE_PROPERTY = "arq\\.engine\\.(.*)";
+    private static String arqEngineProperty = "arq\\.engine\\.(.*)";
 
     private static String ARQ_CONTAINER = "arq\\.container\\.(.*)\\.(.*)";
     private static String ARQ_CONTAINER_CONFIGURATION = "arq\\.container\\.(.*)\\.configuration\\.(.*)";
@@ -81,7 +81,7 @@ class PropertiesParser {
     private static String exceptionMessagePrefix = "Unknown arquillian container attribute[";
 
     private Handler[] handlers = new Handler[]{
-            new EngineProperty(ARQ_ENGINE_PROPERTY),
+            new EngineProperty(arqEngineProperty),
             new ContainerConfiguration(ARQ_CONTAINER_CONFIGURATION),
             new ContainerProtocol(ARQ_CONTAINER_PROTOCOL),
             new Container(ARQ_CONTAINER),
