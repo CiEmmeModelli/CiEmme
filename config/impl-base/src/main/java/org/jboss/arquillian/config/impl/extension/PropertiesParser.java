@@ -77,6 +77,9 @@ class PropertiesParser {
 
     private static String ORIGINAL_VALUE = "[ORIGINAL]";
 
+    private static String exception_message_suffix = "] with value[";
+    private static String exception_message_prefix = "Unknown arquillian container attribute[";
+
     private Handler[] handlers = new Handler[]{
             new EngineProperty(ARQ_ENGINE_PROPERTY),
             new ContainerConfiguration(ARQ_CONTAINER_CONFIGURATION),
@@ -157,7 +160,7 @@ class PropertiesParser {
             if ("default".equals(attributeName)) {
                 descriptor.group(groupName).setGroupDefault();
             } else {
-                throw new ArquillianConfigurationException("Unknown arquillian container attribute[" + attributeName + "] with value[" + value + "]");
+                throw new ArquillianConfigurationException("exception_message_prefix" + attributeName + "exception_message_suffix" + value + "]");
             }
         }
     }
@@ -178,7 +181,7 @@ class PropertiesParser {
             } else if ("default".equals(attributeName)) {
                 descriptor.group(groupName).container(containerName).setDefault();
             } else {
-                throw new ArquillianConfigurationException("Unknown arquillian container attribute[" + attributeName + "] with value[" + value + "]");
+                throw new ArquillianConfigurationException("exception_message_prefix" + attributeName + "exception_message_suffix" + value + "]");
             }
         }
     }
@@ -261,7 +264,7 @@ class PropertiesParser {
             } else if ("default".equals(attributeName)) {
                 descriptor.container(containerName).setDefault();
             } else {
-                throw new ArquillianConfigurationException("Unknown arquillian container attribute[" + attributeName + "] with value[" + value + "]");
+                throw new ArquillianConfigurationException("exception_message_prefix" + attributeName + "exception_message_suffix" + value + "]");
             }
         }
     }
@@ -320,7 +323,7 @@ class PropertiesParser {
             } else if ("maxTestClassesBeforeRestart".equals(propertyName)) {
                 descriptor.engine().maxTestClassesBeforeRestart(Integer.parseInt(value));
             } else {
-                throw new ArquillianConfigurationException("Unknown arquillian engine property[" + propertyName + "] with value[" + value + "]");
+                throw new ArquillianConfigurationException("Unknown arquillian engine property[" + propertyName + "exception_message_suffix" + value + "]");
             }
         }
     }
