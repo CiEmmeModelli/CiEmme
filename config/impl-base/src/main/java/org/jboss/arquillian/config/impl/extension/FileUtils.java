@@ -46,7 +46,12 @@ class FileUtils {
             try {
                 props.load(input);
             } catch (IOException e) {
-                throw new ArquillianPropertiesLoadException("Could not load Arquillian properties file, " + resourceName.getName(), e);
+                try {
+                    throw new ArquillianPropertiesLoadException("Could not load Arquillian properties file, " + resourceName.getName(), e);
+                } catch (ArquillianPropertiesLoadException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
             }
         }
         props.putAll(System.getProperties());

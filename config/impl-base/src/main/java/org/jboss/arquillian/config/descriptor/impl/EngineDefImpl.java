@@ -43,7 +43,7 @@ public class EngineDefImpl extends ArquillianDescriptorImpl implements EngineDef
      */
     @Override
     public EngineDef deploymentExportPath(String path) {
-        engine.getOrCreate(exportPath).text(path);
+        engine.getOrCreate(EXPORT_PATH).text(path);
         return this;
     }
 
@@ -52,7 +52,7 @@ public class EngineDefImpl extends ArquillianDescriptorImpl implements EngineDef
      */
     @Override
     public String getDeploymentExportPath() {
-        return getTextIfExists(exportPath);
+        return getTextIfExists(EXPORT_PATH);
     }
 
     /* (non-Javadoc)
@@ -60,7 +60,7 @@ public class EngineDefImpl extends ArquillianDescriptorImpl implements EngineDef
      */
     @Override
     public EngineDef deploymentExportExploded(Boolean exploded) {
-        engine.getOrCreate(exportExploded).text(exploded);
+        engine.getOrCreate(EXPORT_EXPLODED).text(exploded);
         return this;
     }
 
@@ -69,7 +69,7 @@ public class EngineDefImpl extends ArquillianDescriptorImpl implements EngineDef
      */
     @Override
     public Boolean getDeploymentExportExploded() {
-        return getTextIfExistsAsBoolean(exportExploded, false);
+        return getTextIfExistsAsBoolean(EXPORT_EXPLODED, false);
     }
 
     /* (non-Javadoc)
@@ -77,7 +77,7 @@ public class EngineDefImpl extends ArquillianDescriptorImpl implements EngineDef
      */
     @Override
     public EngineDef maxTestClassesBeforeRestart(Integer max) {
-        engine.getOrCreate(maxTestClasses).text(max);
+        engine.getOrCreate(MAX_TEST_CLASSES).text(max);
         return this;
     }
 
@@ -86,7 +86,7 @@ public class EngineDefImpl extends ArquillianDescriptorImpl implements EngineDef
      */
     @Override
     public Integer getMaxTestClassesBeforeRestart() {
-        return getTextIfExistsAsInteger(maxTestClasses);
+        return getTextIfExistsAsInteger(MAX_TEST_CLASSES);
     }
 
     private Integer getTextIfExistsAsInteger(String pattern) {
