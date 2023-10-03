@@ -70,7 +70,7 @@ public class ConfigurationRegistrar {
 
         descriptorInst.set(resolvedDesc);
     }
-
+    @SuppressWarnings("unused")
     public ArquillianDescriptor loadConfiguration() {
         final InputStream input = FileUtils.loadArquillianXml(ARQUILLIAN_XML_PROPERTY, ARQUILLIAN_XML_DEFAULT);
 
@@ -123,6 +123,7 @@ public class ConfigurationRegistrar {
     }
 
     void testingLoadConfiguration(){
-        loadConfiguration(new ManagerStarted());
+        ManagerStarted event = new ManagerStarted(); 
+        this.loadConfiguration(event);
     }
 }
