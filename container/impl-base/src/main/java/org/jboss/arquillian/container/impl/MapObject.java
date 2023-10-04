@@ -33,45 +33,45 @@ import org.jboss.arquillian.config.descriptor.api.Multiline;
  * @version $Revision: $
  */
 public class MapObject {
-    private MapObject(){
-    }
 
-    private static final Logger log = Logger.getLogger(MapObject.class.getName());
-
+    public static Logger log = Logger.getLogger(MapObject.class.getName());
 
     public static void populate(Object object, Map<String, String> values) throws MapObjectException {
-    final Map<String, String> clonedValues = new HashMap<String, String>(values);
-    final Set<String> candidates = new HashSet<String>();
-    final Class<?> clazz = object.getClass();
-    try {
-        for (Method candidate : clazz.getMethods()) {
-            if (isSetter(candidate)) {
-                candidate.setAccessible(true);
-                final String methodName = candidate.getName();
-                String propertyName = methodName.substring(3, 4).toLowerCase() + methodName.substring(4);
-                candidates.add(propertyName);
-                if (clonedValues.containsKey(propertyName)) {
-                    if (shouldBeTrimmed(candidate)) {
-                        String trimmed = MultilineTrimmer.trim(clonedValues.get(propertyName));
-                        clonedValues.put(propertyName, trimmed);
+        final Map<String, String> clonedValues = new HashMap<String, String>(values);
+        final Set<String> candidates = new HashSet<String>();
+        final Class<?> clazz = object.getClass();
+        try {
+            for (Method candidate : clazz.getMethods()) {
+                if (isSetter(candidate)) {
+                    candidate.setAccessible(true);
+                    final String methodName = candidate.getName();
+                    String propertyName = methodName.substring(3, 4).toLowerCase() + methodName.substring(4);
+                    candidates.add(propertyName);
+                    if (clonedValues.containsKey(propertyName)) {
+                        if (shouldBeTrimmed(candidate)) {
+                            String trimmed = MultilineTrimmer.trim(clonedValues.get(propertyName));
+                            clonedValues.put(propertyName, trimmed);
+                        }
+                        candidate.invoke(
+                            object,
+                            convert(candidate.getParameterTypes()[0], clonedValues.get(propertyName)));
+                        clonedValues.remove(propertyName);
                     }
-                    candidate.invoke(
-                        object,
-                        convert(candidate.getParameterTypes()[0], clonedValues.get(propertyName)));
-                    clonedValues.remove(propertyName);
                 }
             }
-        }
-        if (!clonedValues.isEmpty()) {
-            log.warning(String.format(
-                "Configuration contains properties not supported by the backing object %s%nUnused property entries: %s%nSupported property names: %s",clazz.getName(),clonedValues, candidates));
+            if (!clonedValues.isEmpty()) {
+            try {
+                log.warning(String.format("Configuration contains properties not supported by the backing object %s%nUnused property entries: %s%nSupported property names: %s",clazz.getName(),clonedValues, candidates));
+            } catch (IllegalStateException e) {
+                throw new IllegalStateException("Stringa vuota");
+            }
+            
             
         }
-    } catch (Exception e) {
-        throw new MapObjectException("Error populating object: " + e.getMessage(), e);
+        } catch (Exception e) {
+            throw new MapObjectException("Error populating object: " + e.getMessage(), e);
+        }
     }
-}
-
 
     public static URL[] convert(File[] files) {
         final URL[] urls = new URL[files.length];
@@ -98,9 +98,9 @@ public class MapObject {
     /**
      * Converts a String value to the specified class.
      */
-    private static Object convert(Class<?> clazz, String value) throws MapObjectException {
+    private static Object convert(Class<?> clazz, String value) {
+      /* TODO create a new Converter class and move this method there for reuse */
 
-      try {
         if (Integer.class.equals(clazz) || int.class.equals(clazz)) {
             return Integer.valueOf(value);
         } else if (Double.class.equals(clazz) || double.class.equals(clazz)) {
@@ -112,8 +112,5 @@ public class MapObject {
         }
 
         return value;
-    } catch (NumberFormatException e) {
-        throw new MapObjectException("Error converting value to " + clazz.getSimpleName() + ": " + value, e);
-    }
     }
 }

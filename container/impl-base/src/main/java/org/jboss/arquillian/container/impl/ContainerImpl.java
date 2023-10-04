@@ -109,7 +109,7 @@ public class ContainerImpl implements Container {
         try{
         MapObject.populate(config, containerConfiguration.getContainerProperties());
         } catch (MapObjectException e) {
-            e.printStackTrace();
+            throw new MapObjectException("Unresolved",e);
         }
         config.validate();
         return config;
