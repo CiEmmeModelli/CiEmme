@@ -1,4 +1,4 @@
-/*
+    /*
  * JBoss, Home of Professional Open Source
  * Copyright 2015, Red Hat, Inc., and individual contributors as indicated
  * by the @authors tag.
@@ -44,6 +44,10 @@ public final class StringPropertyReplacer {
     private static final int NORMAL = 0;
     private static final int SEEN_DOLLAR = 1;
     private static final int IN_BRACKET = 2;
+
+    private StringPropertyReplacer() {
+        throw new AssertionError("Utility class.");
+    }
 
     /**
      * Go through the input string and replace any occurrence of ${classpath(p)} with
