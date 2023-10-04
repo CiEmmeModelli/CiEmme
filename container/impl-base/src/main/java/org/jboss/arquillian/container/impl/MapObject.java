@@ -59,12 +59,9 @@ public class MapObject {
                     }
                 }
             }
-            if (!clonedValues.isEmpty()) {
-            try {
+            if (!clonedValues.isEmpty() &&  !candidates.isEmpty()&&!clazz.getName().isEmpty())  {
                 log.warning(String.format("Configuration contains properties not supported by the backing object %s%nUnused property entries: %s%nSupported property names: %s",clazz.getName(),clonedValues, candidates));
-            } catch (IllegalStateException e) {
-                throw new IllegalStateException("Stringa vuota");
-            }
+            
             
             
         }
@@ -99,7 +96,6 @@ public class MapObject {
      * Converts a String value to the specified class.
      */
     private static Object convert(Class<?> clazz, String value) {
-      /* TODO create a new Converter class and move this method there for reuse */
 
         if (Integer.class.equals(clazz) || int.class.equals(clazz)) {
             return Integer.valueOf(value);
