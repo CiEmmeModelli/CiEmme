@@ -193,7 +193,7 @@ public class ArquillianDescriptorTestCase {
     }
 
     @Test
-    @Ignore("Disabled for some reason") // Dependencies not supported on container level in v. 1.0
+    @Ignore("Dependencies not supported on container level in v. 1.0")
     public void shouldBeAbleToAddContainerWithDependencies() throws Exception {
         desc = create()
                 .container(CONTAINER_NAME_1)
