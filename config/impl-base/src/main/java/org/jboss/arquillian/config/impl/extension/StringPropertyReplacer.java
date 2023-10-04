@@ -135,61 +135,61 @@ public final class StringPropertyReplacer {
         for (int i = 0; i < chars.length; ++i) {
             char c = chars[i];
     
-            // Dollar sign outside brackets
-            if (c == '$' && state != IN_BRACKET) {
-                state = SEEN_DOLLAR;
-            }
-    
-            // Open bracket immediately after dollar
-            else if (c == '{' && state == SEEN_DOLLAR) {
-                buffer.append(string.substring(start, i - 1));
-                state = IN_BRACKET;
-                start = i - 1;
-            }
-    
-            // No open bracket after dollar
-            else if (state == SEEN_DOLLAR) {
-                state = NORMAL;
-            }
-    
-            // Closed bracket after open bracket
-            else if (c == '}' && state == IN_BRACKET) {
-                // Handle property replacement
-                // No content
-                if (start + 2 == i) {
-                    buffer.append("${}"); // REVIEW: Correct?
-                } else {
-                    String value;
-    
-                    String key = string.substring(start + 2, i);
-    
-                    // Get the property value from the resolver
-                    value = propertyResolver.getValue(key);
-    
-                    if (value != null) {
-                        buffer.append(value);
-                    } else {
-                        buffer.append("${");
-                        buffer.append(key);
-                        buffer.append('}');
+            switch (state) {
+                case NORMAL:
+                    if (c == '$') {
+                        state = SEEN_DOLLAR;
                     }
-                }
-                start = i + 1;
-                state = NORMAL;
+                    break;
+    
+                case SEEN_DOLLAR:
+                    if (c == '{') {
+                        buffer.append(string.substring(start, i - 1));
+                        state = IN_BRACKET;
+                        start = i - 1;
+                    } else {
+                        state = NORMAL;
+                    }
+                    break;
+    
+                case IN_BRACKET:
+                    if (c == '}') {
+                        handlePropertyReplacement(buffer, string, start, i, propertyResolver);
+                        start = i + 1;
+                        state = NORMAL;
+                    }
+                    break;
             }
         }
     
-        // Return the original string if no property replacements were made
         if (buffer.length() == 0) {
             return string;
         }
     
-        // Collect the trailing characters
         if (start != chars.length) {
             buffer.append(string.substring(start, chars.length));
         }
     
-        // Return the final result as a string
         return buffer.toString();
-    }    
+    }
+    
+    private static void handlePropertyReplacement(
+            StringBuilder buffer, String string, int start, int end, PropertyResolver propertyResolver) {
+        // Handle property replacement
+        if (start + 2 == end) {
+            buffer.append("${}"); // REVIEW: Correct?
+        } else {
+            String key = string.substring(start + 2, end);
+            String value = propertyResolver.getValue(key);
+    
+            if (value != null) {
+                buffer.append(value);
+            } else {
+                buffer.append("${");
+                buffer.append(key);
+                buffer.append('}');
+            }
+        }
+    }
+      
 }
