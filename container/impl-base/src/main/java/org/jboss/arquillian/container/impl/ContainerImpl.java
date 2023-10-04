@@ -157,10 +157,6 @@ public class ContainerImpl implements Container {
     public void setup() throws Exception {
         event.fire(new BeforeSetup(deployableContainer));
         try {
-         /*
-          * TODO: should the Container producer some how be automatically registered ?
-          * Or should we just 'know' who is the first one to create the context
-          */
             containerProducer.set(this);
             ((DeployableContainer) deployableContainer).setup(createDeployableConfiguration());
             setState(Container.State.SETUP);
