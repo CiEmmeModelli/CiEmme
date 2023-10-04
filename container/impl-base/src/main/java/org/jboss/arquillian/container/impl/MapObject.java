@@ -99,7 +99,6 @@ public class MapObject {
      * Converts a String value to the specified class.
      */
     private static Object convert(Class<?> clazz, String value) throws MapObjectException {
-      /* TODO create a new Converter class and move this method there for reuse */
 
       try {
         if (Integer.class.equals(clazz) || int.class.equals(clazz)) {
