@@ -34,6 +34,7 @@ public class FilteredURLClassLoader extends URLClassLoader {
         this.regExpFilter = regExpFilter;
     }
 
+    @Override
     public java.lang.Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
         if (!name.matches(regExpFilter)) {
             Class<?> c = findLoadedClass(name);
