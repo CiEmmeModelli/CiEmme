@@ -38,11 +38,12 @@ public class MapObject {
 
     private static final Logger log = Logger.getLogger(MapObject.class.getName());
 
-    
-    public static void populate(Object object, Map<String, String> values) throws Exception {
-        final Map<String, String> clonedValues = new HashMap<String, String>(values);
-        final Set<String> candidates = new HashSet<String>();
-        final Class<?> clazz = object.getClass();
+
+    public static void populate(Object object, Map<String, String> values) throws MapObjectException {
+    final Map<String, String> clonedValues = new HashMap<String, String>(values);
+    final Set<String> candidates = new HashSet<String>();
+    final Class<?> clazz = object.getClass();
+    try {
         for (Method candidate : clazz.getMethods()) {
             if (isSetter(candidate)) {
                 candidate.setAccessible(true);
@@ -67,7 +68,11 @@ public class MapObject {
                     "Unused property entries: " + clonedValues + "\n" +
                     "Supported property names: " + candidates);
         }
+    } catch (Exception e) {
+        throw new MapObjectException("Error populating object: " + e.getMessage(), e);
     }
+}
+
 
     public static URL[] convert(File[] files) {
         final URL[] urls = new URL[files.length];
