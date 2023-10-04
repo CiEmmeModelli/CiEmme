@@ -159,6 +159,10 @@ public final class StringPropertyReplacer {
                         state = NORMAL;
                     }
                     break;
+                    
+                default:
+                // Handle unexpected state (should not occur in this code)
+                throw new IllegalStateException("Unexpected state: " + state);
             }
         }
     
