@@ -128,45 +128,45 @@ public final class StringPropertyReplacer {
      */
     private static String replaceProperties(final String string, PropertyResolver propertyResolver) {
         final char[] chars = string.toCharArray();
-        StringBuffer buffer = new StringBuffer();
-        boolean properties = false;
+        StringBuilder buffer = new StringBuilder(); // Use StringBuilder for better performance
         int state = NORMAL;
         int start = 0;
+    
         for (int i = 0; i < chars.length; ++i) {
             char c = chars[i];
-
+    
             // Dollar sign outside brackets
             if (c == '$' && state != IN_BRACKET) {
                 state = SEEN_DOLLAR;
             }
-
+    
             // Open bracket immediately after dollar
             else if (c == '{' && state == SEEN_DOLLAR) {
                 buffer.append(string.substring(start, i - 1));
                 state = IN_BRACKET;
                 start = i - 1;
             }
-
+    
             // No open bracket after dollar
             else if (state == SEEN_DOLLAR) {
                 state = NORMAL;
             }
-
+    
             // Closed bracket after open bracket
             else if (c == '}' && state == IN_BRACKET) {
+                // Handle property replacement
                 // No content
                 if (start + 2 == i) {
                     buffer.append("${}"); // REVIEW: Correct?
-                } else // Collect the system property
-                {
+                } else {
                     String value;
-
+    
                     String key = string.substring(start + 2, i);
-
+    
+                    // Get the property value from the resolver
                     value = propertyResolver.getValue(key);
-
+    
                     if (value != null) {
-                        properties = true;
                         buffer.append(value);
                     } else {
                         buffer.append("${");
@@ -178,18 +178,18 @@ public final class StringPropertyReplacer {
                 state = NORMAL;
             }
         }
-
-        // No properties
-        if (properties == false) {
+    
+        // Return the original string if no property replacements were made
+        if (buffer.length() == 0) {
             return string;
         }
-
+    
         // Collect the trailing characters
         if (start != chars.length) {
             buffer.append(string.substring(start, chars.length));
         }
-
-        // Done
+    
+        // Return the final result as a string
         return buffer.toString();
-    }
+    }    
 }
