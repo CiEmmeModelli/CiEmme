@@ -495,6 +495,7 @@ public class ArquillianDescriptorTestCase {
                 .extension(EXTENSION_NAME_1)
                 .property(PROPERTY_NAME_1, PROPERTY_VALUE_2)
                 .exportAsString();
+        assertNotNull(desc);
     }
 
     //-------------------------------------------------------------------------------------||
