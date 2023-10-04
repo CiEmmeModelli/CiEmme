@@ -33,8 +33,11 @@ import org.jboss.arquillian.config.descriptor.api.Multiline;
  * @version $Revision: $
  */
 public class MapObject {
+    private MapObject(){
 
-    public static Logger log = Logger.getLogger(MapObject.class.getName());
+    }
+
+    private static final Logger log = Logger.getLogger(MapObject.class.getName());
 
     public static void populate(Object object, Map<String, String> values) throws MapObjectException {
         final Map<String, String> clonedValues = new HashMap<String, String>(values);
@@ -59,13 +62,12 @@ public class MapObject {
                     }
                 }
             }
-            if (!clonedValues.isEmpty())  {
-                log.warning( 
-                    "Configuration contain properties not supported by the backing object " + clazz.getName() +
-                        "Unused property entries: " + clonedValues +
-                        "Supported property names: " + candidates);
+            if (!clonedValues.isEmpty()) {
+                log.warning(String.format("Configuration contains properties not supported by the backing object {} Unused property entries: {} Supported property names: {}",
+                    clazz.getName(),clonedValues, candidates
+                ));
+            }
             
-        }
         } catch (Exception e) {
             throw new MapObjectException("Error populating object: " + e.getMessage(), e);
         }
@@ -96,8 +98,8 @@ public class MapObject {
     /**
      * Converts a String value to the specified class.
      */
-    private static Object convert(Class<?> clazz, String value) {
-
+    private static Object convert(Class<?> clazz, String value) throws MapObjectException {
+        try{
         if (Integer.class.equals(clazz) || int.class.equals(clazz)) {
             return Integer.valueOf(value);
         } else if (Double.class.equals(clazz) || double.class.equals(clazz)) {
@@ -109,5 +111,8 @@ public class MapObject {
         }
 
         return value;
+    } catch (Exception e) {
+            throw new MapObjectException("Error populating object: " + e.getMessage(), e);
+        }
     }
 }
