@@ -103,13 +103,13 @@ public class ContainerImpl implements Container {
      * @see org.jboss.arquillian.container.impl.ContainerT#createDeployableConfiguration()
      */
     @Override
-    public ContainerConfiguration createDeployableConfiguration() throws MapObjectException {
+    public ContainerConfiguration createDeployableConfiguration()throws MapObjectException {
         ContainerConfiguration config = SecurityActions.newInstance(
             deployableContainer.getConfigurationClass(), new Class<?>[0], new Object[0]);
         try{
         MapObject.populate(config, containerConfiguration.getContainerProperties());
         } catch (MapObjectException e) {
-            throw new MapObjectException("Unresolved",e);
+            throw new MapObjectException("Error populating object: " + e.getMessage(), e);
         }
         config.validate();
         return config;
