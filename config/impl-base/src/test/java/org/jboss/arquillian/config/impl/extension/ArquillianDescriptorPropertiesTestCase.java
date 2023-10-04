@@ -214,7 +214,7 @@ public class ArquillianDescriptorPropertiesTestCase {
     }
 
     @Test
-    @Ignore // Dependencies not supported on container level in v. 1.0
+    @Ignore("Dependencies not supported on container level in v. 1.0")
     public void shouldBeAbleToAddContainerWithDependencies() throws Exception {
         System.setProperty(KEY_DEPENDENCY_1, DEPENDENCY_1);
         System.setProperty(KEY_DEPENDENCY_2, DEPENDENCY_2);
