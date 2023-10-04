@@ -33,11 +33,11 @@ import org.jboss.arquillian.config.descriptor.api.Multiline;
  * @version $Revision: $
  */
 public class MapObject {
-   
-
     private static final Logger log = Logger.getLogger(MapObject.class.getName());
 
-     private MapObject(){}
+     private MapObject(){
+
+     }
 
     public static void populate(Object object, Map<String, String> values) throws MapObjectException {
         final Map<String, String> clonedValues = new HashMap<String, String>(values);
@@ -81,7 +81,8 @@ public class MapObject {
                 urls[i] = files[i].toURI().toURL();
             }
         } catch (Exception e) {
-            throw new RuntimeException("Could not create URL from a File object?", e);
+            throw new MapObjectException("Could not create URL from a File object? " + e.getMessage(), e);
+            
         }
         return urls;
     }
