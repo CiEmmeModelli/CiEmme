@@ -93,11 +93,11 @@ public final class StringPropertyReplacer {
      */
     public static String replaceProperties(final String string) {
         Properties props = System.getProperties();
-        for (Map.Entry<String, String> var : System.getenv().entrySet()) {
-            String propKey = ENV_VAR_BASE_PROPERTY_KEY + var.getKey();
+        for (Map.Entry<String, String> storedProp : System.getenv().entrySet()) {
+            String propKey = ENV_VAR_BASE_PROPERTY_KEY + storedProp.getKey();
             // honor overridden environment variable (primarily for testing)
             if (!props.containsKey(propKey)) {
-                props.setProperty(propKey, var.getValue());
+                props.setProperty(propKey, storedProp.getValue());
             }
         }
         return replaceProperties(string, new PropertiesPropertyResolver(props));
