@@ -33,6 +33,8 @@ import org.jboss.arquillian.config.descriptor.api.Multiline;
  * @version $Revision: $
  */
 public class MapObject {
+    private MapObject(){
+    }
 
     public static Logger log = Logger.getLogger(MapObject.class.getName());
 
