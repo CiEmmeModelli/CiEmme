@@ -63,10 +63,11 @@ public class MapObject {
                 }
             }
             if (!clonedValues.isEmpty()) {
-                log.warning(String.format("Configuration contains properties not supported by the backing object {} Unused property entries: {} Supported property names: {}",
-                    clazz.getName(),clonedValues, candidates
-                ));
+                String message = String.format("Configuration contains properties not supported by the backing object %s Unused property entries: %s Supported property names: %s",
+                    clazz.getName(), clonedValues, candidates);
+                log.warning(message);
             }
+            
             
         } catch (Exception e) {
             throw new MapObjectException("Error populating object: " + e.getMessage(), e);
