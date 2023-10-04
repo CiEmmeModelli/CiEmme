@@ -59,10 +59,11 @@ public class MapObject {
                     }
                 }
             }
-            if (!clonedValues.isEmpty() &&  !candidates.isEmpty()&&!clazz.getName().isEmpty())  {
-                log.warning(String.format("Configuration contains properties not supported by the backing object %s%nUnused property entries: %s%nSupported property names: %s",clazz.getName(),clonedValues, candidates));
-            
-            
+            if (!clonedValues.isEmpty())  {
+                log.warning( 
+                    "Configuration contain properties not supported by the backing object " + clazz.getName() +
+                        "Unused property entries: " + clonedValues +
+                        "Supported property names: " + candidates);
             
         }
         } catch (Exception e) {
