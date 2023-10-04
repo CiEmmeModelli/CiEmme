@@ -33,6 +33,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
 import static org.jboss.arquillian.config.descriptor.impl.AssertXPath.assertXPath;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Test cases to ensure that EL sysprop replacement
@@ -87,6 +88,7 @@ public class ArquillianDescriptorPropertiesTestCase {
     @Test
     public void shouldBeAbleToGenerateEmpty() throws Exception {
         desc = create();
+        assertNotNull(desc);
     }
 
     @Test
