@@ -26,7 +26,6 @@ import org.jboss.shrinkwrap.descriptor.api.Descriptors;
  * and returning a new instance of the {@link ArquillianDescriptor}.
  * Fulfills ARQ-148.
  * <p>
- * TODO To eventually become part of a chain-based event mechanism
  * as defined by ARQ-284.
  *
  * @author <a href="mailto:alr@jboss.org">Andrew Lee Rubinger</a>
