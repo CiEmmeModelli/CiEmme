@@ -56,6 +56,7 @@ public class FilteredURLClassLoader extends URLClassLoader {
         }
     }
 
+    @Override
     public java.net.URL getResource(String name) {
         java.net.URL url = null;
         if (!name.matches(regExpFilter)) {
