@@ -17,6 +17,7 @@
 package org.jboss.arquillian.config.descriptor.impl;
 
 import static org.jboss.arquillian.config.descriptor.impl.AssertXPath.assertXPath;
+import static org.junit.Assert.assertNotNull;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -75,6 +76,7 @@ public class ArquillianDescriptorTestCase {
     @Test
     public void shouldBeAbleToGenerateEmpty() throws Exception {
         desc = create().exportAsString();
+        assertNotNull(desc);
     }
 
     @Test
