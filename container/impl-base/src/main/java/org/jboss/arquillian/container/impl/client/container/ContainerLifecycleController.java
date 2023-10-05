@@ -100,16 +100,20 @@ public class ContainerLifecycleController {
         }
     }
 
-    public void stopSuiteContainers(@Observes StopSuiteContainers event) throws Exception {
-        forEachSuiteContainer(new Operation<Container>() {
-            @Inject
-            private Event<StopContainer> stopContainer;
+    public void stopSuiteContainers(@Observes StopSuiteContainers event) throws ExceptionSetContainer {
+        try {
+            forEachSuiteContainer(new Operation<Container>() {
+                @Inject
+                private Event<StopContainer> stopContainer;
 
-            @Override
-            public void perform(Container container) {
-                stopContainer.fire(new StopContainer(container));
-            }
-        });
+                @Override
+                public void perform(Container container) {
+                    stopContainer.fire(new StopContainer(container));
+                }
+            });
+        } catch (Exception e) {
+            throw new ExceptionSetContainer("Error setting up container", e);
+        }
     }
 
     public void stopClassContainers(@Observes StopClassContainers event) throws Exception {
