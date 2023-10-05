@@ -77,9 +77,10 @@ public class ContainerDeployController {
         forEachManagedDeployment(new Operation<Container, Deployment>() {
             @Inject
             private Event<DeploymentEvent> event;
-    
+            
             @Override
             public void perform(Container container, Deployment deployment) throws Exception {
+                event.toString();
                 if (!"manual".equals(container.getContainerConfiguration().getMode())) {
                     if (container.getState() != State.STARTED) {
                         throw new DeploymentException("Trying to deploy a managed deployment "
