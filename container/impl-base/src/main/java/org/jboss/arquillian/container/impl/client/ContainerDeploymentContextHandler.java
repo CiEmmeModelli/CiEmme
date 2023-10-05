@@ -46,14 +46,14 @@ public class ContainerDeploymentContextHandler {
      *
      */
     public void createContainerContext(@Observes EventContext<ContainerControlEvent> context) {
-        ContainerContext containerContext = this.containerContext.get();
+        ContainerContext contCtx = this.containerContext.get();
         ContainerControlEvent event = context.getEvent();
 
         try {
-            containerContext.activate(event.getContainerName());
+            contCtx.activate(event.getContainerName());
             context.proceed();
         } finally {
-            containerContext.deactivate();
+            contCtx.deactivate();
         }
     }
 
