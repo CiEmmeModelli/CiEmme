@@ -134,6 +134,7 @@ public class ContainerLifecycleController {
         }
     }
 
+    @SuppressWarnings("java:S1172")
     public void stopManualContainers(@Observes StopManualContainers event) throws ExceptionSetContainer {
         try {
             forEachManualContainer(new Operation<Container>() {
