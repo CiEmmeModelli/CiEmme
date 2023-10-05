@@ -73,14 +73,16 @@ public class ContainerDeployController {
      *
      * @throws Exception
      */
-    public void deployManaged(@Observes DeployManagedDeployments event) throws CustomException {
+    public void deployManaged(@Observes final DeployManagedDeployments event) throws CustomException {
+
+        event.toString();
+
         forEachManagedDeployment(new Operation<Container, Deployment>() {
             @Inject
-            private Event<DeploymentEvent> event;
+            private Event<DeploymentEvent> eventDep;
             
             @Override
             public void perform(Container container, Deployment deployment) throws CustomException {
-                event.toString();
                 if (!"manual".equals(container.getContainerConfiguration().getMode())) {
                     if (container.getState() != State.STARTED) {
                         throw new DeploymentException("Trying to deploy a managed deployment "
@@ -88,7 +90,7 @@ public class ContainerDeployController {
                             + " to a non-started managed container "
                             + container.getName());
                     }
-                    event.fire(new DeployDeployment(container, deployment));
+                    eventDep.fire(new DeployDeployment(container, deployment));
                 }
             }
         });
