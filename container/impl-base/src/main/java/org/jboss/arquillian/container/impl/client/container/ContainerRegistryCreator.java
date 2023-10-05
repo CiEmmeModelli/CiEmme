@@ -231,9 +231,7 @@ public class ContainerRegistryCreator {
     
 
     private boolean exists(String value) {
-        if (value == null || value.trim().length() == 0) {
-            return false;
-        }
-        return true;
+        return (value != null && !value.trim().isEmpty());
     }
+    
 }
