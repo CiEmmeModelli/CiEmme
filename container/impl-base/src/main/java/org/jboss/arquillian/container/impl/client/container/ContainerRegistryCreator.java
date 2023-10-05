@@ -72,7 +72,7 @@ public class ContainerRegistryCreator {
 
     if (activeConfiguration == null && reg.getContainers().isEmpty()) {
         createDefaultContainer(reg, serviceLoader);
-    } else if (activeConfiguration != null && reg.getContainers().size() == 0) {
+    } else if (activeConfiguration != null && reg.getContainers().isEmpty()) {
         throw new IllegalArgumentException(
             "No container or group found that matches the given qualifier: " + activeConfiguration);
     }
