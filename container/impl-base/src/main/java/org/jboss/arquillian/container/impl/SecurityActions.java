@@ -320,6 +320,7 @@ static String getProperty(final String key) {
     // Inner Classes ----------------------------------------------------------------||
     //-------------------------------------------------------------------------------||
 
+    @SuppressWarnings("java:S6548")
     private enum GetTcclAction implements PrivilegedAction<ClassLoader> {
         INSTANCE;
     
@@ -334,7 +335,7 @@ static String getProperty(final String key) {
         public ClassLoader run() {
             return classLoader;
         }
-    }
+    }    
 
     
 }
