@@ -17,6 +17,7 @@
  */
 package org.jboss.arquillian.container.impl.client.container;
 
+import org.jboss.arquillian.container.impl.MyCustomException;
 import org.jboss.arquillian.container.spi.Container;
 import org.jboss.arquillian.container.spi.ContainerRegistry;
 import org.jboss.arquillian.container.spi.event.KillContainer;
@@ -48,16 +49,20 @@ public class ContainerLifecycleController {
     @Inject
     private Instance<Injector> injector;
 
-    public void setupContainers(@Observes SetupContainers event) throws Exception {
-        forEachContainer(new Operation<Container>() {
-            @Inject
-            private Event<SetupContainer> event;
+    public void setupContainers(@Observes SetupContainers event) throws ExceptionSetContainer {
+        try {
+            forEachContainer(new Operation<Container>() {
+                @Inject
+                private Event<SetupContainer> event;
 
-            @Override
-            public void perform(Container container) {
-                event.fire(new SetupContainer(container));
-            }
-        });
+                @Override
+                public void perform(Container container) { 
+                        event.fire(new SetupContainer(container));
+                }
+            });
+        } catch (Exception e) {
+            throw new ExceptionSetContainer("Error setting up container", e);
+        }
     }
 
     public void startSuiteContainers(@Observes StartSuiteContainers event) throws Exception {
