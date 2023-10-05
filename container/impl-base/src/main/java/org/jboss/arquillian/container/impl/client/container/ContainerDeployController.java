@@ -139,11 +139,7 @@ public class ContainerDeployController {
                 DeployableContainer<?> deployableContainer = event.getDeployableContainer();
                 Deployment deployment = event.getDeployment();
                 DeploymentDescription deploymentDescription = deployment.getDescription();
-            
-            /*
-             * TODO: should the DeploymentDescription producer some how be automatically registered ?
-             * Or should we just 'know' who is the first one to create the context
-             */
+
                 deploymentDescriptionProducer.set(deploymentDescription);
                 deploymentProducer.set(deployment);
 
