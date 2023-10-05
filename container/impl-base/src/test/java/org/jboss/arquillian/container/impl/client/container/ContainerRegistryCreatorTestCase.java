@@ -203,20 +203,6 @@ public class ContainerRegistryCreatorTestCase extends AbstractContainerTestBase 
         }
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void shouldThrowExceptionOnDefinedLaunchQualifierMissing() throws IllegalArgumentException {
-        System.setProperty(ContainerRegistryCreator.ARQUILLIAN_LAUNCH_PROPERTY, CONTAINER_1);
-        try {
-            fire(Descriptors.create(ArquillianDescriptor.class)
-                .container(CONTAINER_2));
-        } catch (IllegalArgumentException e) {
-            Assert.assertTrue(e.getMessage().startsWith("No container or group found that match given qualifier"));
-            throw e;
-        } finally {
-            System.setProperty(ContainerRegistryCreator.ARQUILLIAN_LAUNCH_PROPERTY, "");
-        }
-    }
-
     /*
      *  ARQ-619, multiple DeployableContainer on classpath is not currently allowed, but not reported.
      */

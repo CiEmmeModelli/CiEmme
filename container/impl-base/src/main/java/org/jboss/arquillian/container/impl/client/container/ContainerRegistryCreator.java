@@ -19,6 +19,7 @@ package org.jboss.arquillian.container.impl.client.container;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jboss.arquillian.config.descriptor.api.ArquillianDescriptor;
@@ -60,60 +61,74 @@ public class ContainerRegistryCreator {
     private Instance<ServiceLoader> loader;
 
     public void createRegistry(@Observes ArquillianDescriptor event) {
-        LocalContainerRegistry reg = new LocalContainerRegistry(injector.get());
-        ServiceLoader serviceLoader = loader.get();
+    LocalContainerRegistry reg = new LocalContainerRegistry(injector.get());
+    ServiceLoader serviceLoader = loader.get();
 
-        validateConfiguration(event);
+    validateConfiguration(event);
 
-        String activeConfiguration = getActivatedConfiguration();
-        for (ContainerDef container : event.getContainers()) {
-            if (
-                (activeConfiguration != null && activeConfiguration.equals(container.getContainerName())) ||
-                    (activeConfiguration == null && container.isDefault())) {
+    String activeConfiguration = getActivatedConfiguration();
+    createContainers(reg, serviceLoader, event.getContainers(), activeConfiguration);
+    createGroupContainers(reg, serviceLoader, event.getGroups(), activeConfiguration);
+
+    if (activeConfiguration == null && reg.getContainers().size() == 0) {
+        createDefaultContainer(reg, serviceLoader);
+    } else if (activeConfiguration != null && reg.getContainers().size() == 0) {
+        throw new IllegalArgumentException(
+            "No container or group found that matches the given qualifier: " + activeConfiguration);
+    }
+
+    // export
+    registry.set(reg);
+}
+
+    private void createContainers(LocalContainerRegistry reg, ServiceLoader serviceLoader, List<ContainerDef> containers,
+                                  String activeConfiguration) {
+        for (ContainerDef container : containers) {
+            if ((activeConfiguration != null && activeConfiguration.equals(container.getContainerName())) ||
+                (activeConfiguration == null && container.isDefault())) {
                 reg.create(container, serviceLoader);
             }
         }
-        for (GroupDef group : event.getGroups()) {
-            if (
-                (activeConfiguration != null && activeConfiguration.equals(group.getGroupName())) ||
-                    (activeConfiguration == null && group.isGroupDefault())) {
+    }
+    
+    private void createGroupContainers(LocalContainerRegistry reg, ServiceLoader serviceLoader, List<GroupDef> groups,
+                                       String activeConfiguration) {
+        for (GroupDef group : groups) {
+            if ((activeConfiguration != null && activeConfiguration.equals(group.getGroupName())) ||
+                (activeConfiguration == null && group.isGroupDefault())) {
                 for (ContainerDef container : group.getGroupContainers()) {
                     reg.create(container, serviceLoader);
                 }
             }
         }
-        if (activeConfiguration == null && reg.getContainers().size() == 0) {
-            DeployableContainer<?> deployableContainer = null;
-            try {
-                // 'check' if there are any DeployableContainers on CP
-                deployableContainer = serviceLoader.onlyOne(DeployableContainer.class);
-            } catch (IllegalStateException e) {
-                StringBuilder stringBuilder = new StringBuilder()
-                    .append("Could not add a default container to registry because multiple instances of ")
-                    .append(DeployableContainer.class.getName())
-                    .append(" found on classpath (candidates are: ");
-                String separator = "";
-                for (DeployableContainer s : serviceLoader.all(DeployableContainer.class)) {
-                    stringBuilder.append(separator)
-                        .append(s.getConfigurationClass().getName());
-                    separator = ", ";
-                }
-                stringBuilder.append(")");
-                throw new IllegalStateException(stringBuilder.toString());
-            } catch (Exception e) {
-                throw new IllegalStateException("Could not create the default container instance", e);
-            }
-            if (deployableContainer != null) {
-                reg.create(new ContainerDefImpl("arquillian.xml").setContainerName("default"), serviceLoader);
-            }
-        } else if (activeConfiguration != null && reg.getContainers().size() == 0) {
-            throw new IllegalArgumentException(
-                "No container or group found that match given qualifier: " + activeConfiguration);
-        }
-
-        // export
-        registry.set(reg);
     }
+    
+    private void createDefaultContainer(LocalContainerRegistry reg, ServiceLoader serviceLoader) {
+        DeployableContainer<?> deployableContainer = null;
+        try {
+            // 'check' if there are any DeployableContainers on CP
+            deployableContainer = serviceLoader.onlyOne(DeployableContainer.class);
+        } catch (IllegalStateException e) {
+            StringBuilder stringBuilder = new StringBuilder()
+                .append("Could not add a default container to registry because multiple instances of ")
+                .append(DeployableContainer.class.getName())
+                .append(" found on classpath (candidates are: ");
+            String separator = "";
+            for (DeployableContainer s : serviceLoader.all(DeployableContainer.class)) {
+                stringBuilder.append(separator)
+                    .append(s.getConfigurationClass().getName());
+                separator = ", ";
+            }
+            stringBuilder.append(")");
+            throw new IllegalStateException(stringBuilder.toString());
+        } catch (Exception e) {
+            throw new IllegalStateException("Could not create the default container instance", e);
+        }
+        if (deployableContainer != null) {
+            reg.create(new ContainerDefImpl("arquillian.xml").setContainerName("default"), serviceLoader);
+        }
+    }
+
 
     /**
      * Validate that the Configuration given is sane
