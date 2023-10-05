@@ -203,7 +203,7 @@ public class ContainerDeployController {
         });
     }
 
-    private void forEachManagedDeployment(Operation<Container, Deployment> operation) throws Exception {
+    private void forEachManagedDeployment(Operation<Container, Deployment> operation) throws CustomException {
         DeploymentScenario scenario = this.deploymentScenario.get();
         if (scenario == null) {
             return;
@@ -211,7 +211,7 @@ public class ContainerDeployController {
         forEachDeployment(scenario.managedDeploymentsInDeployOrder(), operation);
     }
 
-    private void forEachDeployedDeployment(Operation<Container, Deployment> operation) throws Exception {
+    private void forEachDeployedDeployment(Operation<Container, Deployment> operation) throws CustomException {
         DeploymentScenario scenario = this.deploymentScenario.get();
         if (scenario == null) {
             return;
