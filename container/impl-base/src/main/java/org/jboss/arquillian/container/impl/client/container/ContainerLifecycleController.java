@@ -65,7 +65,7 @@ public class ContainerLifecycleController {
             throw new ExceptionSetContainer("Error setting up container", e);
         }
     }
-    
+
     @SuppressWarnings("java:S1172")
     public void startSuiteContainers(@Observes StartSuiteContainers event) throws ExceptionSetContainer {
         try {
@@ -83,16 +83,20 @@ public class ContainerLifecycleController {
         }
     }
 
-    public void startClassContainers(@Observes StartClassContainers event) throws Exception {
-        forEachClassContainer(new Operation<Container>() {
-            @Inject
-            private Event<StartContainer> event;
+    public void startClassContainers(@Observes StartClassContainers event) throws ExceptionSetContainer {
+        try {
+            forEachClassContainer(new Operation<Container>() {
+                @Inject
+                private Event<StartContainer> event;
 
-            @Override
-            public void perform(Container container) {
-                event.fire(new StartContainer(container));
-            }
-        });
+                @Override
+                public void perform(Container container) {
+                    event.fire(new StartContainer(container));
+                }
+            });
+         } catch (Exception e) {
+            throw new ExceptionSetContainer("Error setting up container", e);
+        }
     }
 
     public void stopSuiteContainers(@Observes StopSuiteContainers event) throws Exception {
