@@ -70,7 +70,7 @@ public class ContainerRegistryCreator {
     createContainers(reg, serviceLoader, event.getContainers(), activeConfiguration);
     createGroupContainers(reg, serviceLoader, event.getGroups(), activeConfiguration);
 
-    if (activeConfiguration == null && reg.getContainers().size() == 0) {
+    if (activeConfiguration == null && reg.getContainers().isEmpty()) {
         createDefaultContainer(reg, serviceLoader);
     } else if (activeConfiguration != null && reg.getContainers().size() == 0) {
         throw new IllegalArgumentException(
@@ -90,7 +90,7 @@ public class ContainerRegistryCreator {
             }
         }
     }
-    
+
     private void createGroupContainers(LocalContainerRegistry reg, ServiceLoader serviceLoader, List<GroupDef> groups,
                                        String activeConfiguration) {
         for (GroupDef group : groups) {
@@ -102,7 +102,7 @@ public class ContainerRegistryCreator {
             }
         }
     }
-    
+
     private void createDefaultContainer(LocalContainerRegistry reg, ServiceLoader serviceLoader) {
         DeployableContainer<?> deployableContainer = null;
         try {
