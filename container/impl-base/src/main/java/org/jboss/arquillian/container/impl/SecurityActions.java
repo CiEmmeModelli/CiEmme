@@ -320,32 +320,21 @@ static String getProperty(final String key) {
     // Inner Classes ----------------------------------------------------------------||
     //-------------------------------------------------------------------------------||
 
-    // private enum GetTcclAction implements PrivilegedAction<ClassLoader>
-
-    // {
-    //     INSTANCE;
-
-    //     public ClassLoader run() {
-    //         return Thread.currentThread().getContextClassLoader();
-    //     }
-
-    // }
-
     private enum GetTcclAction implements PrivilegedAction<ClassLoader> {
-        
         INSTANCE;
     
-        private GetTcclAction() {
-        Thread.currentThread().getContextClassLoader();
-    }
-
+        private final ClassLoader classLoader;
+    
+        GetTcclAction() {
+            // Inizializza il class loader nel costruttore
+            this.classLoader = Thread.currentThread().getContextClassLoader();
+        }
+    
         @Override
         public ClassLoader run() {
-            throw new UnsupportedOperationException("Unimplemented method 'run'");
+            return classLoader;
         }
     }
 
-    
-    
     
 }
