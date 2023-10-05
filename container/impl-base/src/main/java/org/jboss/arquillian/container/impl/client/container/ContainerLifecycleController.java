@@ -65,7 +65,8 @@ public class ContainerLifecycleController {
             throw new ExceptionSetContainer("Error setting up container", e);
         }
     }
-
+    
+    @SuppressWarnings("java:S1172")
     public void startSuiteContainers(@Observes StartSuiteContainers event) throws ExceptionSetContainer {
         try {
             forEachSuiteContainer(new Operation<Container>() {
