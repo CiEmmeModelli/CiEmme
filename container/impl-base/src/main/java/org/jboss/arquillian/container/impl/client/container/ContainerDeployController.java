@@ -77,16 +77,14 @@ public class ContainerDeployController {
         forEachManagedDeployment(new Operation<Container, Deployment>() {
             @Inject
             private Event<DeploymentEvent> event;
-
+    
             @Override
             public void perform(Container container, Deployment deployment) throws Exception {
-                //when a container is manually controlled, the deployment is deployed automatically
-                //once the container is manually started, not now
                 if (!"manual".equals(container.getContainerConfiguration().getMode())) {
                     if (container.getState() != State.STARTED) {
-                        throw new IllegalStateException("Trying to deploy a managed deployment "
+                        throw new DeploymentException("Trying to deploy a managed deployment "
                             + deployment.getDescription().getName()
-                            + " to a non started managed container "
+                            + " to a non-started managed container "
                             + container.getName());
                     }
                     event.fire(new DeployDeployment(container, deployment));
