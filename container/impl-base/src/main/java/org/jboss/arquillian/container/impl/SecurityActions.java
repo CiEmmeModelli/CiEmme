@@ -320,14 +320,32 @@ static String getProperty(final String key) {
     // Inner Classes ----------------------------------------------------------------||
     //-------------------------------------------------------------------------------||
 
-    private enum GetTcclAction implements PrivilegedAction<ClassLoader>
+    // private enum GetTcclAction implements PrivilegedAction<ClassLoader>
 
-    {
+    // {
+    //     INSTANCE;
+
+    //     public ClassLoader run() {
+    //         return Thread.currentThread().getContextClassLoader();
+    //     }
+
+    // }
+
+    private enum GetTcclAction implements PrivilegedAction<ClassLoader> {
+        
         INSTANCE;
-
-        public ClassLoader run() {
-            return Thread.currentThread().getContextClassLoader();
-        }
-
+    
+        private GetTcclAction() {
+        Thread.currentThread().getContextClassLoader();
     }
+
+        @Override
+        public ClassLoader run() {
+            throw new UnsupportedOperationException("Unimplemented method 'run'");
+        }
+    }
+
+    
+    
+    
 }
