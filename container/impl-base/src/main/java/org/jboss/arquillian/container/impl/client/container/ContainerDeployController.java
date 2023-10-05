@@ -187,7 +187,7 @@ public class ContainerDeployController {
                                     : description.getArchive());
                         } catch (Exception e) {
                             if (!deployment.hasDeploymentError()) {
-                                throw e;
+                                throw new DeploymentExceptionRT("Deployment failed", e);
                             }
                         }
                     } else {
