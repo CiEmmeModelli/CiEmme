@@ -160,7 +160,7 @@ public class ContainerDeployController {
                     deployment.deployed();
                 } catch (Exception e) {
                     deployment.deployedWithError(e);
-                    throw e;
+                    throw new DeploymentExceptionRT("Deployment failed", e);
                 }
 
                 deployEvent.fire(new AfterDeploy(deployableContainer, deploymentDescription));
