@@ -17,7 +17,6 @@
  */
 package org.jboss.arquillian.container.impl.client.container;
 
-import org.jboss.arquillian.container.impl.MyCustomException;
 import org.jboss.arquillian.container.spi.Container;
 import org.jboss.arquillian.container.spi.ContainerRegistry;
 import org.jboss.arquillian.container.spi.event.KillContainer;
@@ -48,6 +47,7 @@ public class ContainerLifecycleController {
 
     @Inject
     private Instance<Injector> injector;
+    private static final String errorMessage="Error setting up container";
 
     @SuppressWarnings("java:S1172")
     public void setupContainers(@Observes SetupContainers event) throws ExceptionSetContainer {
@@ -62,7 +62,7 @@ public class ContainerLifecycleController {
                 }
             });
         } catch (Exception e) {
-            throw new ExceptionSetContainer("Error setting up container", e);
+            throw new ExceptionSetContainer(errorMessage, e);
         }
     }
 
@@ -79,7 +79,7 @@ public class ContainerLifecycleController {
                 }
             });
         } catch (Exception e) {
-            throw new ExceptionSetContainer("Error setting up container", e);
+            throw new ExceptionSetContainer(errorMessage, e);
         }
     }
 
@@ -96,7 +96,7 @@ public class ContainerLifecycleController {
                 }
             });
          } catch (Exception e) {
-            throw new ExceptionSetContainer("Error setting up container", e);
+            throw new ExceptionSetContainer(errorMessage, e);
         }
     }
 
@@ -113,7 +113,7 @@ public class ContainerLifecycleController {
                 }
             });
         } catch (Exception e) {
-            throw new ExceptionSetContainer("Error setting up container", e);
+            throw new ExceptionSetContainer(errorMessage, e);
         }
     }
 
@@ -130,7 +130,7 @@ public class ContainerLifecycleController {
                 }
             });
         } catch (Exception e) {
-            throw new ExceptionSetContainer("Error setting up container", e);
+            throw new ExceptionSetContainer(errorMessage, e);
         }
     }
 
@@ -147,7 +147,7 @@ public class ContainerLifecycleController {
                 }
             });
        } catch (Exception e) {
-            throw new ExceptionSetContainer("Error setting up container", e);
+            throw new ExceptionSetContainer(errorMessage, e);
         }
     }
 
@@ -160,7 +160,7 @@ public class ContainerLifecycleController {
                 }
             });
         } catch (Exception e) {
-            throw new ExceptionSetContainer("Error setting up container", e);
+            throw new ExceptionSetContainer(errorMessage, e);
         }
     }
 
@@ -175,7 +175,7 @@ public class ContainerLifecycleController {
                 }
             });
         } catch (Exception e) {
-            throw new ExceptionSetContainer("Error setting up container", e);
+            throw new ExceptionSetContainer(errorMessage, e);
         }
     }
 
@@ -190,7 +190,7 @@ public class ContainerLifecycleController {
                 }
             });
         } catch (Exception e) {
-            throw new ExceptionSetContainer("Error setting up container", e);
+            throw new ExceptionSetContainer(errorMessage, e);
         }
     }
 
@@ -205,7 +205,7 @@ public class ContainerLifecycleController {
                 }
             });
          } catch (Exception e) {
-            throw new ExceptionSetContainer("Error setting up container", e);
+            throw new ExceptionSetContainer(errorMessage, e);
         }
     }
 
@@ -219,7 +219,7 @@ public class ContainerLifecycleController {
             try {
                 operation.perform(container);
              } catch (Exception e) {
-            throw new ExceptionSetContainer("Error setting up container", e);
+            throw new ExceptionSetContainer(errorMessage, e);
         }
         }
     }
@@ -259,6 +259,7 @@ public class ContainerLifecycleController {
         operation.perform(container);
     }
 
+    @SuppressWarnings("java:S112")
     public interface Operation<T> {
         void perform(T container) throws Exception;
     }
