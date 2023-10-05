@@ -49,6 +49,7 @@ public class ContainerLifecycleController {
     @Inject
     private Instance<Injector> injector;
 
+    @SuppressWarnings("java:S1172")
     public void setupContainers(@Observes SetupContainers event) throws ExceptionSetContainer {
         try {
             forEachContainer(new Operation<Container>() {
