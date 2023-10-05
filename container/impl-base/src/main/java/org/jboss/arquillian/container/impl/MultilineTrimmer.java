@@ -17,6 +17,11 @@
 package org.jboss.arquillian.container.impl;
 
 class MultilineTrimmer {
+
+    private MultilineTrimmer() {
+        // The constructor is empty because this is a utility class
+    }
+    
     static String trim(String toTrim) {
         final StringBuilder builder = new StringBuilder(toTrim.length());
         for (String token : toTrim.split("\\s+")) {
