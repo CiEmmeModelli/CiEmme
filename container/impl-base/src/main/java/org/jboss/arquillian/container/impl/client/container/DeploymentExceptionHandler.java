@@ -40,7 +40,7 @@ public class DeploymentExceptionHandler {
     @Inject
     private Instance<ServiceLoader> serviceLoader;
 
-    public void verifyExpectedExceptionDuringDeploy(@Observes EventContext<DeployDeployment> context) throws Exception {
+    public void verifyExpectedExceptionDuringDeploy(@Observes EventContext<DeployDeployment> context) throws ExceptionDeploy {
         DeploymentDescription deployment = context.getEvent().getDeployment().getDescription();
         boolean deploymentExceptionThrown = true;
         try {
