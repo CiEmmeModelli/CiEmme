@@ -169,6 +169,7 @@ public class ContainerDeployController {
         });
     }
 
+    @SuppressWarnings("java:S112")
     public void undeploy(@Observes final UnDeployDeployment event) throws Exception {
         executeOperation(new Callable<Void>() {
             @Inject
