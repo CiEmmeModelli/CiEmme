@@ -100,6 +100,7 @@ public class ContainerLifecycleController {
         }
     }
 
+    @SuppressWarnings("java:S1172")
     public void stopSuiteContainers(@Observes StopSuiteContainers event) throws ExceptionSetContainer {
         try {
             forEachSuiteContainer(new Operation<Container>() {
