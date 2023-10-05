@@ -79,7 +79,7 @@ public class ContainerDeployController {
             private Event<DeploymentEvent> event;
             
             @Override
-            public void perform(Container container, Deployment deployment) throws Exception {
+            public void perform(Container container, Deployment deployment) throws CustomException {
                 event.toString();
                 if (!"manual".equals(container.getContainerConfiguration().getMode())) {
                     if (container.getState() != State.STARTED) {
@@ -105,7 +105,7 @@ public class ContainerDeployController {
             private Event<DeploymentEvent> event;
 
             @Override
-            public void perform(Container container, Deployment deployment) throws Exception {
+            public void perform(Container container, Deployment deployment) throws CustomException {
                 if (container.getState().equals(Container.State.STARTED) && deployment.isDeployed()) {
                     event.fire(new UnDeployDeployment(container, deployment));
                     event.toString();
@@ -239,6 +239,6 @@ public class ContainerDeployController {
     }
 
     public interface Operation<T, X> {
-        void perform(T container, X deployment) throws Exception;
+        void perform(T container, X deployment) throws CustomException;
     }
 }
