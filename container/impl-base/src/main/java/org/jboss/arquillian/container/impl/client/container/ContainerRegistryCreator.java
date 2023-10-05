@@ -230,22 +230,6 @@ public class ContainerRegistryCreator {
     
     
 
-    private String readActivatedValue(BufferedReader reader)
-        throws Exception {
-        try {
-            String value;
-            while ((value = reader.readLine()) != null) {
-                if (value.startsWith("#")) {
-                    continue;
-                }
-                return value;
-            }
-        } finally {
-            reader.close();
-        }
-        return null;
-    }
-
     private boolean exists(String value) {
         if (value == null || value.trim().length() == 0) {
             return false;
