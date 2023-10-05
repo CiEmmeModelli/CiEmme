@@ -222,12 +222,12 @@ public class ContainerDeployController {
     private void forEachDeployment(List<Deployment> deployments, Operation<Container, Deployment> operation)
         throws Exception {
         injector.get().inject(operation);
-        ContainerRegistry containerRegistry = this.containerRegistry.get();
-        if (containerRegistry == null) {
+        ContainerRegistry containerRegistryInstance = this.containerRegistry.get();
+        if (containerRegistryInstance == null) {
             return;
         }
         for (Deployment deployment : deployments) {
-            Container container = containerRegistry.getContainer(deployment.getDescription().getTarget());
+            Container container = containerRegistryInstance.getContainer(deployment.getDescription().getTarget());
             operation.perform(container, deployment);
         }
     }
