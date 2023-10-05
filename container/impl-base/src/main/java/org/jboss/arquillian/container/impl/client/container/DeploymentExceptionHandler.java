@@ -47,7 +47,7 @@ public class DeploymentExceptionHandler {
             context.proceed();
             if (deployment.getExpectedException() != null) {
                 deploymentExceptionThrown = false;
-                throw new RuntimeException(
+                throw new ExceptionDeploy(
                     "Expected exception of type "
                         + deployment.getExpectedException().getName()
                         + " during deployment of "

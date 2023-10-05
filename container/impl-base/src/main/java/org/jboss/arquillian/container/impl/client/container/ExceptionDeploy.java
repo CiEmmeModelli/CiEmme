@@ -1,8 +1,6 @@
 package org.jboss.arquillian.container.impl.client.container;
 
-import java.io.IOException;
-
-public class ExceptionDeploy extends IOException {
+public class ExceptionDeploy extends RuntimeException {
     
     public ExceptionDeploy() {
         super();
