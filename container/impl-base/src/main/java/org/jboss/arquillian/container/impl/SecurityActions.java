@@ -320,9 +320,6 @@ static String getProperty(final String key) {
     // Inner Classes ----------------------------------------------------------------||
     //-------------------------------------------------------------------------------||
 
-    /**
-     * Single instance to get the TCCL
-     */
     private enum GetTcclAction implements PrivilegedAction<ClassLoader>
 
     {
