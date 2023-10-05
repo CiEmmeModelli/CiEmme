@@ -298,7 +298,7 @@ static String getProperty(final String key) {
         } else if (t instanceof IllegalArgumentException) {
             throw (IllegalArgumentException) t;
         } else {
-            throw new RuntimeException(UNEXPECTED_ERROR_MESSAGE, t);
+            throw new MyCustomException(UNEXPECTED_ERROR_MESSAGE, t);
         }
     }
 }
