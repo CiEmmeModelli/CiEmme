@@ -220,7 +220,7 @@ public class ContainerDeployController {
     }
 
     private void forEachDeployment(List<Deployment> deployments, Operation<Container, Deployment> operation)
-        throws Exception {
+        throws CustomException {
         injector.get().inject(operation);
         ContainerRegistry containerRegistryInstance = this.containerRegistry.get();
         if (containerRegistryInstance == null) {
@@ -228,7 +228,11 @@ public class ContainerDeployController {
         }
         for (Deployment deployment : deployments) {
             Container container = containerRegistryInstance.getContainer(deployment.getDescription().getTarget());
-            operation.perform(container, deployment);
+            try {
+                operation.perform(container, deployment);
+            } catch (CustomException e) {
+                e.printStackTrace();
+            }
         }
     }
 
