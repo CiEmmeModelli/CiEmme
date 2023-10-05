@@ -228,11 +228,7 @@ public class ContainerDeployController {
         }
         for (Deployment deployment : deployments) {
             Container container = containerRegistryInstance.getContainer(deployment.getDescription().getTarget());
-            try {
-                operation.perform(container, deployment);
-            } catch (CustomException e) {
-                e.printStackTrace();
-            }
+            operation.perform(container, deployment);
         }
     }
 
