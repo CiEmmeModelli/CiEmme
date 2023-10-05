@@ -250,13 +250,13 @@ public class ContainerDeployControllerTestCase extends AbstractContainerTestBase
         try {
             fire(new DeployManagedDeployments());
         } catch (Exception e) {
-            if (!(e instanceof DeploymentException)) {
-                throw e;
+            if (!(e instanceof DeploymentExceptionRT)) {
+                throw new DeploymentExceptionRT("Deployment failed", e); 
             }
         }
-        assertEventFired(DeploymentException.class, 1);
-        assertEventFiredInContext(DeploymentException.class, ContainerContext.class);
-        assertEventFiredInContext(DeploymentException.class, DeploymentContext.class);
+        assertEventFired(DeploymentExceptionRT.class, 1);
+        assertEventFiredInContext(DeploymentExceptionRT.class, ContainerContext.class);
+        assertEventFiredInContext(DeploymentExceptionRT.class, DeploymentContext.class);
 
         assertEventFiredTyped(Throwable.class, 1);
     }

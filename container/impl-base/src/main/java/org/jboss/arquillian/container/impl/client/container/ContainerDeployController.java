@@ -77,16 +77,15 @@ public class ContainerDeployController {
         forEachManagedDeployment(new Operation<Container, Deployment>() {
             @Inject
             private Event<DeploymentEvent> event;
-
+            
             @Override
-            public void perform(Container container, Deployment deployment) throws Exception {
-                //when a container is manually controlled, the deployment is deployed automatically
-                //once the container is manually started, not now
+            public void perform(Container container, Deployment deployment) throws CustomException {
+                event.toString();
                 if (!"manual".equals(container.getContainerConfiguration().getMode())) {
                     if (container.getState() != State.STARTED) {
-                        throw new IllegalStateException("Trying to deploy a managed deployment "
+                        throw new DeploymentException("Trying to deploy a managed deployment "
                             + deployment.getDescription().getName()
-                            + " to a non started managed container "
+                            + " to a non-started managed container "
                             + container.getName());
                     }
                     event.fire(new DeployDeployment(container, deployment));
@@ -106,9 +105,13 @@ public class ContainerDeployController {
             private Event<DeploymentEvent> event;
 
             @Override
-            public void perform(Container container, Deployment deployment) throws Exception {
+            public void perform(Container container, Deployment deployment) throws CustomException {
                 if (container.getState().equals(Container.State.STARTED) && deployment.isDeployed()) {
                     event.fire(new UnDeployDeployment(container, deployment));
+                    event.toString();
+                } else {
+                    throw new DeploymentException("Trying to deploy a managed deployment " + deployment.getDescription().getName()
+                    + " to a non-started managed container " + container.getName());
                 }
             }
         });
@@ -136,11 +139,7 @@ public class ContainerDeployController {
                 DeployableContainer<?> deployableContainer = event.getDeployableContainer();
                 Deployment deployment = event.getDeployment();
                 DeploymentDescription deploymentDescription = deployment.getDescription();
-            
-            /*
-             * TODO: should the DeploymentDescription producer some how be automatically registered ?
-             * Or should we just 'know' who is the first one to create the context
-             */
+
                 deploymentDescriptionProducer.set(deploymentDescription);
                 deploymentProducer.set(deployment);
 
@@ -157,7 +156,7 @@ public class ContainerDeployController {
                     deployment.deployed();
                 } catch (Exception e) {
                     deployment.deployedWithError(e);
-                    throw e;
+                    throw new DeploymentExceptionRT("Deployment failed", e);
                 }
 
                 deployEvent.fire(new AfterDeploy(deployableContainer, deploymentDescription));
@@ -188,7 +187,7 @@ public class ContainerDeployController {
                                     : description.getArchive());
                         } catch (Exception e) {
                             if (!deployment.hasDeploymentError()) {
-                                throw e;
+                                throw new DeploymentExceptionRT("Deployment failed", e);
                             }
                         }
                     } else {
@@ -223,12 +222,12 @@ public class ContainerDeployController {
     private void forEachDeployment(List<Deployment> deployments, Operation<Container, Deployment> operation)
         throws Exception {
         injector.get().inject(operation);
-        ContainerRegistry containerRegistry = this.containerRegistry.get();
-        if (containerRegistry == null) {
+        ContainerRegistry containerRegistryInstance = this.containerRegistry.get();
+        if (containerRegistryInstance == null) {
             return;
         }
         for (Deployment deployment : deployments) {
-            Container container = containerRegistry.getContainer(deployment.getDescription().getTarget());
+            Container container = containerRegistryInstance.getContainer(deployment.getDescription().getTarget());
             operation.perform(container, deployment);
         }
     }
@@ -240,6 +239,6 @@ public class ContainerDeployController {
     }
 
     public interface Operation<T, X> {
-        void perform(T container, X deployment) throws Exception;
+        void perform(T container, X deployment) throws CustomException;
     }
 }
