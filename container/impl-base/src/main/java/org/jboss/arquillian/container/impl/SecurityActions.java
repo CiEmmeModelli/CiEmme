@@ -104,7 +104,8 @@ final class SecurityActions {
         try {
             return expectedType.cast(obj);
         } catch (Exception e) {
-            throw new RuntimeException("Loaded class " + className + " is not of expected type " + expectedType, e);
+            throw new MyCustomException("Loaded class " + className + " is not of expected type " + expectedType, e);
+
         }
     }
 
