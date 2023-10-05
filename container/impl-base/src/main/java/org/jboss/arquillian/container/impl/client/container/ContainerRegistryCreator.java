@@ -136,6 +136,7 @@ public class ContainerRegistryCreator {
      * @param desc
      *     The read Descriptor
      */
+    @SuppressWarnings("java:S3776")
     private void validateConfiguration(ArquillianDescriptor desc) {
         Object defaultConfig = null;
 
