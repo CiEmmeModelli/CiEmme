@@ -63,14 +63,14 @@ public class ContainerDeploymentContextHandler {
      * Activate DeploymentContext on all Deployment Events
      */
     public void createDeploymentContext(@Observes EventContext<DeploymentEvent> context) {
-        DeploymentContext deploymentContext = this.deploymentContext.get();
+        DeploymentContext deplCtx = this.deploymentContext.get();
         try {
             DeploymentEvent event = context.getEvent();
-            deploymentContext.activate(event.getDeployment());
+            deplCtx.activate(event.getDeployment());
 
             context.proceed();
         } finally {
-            deploymentContext.deactivate();
+            deplCtx.deactivate();
         }
     }
 }
