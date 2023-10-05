@@ -101,7 +101,7 @@ public class ContainerDeployController {
      *
      * @throws Exception
      */
-    public void undeployManaged(@Observes UnDeployManagedDeployments event) throws Exception {
+    public void undeployManaged(@Observes UnDeployManagedDeployments event) throws CustomException {
         forEachDeployedDeployment(new Operation<Container, Deployment>() {
             @Inject
             private Event<DeploymentEvent> event;
