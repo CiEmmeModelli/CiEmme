@@ -69,25 +69,6 @@ public class DeploymentExceptionHandler {
             }
         }
     }
-   
-/*
-   public void verifyExpectedExceptionDuringUnDeploy(@Observes EventContext<UnDeployDeployment> context) throws Exception
-   {
-      DeploymentDescription deployment = context.getEvent().getDeployment(); 
-      try
-      {
-         context.proceed();
-      }
-      catch (Exception e) 
-      {
-         if(deployment.getExpectedException() == null)
-         {
-               throw e;
-         }
-      }
-   }
-*/
-
     private boolean containsType(Throwable exception, Class<? extends Exception> expectedType) {
         Throwable transformedException = transform(exception);
 
