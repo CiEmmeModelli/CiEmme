@@ -66,16 +66,20 @@ public class ContainerLifecycleController {
         }
     }
 
-    public void startSuiteContainers(@Observes StartSuiteContainers event) throws Exception {
-        forEachSuiteContainer(new Operation<Container>() {
-            @Inject
-            private Event<StartContainer> event;
+    public void startSuiteContainers(@Observes StartSuiteContainers event) throws ExceptionSetContainer {
+        try {
+            forEachSuiteContainer(new Operation<Container>() {
+                @Inject
+                private Event<StartContainer> event;
 
-            @Override
-            public void perform(Container container) {
-                event.fire(new StartContainer(container));
-            }
-        });
+                @Override
+                public void perform(Container container) {
+                    event.fire(new StartContainer(container));
+                }
+            });
+        } catch (Exception e) {
+            throw new ExceptionSetContainer("Error setting up container", e);
+        }
     }
 
     public void startClassContainers(@Observes StartClassContainers event) throws Exception {
