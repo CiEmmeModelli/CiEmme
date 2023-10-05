@@ -164,15 +164,19 @@ public class ContainerLifecycleController {
         }
     }
 
-    public void startContainer(@Observes StartContainer event) throws Exception {
-        forContainer(event.getContainer(), new Operation<Container>() {
-            @Override
-            public void perform(Container container) throws Exception {
-                if (!container.getState().equals(Container.State.STARTED)) {
-                    container.start();
+    public void startContainer(@Observes StartContainer event) throws ExceptionSetContainer {
+        try {
+            forContainer(event.getContainer(), new Operation<Container>() {
+                @Override
+                public void perform(Container container) throws Exception {
+                    if (!container.getState().equals(Container.State.STARTED)) {
+                        container.start();
+                    }
                 }
-            }
-        });
+            });
+        } catch (Exception e) {
+            throw new ExceptionSetContainer("Error setting up container", e);
+        }
     }
 
     public void stopContainer(@Observes StopContainer event) throws Exception {
