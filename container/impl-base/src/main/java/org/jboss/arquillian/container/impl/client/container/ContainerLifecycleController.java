@@ -83,6 +83,7 @@ public class ContainerLifecycleController {
         }
     }
 
+    @SuppressWarnings("java:S1172")
     public void startClassContainers(@Observes StartClassContainers event) throws ExceptionSetContainer {
         try {
             forEachClassContainer(new Operation<Container>() {
