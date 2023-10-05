@@ -116,7 +116,7 @@ public class ContainerLifecycleController {
             throw new ExceptionSetContainer("Error setting up container", e);
         }
     }
-    
+
     @SuppressWarnings("java:S1172")
     public void stopClassContainers(@Observes StopClassContainers event) throws ExceptionSetContainer {
         try {
@@ -134,16 +134,20 @@ public class ContainerLifecycleController {
         }
     }
 
-    public void stopManualContainers(@Observes StopManualContainers event) throws Exception {
-        forEachManualContainer(new Operation<Container>() {
-            @Inject
-            private Event<StopContainer> stopContainer;
+    public void stopManualContainers(@Observes StopManualContainers event) throws ExceptionSetContainer {
+        try {
+            forEachManualContainer(new Operation<Container>() {
+                @Inject
+                private Event<StopContainer> stopContainer;
 
-            @Override
-            public void perform(Container container) {
-                stopContainer.fire(new StopContainer(container));
-            }
-        });
+                @Override
+                public void perform(Container container) {
+                    stopContainer.fire(new StopContainer(container));
+                }
+            });
+       } catch (Exception e) {
+            throw new ExceptionSetContainer("Error setting up container", e);
+        }
     }
 
     public void setupContainer(@Observes SetupContainer event) throws Exception {
