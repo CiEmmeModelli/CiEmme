@@ -256,28 +256,28 @@ final class SecurityActions {
 }
 
 
-    public static List<Method> getMethodsWithAnnotation(final Class<?> source,
-        final Class<? extends Annotation> annotationClass) {
-        List<Method> declaredAccessableMethods = AccessController.doPrivileged(new PrivilegedAction<List<Method>>() {
-            public List<Method> run() {
-                List<Method> foundMethods = new ArrayList<Method>();
-                Class<?> nextSource = source;
-                while (nextSource != Object.class) {
-                    for (Method method : filterBridgeMethods(nextSource.getDeclaredMethods())) {
-                        if (method.isAnnotationPresent(annotationClass)) {
-                            if (!method.isAccessible()) {
-                                method.setAccessible(true);
-                            }
-                            foundMethods.add(method);
-                        }
-                    }
-                    nextSource = nextSource.getSuperclass();
+public static List<Method> getMethodsWithAnnotation(final Class<?> source,
+final Class<? extends Annotation> annotationClass) {
+return AccessController.doPrivileged(new PrivilegedAction<List<Method>>() {
+public List<Method> run() {
+    List<Method> foundMethods = new ArrayList<Method>();
+    Class<?> nextSource = source;
+    while (nextSource != Object.class) {
+        for (Method method : filterBridgeMethods(nextSource.getDeclaredMethods())) {
+            if (method.isAnnotationPresent(annotationClass)) {
+                if (!method.isAccessible()) {
+                    method.setAccessible(true);
                 }
-                return foundMethods;
+                foundMethods.add(method);
             }
-        });
-        return declaredAccessableMethods;
+        }
+        nextSource = nextSource.getSuperclass();
     }
+    return foundMethods;
+}
+});
+}
+
 
     static String getProperty(final String key) {
         try {
