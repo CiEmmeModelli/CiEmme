@@ -114,7 +114,7 @@ public class ContainerRegistryCreator {
                 .append(DeployableContainer.class.getName())
                 .append(" found on classpath (candidates are: ");
             String separator = "";
-            for (DeployableContainer s : serviceLoader.all(DeployableContainer.class)) {
+            for (DeployableContainer<?> s : serviceLoader.all(DeployableContainer.class)) {
                 stringBuilder.append(separator)
                     .append(s.getConfigurationClass().getName());
                 separator = ", ";
