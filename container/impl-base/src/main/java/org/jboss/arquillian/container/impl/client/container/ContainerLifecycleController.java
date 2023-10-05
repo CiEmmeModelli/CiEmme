@@ -47,7 +47,7 @@ public class ContainerLifecycleController {
 
     @Inject
     private Instance<Injector> injector;
-    private static final String errorMessage="Error setting up container";
+    private static final String ERROR_MESSAGE="Error setting up container";
 
     @SuppressWarnings("java:S1172")
     public void setupContainers(@Observes SetupContainers event) throws ExceptionSetContainer {
@@ -62,7 +62,7 @@ public class ContainerLifecycleController {
                 }
             });
         } catch (Exception e) {
-            throw new ExceptionSetContainer(errorMessage, e);
+            throw new ExceptionSetContainer(ERROR_MESSAGE, e);
         }
     }
 
@@ -79,7 +79,7 @@ public class ContainerLifecycleController {
                 }
             });
         } catch (Exception e) {
-            throw new ExceptionSetContainer(errorMessage, e);
+            throw new ExceptionSetContainer(ERROR_MESSAGE, e);
         }
     }
 
@@ -96,7 +96,7 @@ public class ContainerLifecycleController {
                 }
             });
          } catch (Exception e) {
-            throw new ExceptionSetContainer(errorMessage, e);
+            throw new ExceptionSetContainer(ERROR_MESSAGE, e);
         }
     }
 
@@ -113,7 +113,7 @@ public class ContainerLifecycleController {
                 }
             });
         } catch (Exception e) {
-            throw new ExceptionSetContainer(errorMessage, e);
+            throw new ExceptionSetContainer(ERROR_MESSAGE, e);
         }
     }
 
@@ -130,7 +130,7 @@ public class ContainerLifecycleController {
                 }
             });
         } catch (Exception e) {
-            throw new ExceptionSetContainer(errorMessage, e);
+            throw new ExceptionSetContainer(ERROR_MESSAGE, e);
         }
     }
 
@@ -147,7 +147,7 @@ public class ContainerLifecycleController {
                 }
             });
        } catch (Exception e) {
-            throw new ExceptionSetContainer(errorMessage, e);
+            throw new ExceptionSetContainer(ERROR_MESSAGE, e);
         }
     }
 
@@ -160,7 +160,7 @@ public class ContainerLifecycleController {
                 }
             });
         } catch (Exception e) {
-            throw new ExceptionSetContainer(errorMessage, e);
+            throw new ExceptionSetContainer(ERROR_MESSAGE, e);
         }
     }
 
@@ -175,7 +175,7 @@ public class ContainerLifecycleController {
                 }
             });
         } catch (Exception e) {
-            throw new ExceptionSetContainer(errorMessage, e);
+            throw new ExceptionSetContainer(ERROR_MESSAGE, e);
         }
     }
 
@@ -190,7 +190,7 @@ public class ContainerLifecycleController {
                 }
             });
         } catch (Exception e) {
-            throw new ExceptionSetContainer(errorMessage, e);
+            throw new ExceptionSetContainer(ERROR_MESSAGE, e);
         }
     }
 
@@ -205,7 +205,7 @@ public class ContainerLifecycleController {
                 }
             });
          } catch (Exception e) {
-            throw new ExceptionSetContainer(errorMessage, e);
+            throw new ExceptionSetContainer(ERROR_MESSAGE, e);
         }
     }
 
@@ -219,7 +219,7 @@ public class ContainerLifecycleController {
             try {
                 operation.perform(container);
              } catch (Exception e) {
-            throw new ExceptionSetContainer(errorMessage, e);
+            throw new ExceptionSetContainer(ERROR_MESSAGE, e);
         }
         }
     }
