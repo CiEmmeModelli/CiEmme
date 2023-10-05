@@ -73,7 +73,7 @@ public class ContainerDeployController {
      *
      * @throws Exception
      */
-    public void deployManaged(@Observes DeployManagedDeployments event) throws Exception {
+    public void deployManaged(@Observes DeployManagedDeployments event) throws CustomException {
         forEachManagedDeployment(new Operation<Container, Deployment>() {
             @Inject
             private Event<DeploymentEvent> event;
