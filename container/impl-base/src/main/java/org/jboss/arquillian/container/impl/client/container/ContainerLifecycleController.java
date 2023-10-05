@@ -209,14 +209,18 @@ public class ContainerLifecycleController {
         }
     }
 
-    private void forEachContainer(Operation<Container> operation) throws Exception {
+    private void forEachContainer(Operation<Container> operation) throws ExceptionSetContainer {
         injector.get().inject(operation);
         ContainerRegistry registry = containerRegistry.get();
         if (registry == null) {
             return;
         }
         for (Container container : registry.getContainers()) {
-            operation.perform(container);
+            try {
+                operation.perform(container);
+             } catch (Exception e) {
+            throw new ExceptionSetContainer("Error setting up container", e);
+        }
         }
     }
 
