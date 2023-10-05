@@ -85,7 +85,9 @@ final class SecurityActions {
         @SuppressWarnings("unchecked")
         Class<T> implClass = (Class<T>) loadClass(className);
         if (!expectedType.isAssignableFrom(implClass)) {
-            throw new RuntimeException("Loaded class " + className + " is not of expected type " + expectedType);
+            throw new MyCustomException("Loaded class " + className + " is not of expected type " + expectedType);
+
+            
         }
         return newInstance(implClass, argumentTypes, arguments);
     }
