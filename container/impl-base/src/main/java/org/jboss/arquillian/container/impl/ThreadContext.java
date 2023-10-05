@@ -29,6 +29,10 @@ public class ThreadContext {
 
     private static Logger log = Logger.getLogger(ThreadContext.class.getName());
 
+    private ThreadContext() {
+        // The constructor is empty because this is a utility class
+    }
+
     public static void set(ClassLoader classLoader) {
         if (previousClassloader.get() != null) {
             log.warning("Attempting to set a new Thread Context ClassLoader without the old one being reset: "
