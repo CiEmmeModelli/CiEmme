@@ -213,13 +213,22 @@ public class ContainerRegistryCreator {
             .getResourceAsStream(resourceName);
         if (arquillianLaunchStream != null) {
             try {
-                return readActivatedValue(new BufferedReader(new InputStreamReader(arquillianLaunchStream)));
+                BufferedReader reader = new BufferedReader(new InputStreamReader(arquillianLaunchStream));
+                StringBuilder content = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    content.append(line);
+                }
+                reader.close();
+                return content.toString();
             } catch (Exception e) {
                 log.log(Level.WARNING, "Could not read resource " + resourceName, e);
             }
         }
         return null;
     }
+    
+    
 
     private String readActivatedValue(BufferedReader reader)
         throws Exception {
