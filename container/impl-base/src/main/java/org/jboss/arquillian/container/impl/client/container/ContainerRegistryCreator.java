@@ -45,7 +45,6 @@ import org.jboss.arquillian.core.spi.ServiceLoader;
 public class ContainerRegistryCreator {
     static final String ARQUILLIAN_LAUNCH_PROPERTY = "arquillian.launch";
     static final String ARQUILLIAN_LAUNCH_DEFAULT = "arquillian.launch_file";
-    @Deprecated
     static final String ARQUILLIAN_LAUNCH_DEFAULT_DEPRECATED = "arquillian.launch";
 
     private Logger log = Logger.getLogger(ContainerRegistryCreator.class.getName());
