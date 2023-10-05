@@ -108,6 +108,7 @@ public class ContainerDeployController {
             public void perform(Container container, Deployment deployment) throws Exception {
                 if (container.getState().equals(Container.State.STARTED) && deployment.isDeployed()) {
                     event.fire(new UnDeployDeployment(container, deployment));
+                    event.toString();
                 } else {
                     throw new DeploymentException("Trying to deploy a managed deployment " + deployment.getDescription().getName()
                     + " to a non-started managed container " + container.getName());
