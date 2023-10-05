@@ -34,3 +34,4 @@ testng/container/target/
 testng/core/target/
 testng/standalone/target/
 testng/target/
+*.DS_Store
