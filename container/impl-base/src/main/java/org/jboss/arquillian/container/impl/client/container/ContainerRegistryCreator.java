@@ -208,6 +208,7 @@ public class ContainerRegistryCreator {
         return qualifier;
     }
 
+    @SuppressWarnings("java:S3457")
     private String readLaunchFile(String resourceName) {
         InputStream arquillianLaunchStream = SecurityActions.getThreadContextClassLoader()
             .getResourceAsStream(resourceName);
