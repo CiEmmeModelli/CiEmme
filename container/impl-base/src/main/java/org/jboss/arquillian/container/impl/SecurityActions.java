@@ -227,7 +227,7 @@ final class SecurityActions {
                 }
                 // Just in case we've really messed up
                 catch (final ClassCastException cce) {
-                    throw new RuntimeException(UNEXPECTED_ERROR_MESSAGE, t);
+                    throw new MyCustomException(UNEXPECTED_ERROR_MESSAGE, t);
                 }
             }
         }
