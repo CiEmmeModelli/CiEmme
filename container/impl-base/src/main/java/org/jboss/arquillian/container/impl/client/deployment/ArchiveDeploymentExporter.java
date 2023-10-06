@@ -107,7 +107,6 @@ public class ArchiveDeploymentExporter {
     }
 
     private String createFileName(DeploymentDescription deployment, Archive<?> archive) {
-        // TODO: where do we get TestClass name from ?
         return deployment.getTarget().getName() + "_" + deployment.getName() + "_" + archive.getName();
     }
 
