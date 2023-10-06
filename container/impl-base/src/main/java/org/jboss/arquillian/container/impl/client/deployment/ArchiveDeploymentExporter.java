@@ -63,49 +63,6 @@ public class ArchiveDeploymentExporter {
         String systemExport = SecurityActions.getProperty("arquillian.deploymentExportPath");
         return (systemExport == null || systemExport.length() == 0) ? engine.getDeploymentExportPath() : systemExport;
     }
-    
-    /* 
-    public void callback(@Observes BeforeDeploy event) throws ExpException {
-        ArquillianDescriptor descriptor = configuration.get();
-        if (descriptor == null) {
-            return;
-        }
-        EngineDef engine = descriptor.engine();
-
-        String systemExport = SecurityActions.getProperty("arquillian.deploymentExportPath");
-        String systemExportExploded = SecurityActions.getProperty("arquillian.deploymentExportExploded");
-        String exportPath = getExportPath(engine);
-        Boolean exportExploded =
-            (systemExportExploded == null || systemExportExploded.length() == 0) ? engine.getDeploymentExportExploded()
-                : Boolean.parseBoolean(systemExport);
-
-        if (exportPath != null && event.getDeployment().isArchiveDeployment()) {
-            File exportDir = new File(exportPath);
-            if (exportDir.isFile()) {
-                if(!exportPath.isEmpty()){
-                    String message=String.format("Deployment export disabled. Export path points to an existing file: %s", exportPath);
-                log.warning(message);
-                }
-
-                return;
-            } else if (!exportDir.isDirectory() && !exportDir.mkdirs()) {
-                if(!exportPath.isEmpty()){
-                String msg=String.format("Deployment export directory could not be created:  %s", exportPath);
-                log.warning(msg);
-                }
-                return;
-            }
-
-            Archive<?> deployment;
-            if (event.getDeployment().testable()) {
-                deployment = event.getDeployment().getTestableArchive();
-            } else {
-                deployment = event.getDeployment().getArchive();
-            }
-            exportDeployment(exportDir, deployment, createFileName(event.getDeployment(), deployment), exportExploded);
-        }
-    }
-    */
 
     public void callback(@Observes BeforeDeploy event) throws ExpException {
         ArquillianDescriptor descriptor = configuration.get();
