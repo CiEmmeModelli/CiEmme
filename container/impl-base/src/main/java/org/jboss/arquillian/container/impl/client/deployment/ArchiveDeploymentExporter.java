@@ -43,7 +43,7 @@ public class ArchiveDeploymentExporter {
     @Inject
     private Instance<ArquillianDescriptor> configuration;
 
-    public void callback(@Observes BeforeDeploy event) throws Exception {
+    public void callback(@Observes BeforeDeploy event) throws ExpException {
         ArquillianDescriptor descriptor = configuration.get();
         if (descriptor == null) {
             return;
@@ -76,7 +76,11 @@ public class ArchiveDeploymentExporter {
             }
 
             final File fileToExport = new File(exportDir, createFileName(event.getDeployment(), deployment));
-            deleteIfExists(fileToExport);
+            try {
+                deleteIfExists(fileToExport);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             if (exportExploded) {
                 deployment.as(ExplodedExporter.class).exportExploded(
