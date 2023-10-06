@@ -51,12 +51,19 @@ public class ArchiveDeploymentExporter {
             e.printStackTrace();
         }
     
-        if (exportExploded) {
+       /* if (exportExploded) {
             deployment.as(ExplodedExporter.class).exportExploded(
                 exportDir, exportFileName);
         } else {
             deployment.as(ZipExporter.class).exportTo(fileToExport, true);
+        }*/ 
+
+        if (exportExploded) {
+            deployment.as(ExplodedExporter.class).exportExploded(exportDir, exportFileName);
+        } else {
+            deployment.as(ZipExporter.class).exportTo(fileToExport, true);
         }
+        
     }
 
     private String getExportPath(EngineDef engine) {
