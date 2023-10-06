@@ -27,7 +27,7 @@ import java.security.PrivilegedExceptionAction;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
+@SuppressWarnings("deprecation")
 /**
  * A set of privileged actions that are not to leak out
  * of this package
@@ -272,12 +272,11 @@ final class SecurityActions {
 
     static String getProperty(final String key) {
         try {
-            String value = AccessController.doPrivileged(new PrivilegedExceptionAction<String>() {
+            return AccessController.doPrivileged(new PrivilegedExceptionAction<String>() {
                 public String run() {
                     return System.getProperty(key);
                 }
             });
-            return value;
         }
         // Unwrap
         catch (final PrivilegedActionException pae) {
