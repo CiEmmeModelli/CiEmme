@@ -30,6 +30,8 @@ import java.util.List;
 
 import org.jboss.arquillian.container.impl.client.container.DeploymentExceptionRT;
 
+@SuppressWarnings("deprecation")
+
 /**
  * A set of privileged actions that are not to leak out
  * of this package
