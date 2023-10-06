@@ -47,6 +47,7 @@ final class SecurityActions {
         throw new UnsupportedOperationException("No instantiation");
     }
 
+    private static String exceptionMessage = "Obtained unchecked Exception; this code should never be reached";
     //-------------------------------------------------------------------------------||
     // Utility Methods --------------------------------------------------------------||
     //-------------------------------------------------------------------------------||
@@ -176,7 +177,7 @@ final class SecurityActions {
                 }
                 // Just in case we've really messed up
                 catch (final ClassCastException cce) {
-                    throw new DeploymentExceptionRT("Obtained unchecked Exception; this code should never be reached", t);
+                    throw new DeploymentExceptionRT(exceptionMessage, t);
                 }
             }
         }
@@ -220,7 +221,7 @@ final class SecurityActions {
                 }
                 // Just in case we've really messed up
                 catch (final ClassCastException cce) {
-                    throw new RuntimeException("Obtained unchecked Exception; this code should never be reached", t);
+                    throw new RuntimeException(exceptionMessage, t);
                 }
             }
         }
@@ -299,7 +300,7 @@ final class SecurityActions {
                 }
                 // Just in case we've really messed up
                 catch (final ClassCastException cce) {
-                    throw new RuntimeException("Obtained unchecked Exception; this code should never be reached", t);
+                    throw new RuntimeException(exceptionMessage, t);
                 }
             }
         }
