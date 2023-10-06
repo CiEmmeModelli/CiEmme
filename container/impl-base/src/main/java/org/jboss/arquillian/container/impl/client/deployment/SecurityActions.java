@@ -28,6 +28,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.jboss.arquillian.container.impl.client.container.DeploymentExceptionRT;
+
 /**
  * A set of privileged actions that are not to leak out
  * of this package
@@ -74,7 +76,7 @@ final class SecurityActions {
             try {
                 return Class.forName(className, true, SecurityActions.class.getClassLoader());
             } catch (ClassNotFoundException e2) {
-                throw new RuntimeException("Could not load class " + className, e2);
+                throw new DeploymentExceptionRT("Could not load class " + className, e2);
             }
         }
     }
