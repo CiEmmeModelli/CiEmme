@@ -229,26 +229,24 @@ final class SecurityActions {
 
     public static List<Field> getFieldsWithAnnotation(final Class<?> source,
         final Class<? extends Annotation> annotationClass) {
-        List<Field> declaredAccessableFields = AccessController.doPrivileged(new PrivilegedAction<List<Field>>() {
-            public List<Field> run() {
-                List<Field> foundFields = new ArrayList<Field>();
-                Class<?> nextSource = source;
-                while (nextSource != Object.class) {
-                    for (Field field : nextSource.getDeclaredFields()) {
-                        if (field.isAnnotationPresent(annotationClass)) {
-                            if (!field.isAccessible()) {
-                                field.setAccessible(true);
-                            }
-                            foundFields.add(field);
-                        }
+    return AccessController.doPrivileged((PrivilegedAction<List<Field>>) () -> {
+        List<Field> foundFields = new ArrayList<>();
+        Class<?> nextSource = source;
+        while (nextSource != Object.class) {
+            for (Field field : nextSource.getDeclaredFields()) {
+                if (field.isAnnotationPresent(annotationClass)) {
+                    if (!field.isAccessible()) {
+                        field.setAccessible(true);
                     }
-                    nextSource = nextSource.getSuperclass();
+                    foundFields.add(field);
                 }
-                return foundFields;
             }
-        });
-        return declaredAccessableFields;
-    }
+            nextSource = nextSource.getSuperclass();
+        }
+        return foundFields;
+    });
+}
+
 
     public static List<Method> getMethodsWithAnnotation(final Class<?> source,
         final Class<? extends Annotation> annotationClass) {
