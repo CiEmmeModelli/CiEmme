@@ -64,6 +64,7 @@ public class ArchiveDeploymentExporter {
         return (systemExport == null || systemExport.length() == 0) ? engine.getDeploymentExportPath() : systemExport;
     }
     
+    /* 
     public void callback(@Observes BeforeDeploy event) throws ExpException {
         ArquillianDescriptor descriptor = configuration.get();
         if (descriptor == null) {
@@ -104,7 +105,55 @@ public class ArchiveDeploymentExporter {
             exportDeployment(exportDir, deployment, createFileName(event.getDeployment(), deployment), exportExploded);
         }
     }
+    */
 
+    public void callback(@Observes BeforeDeploy event) throws ExpException {
+        ArquillianDescriptor descriptor = configuration.get();
+        if (descriptor == null) {
+            return;
+        }
+    
+        EngineDef engine = descriptor.engine();
+        String systemExport = SecurityActions.getProperty("arquillian.deploymentExportPath");
+        String systemExportExploded = SecurityActions.getProperty("arquillian.deploymentExportExploded");
+        String exportPath = getExportPath(engine);
+        boolean exportExploded = (systemExportExploded == null || systemExportExploded.isEmpty()) ?
+                engine.getDeploymentExportExploded() : Boolean.parseBoolean(systemExport);
+    
+        if (shouldExportDeployment(exportPath, event)) {
+            File exportDir = new File(exportPath);
+    
+            if (isInvalidExportDirectory(exportDir, exportPath)) {
+                return;
+            }
+    
+            Archive<?> deployment = getDeploymentToExport(event);
+            exportDeployment(exportDir, deployment, createFileName(event.getDeployment(), deployment), exportExploded);
+        }
+    }
+    
+    private boolean shouldExportDeployment(String exportPath, BeforeDeploy event) {
+        return exportPath != null && event.getDeployment().isArchiveDeployment();
+    }
+    
+    private boolean isInvalidExportDirectory(File exportDir, String exportPath) {
+        if (exportDir.isFile() || (!exportDir.isDirectory() && !exportDir.mkdirs())) {
+            if (!exportPath.isEmpty()) {
+                String message = String.format("Deployment export %s: %s",
+                        (exportDir.isFile() ? "disabled. Export path points to an existing file" :
+                                "directory could not be created"), exportPath);
+                log.warning(message);
+            }
+            return true;
+        }
+        return false;
+    }
+    
+    private Archive<?> getDeploymentToExport(BeforeDeploy event) {
+        return event.getDeployment().testable() ? event.getDeployment().getTestableArchive() :
+                event.getDeployment().getArchive();
+    }
+    
     private String createFileName(DeploymentDescription deployment, Archive<?> archive) {
         return deployment.getTarget().getName() + "_" + deployment.getName() + "_" + archive.getName();
     }
