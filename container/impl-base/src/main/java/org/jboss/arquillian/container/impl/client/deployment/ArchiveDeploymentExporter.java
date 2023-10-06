@@ -48,15 +48,8 @@ public class ArchiveDeploymentExporter {
         try {
             deleteIfExists(fileToExport);
         } catch (IOException e) {
-            e.printStackTrace();
+            e.getMessage();
         }
-    
-       /* if (exportExploded) {
-            deployment.as(ExplodedExporter.class).exportExploded(
-                exportDir, exportFileName);
-        } else {
-            deployment.as(ZipExporter.class).exportTo(fileToExport, true);
-        }*/ 
 
         if (exportExploded) {
             deployment.as(ExplodedExporter.class).exportExploded(exportDir, exportFileName);
@@ -88,11 +81,17 @@ public class ArchiveDeploymentExporter {
         if (exportPath != null && event.getDeployment().isArchiveDeployment()) {
             File exportDir = new File(exportPath);
             if (exportDir.isFile()) {
-                log.warning(String.format("Deployment export disabled. Export path points to an existing file: %s", exportPath));
+                if(!exportPath.isEmpty()){
+                    String message=String.format("Deployment export disabled. Export path points to an existing file: %s", exportPath);
+                log.warning(message);
+                }
 
                 return;
             } else if (!exportDir.isDirectory() && !exportDir.mkdirs()) {
-                log.warning(String.format("Deployment export directory could not be created:  %s", exportPath));
+                if(!exportPath.isEmpty()){
+                String msg=String.format("Deployment export directory could not be created:  %s", exportPath);
+                log.warning(msg);
+                }
                 return;
             }
 
