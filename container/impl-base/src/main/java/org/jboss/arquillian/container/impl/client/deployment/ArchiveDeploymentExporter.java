@@ -85,7 +85,7 @@ public class ArchiveDeploymentExporter {
 
                 return;
             } else if (!exportDir.isDirectory() && !exportDir.mkdirs()) {
-                log.warning("Deployment export directory could not be created: " + exportPath);
+                log.warning(String.format("Deployment export directory could not be created:  %s", exportPath));
                 return;
             }
 
