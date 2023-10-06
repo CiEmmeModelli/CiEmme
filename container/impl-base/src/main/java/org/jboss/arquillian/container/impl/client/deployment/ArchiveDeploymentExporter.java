@@ -43,6 +43,27 @@ public class ArchiveDeploymentExporter {
     @Inject
     private Instance<ArquillianDescriptor> configuration;
 
+    private void exportDeployment(File exportDir, Archive<?> deployment, String exportFileName, boolean exportExploded) {
+        final File fileToExport = new File(exportDir, exportFileName);
+        try {
+            deleteIfExists(fileToExport);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    
+        if (exportExploded) {
+            deployment.as(ExplodedExporter.class).exportExploded(
+                exportDir, exportFileName);
+        } else {
+            deployment.as(ZipExporter.class).exportTo(fileToExport, true);
+        }
+    }
+
+    private String getExportPath(EngineDef engine) {
+        String systemExport = SecurityActions.getProperty("arquillian.deploymentExportPath");
+        return (systemExport == null || systemExport.length() == 0) ? engine.getDeploymentExportPath() : systemExport;
+    }
+    
     public void callback(@Observes BeforeDeploy event) throws ExpException {
         ArquillianDescriptor descriptor = configuration.get();
         if (descriptor == null) {
@@ -52,8 +73,7 @@ public class ArchiveDeploymentExporter {
 
         String systemExport = SecurityActions.getProperty("arquillian.deploymentExportPath");
         String systemExportExploded = SecurityActions.getProperty("arquillian.deploymentExportExploded");
-        String exportPath =
-            (systemExport == null || systemExport.length() == 0) ? engine.getDeploymentExportPath() : systemExport;
+        String exportPath = getExportPath(engine);
         Boolean exportExploded =
             (systemExportExploded == null || systemExportExploded.length() == 0) ? engine.getDeploymentExportExploded()
                 : Boolean.parseBoolean(systemExport);
@@ -74,21 +94,7 @@ public class ArchiveDeploymentExporter {
             } else {
                 deployment = event.getDeployment().getArchive();
             }
-
-            final File fileToExport = new File(exportDir, createFileName(event.getDeployment(), deployment));
-            try {
-                deleteIfExists(fileToExport);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            if (exportExploded) {
-                deployment.as(ExplodedExporter.class).exportExploded(
-                    exportDir, createFileName(event.getDeployment(), deployment));
-            } else {
-                deployment.as(ZipExporter.class).exportTo(fileToExport,
-                    true);
-            }
+            exportDeployment(exportDir, deployment, createFileName(event.getDeployment(), deployment), exportExploded);
         }
     }
 
