@@ -220,11 +220,11 @@ final class SecurityActions {
             } else {
                 // No other checked Exception thrown by Class.getConstructor
                 try {
-                    throw (RuntimeException) t;
+                    throw (DeploymentExceptionRT) t;
                 }
                 // Just in case we've really messed up
                 catch (final ClassCastException cce) {
-                    throw new RuntimeException(exceptionMessage, t);
+                    throw new DeploymentExceptionRT(exceptionMessage, t);
                 }
             }
         }
