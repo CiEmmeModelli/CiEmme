@@ -178,7 +178,7 @@ final class SecurityActions {
                 }
                 // Just in case we've really messed up
                 catch (final ClassCastException cce) {
-                    throw new RuntimeException("Obtained unchecked Exception; this code should never be reached", t);
+                    throw new DeploymentExceptionRT("Obtained unchecked Exception; this code should never be reached", t);
                 }
             }
         }
