@@ -81,7 +81,8 @@ public class ArchiveDeploymentExporter {
         if (exportPath != null && event.getDeployment().isArchiveDeployment()) {
             File exportDir = new File(exportPath);
             if (exportDir.isFile()) {
-                log.warning("Deployment export disabled. Export path points to an existing file: " + exportPath);
+                log.warning(String.format("Deployment export disabled. Export path points to an existing file: %s", exportPath));
+
                 return;
             } else if (!exportDir.isDirectory() && !exportDir.mkdirs()) {
                 log.warning("Deployment export directory could not be created: " + exportPath);
