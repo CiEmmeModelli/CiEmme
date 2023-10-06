@@ -75,7 +75,7 @@ final class SecurityActions {
             try {
                 return Class.forName(className, true, SecurityActions.class.getClassLoader());
             } catch (ClassNotFoundException e2) {
-                throw new DeploymentExceptionRT("Could not load class " + className, e2);
+                throw new DeploymentExceptionRTSec("Could not load class " + className, e2);
             }
         }
     }
@@ -85,7 +85,7 @@ final class SecurityActions {
         @SuppressWarnings("unchecked")
         Class<T> implClass = (Class<T>) loadClass(className);
         if (!expectedType.isAssignableFrom(implClass)) {
-            throw new DeploymentExceptionRT("Loaded class " + className + " is not of expected type " + expectedType);
+            throw new DeploymentExceptionRTSec("Loaded class " + className + " is not of expected type " + expectedType);
         }
         return newInstance(implClass, argumentTypes, arguments);
     }
@@ -96,13 +96,13 @@ final class SecurityActions {
         try {
             clazz = Class.forName(className, false, classLoader);
         } catch (Exception e) {
-            throw new DeploymentExceptionRT("Could not load class " + className, e);
+            throw new DeploymentExceptionRTSec("Could not load class " + className, e);
         }
         Object obj = newInstance(clazz, argumentTypes, arguments);
         try {
             return expectedType.cast(obj);
         } catch (Exception e) {
-            throw new DeploymentExceptionRT("Loaded class " + className + " is not of expected type " + expectedType, e);
+            throw new DeploymentExceptionRTSec("Loaded class " + className + " is not of expected type " + expectedType, e);
         }
     }
 
@@ -144,7 +144,7 @@ final class SecurityActions {
             }
             obj = constructor.newInstance(arguments);
         } catch (Exception e) {
-            throw new DeploymentExceptionRT("Could not create new instance of " + implClass, e);
+            throw new DeploymentExceptionRTSec("Could not create new instance of " + implClass, e);
         }
 
         return obj;
@@ -173,11 +173,11 @@ final class SecurityActions {
             } else {
                 // No other checked Exception thrown by Class.getConstructor
                 try {
-                    throw (DeploymentExceptionRT) t;
+                    throw (DeploymentExceptionRTSec) t;
                 }
                 // Just in case we've really messed up
                 catch (final ClassCastException cce) {
-                    throw new DeploymentExceptionRT(exceptionMessage, t);
+                    throw new DeploymentExceptionRTSec(exceptionMessage, t);
                 }
             }
         }
@@ -217,11 +217,11 @@ final class SecurityActions {
             } else {
                 // No other checked Exception thrown by Class.getConstructor
                 try {
-                    throw (DeploymentExceptionRT) t;
+                    throw (DeploymentExceptionRTSec) t;
                 }
                 // Just in case we've really messed up
                 catch (final ClassCastException cce) {
-                    throw new DeploymentExceptionRT(exceptionMessage, t);
+                    throw new DeploymentExceptionRTSec(exceptionMessage, t);
                 }
             }
         }
@@ -295,11 +295,11 @@ final class SecurityActions {
             } else {
                 // No other checked Exception thrown by System.getProtocolProperty
                 try {
-                    throw (DeploymentExceptionRT) t;
+                    throw (DeploymentExceptionRTSec) t;
                 }
                 // Just in case we've really messed up
                 catch (final ClassCastException cce) {
-                    throw new DeploymentExceptionRT(exceptionMessage, t);
+                    throw new DeploymentExceptionRTSec(exceptionMessage, t);
                 }
             }
         }
