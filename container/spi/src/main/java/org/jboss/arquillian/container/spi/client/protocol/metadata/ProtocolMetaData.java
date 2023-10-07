@@ -52,7 +52,6 @@ public class ProtocolMetaData {
  * @return
  *     Il contesto del tipo specificato o null se non è presente.
  */
-@Deprecated
 public <T> T getContext(Class<T> clazz) {
     for (Object obj : contexts) {
         if (clazz.isInstance(obj)) {
