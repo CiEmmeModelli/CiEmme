@@ -33,6 +33,7 @@ import org.jboss.arquillian.core.api.annotation.Observes;
 import org.jboss.arquillian.core.spi.ServiceLoader;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -80,6 +81,7 @@ public class DeploymentExceptionHandlerTestCase extends AbstractContainerTestBas
             container,
             new Deployment(new DeploymentDescription("test", ShrinkWrap.create(JavaArchive.class))
                 .setExpectedException(NullPointerException.class))));
+            Assert.assertNotNull("Not null", container);
     }
 
     @Test
