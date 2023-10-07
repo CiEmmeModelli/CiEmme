@@ -17,6 +17,9 @@
  */
 package org.jboss.arquillian.container.impl.client.container;
 
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import java.util.List;
 import org.jboss.arquillian.config.descriptor.api.ArquillianDescriptor;
 import org.jboss.arquillian.container.spi.ContainerRegistry;
@@ -143,20 +146,24 @@ public class ContainerRegistryCreatorTestCase extends AbstractContainerTestBase 
         }
     }
 
-    @Test(expected = IllegalStateException.class)
-public void shouldThrowExceptionIfMultipleContainersSetAsDefault() throws IllegalStateException {
-    try {
-        fire(
-            Descriptors.create(ArquillianDescriptor.class)
-                .container(CONTAINER_1)
-                .setDefault()
-                .container(CONTAINER_2)
-                .setDefault());
-    } catch (IllegalStateException e) {
-        Assert.assertTrue(e.getMessage().startsWith("Multiple Containers defined as default"));
-        throw e;
+    @Test
+    public void shouldThrowExceptionIfMultipleContainersSetAsDefault() {
+        try {
+            fire(
+                Descriptors.create(ArquillianDescriptor.class)
+                    .container(CONTAINER_1)
+                    .setDefault()
+                    .container(CONTAINER_2)
+                    .setDefault()
+            );
+            fail("Expected IllegalStateException was not thrown");
+        } catch (IllegalStateException e) {
+            assertTrue(e.getMessage().startsWith("Multiple Containers defined as default"));
+        }
     }
-}
+
+
+
 
     @Test(expected = IllegalStateException.class)
     public void shouldThrowExceptionIfMultipleGroupsSetAsDefault() throws IllegalStateException {
