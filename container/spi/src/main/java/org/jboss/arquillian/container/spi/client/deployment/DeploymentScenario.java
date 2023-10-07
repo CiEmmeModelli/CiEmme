@@ -293,22 +293,16 @@ public class DeploymentScenario {
      * Validate that a deployment with a archive of the same name does not have the same taget
      */
     private void validateNotSameArchiveAndSameTarget(DeploymentDescription deployment) {
-        if (!deployment.isArchiveDeployment()) {
-            return;
-        }
-        for (Deployment existing : archiveDeployments(deployments)) {
-            if (existing.getDescription().getArchive().getName().equals(deployment.getArchive().getName())) {
-                if (existing.getDescription().getTarget().equals(deployment.getTarget())) {
-                    throw new IllegalArgumentException("Can not add multiple "
-                        +
-                        Archive.class.getName()
-                        + " archive deployments with the same archive name "
-                        + deployment.getName()
-                        +
-                        " that target the same target "
-                        + deployment.getTarget());
+        if (deployment.isArchiveDeployment()) {
+            for (Deployment existing : archiveDeployments(deployments)) {
+                if (existing.getDescription().getArchive().getName().equals(deployment.getArchive().getName()) &&
+                    existing.getDescription().getTarget().equals(deployment.getTarget())) {
+                    throw new IllegalArgumentException("Can not add multiple " +
+                        Archive.class.getName() + " archive deployments with the same archive name " +
+                        deployment.getName() + " that target the same target " + deployment.getTarget());
                 }
             }
         }
     }
+    
 }
