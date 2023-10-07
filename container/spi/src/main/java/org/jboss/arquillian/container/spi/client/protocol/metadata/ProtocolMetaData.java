@@ -39,15 +39,6 @@ public class ProtocolMetaData {
         return false;
     }
 
-    @Deprecated
-    public <T> T getContext(Class<T> clazz) {
-        for (Object obj : contexts) {
-            if (clazz.isInstance(obj)) {
-                return clazz.cast(obj);
-            }
-        }
-        return null;
-    }
 
     public <T> Collection<T> getContexts(Class<T> clazz) {
         List<T> filteredContexts = new ArrayList<T>();
