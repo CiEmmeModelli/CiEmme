@@ -39,6 +39,7 @@ public class ProtocolMetaData {
         return false;
     }
 
+    @SuppressWarnings("java:S1133")
     /**
     * @deprecated (rimuovere metodo deprecato)
     */
