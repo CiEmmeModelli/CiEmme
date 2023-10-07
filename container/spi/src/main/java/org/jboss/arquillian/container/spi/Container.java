@@ -50,7 +50,7 @@ public interface Container {
     /**
      * @return the configuration
      */
-    ContainerConfiguration createDeployableConfiguration() throws Exception;
+    ContainerConfiguration createDeployableConfiguration() throws ConfigurationException;
 
     boolean hasProtocolConfiguration(ProtocolDescription description);
 
