@@ -80,6 +80,8 @@ class PropertiesParser {
     private static String exceptionMessageSuffix = "] with value[";
     private static String exceptionMessagePrefix = "Unknown arquillian container attribute[";
 
+    private static String defaultMessage = "default";
+
     private Handler[] handlers = new Handler[]{
             new EngineProperty(arqEngineProperty),
             new ContainerConfiguration(arqContainerConfiguration),
@@ -157,7 +159,7 @@ class PropertiesParser {
             String groupName = matcher.group(1);
             String attributeName = matcher.group(2);
 
-            if ("default".equals(attributeName)) {
+            if (defaultMessage.equals(attributeName)) {
                 descriptor.group(groupName).setGroupDefault();
             } else {
                 throw new ArquillianConfigurationException(exceptionMessagePrefix + attributeName + exceptionMessageSuffix + value + "]");
@@ -178,7 +180,7 @@ class PropertiesParser {
 
             if ("mode".equals(attributeName)) {
                 descriptor.group(groupName).container(containerName).setMode(value);
-            } else if ("default".equals(attributeName)) {
+            } else if (defaultMessage.equals(attributeName)) {
                 descriptor.group(groupName).container(containerName).setDefault();
             } else {
                 throw new ArquillianConfigurationException(exceptionMessagePrefix + attributeName + exceptionMessageSuffix + value + "]");
@@ -261,7 +263,7 @@ class PropertiesParser {
 
             if ("mode".equals(attributeName)) {
                 descriptor.container(containerName).setMode(value);
-            } else if ("default".equals(attributeName)) {
+            } else if (defaultMessage.equals(attributeName)) {
                 descriptor.container(containerName).setDefault();
             } else {
                 throw new ArquillianConfigurationException(exceptionMessagePrefix + attributeName + exceptionMessageSuffix + value + "]");
