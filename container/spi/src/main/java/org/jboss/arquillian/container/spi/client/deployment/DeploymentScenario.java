@@ -102,7 +102,7 @@ public class DeploymentScenario {
         }
         Collections.sort(managedDeployment, new Comparator<Deployment>() {
             public int compare(Deployment o1, Deployment o2) {
-                return new Integer(o2.getDescription().getOrder()).compareTo(o1.getDescription().getOrder());
+                return Integer.compare(o2.getDescription().getOrder(), o1.getDescription().getOrder());
             }
         });
 
