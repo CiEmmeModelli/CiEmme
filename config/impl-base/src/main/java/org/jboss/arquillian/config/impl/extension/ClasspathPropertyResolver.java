@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.logging.Logger;
 
 class ClasspathPropertyResolver implements PropertyResolver {
-    private static final  Logger logger = Logger.getLogger(ClasspathPropertyResolver.class.getName());
+    private static final Logger logger = Logger.getLogger(ClasspathPropertyResolver.class.getName());
     /**
      * Classpath base property
      */
@@ -15,26 +15,28 @@ class ClasspathPropertyResolver implements PropertyResolver {
         if (key.startsWith(CLASSPATH)) {
             final ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
             String classpathResource = key.substring(CLASSPATH.length(), key.length() - 1);
-            try{
-            final URL resource = contextClassLoader.getResource(classpathResource);
+            try {
+                final URL resource = contextClassLoader.getResource(classpathResource);
 
-            //If resource is not found it is returned as null so no change is applicable.
-            if (resource == null) {
-                if (!classpathResource.isEmpty())
-                    logger.warning(String.format("Resource %s is not found on the classspath so the property %s is not replaced.", classpathResource, key));
-                else logger.warning("Empty classpathResource");
+                // If resource is not found it is returned as null so no change is applicable.
+                if (resource == null) {
+                    if (!classpathResource.isEmpty())
+                        logger.warning("Resource is not found on the classspath so the property is not replaced.");
+                    else
+                        logger.warning("Empty classpathResource");
 
+                    return null;
+                }
+
+                return resource.toString();
+            } catch (NullPointerException e) {
+                if (!key.isEmpty())
+                    logger.warning("NullPointerException occurred while trying to access resource for key");
+                else
+                    logger.warning("Empty key");
                 return null;
+
             }
-
-            return resource.toString();
-        } catch (NullPointerException e){
-            if (!key.isEmpty())
-            logger.warning(String.format("NullPointerException occurred while trying to access resource for key: %s", key));
-                else logger.warning("Empty key");
-            return null;
-
-        }
         }
 
         return null;
