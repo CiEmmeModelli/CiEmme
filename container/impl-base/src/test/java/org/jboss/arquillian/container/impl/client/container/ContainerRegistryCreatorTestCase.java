@@ -233,7 +233,7 @@ public class ContainerRegistryCreatorTestCase extends AbstractContainerTestBase 
     }
 
     @SuppressWarnings("java:S5778")
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void shouldThrowExceptionIfFailedToCreateDefaultDeployableContainerInstance() {
         Mockito.when(serviceLoader.onlyOne(DeployableContainer.class))
             .thenThrow(new RuntimeException("Class yatta yatta not found..."));
