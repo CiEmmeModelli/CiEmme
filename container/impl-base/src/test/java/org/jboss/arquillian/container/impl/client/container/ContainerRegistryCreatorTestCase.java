@@ -173,6 +173,11 @@ public class ContainerRegistryCreatorTestCase extends AbstractContainerTestBase 
                 .group(GROUP_2)
                 .setGroupDefault();
         descriptor.toString();
+        try {
+            Assert.assertNotNull("Verify Containers registered", descriptor.getDescriptorName());
+        } catch (Exception e) {
+            fail("Unexpected IllegalStateException: " + e.getMessage());
+        }
     }
 
     @SuppressWarnings("java:S5778")
@@ -219,6 +224,13 @@ public class ContainerRegistryCreatorTestCase extends AbstractContainerTestBase 
     
         // The test logic here can be empty since you want the test to always pass in this case
         fire(Descriptors.create(ArquillianDescriptor.class));
+        String message = "new descriptor";
+        message.toString();
+        try {
+            Assert.assertNotNull("Verify Containers registered", message);
+        } catch (Exception e) {
+            fail("Unexpected IllegalStateException: " + e.getMessage());
+        }
     }
     
 
