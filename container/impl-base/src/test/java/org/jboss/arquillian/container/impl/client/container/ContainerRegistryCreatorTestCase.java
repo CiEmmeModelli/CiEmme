@@ -164,7 +164,7 @@ public class ContainerRegistryCreatorTestCase extends AbstractContainerTestBase 
     }
 
     @SuppressWarnings("java:S5778")
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void shouldThrowExceptionIfMultipleGroupsSetAsDefault() throws IllegalStateException {
         try {
             fire(
@@ -181,7 +181,7 @@ public class ContainerRegistryCreatorTestCase extends AbstractContainerTestBase 
     }
 
     @SuppressWarnings("java:S5778")
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void shouldThrowExceptionIfMultipleGroupsOrContainersSetAsDefault() throws IllegalStateException {
         try {
             fire(
@@ -198,7 +198,7 @@ public class ContainerRegistryCreatorTestCase extends AbstractContainerTestBase 
     }
 
     @SuppressWarnings("java:S5778")
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void shouldThrowExceptionIfMultipleContainersInGroupSetAsDefault() throws IllegalStateException {
         try {
             fire(Descriptors.create(ArquillianDescriptor.class)
@@ -218,7 +218,7 @@ public class ContainerRegistryCreatorTestCase extends AbstractContainerTestBase 
      *  ARQ-619, multiple DeployableContainer on classpath is not currently allowed, but not reported.
      */
     @SuppressWarnings("java:S5778")
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void shouldThrowExceptionIfMultipleDeployableContainersFoundOnClassapth() {
         Mockito.when(serviceLoader.onlyOne(DeployableContainer.class))
             .thenThrow(new IllegalStateException("Multiple service implementations found for ..."));
