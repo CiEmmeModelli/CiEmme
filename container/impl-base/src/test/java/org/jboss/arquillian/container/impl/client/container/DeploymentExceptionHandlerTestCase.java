@@ -125,6 +125,7 @@ public class DeploymentExceptionHandlerTestCase extends AbstractContainerTestBas
             container,
             new Deployment(new DeploymentDescription("test", ShrinkWrap.create(JavaArchive.class))
                 .setExpectedException(IllegalArgumentException.class))));
+            Assert.assertNotNull("Not Null", container);
     }
 
     @Test
