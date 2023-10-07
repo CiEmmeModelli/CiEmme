@@ -250,16 +250,17 @@ public class DeploymentScenario {
     /**
      * Validation, names except DEFAULT should be unique. See constructor
      */
+
     private Deployment findMatchingDeployment(DeploymentTargetDescription target) {
         List<Deployment> matching = findMatchingDeployments(target);
-        if (matching.size() == 0) {
+        if (matching.isEmpty()) {
             return null;
         }
         if (matching.size() == 1) {
             return matching.get(0);
         }
-
-        // if multiple Deployment of different Type, we get the Archive Deployment
+    
+        // Se ci sono più Deployment di tipi diversi, otteniamo il Deployment dell'archivio (Archive Deployment)
         return archiveDeployments(matching).get(0);
     }
 
