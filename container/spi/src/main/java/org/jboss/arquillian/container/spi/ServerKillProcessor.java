@@ -31,5 +31,5 @@ public interface ServerKillProcessor {
     /**
      * Kill a server instance via a specific implementation.
      */
-    void kill(Container container) throws Exception;
+    void kill(Container container) throws NotNullExcp;
 }
