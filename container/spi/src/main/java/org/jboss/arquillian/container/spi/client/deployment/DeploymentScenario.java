@@ -105,7 +105,6 @@ public class DeploymentScenario {
                 return Integer.compare(o2.getDescription().getOrder(), o1.getDescription().getOrder());
             }
         });
-
         return Collections.unmodifiableList(managedDeployment);
     }
 
