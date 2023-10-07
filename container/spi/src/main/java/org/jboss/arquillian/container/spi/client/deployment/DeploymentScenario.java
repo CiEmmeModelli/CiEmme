@@ -60,7 +60,6 @@ public class DeploymentScenario {
         }
         return protocols;
     }
-
     /**
      * Get a {@link DeploymentDescription} with a specific name if it exists.
      *
@@ -76,7 +75,6 @@ public class DeploymentScenario {
         }
         return findMatchingDeployment(target);
     }
-
     public List<Deployment> managedDeploymentsInDeployOrder() {
         List<Deployment> managedDeployment = new ArrayList<Deployment>();
         for (Deployment deployment : deployments) {
