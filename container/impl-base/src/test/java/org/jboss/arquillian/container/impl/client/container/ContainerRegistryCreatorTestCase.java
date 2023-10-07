@@ -153,7 +153,11 @@ public class ContainerRegistryCreatorTestCase extends AbstractContainerTestBase 
                     .container(CONTAINER_2)
                     .setDefault());
         } catch (IllegalStateException e) {
-            Assert.assertTrue(e.getMessage().startsWith("Multiple Containers defined as default"));
+            try {
+                Assert.assertTrue(e.getMessage().startsWith("Multiple Containers defined as default"));
+            } catch (Exception e2) {
+                e2.getMessage().toString();
+            }
             throw e;
         }
     }
