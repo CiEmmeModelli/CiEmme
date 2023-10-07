@@ -19,6 +19,7 @@ package org.jboss.arquillian.container.impl;
 import java.util.logging.Logger;
 import org.jboss.arquillian.container.spi.Container;
 import org.jboss.arquillian.container.spi.ServerKillProcessor;
+import org.jboss.arquillian.container.spi.client.container.LifecycleException;
 
 /**
  * DefaultServerKillProcessor
@@ -30,7 +31,7 @@ public class DefaultServerKillProcessor implements ServerKillProcessor {
     private final Logger log = Logger.getLogger(DefaultServerKillProcessor.class.getName());
 
     @Override
-    public void kill(Container container) throws Exception {
+    public void kill(Container container) throws LifecycleException {
         log.warning("Triggering default implementation of a server kill() command => using stop() internally");
         container.getDeployableContainer().stop();
     }

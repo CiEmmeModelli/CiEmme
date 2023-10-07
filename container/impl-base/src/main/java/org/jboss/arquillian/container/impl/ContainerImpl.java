@@ -202,12 +202,12 @@ public class ContainerImpl implements Container {
     }
 
     @Override
-    public void kill() throws Exception {
+    public void kill() throws LifecycleException {
         event.fire(new BeforeKill(deployableContainer));
         try {
             getServerKillProcessor().kill(this);
             setState(Container.State.KILLED);
-        } catch (Exception e) {
+        } catch (LifecycleException e) {
             setState(State.KILLED_FAILED);
             failureCause = e;
             throw e;

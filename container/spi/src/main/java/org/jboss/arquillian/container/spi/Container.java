@@ -62,7 +62,7 @@ public interface Container {
 
     void stop() throws LifecycleException;
 
-    void kill() throws Exception;
+    void kill() throws LifecycleException;
 
     State getState();
 

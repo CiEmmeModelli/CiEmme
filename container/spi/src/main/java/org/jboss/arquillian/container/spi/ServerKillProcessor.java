@@ -16,6 +16,8 @@
  */
 package org.jboss.arquillian.container.spi;
 
+import org.jboss.arquillian.container.spi.client.container.LifecycleException;
+
 /**
  * ServerKillProcessor
  * <p>
@@ -31,5 +33,5 @@ public interface ServerKillProcessor {
     /**
      * Kill a server instance via a specific implementation.
      */
-    void kill(Container container) throws NotNullExcp;
+    void kill(Container container) throws LifecycleException;
 }
