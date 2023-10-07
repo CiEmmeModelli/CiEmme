@@ -279,16 +279,15 @@ public class DeploymentScenario {
      */
     private void validateNotSameNameAndTypeOfDeployment(DeploymentDescription deployment) {
         for (Deployment existing : deployments) {
-            if (existing.getDescription().getName().equals(deployment.getName())) {
-                if (
-                    (existing.getDescription().isArchiveDeployment() && deployment.isArchiveDeployment()) ||
-                        (existing.getDescription().isDescriptorDeployment() && deployment.isDescriptorDeployment())) {
-                    throw new IllegalArgumentException("Can not add multiple " +
-                        Archive.class.getName() + " deployments with the same name: " + deployment.getName());
-                }
+            if (existing.getDescription().getName().equals(deployment.getName()) &&
+                ((existing.getDescription().isArchiveDeployment() && deployment.isArchiveDeployment()) ||
+                 (existing.getDescription().isDescriptorDeployment() && deployment.isDescriptorDeployment()))) {
+                throw new IllegalArgumentException("Can not add multiple " +
+                    Archive.class.getName() + " deployments with the same name: " + deployment.getName());
             }
         }
     }
+    
 
     /**
      * Validate that a deployment with a archive of the same name does not have the same taget
