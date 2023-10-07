@@ -40,7 +40,7 @@ public interface Container {
     /**
      * @return the deployableContainer
      */
-    DeployableContainer<?> getDeployableContainer();
+    DeployableContainer<ContainerConfiguration> getDeployableContainer();
 
     /**
      * @return the containerConfiguration

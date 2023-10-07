@@ -59,14 +59,14 @@ public class ContainerImpl implements Container {
     @Inject
     private Instance<ServiceLoader> serviceLoader;
 
-    private DeployableContainer<?> deployableContainer;
+    private DeployableContainer<ContainerConfiguration> deployableContainer;
     private String name;
     private State state = State.STOPPED;
     private Throwable failureCause;
 
     private ContainerDef containerConfiguration;
 
-    public ContainerImpl(String name, DeployableContainer<?> deployableContainer, ContainerDef containerConfiguration) {
+    public ContainerImpl(String name, DeployableContainer<ContainerConfiguration> deployableContainer, ContainerDef containerConfiguration) {
         Validate.notNull(name, "Name must be specified");
         Validate.notNull(deployableContainer, "DeployableContainer must be specified");
         Validate.notNull(containerConfiguration, "ConfigurationConfiguration must be specified");
@@ -88,7 +88,7 @@ public class ContainerImpl implements Container {
      * @see org.jboss.arquillian.container.impl.ContainerT#getDeployableContainer()
      */
     @Override
-    public DeployableContainer<?> getDeployableContainer() {
+    public DeployableContainer<ContainerConfiguration> getDeployableContainer() {
         return deployableContainer;
     }
 
