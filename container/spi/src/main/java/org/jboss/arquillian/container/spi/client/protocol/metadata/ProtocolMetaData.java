@@ -38,10 +38,19 @@ public class ProtocolMetaData {
         }
         return false;
     }
-/**
- * @deprecated rimosso metodo deprecato
- * 
- */
+
+    /**
+    * @deprecated (rimuovere metodo deprecato)
+    */
+    @Deprecated
+    public <T> T getContext(Class<T> clazz) {
+        for (Object obj : contexts) {
+            if (clazz.isInstance(obj)) {
+                return clazz.cast(obj);
+            }
+        }
+        return null;
+    }
 
     public <T> Collection<T> getContexts(Class<T> clazz) {
         List<T> filteredContexts = new ArrayList<T>();
