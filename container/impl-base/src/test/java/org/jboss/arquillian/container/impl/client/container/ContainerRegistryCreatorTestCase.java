@@ -246,22 +246,28 @@ public class ContainerRegistryCreatorTestCase extends AbstractContainerTestBase 
             throw e;
         }
     }
-
+    
     private void verifyRegistry(String... containerNames) {
         ContainerRegistry registry = regInst.get();
-
-        Assert.assertNotNull(
-            "Verify Containers registered",
-            registry.getContainers());
-        Assert.assertEquals(
-            "Verify " + containerNames.length + " Container(s) registrered",
-            containerNames.length, registry.getContainers().size());
-
+    
+        verifyContainersRegistered(registry);
+        verifyContainerCount(registry, containerNames.length);
+        verifyCorrectContainersRegistered(registry, containerNames);
+    }
+    
+    private void verifyContainersRegistered(ContainerRegistry registry) {
+        Assert.assertNotNull("Verify Containers registered", registry.getContainers());
+    }
+    
+    private void verifyContainerCount(ContainerRegistry registry, int expectedCount) {
+        Assert.assertEquals("Verify " + expectedCount + " Container(s) registered", expectedCount, registry.getContainers().size());
+    }
+    
+    private void verifyCorrectContainersRegistered(ContainerRegistry registry, String... containerNames) {
         for (int i = 0; i < containerNames.length; i++) {
             String containerName = containerNames[i];
-            Assert.assertEquals(
-                "Verify correct Container registrered",
-                containerName, registry.getContainers().get(i).getName());
+            Assert.assertEquals("Verify correct Container registered", containerName, registry.getContainers().get(i).getName());
         }
     }
+    
 }
