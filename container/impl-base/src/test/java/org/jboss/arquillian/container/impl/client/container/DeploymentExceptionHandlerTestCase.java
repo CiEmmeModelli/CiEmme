@@ -158,6 +158,7 @@ public class DeploymentExceptionHandlerTestCase extends AbstractContainerTestBas
 
         fire(new DeployDeployment(container, new Deployment(new DeploymentDescription("test",
             ShrinkWrap.create(JavaArchive.class)).setExpectedException(NullPointerException.class))));
+            Assert.assertNotNull(message, recursiveException);
     }
 
     @Test(expected = DeploymentException.class)
