@@ -29,7 +29,7 @@ import org.jboss.arquillian.core.spi.event.Event;
 public abstract class ContainerControlEvent implements Event {
     private Container container;
 
-    public ContainerControlEvent(Container container) {
+    protected ContainerControlEvent(Container container) {
         this.container = container;
     }
 
