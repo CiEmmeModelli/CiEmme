@@ -56,7 +56,7 @@ public interface Container {
 
     ProtocolDef getProtocolConfiguration(ProtocolDescription description);
 
-    void setup() throws Exception;
+    void setup() throws ContainerCustomExc;
 
     void start() throws LifecycleException;
 

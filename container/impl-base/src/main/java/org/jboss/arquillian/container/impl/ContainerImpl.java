@@ -19,6 +19,7 @@ package org.jboss.arquillian.container.impl;
 import org.jboss.arquillian.config.descriptor.api.ContainerDef;
 import org.jboss.arquillian.config.descriptor.api.ProtocolDef;
 import org.jboss.arquillian.container.spi.Container;
+import org.jboss.arquillian.container.spi.ContainerCustomExc;
 import org.jboss.arquillian.container.spi.ServerKillProcessor;
 import org.jboss.arquillian.container.spi.client.container.ContainerConfiguration;
 import org.jboss.arquillian.container.spi.client.container.DeployableContainer;
@@ -158,7 +159,7 @@ public class ContainerImpl implements Container {
 
     @SuppressWarnings({"rawtypes", "unchecked"})
     @Override
-    public void setup() throws Exception {
+    public void setup() throws ContainerCustomExc {
         event.fire(new BeforeSetup(deployableContainer));
         try {
             containerProducer.set(this);
