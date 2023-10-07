@@ -20,9 +20,10 @@ class ClasspathPropertyResolver implements PropertyResolver {
 
             //If resource is not found it is returned as null so no change is applicable.
             if (resource == null) {
-                if (logger!= null) {
-                    logger.warning(String.format("Resource %s is not found on the classpath so the property %s is not replaced.", classpathResource, key));
-                } return null;
+                if (!classpathResource.isEmpty()){
+                logger.warning(
+                    String.format("Resource %s is not found on the classpath so the property %s is not replaced.", classpathResource, key));
+                }
             }
 
             return resource.toString();
