@@ -232,6 +232,7 @@ public class ContainerRegistryCreatorTestCase extends AbstractContainerTestBase 
         }
     }
 
+    @SuppressWarnings("java:S5778")
     @Test(expected = IllegalStateException.class)
     public void shouldThrowExceptionIfFailedToCreateDefaultDeployableContainerInstance() {
         Mockito.when(serviceLoader.onlyOne(DeployableContainer.class))
@@ -239,8 +240,9 @@ public class ContainerRegistryCreatorTestCase extends AbstractContainerTestBase 
 
         try {
             fire(Descriptors.create(ArquillianDescriptor.class));
+            fail("Failed");
         } catch (IllegalStateException e) {
-            Assert.assertTrue(e.getMessage().startsWith("Could not create the default"));
+            assertTrue(e.getMessage().startsWith("Could not create the default"));
             throw e;
         }
     }
