@@ -217,6 +217,7 @@ public class ContainerRegistryCreatorTestCase extends AbstractContainerTestBase 
     /*
      *  ARQ-619, multiple DeployableContainer on classpath is not currently allowed, but not reported.
      */
+    @SuppressWarnings("java:S5778")
     @Test(expected = IllegalStateException.class)
     public void shouldThrowExceptionIfMultipleDeployableContainersFoundOnClassapth() {
         Mockito.when(serviceLoader.onlyOne(DeployableContainer.class))
@@ -224,8 +225,9 @@ public class ContainerRegistryCreatorTestCase extends AbstractContainerTestBase 
 
         try {
             fire(Descriptors.create(ArquillianDescriptor.class));
+            fail("Failed");
         } catch (IllegalStateException e) {
-            Assert.assertTrue(e.getMessage().startsWith("Could not add a default container"));
+            assertTrue(e.getMessage().startsWith("Could not add a default container"));
             throw e;
         }
     }
