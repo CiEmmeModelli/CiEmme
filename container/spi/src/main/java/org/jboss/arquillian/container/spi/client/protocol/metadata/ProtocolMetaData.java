@@ -40,18 +40,27 @@ public class ProtocolMetaData {
     }
 
     @SuppressWarnings("java:S1133")
-    /**
-    * @deprecated (rimuovere metodo deprecato)
-    */
-    @Deprecated
-    public <T> T getContext(Class<T> clazz) {
-        for (Object obj : contexts) {
-            if (clazz.isInstance(obj)) {
-                return clazz.cast(obj);
-            }
+/**
+ * @deprecated (rimuovere metodo deprecato)
+ *
+ * @param clazz
+ *     La classe del contesto che si desidera ottenere.
+ *
+ * @param <T>
+ *     Il tipo del contesto.
+ *
+ * @return
+ *     Il contesto del tipo specificato o null se non è presente.
+ */
+@Deprecated
+public <T> T getContext(Class<T> clazz) {
+    for (Object obj : contexts) {
+        if (clazz.isInstance(obj)) {
+            return clazz.cast(obj);
         }
-        return null;
     }
+    return null;
+}
 
     public <T> Collection<T> getContexts(Class<T> clazz) {
         List<T> filteredContexts = new ArrayList<T>();
