@@ -115,7 +115,7 @@ public class ContainerDeployControllerTestCase extends AbstractContainerTestBase
         when(deployableContainer1.getConfigurationClass()).thenReturn(DummyContainerConfiguration.class);
         when(deployableContainer2.deploy(isA(Archive.class))).thenReturn(protocolMetaData);
         when(deployableContainer2.getConfigurationClass()).thenReturn(DummyContainerConfiguration.class);
-        when(serviceLoader.onlyOne(eq(DeployableContainer.class))).thenReturn(deployableContainer1, deployableContainer2);
+        when(serviceLoader.onlyOne(DeployableContainer.class)).thenReturn(deployableContainer1, deployableContainer2);
         when(container1.getContainerName()).thenReturn(CONTAINER_1_NAME);
         when(container2.getContainerName()).thenReturn(CONTAINER_2_NAME);
 
