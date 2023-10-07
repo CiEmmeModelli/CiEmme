@@ -104,7 +104,7 @@ public class ContainerLifecycleControllerTestCase extends AbstractContainerTestB
     @Before
     public void setup() {
         when(deployableContainer.getConfigurationClass()).thenReturn(DummyContainerConfiguration.class);
-        when(serviceLoader.onlyOne(eq(DeployableContainer.class))).thenReturn(deployableContainer);
+        when(serviceLoader.onlyOne(DeployableContainer.class)).thenReturn(deployableContainer);
         when(container1.getContainerName()).thenReturn(CONTAINER_1_NAME);
         when(container2.getContainerName()).thenReturn(CONTAINER_2_NAME);
         when(container3.getContainerName()).thenReturn(CONTAINER_3_NAME);
