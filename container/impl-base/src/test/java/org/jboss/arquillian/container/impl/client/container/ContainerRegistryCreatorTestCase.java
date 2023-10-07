@@ -146,6 +146,7 @@ public class ContainerRegistryCreatorTestCase extends AbstractContainerTestBase 
         }
     }
 
+    @SuppressWarnings("java:S5778")
     @Test
     public void shouldThrowExceptionIfMultipleContainersSetAsDefault() {
         try {
@@ -162,9 +163,7 @@ public class ContainerRegistryCreatorTestCase extends AbstractContainerTestBase 
         }
     }
 
-
-
-
+    @SuppressWarnings("java:S5778")
     @Test(expected = IllegalStateException.class)
     public void shouldThrowExceptionIfMultipleGroupsSetAsDefault() throws IllegalStateException {
         try {
@@ -174,6 +173,7 @@ public class ContainerRegistryCreatorTestCase extends AbstractContainerTestBase 
                     .setGroupDefault()
                     .group(GROUP_2)
                     .setGroupDefault());
+            fail("IllegalStateException Expected");
         } catch (IllegalStateException e) {
             Assert.assertTrue(e.getMessage().startsWith("Multiple Groups defined as default"));
             throw e;
