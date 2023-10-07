@@ -61,6 +61,7 @@ public class DeploymentExceptionHandlerTestCase extends AbstractContainerTestBas
 
     @Mock
     private Container container;
+    private static String message="Not null";
 
     @Override
     protected void addExtensions(List<Class<?>> extensions) {
@@ -81,7 +82,7 @@ public class DeploymentExceptionHandlerTestCase extends AbstractContainerTestBas
             container,
             new Deployment(new DeploymentDescription("test", ShrinkWrap.create(JavaArchive.class))
                 .setExpectedException(NullPointerException.class))));
-            Assert.assertNotNull("Not null", container);
+            Assert.assertNotNull(message, container);
     }
 
     @Test
@@ -125,7 +126,7 @@ public class DeploymentExceptionHandlerTestCase extends AbstractContainerTestBas
             container,
             new Deployment(new DeploymentDescription("test", ShrinkWrap.create(JavaArchive.class))
                 .setExpectedException(IllegalArgumentException.class))));
-            Assert.assertNotNull("Not Null", container);
+            Assert.assertNotNull(message, container);
     }
 
     @Test
@@ -140,6 +141,7 @@ public class DeploymentExceptionHandlerTestCase extends AbstractContainerTestBas
 
         fire(new DeployDeployment(container, new Deployment(new DeploymentDescription("test",
             ShrinkWrap.create(JavaArchive.class)).setExpectedException(NullPointerException.class))));
+            Assert.assertNotNull(message, myException);
     }
 
     @Test
