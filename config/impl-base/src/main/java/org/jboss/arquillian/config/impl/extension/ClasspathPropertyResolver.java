@@ -20,15 +20,18 @@ class ClasspathPropertyResolver implements PropertyResolver {
 
             //If resource is not found it is returned as null so no change is applicable.
             if (resource == null) {
-                if (!classpathResource.isEmpty()){
-                logger.warning(
-                    String.format("Resource %s is not found on the classpath so the property %s is not replaced.", classpathResource, key));
-                }
+                if (!classpathResource.isEmpty())
+                    logger.warning(String.format("Resource %s is not found on the classspath so the property %s is not replaced.", classpathResource, key));
+                else logger.warning("Empty classpathResource");
+
+                return null;
             }
 
             return resource.toString();
         } catch (NullPointerException e){
+            if (!key.isEmpty())
             logger.warning(String.format("NullPointerException occurred while trying to access resource for key: %s", key));
+                else logger.warning("Empty key");
             return null;
 
         }
