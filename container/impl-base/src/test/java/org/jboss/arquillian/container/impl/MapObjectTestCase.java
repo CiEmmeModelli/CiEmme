@@ -72,6 +72,7 @@ public class MapObjectTestCase {
     public void shouldNotFailOnUnusedOptions() throws Exception {
         TestObject test = new TestObject();
         MapObject.populate(test, map("a", VAL_BOOLEAN));
+        Assert.assertNotNull(test);
     }
 
     @Test
