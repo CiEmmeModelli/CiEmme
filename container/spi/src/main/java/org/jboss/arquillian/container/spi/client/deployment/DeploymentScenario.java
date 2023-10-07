@@ -126,7 +126,6 @@ public class DeploymentScenario {
                 startupDeployments.add(deployment);
             }
         }
-        // sort them by order
         Collections.sort(startupDeployments, new Comparator<Deployment>() {
             public int compare(Deployment o1, Deployment o2) {
                 return Integer.compare(o1.getDescription().getOrder(), o2.getDescription().getOrder());
