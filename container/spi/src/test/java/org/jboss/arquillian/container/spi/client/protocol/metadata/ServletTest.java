@@ -85,7 +85,7 @@ public class ServletTest {
     @Test
     public void testEqualsObjectForNonNullHost() {
         try {
-            assertTrue(servletWithParent.equals(servletWithParent));
+            assertEquals(servletWithParent, servletWithParent);
         } catch (IllegalStateException e) {
             failOnUnexpectedException(e);
         }
