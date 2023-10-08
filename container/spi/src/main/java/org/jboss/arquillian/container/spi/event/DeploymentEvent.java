@@ -30,7 +30,7 @@ import org.jboss.arquillian.container.spi.client.deployment.Deployment;
 public abstract class DeploymentEvent extends ContainerControlEvent {
     private Deployment deployment;
 
-    public DeploymentEvent(Container container, Deployment deployment) {
+    protected DeploymentEvent(Container container, Deployment deployment) {
         super(container);
         this.deployment = deployment;
     }
