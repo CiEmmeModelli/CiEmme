@@ -96,7 +96,7 @@ public class ContainerEventController {
         container.fire(new DeployManagedDeployments());
     }
 
-    public void execute(@Observes AfterClass event) {
+    public void executeAC() {
         try {
             container.fire(new UnDeployManagedDeployments());
         } finally {
