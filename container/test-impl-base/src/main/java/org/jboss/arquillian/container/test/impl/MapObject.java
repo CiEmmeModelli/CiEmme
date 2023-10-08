@@ -68,11 +68,13 @@ public class MapObject {
             }
         }
         if (!clonedValues.isEmpty()) {
-            log.warning(
-                "Configuration contain properties not supported by the backing object " + clazz.getName() + "\n" +
-                    "Unused property entries: " + clonedValues + "\n" +
-                    "Supported property names: " + candidates);
-        }
+            String warningMessage = String.format("Configuration contains properties not supported by the backing object %s%n" +
+                "Unused property entries: %s%n" +
+                "Supported property names: %s",
+                clazz.getName(), clonedValues, candidates);
+        
+            log.warning(warningMessage);
+        }   
     }
 
     public static URL[] convert(File[] files) {
