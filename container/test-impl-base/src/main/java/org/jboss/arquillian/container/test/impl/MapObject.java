@@ -37,7 +37,7 @@ public class MapObject {
     private MapObject() {
     }
 
-    private static final Logger log = Logger.getLogger(MapObject.class.getName());
+    public static final Logger log = Logger.getLogger(MapObject.class.getName());
 
     public static void populate(Object object, Map<String, String> values) throws Exception {
         final Map<String, String> clonedValues = new HashMap<String, String>(values);
