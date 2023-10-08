@@ -161,8 +161,8 @@ public class ContainerEventController {
                     + ".name");
         }
         if (deploymentL != null) {
-            Container container = containerRegistryLocal.getContainer(deploymentL.getDescription().getTarget());
-            callback.call(container, deploymentL);
+            Container containerL = containerRegistryLocal.getContainer(deploymentL.getDescription().getTarget());
+            callback.call(containerL, deploymentL);
         }
     }
 
