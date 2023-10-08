@@ -40,7 +40,7 @@ public class MapObject {
 
     public static final Logger log = Logger.getLogger(MapObject.class.getName());
 
-    public static void populate(Object object, Map<String, String> values) throws CustomException {
+    public static void populate(Object object, Map<String, String> values){
         final Map<String, String> clonedValues = new HashMap<String, String>(values);
         final Set<String> candidates = new HashSet<String>();
         final Class<?> clazz = object.getClass();
@@ -60,7 +60,6 @@ public class MapObject {
                             object,
                             convert(candidate.getParameterTypes()[0], clonedValues.get(propertyName)));
                     } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-                        e.printStackTrace();
                         e.toString();
                     }
                     clonedValues.remove(propertyName);
