@@ -103,8 +103,6 @@ public class MapObject {
      * Converts a String value to the specified class.
      */
     private static Object convert(Class<?> clazz, String value) {
-      /* TODO create a new Converter class and move this method there for reuse */
-
         if (Integer.class.equals(clazz) || int.class.equals(clazz)) {
             return Integer.valueOf(value);
         } else if (Double.class.equals(clazz) || double.class.equals(clazz)) {
