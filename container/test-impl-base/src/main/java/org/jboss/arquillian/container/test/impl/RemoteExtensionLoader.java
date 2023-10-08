@@ -173,50 +173,77 @@ public class RemoteExtensionLoader implements ExtensionLoader {
         return serviceImplsClass;
     }
 
+    // private <T> Set<Class<? extends T>> load(Class<T> serviceClass, ClassLoader loader) {
+    //     String serviceFile = SERVICES + "/" + serviceClass.getName();
+
+    //     LinkedHashSet<Class<? extends T>> providers = new LinkedHashSet<Class<? extends T>>();
+    //     LinkedHashSet<Class<? extends T>> vetoedProviders = new LinkedHashSet<Class<? extends T>>();
+
+    //     try {
+    //         Enumeration<URL> enumeration = loader.getResources(serviceFile);
+    //         while (enumeration.hasMoreElements()) {
+    //             final URL url = enumeration.nextElement();
+    //             final InputStream is = url.openStream();
+    //             BufferedReader reader = null;
+
+    //             try {
+    //                 reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+    //                 String line = reader.readLine();
+    //                 while (null != line) {
+    //                     line = skipCommentAndTrim(line);
+
+    //                     if (line.length() > 0) {
+    //                         try {
+    //                             boolean mustBeVetoed = line.startsWith("!");
+    //                             if (mustBeVetoed) {
+    //                                 line = line.substring(1);
+    //                             }
+
+    //                             Class<? extends T> provider = loader.loadClass(line).asSubclass(serviceClass);
+
+    //                             if (mustBeVetoed) {
+    //                                 vetoedProviders.add(provider);
+    //                             }
+
+    //                             if (vetoedProviders.contains(provider)) {
+    //                                 providers.remove(provider);
+    //                             } else {
+    //                                 providers.add(provider);
+    //                             }
+    //                         } catch (ClassCastException e) {
+    //                             throw new IllegalStateException("Service " + line + " does not implement expected type "
+    //                                 + serviceClass.getName());
+    //                         }
+    //                     }
+    //                     line = reader.readLine();
+    //                 }
+    //             } finally {
+    //                 if (reader != null) {
+    //                     reader.close();
+    //                 }
+    //             }
+    //         }
+    //     } catch (Exception e) {
+    //         throw new RuntimeException("Could not load services for " + serviceClass.getName(), e);
+    //     }
+    //     return providers;
+    // }
+
     private <T> Set<Class<? extends T>> load(Class<T> serviceClass, ClassLoader loader) {
         String serviceFile = SERVICES + "/" + serviceClass.getName();
-
         LinkedHashSet<Class<? extends T>> providers = new LinkedHashSet<Class<? extends T>>();
         LinkedHashSet<Class<? extends T>> vetoedProviders = new LinkedHashSet<Class<? extends T>>();
-
+    
         try {
             Enumeration<URL> enumeration = loader.getResources(serviceFile);
             while (enumeration.hasMoreElements()) {
                 final URL url = enumeration.nextElement();
                 final InputStream is = url.openStream();
                 BufferedReader reader = null;
-
+    
                 try {
                     reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-                    String line = reader.readLine();
-                    while (null != line) {
-                        line = skipCommentAndTrim(line);
-
-                        if (line.length() > 0) {
-                            try {
-                                boolean mustBeVetoed = line.startsWith("!");
-                                if (mustBeVetoed) {
-                                    line = line.substring(1);
-                                }
-
-                                Class<? extends T> provider = loader.loadClass(line).asSubclass(serviceClass);
-
-                                if (mustBeVetoed) {
-                                    vetoedProviders.add(provider);
-                                }
-
-                                if (vetoedProviders.contains(provider)) {
-                                    providers.remove(provider);
-                                } else {
-                                    providers.add(provider);
-                                }
-                            } catch (ClassCastException e) {
-                                throw new IllegalStateException("Service " + line + " does not implement expected type "
-                                    + serviceClass.getName());
-                            }
-                        }
-                        line = reader.readLine();
-                    }
+                    processServiceFile(reader, serviceClass, loader, providers, vetoedProviders);
                 } finally {
                     if (reader != null) {
                         reader.close();
@@ -228,6 +255,48 @@ public class RemoteExtensionLoader implements ExtensionLoader {
         }
         return providers;
     }
+    
+    private <T> void processServiceFile(
+        BufferedReader reader,
+        Class<T> serviceClass,
+        ClassLoader loader,
+        Set<Class<? extends T>> providers,
+        Set<Class<? extends T>> vetoedProviders
+    ) throws IOException, ClassNotFoundException {
+        String line = reader.readLine();
+        while (null != line) {
+            line = skipCommentAndTrim(line);
+    
+            if (line.length() > 0) {
+                processServiceLine(line, serviceClass, loader, providers, vetoedProviders);
+            }
+            line = reader.readLine();
+        }
+    }
+    
+    private <T> void processServiceLine(
+        String line,
+        Class<T> serviceClass,
+        ClassLoader loader,
+        Set<Class<? extends T>> providers,
+        Set<Class<? extends T>> vetoedProviders
+    ) throws ClassNotFoundException {
+        boolean mustBeVetoed = line.startsWith("!");
+        if (mustBeVetoed) {
+            line = line.substring(1);
+        }
+    
+        Class<? extends T> provider = loader.loadClass(line).asSubclass(serviceClass);
+    
+        if (mustBeVetoed) {
+            vetoedProviders.add(provider);
+        }
+    
+        if (!vetoedProviders.contains(provider)) {
+            providers.add(provider);
+        }
+    }
+    
 
     private String skipCommentAndTrim(String line) {
         final int comment = line.indexOf('#');
