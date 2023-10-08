@@ -37,6 +37,8 @@ public class ContainerEvent implements Event {
     /**
      * @return the deployableContainer
      */
+    
+    @SuppressWarnings("java:S1452")
     public DeployableContainer<?> getDeployableContainer() {
         return deployableContainer;
     }
