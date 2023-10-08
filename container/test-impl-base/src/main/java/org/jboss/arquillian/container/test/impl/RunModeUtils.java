@@ -50,11 +50,10 @@ public final class RunModeUtils {
             if (!deployment.isDeployed()) {
                 runAsClient = true;
             }            
-            if (testMethod.isAnnotationPresent(RunAsClient.class)) {
-                runAsClient = true;
-            } else if (testClass.isAnnotationPresent(RunAsClient.class)) {
+            if (testMethod.isAnnotationPresent(RunAsClient.class) || testClass.isAnnotationPresent(RunAsClient.class)) {
                 runAsClient = true;
             }
+            
         }
         return runAsClient;
     }
