@@ -23,6 +23,7 @@ import org.jboss.arquillian.container.spi.client.deployment.DeploymentDescriptio
 import org.jboss.arquillian.container.spi.client.deployment.DeploymentScenario;
 import org.jboss.arquillian.container.spi.client.protocol.metadata.ProtocolMetaData;
 import org.jboss.arquillian.container.test.impl.CustomException;
+import org.jboss.arquillian.container.test.impl.CustomExceptionRun;
 import org.jboss.arquillian.container.test.impl.domain.ProtocolDefinition;
 import org.jboss.arquillian.container.test.impl.domain.ProtocolRegistry;
 import org.jboss.arquillian.container.test.impl.execution.event.RemoteExecutionEvent;
@@ -81,7 +82,7 @@ public class RemoteTestExecuter {
     private Instance<ExecutorService> executorService;
 
     @SuppressWarnings({"java:S112", "java:java:S1130"})
-    public void execute(@Observes RemoteExecutionEvent event) throws CustomException {
+    public void execute(@Observes RemoteExecutionEvent event) throws CustomExceptionRun {
         Container container = this.container.get();
         DeploymentDescription deployment = this.deployment.get();
 
