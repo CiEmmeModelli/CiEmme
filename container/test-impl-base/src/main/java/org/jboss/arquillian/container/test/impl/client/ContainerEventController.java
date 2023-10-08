@@ -41,11 +41,8 @@ import org.jboss.arquillian.core.api.Instance;
 import org.jboss.arquillian.core.api.annotation.Inject;
 import org.jboss.arquillian.core.api.annotation.Observes;
 import org.jboss.arquillian.core.spi.EventContext;
-import org.jboss.arquillian.test.spi.event.suite.AfterClass;
-import org.jboss.arquillian.test.spi.event.suite.AfterSuite;
 import org.jboss.arquillian.test.spi.event.suite.AfterTestLifecycleEvent;
 import org.jboss.arquillian.test.spi.event.suite.BeforeClass;
-import org.jboss.arquillian.test.spi.event.suite.BeforeSuite;
 import org.jboss.arquillian.test.spi.event.suite.BeforeTestLifecycleEvent;
 import org.jboss.arquillian.test.spi.event.suite.Test;
 import org.jboss.arquillian.test.spi.event.suite.TestEvent;
@@ -140,7 +137,7 @@ public class ContainerEventController {
     private void lookup(Method method, ResultCallback callback) {
         DeploymentTargetDescription deploymentTarget = locateDeployment(method);
 
-        ContainerRegistry containerRegistry = this.containerRegistry.get();
+        ContainerRegistry containerRegistryLocal = this.containerRegistry.get();
         DeploymentScenario deploymentScenario = this.deploymentScenario.get();
 
         Deployment deployment = deploymentScenario.deployment(deploymentTarget);
@@ -164,7 +161,7 @@ public class ContainerEventController {
                     + ".name");
         }
         if (deployment != null) {
-            Container container = containerRegistry.getContainer(deployment.getDescription().getTarget());
+            Container container = containerRegistryLocal.getContainer(deployment.getDescription().getTarget());
             callback.call(container, deployment);
         }
     }
