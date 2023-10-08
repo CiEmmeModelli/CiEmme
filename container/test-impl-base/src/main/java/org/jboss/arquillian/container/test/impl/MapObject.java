@@ -17,6 +17,7 @@
 package org.jboss.arquillian.container.test.impl;
 
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.HashMap;
@@ -39,7 +40,7 @@ public class MapObject {
 
     public static final Logger log = Logger.getLogger(MapObject.class.getName());
 
-    public static void populate(Object object, Map<String, String> values) throws Exception {
+    public static void populate(Object object, Map<String, String> values) throws CustomException {
         final Map<String, String> clonedValues = new HashMap<String, String>(values);
         final Set<String> candidates = new HashSet<String>();
         final Class<?> clazz = object.getClass();
@@ -54,9 +55,14 @@ public class MapObject {
                         String trimmed = MultilineTrimmer.trim(clonedValues.get(propertyName));
                         clonedValues.put(propertyName, trimmed);
                     }
-                    candidate.invoke(
-                        object,
-                        convert(candidate.getParameterTypes()[0], clonedValues.get(propertyName)));
+                    try {
+                        candidate.invoke(
+                            object,
+                            convert(candidate.getParameterTypes()[0], clonedValues.get(propertyName)));
+                    } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+                        e.printStackTrace();
+                        e.toString();
+                    }
                     clonedValues.remove(propertyName);
                 }
             }
