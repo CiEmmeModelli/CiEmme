@@ -17,7 +17,7 @@ public class DeploymentConfiguration {
     private TargetsContainer targetsContainer;
     private OverProtocol overProtocol;
     private ShouldThrowException shouldThrowException;
-    private Archive archive;
+    private Archive<?> archive;
     private Descriptor descriptor;
     private Deployment deployment = new DeploymentClass();
 
