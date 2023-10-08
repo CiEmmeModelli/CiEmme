@@ -82,7 +82,7 @@ public class JMXContext extends NamedContext {
                 WeakReference<MBeanServerConnection> ref = new JMXConnectorReference(connection, connector);
                 jmxConnectorRefs.add(ref);
             } catch (IOException e) {
-                throw new RuntimeException("Could not create remote JMX connection: " + this, e);
+                throw new RunCustomExc("Could not create remote JMX connection: " + this, e);
             }
         }
         return connection;
