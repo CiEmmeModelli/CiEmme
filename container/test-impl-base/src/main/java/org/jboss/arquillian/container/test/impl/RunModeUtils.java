@@ -102,10 +102,13 @@ public final class RunModeUtils {
     }
     
     private static void logWarning(TestClass testClass, Method testMethod, String deploymentName) {
-        log.warning(
-            "The test method " + testClass.getJavaClass().getCanonicalName() + "#" + testMethod.getName()
-                    + " will run on the client side because the " + deploymentName + " deployment is not deployed."
-                    + " Please deploy the deployment or mark the test as a client test");
+                    if(!deploymentName.isEmpty()){
+                        String message=String.format("The test method %s#%s will run on the client side because the %s deployment is not deployed. Please deploy the deployment or mark the test as a client test",
+                        testClass.getJavaClass().getCanonicalName(),
+                    testMethod.getName(),
+                    deploymentName);
+                    log.warning(message);
+                    }
     }
     
 
