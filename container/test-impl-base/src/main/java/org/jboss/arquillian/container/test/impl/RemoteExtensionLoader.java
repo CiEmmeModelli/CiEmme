@@ -126,9 +126,7 @@ public class RemoteExtensionLoader implements ExtensionLoader {
                         addVetoedClasses(service, serviceImpls, classLoader, vetoed);
                     }
                 } finally {
-                    if (inStream != null) {
                         inStream.close();
-                    }
                 }
             }
         } catch (IOException e) {
