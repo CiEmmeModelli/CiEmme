@@ -66,7 +66,7 @@ public class RemoteExtensionLoader implements ExtensionLoader {
         if (SecurityActions.getThreadContextClassLoader() != null) {
             loaded = all(SecurityActions.getThreadContextClassLoader(), RemoteLoadableExtension.class);
         }
-        if (loaded.size() == 0) {
+        if (loaded.isEmpty()) {
             loaded = all(RemoteExtensionLoader.class.getClassLoader(), RemoteLoadableExtension.class);
         }
         for (RemoteLoadableExtension extension : loaded) {
