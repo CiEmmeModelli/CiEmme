@@ -190,8 +190,8 @@ public class RemoteExtensionLoader implements ExtensionLoader {
                 } finally {
                     if (reader != null) {
                         reader.close();
-                        is.close();
                     }
+                    is.close();
                 }
             }
         } catch (Exception e) {
