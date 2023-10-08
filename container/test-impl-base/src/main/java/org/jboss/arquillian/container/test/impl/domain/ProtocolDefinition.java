@@ -19,6 +19,7 @@ package org.jboss.arquillian.container.test.impl.domain;
 import java.util.HashMap;
 import java.util.Map;
 import org.jboss.arquillian.container.spi.client.protocol.ProtocolDescription;
+import org.jboss.arquillian.container.test.impl.CustomException;
 import org.jboss.arquillian.container.test.impl.MapObject;
 import org.jboss.arquillian.container.test.spi.client.protocol.Protocol;
 import org.jboss.arquillian.container.test.spi.client.protocol.ProtocolConfiguration;
@@ -90,7 +91,7 @@ public class ProtocolDefinition {
      *
      * @throws Exception
      */
-    public ProtocolConfiguration createProtocolConfiguration() throws Exception {
+    public ProtocolConfiguration createProtocolConfiguration() throws CustomException {
         return createProtocolConfiguration(protocolConfiguration);
     }
 
