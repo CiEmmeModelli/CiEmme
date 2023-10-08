@@ -18,6 +18,7 @@
 package org.jboss.arquillian.container.spi.client.protocol.metadata;
 
 import java.net.URI;
+import java.util.Objects;
 
 /**
  * Servlet
@@ -135,44 +136,23 @@ public class Servlet {
      */
     @Override
     public boolean equals(Object obj) {
-        assertHostState();
+    assertHostState();
 
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (!(obj instanceof Servlet)) {
-            return false;
-        }
-        Servlet other = (Servlet) obj;
-        if (contextRoot == null) {
-            if (other.contextRoot != null) {
-                return false;
-            }
-        } else if (!contextRoot.equals(other.contextRoot)) {
-            return false;
-        }
-        if (host == null) {
-            if (other.host != null) {
-                return false;
-            }
-        } else if (!host.equals(other.host)) {
-            return false;
-        }
-        if (name == null) {
-            if (other.name != null) {
-                return false;
-            }
-        } else if (!name.equals(other.name)) {
-            return false;
-        }
-        if (port != other.port) {
-            return false;
-        }
+    if (this == obj) {
         return true;
     }
+    if (obj == null || getClass() != obj.getClass()) {
+        return false;
+    }
+    
+    Servlet other = (Servlet) obj;
+    
+    return Objects.equals(contextRoot, other.contextRoot) &&
+           Objects.equals(host, other.host) &&
+           Objects.equals(name, other.name) &&
+           port == other.port;
+}
+
 
     @Override
     public String toString() {
