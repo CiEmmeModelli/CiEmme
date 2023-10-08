@@ -140,8 +140,8 @@ public class ContainerEventController {
         ContainerRegistry containerRegistryLocal = this.containerRegistry.get();
         DeploymentScenario deploymentScenarioLocal= this.deploymentScenario.get();
 
-        Deployment deployment = deploymentScenarioLocal.deployment(deploymentTarget);
-        if (deployment == null && deploymentTarget != DeploymentTargetDescription.DEFAULT) {
+        Deployment deploymentL= deploymentScenarioLocal.deployment(deploymentTarget);
+        if (deploymentL == null && deploymentTarget != DeploymentTargetDescription.DEFAULT) {
             // trying to operate on a non existing DeploymentTarget (which is not the DEFAULT)
             throw new IllegalStateException(
                 "No deployment found in "
@@ -160,9 +160,9 @@ public class ContainerEventController {
                     + org.jboss.arquillian.container.test.api.Deployment.class.getSimpleName()
                     + ".name");
         }
-        if (deployment != null) {
-            Container container = containerRegistryLocal.getContainer(deployment.getDescription().getTarget());
-            callback.call(container, deployment);
+        if (deploymentL != null) {
+            Container container = containerRegistryLocal.getContainer(deploymentL.getDescription().getTarget());
+            callback.call(container, deploymentL);
         }
     }
 
