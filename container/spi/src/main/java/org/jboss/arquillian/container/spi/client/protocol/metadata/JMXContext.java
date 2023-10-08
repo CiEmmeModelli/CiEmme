@@ -92,7 +92,7 @@ public class JMXContext extends NamedContext {
         try {
             return new JMXServiceURL("service:jmx:rmi:///jndi/rmi://" + host + ":" + port + "/jmxrmi");
         } catch (Exception e) {
-            throw new RuntimeException("Could not create JMXServiceURL:" + this, e);
+            throw new RunCustomExc("Could not create JMXServiceURL:" + this, e);
         }
     }
 
