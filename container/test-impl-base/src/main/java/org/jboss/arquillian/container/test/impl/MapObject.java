@@ -84,7 +84,7 @@ public class MapObject {
                 urls[i] = files[i].toURI().toURL();
             }
         } catch (Exception e) {
-            throw new RuntimeException("Could not create URL from a File object?", e);
+            throw new CustomExceptionRun("Could not create URL from a File object?", e);
         }
         return urls;
     }
