@@ -130,7 +130,7 @@ public class RemoteExtensionLoader implements ExtensionLoader {
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException("Could not load exclusions from " + EXCLUSIONS, e);
+            throw new CustomExceptionRun("Could not load exclusions from " + EXCLUSIONS, e);
         }
 
         return vetoed;
