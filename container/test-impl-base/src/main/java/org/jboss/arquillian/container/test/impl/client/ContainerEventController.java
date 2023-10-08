@@ -166,7 +166,6 @@ public class ContainerEventController {
         }
     }
 
-    // TODO: Needs to be extracted into a MetaModel layer. Should not do reflection directly on TestClass/TestMethods
     private DeploymentTargetDescription locateDeployment(Method method) {
         DeploymentTargetDescription target = null;
         if (method.isAnnotationPresent(OperateOnDeployment.class)) {
