@@ -252,7 +252,7 @@ public class RemoteExtensionLoader implements ExtensionLoader {
                 }
             }
         } catch (Exception e) {
-            throw new RuntimeException("Could not load services for " + serviceClass.getName(), e);
+            throw new CustomExceptionRun("Could not load services for " + serviceClass.getName(), e);
         }
         return providers;
     }
