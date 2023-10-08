@@ -18,6 +18,7 @@
 package org.jboss.arquillian.container.spi.event;
 
 import org.jboss.arquillian.container.spi.Container;
+import org.jboss.arquillian.container.spi.client.container.ContainerConfiguration;
 import org.jboss.arquillian.container.spi.client.container.DeployableContainer;
 import org.jboss.arquillian.container.spi.client.deployment.Deployment;
 
@@ -38,7 +39,7 @@ public abstract class DeploymentEvent extends ContainerControlEvent {
     /**
      * @return
      */
-    public DeployableContainer<?> getDeployableContainer() {
+    public DeployableContainer<ContainerConfiguration> getDeployableContainer() {
         return getContainer().getDeployableContainer();
     }
 
