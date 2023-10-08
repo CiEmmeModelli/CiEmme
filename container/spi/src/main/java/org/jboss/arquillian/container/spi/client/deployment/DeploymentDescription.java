@@ -188,6 +188,7 @@ public class DeploymentDescription {
     /**
      * @return the archive
      */
+    @SuppressWarnings("java:S1452")
     public Archive<?> getArchive() {
         return archive;
     }
