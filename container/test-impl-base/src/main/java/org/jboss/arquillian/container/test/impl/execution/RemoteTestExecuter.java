@@ -79,6 +79,7 @@ public class RemoteTestExecuter {
     @Inject
     private Instance<ExecutorService> executorService;
 
+    @SuppressWarnings({"java:S112", "java:java:S1130"})
     public void execute(@Observes RemoteExecutionEvent event) throws Exception {
         Container container = this.container.get();
         DeploymentDescription deployment = this.deployment.get();
