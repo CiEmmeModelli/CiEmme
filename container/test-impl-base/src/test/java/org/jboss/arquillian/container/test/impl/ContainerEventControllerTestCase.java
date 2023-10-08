@@ -30,13 +30,7 @@ import org.jboss.arquillian.container.spi.client.deployment.TargetDescription;
 import org.jboss.arquillian.container.spi.context.ContainerContext;
 import org.jboss.arquillian.container.spi.context.DeploymentContext;
 import org.jboss.arquillian.container.spi.event.DeployManagedDeployments;
-import org.jboss.arquillian.container.spi.event.SetupContainers;
 import org.jboss.arquillian.container.spi.event.StartClassContainers;
-import org.jboss.arquillian.container.spi.event.StartSuiteContainers;
-import org.jboss.arquillian.container.spi.event.StopClassContainers;
-import org.jboss.arquillian.container.spi.event.StopManualContainers;
-import org.jboss.arquillian.container.spi.event.StopSuiteContainers;
-import org.jboss.arquillian.container.spi.event.UnDeployManagedDeployments;
 import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.container.test.impl.client.ContainerEventController;
 import org.jboss.arquillian.container.test.test.AbstractContainerTestTestBase;
@@ -48,10 +42,7 @@ import org.jboss.arquillian.test.spi.TestMethodExecutor;
 import org.jboss.arquillian.test.spi.annotation.ClassScoped;
 import org.jboss.arquillian.test.spi.annotation.SuiteScoped;
 import org.jboss.arquillian.test.spi.event.suite.After;
-import org.jboss.arquillian.test.spi.event.suite.AfterClass;
-import org.jboss.arquillian.test.spi.event.suite.AfterSuite;
 import org.jboss.arquillian.test.spi.event.suite.BeforeClass;
-import org.jboss.arquillian.test.spi.event.suite.BeforeSuite;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -121,12 +112,6 @@ public class ContainerEventControllerTestCase extends AbstractContainerTestTestB
         bind(ClassScoped.class, DeploymentScenario.class, scenario);
     }
 
-    @Test
-    public void shouldSetupAndStartSuiteContainers() throws Exception {
-        //fire(new BeforeSuite());
-        //assertEventFired(SetupContainers.class, 1);
-        //assertEventFired(StartSuiteContainers.class, 1);
-    }
 
     @Test
     public void shouldStartClassContainers() throws Exception {
@@ -136,26 +121,10 @@ public class ContainerEventControllerTestCase extends AbstractContainerTestTestB
     }
 
     @Test
-    public void shouldStopSuiteContainers() throws Exception {
-        //fire(new AfterSuite());
-
-        //assertEventFired(StopSuiteContainers.class, 1);
-    }
-
-    @Test
     public void shouldDeployManagedDeployments() throws Exception {
         fire(new BeforeClass(testClass()));
 
         assertEventFired(DeployManagedDeployments.class, 1);
-    }
-
-    @Test
-    public void shouldUndeployManagedDeploymentsAndStopManualAndClassContainers() throws Exception {
-        //fire(new AfterClass(testClass()));
-
-        //assertEventFired(UnDeployManagedDeployments.class, 1);
-        //assertEventFired(StopManualContainers.class, 1);
-        //assertEventFired(StopClassContainers.class, 1);
     }
 
     @Test
