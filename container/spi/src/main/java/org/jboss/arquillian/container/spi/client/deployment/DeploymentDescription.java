@@ -151,6 +151,7 @@ public class DeploymentDescription {
     /**
      * @return the testableArchive
      */
+    @SuppressWarnings("java:S1452")
     public Archive<?> getTestableArchive() {
         return testableArchive;
     }
