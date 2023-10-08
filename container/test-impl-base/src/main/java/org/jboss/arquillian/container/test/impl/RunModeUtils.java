@@ -46,7 +46,7 @@ public final class RunModeUtils {
     public static boolean isRunAsClient(Deployment deployment, TestClass testClass, Method testMethod) {
         boolean runAsClient = true;
         if (deployment != null) {
-            runAsClient = deployment.getDescription().testable() ? false : true;
+            runAsClient = !deployment.getDescription().testable();
             runAsClient = deployment.isDeployed() ? runAsClient : true;
 
             if (testMethod.isAnnotationPresent(RunAsClient.class)) {
