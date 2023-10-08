@@ -78,7 +78,7 @@ public class ContainerEventController {
     /*
      * Suite Level
      */
-    public void execute(@Observes BeforeSuite event) {
+        public void execute() {
         container.fire(new SetupContainers());
         container.fire(new StartSuiteContainers());
     }
