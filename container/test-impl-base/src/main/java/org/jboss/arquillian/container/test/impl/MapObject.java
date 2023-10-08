@@ -34,6 +34,9 @@ import org.jboss.arquillian.config.descriptor.api.Multiline;
  */
 public class MapObject {
 
+    private MapObject() {
+    }
+
     public static Logger log = Logger.getLogger(MapObject.class.getName());
 
     public static void populate(Object object, Map<String, String> values) throws Exception {
