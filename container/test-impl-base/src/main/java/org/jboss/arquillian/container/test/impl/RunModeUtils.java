@@ -62,38 +62,55 @@ public final class RunModeUtils {
      * Returns if the given test should run as client and also checks for a confusing use case, when the test is not
      * intended to be run as a client test - in this case logs a warning. see: ARQ-1937
      */
+
     public static boolean isRunAsClientAndCheck(Deployment deployment, TestClass testClass, Method testMethod) {
         boolean runAsClient = isRunAsClient(deployment, testClass, testMethod);
-
+    
         if (runAsClient && deployment == null) {
-            Method[] methods = testClass.getMethods(org.jboss.arquillian.container.test.api.Deployment.class);
-            if (methods.length > 0) {
-                if (!testMethod.isAnnotationPresent(RunAsClient.class) && !testClass.isAnnotationPresent(
-                    RunAsClient.class)) {
-                    OperateOnDeployment onDeployment = testClass.getAnnotation(OperateOnDeployment.class);
-                    String deploymentName = onDeployment == null ? "_DEFAULT_" : onDeployment.value();
-
-                    for (Method m : methods) {
-                        org.jboss.arquillian.container.test.api.Deployment deploymentAnnotation =
-                            m.getAnnotation(org.jboss.arquillian.container.test.api.Deployment.class);
-
-                        if (deploymentAnnotation.name().equals(deploymentName) && deploymentAnnotation.testable()) {
-                            log.warning(
-                                "The test method "
-                                    + testClass.getJavaClass().getCanonicalName()
-                                    + "#"
-                                    + testMethod.getName()
-                                    + " will run on the client side,because the "
-                                    + deploymentName
-                                    + " deployment is not deployed."
-                                    + " Please deploy the deployment or mark the test as a client test");
-                        }
+            Method[] deploymentMethods = getDeploymentMethods(testClass);
+    
+            if (deploymentMethods.length > 0 && !isClientTest(testMethod, testClass)) {
+                String deploymentName = getDeploymentName(testClass);
+    
+                for (Method deploymentMethod : deploymentMethods) {
+                    if (shouldWarnAboutMissingDeployment(deploymentMethod, deploymentName)) {
+                        logWarning(testClass, testMethod, deploymentName);
+                        break;
                     }
                 }
             }
         }
+    
         return runAsClient;
     }
+    
+    private static Method[] getDeploymentMethods(TestClass testClass) {
+        return testClass.getMethods(org.jboss.arquillian.container.test.api.Deployment.class);
+    }
+    
+    private static boolean isClientTest(Method testMethod, TestClass testClass) {
+        return testMethod.isAnnotationPresent(RunAsClient.class) || testClass.isAnnotationPresent(RunAsClient.class);
+    }
+    
+    private static String getDeploymentName(TestClass testClass) {
+        OperateOnDeployment onDeployment = testClass.getAnnotation(OperateOnDeployment.class);
+        return (onDeployment == null) ? "_DEFAULT_" : onDeployment.value();
+    }
+    
+    private static boolean shouldWarnAboutMissingDeployment(Method deploymentMethod, String deploymentName) {
+        org.jboss.arquillian.container.test.api.Deployment deploymentAnnotation =
+                deploymentMethod.getAnnotation(org.jboss.arquillian.container.test.api.Deployment.class);
+    
+        return deploymentAnnotation.name().equals(deploymentName) && deploymentAnnotation.testable();
+    }
+    
+    private static void logWarning(TestClass testClass, Method testMethod, String deploymentName) {
+        log.warning(
+            "The test method " + testClass.getJavaClass().getCanonicalName() + "#" + testMethod.getName()
+                    + " will run on the client side because the " + deploymentName + " deployment is not deployed."
+                    + " Please deploy the deployment or mark the test as a client test");
+    }
+    
 
     /**
      * Check if this Container DEFAULTs to the Local protocol.
