@@ -337,7 +337,7 @@ public class RemoteExtensionLoader implements ExtensionLoader {
         try {
             return SecurityActions.newInstance(serviceImplClass, new Class<?>[0], new Object[0]);
         } catch (Exception e) {
-            throw new RuntimeException(
+            throw new CustomExceptionRun(
                 "Could not create a new instance of Service implementation " + serviceImplClass.getName(), e);
         }
     }
