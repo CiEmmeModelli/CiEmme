@@ -138,9 +138,9 @@ public class ContainerEventController {
         DeploymentTargetDescription deploymentTarget = locateDeployment(method);
 
         ContainerRegistry containerRegistryLocal = this.containerRegistry.get();
-        DeploymentScenario deploymentScenario = this.deploymentScenario.get();
+        DeploymentScenario deploymentScenarioLocal= this.deploymentScenario.get();
 
-        Deployment deployment = deploymentScenario.deployment(deploymentTarget);
+        Deployment deployment = deploymentScenarioLocal.deployment(deploymentTarget);
         if (deployment == null && deploymentTarget != DeploymentTargetDescription.DEFAULT) {
             // trying to operate on a non existing DeploymentTarget (which is not the DEFAULT)
             throw new IllegalStateException(
