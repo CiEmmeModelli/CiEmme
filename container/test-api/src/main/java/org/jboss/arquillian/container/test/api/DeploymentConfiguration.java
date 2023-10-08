@@ -33,7 +33,7 @@ public class DeploymentConfiguration {
         return shouldThrowException;
     }
 
-    public Archive getArchive() {
+    public Archive<?>getArchive() {
         return archive;
     }
 
