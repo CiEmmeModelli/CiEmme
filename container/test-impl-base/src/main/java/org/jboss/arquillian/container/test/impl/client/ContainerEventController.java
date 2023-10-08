@@ -78,12 +78,12 @@ public class ContainerEventController {
     /*
      * Suite Level
      */
-        public void execute() {
+        public void executeBS() {
         container.fire(new SetupContainers());
         container.fire(new StartSuiteContainers());
     }
 
-    public void execute(@Observes AfterSuite event) {
+    public void executeAS() {
         container.fire(new StopSuiteContainers());
     }
 
