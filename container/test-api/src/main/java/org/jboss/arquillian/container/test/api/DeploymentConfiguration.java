@@ -2,7 +2,6 @@ package org.jboss.arquillian.container.test.api;
 
 import java.lang.annotation.Annotation;
 import org.jboss.shrinkwrap.api.Archive;
-import org.jboss.shrinkwrap.api.Assignable;
 import org.jboss.shrinkwrap.descriptor.api.Descriptor;
 
 /**
