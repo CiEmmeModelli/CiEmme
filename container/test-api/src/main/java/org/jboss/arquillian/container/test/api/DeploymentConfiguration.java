@@ -2,6 +2,7 @@ package org.jboss.arquillian.container.test.api;
 
 import java.lang.annotation.Annotation;
 import org.jboss.shrinkwrap.api.Archive;
+import org.jboss.shrinkwrap.api.Assignable;
 import org.jboss.shrinkwrap.descriptor.api.Descriptor;
 
 /**
@@ -33,7 +34,8 @@ public class DeploymentConfiguration {
         return shouldThrowException;
     }
 
-    public Archive<?>getArchive() {
+    @SuppressWarnings("java:S3740")
+    public Archive getArchive() {
         return archive;
     }
 
