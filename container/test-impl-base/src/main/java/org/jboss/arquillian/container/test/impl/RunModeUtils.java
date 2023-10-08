@@ -126,9 +126,7 @@ public final class RunModeUtils {
                 container.getDeployableContainer().getDefaultProtocol() == null) {
             return false;
         }
-        if (LocalProtocol.NAME.equals(container.getDeployableContainer().getDefaultProtocol().getName())) {
-            return true;
-        }
-        return false;
+        return LocalProtocol.NAME.equals(container.getDeployableContainer().getDefaultProtocol().getName());
+
     }
 }
