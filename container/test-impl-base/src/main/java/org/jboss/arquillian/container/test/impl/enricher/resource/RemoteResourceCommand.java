@@ -25,7 +25,7 @@ public class RemoteResourceCommand extends AbstractCommand<Object> {
     private static final long serialVersionUID = 1L;
 
     private Class<?> type;
-    private ArquillianResource resource;
+    private transient ArquillianResource resource;
     private Annotation[] annotations;
 
     public RemoteResourceCommand(Class<?> type, ArquillianResource resource, Annotation[] annotations) {
