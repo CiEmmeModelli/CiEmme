@@ -26,7 +26,7 @@ public class RemoteResourceCommand extends AbstractCommand<Object> {
 
     private Class<?> type;
     private transient ArquillianResource resource;
-    private Annotation[] annotations;
+    private transient Annotation[] annotations;
 
     public RemoteResourceCommand(Class<?> type, ArquillianResource resource, Annotation[] annotations) {
         this.type = type;
