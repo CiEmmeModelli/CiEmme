@@ -64,11 +64,11 @@ final class SecurityActions {
         try {
             loadClass(name);
             if (name.contains("presentClass"))
-            return true;
-            else return false;
+                return true;
         } catch (Exception e) {
-            return false;
+            e.toString();
         }
+        return false;
     }
 
     static Class<?> loadClass(String className) {
