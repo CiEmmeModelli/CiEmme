@@ -41,6 +41,7 @@ public class ClientContainerControllerCreator {
     private Instance<Injector> injector;
 
     public void createClientSideContainerController(@Observes SetupContainers event) {
+        event.toString();
         controller.set(injector.get().inject(new ClientContainerController()));
     }
 }
