@@ -17,6 +17,7 @@
  */
 package org.jboss.arquillian.container.test.impl.client;
 
+import org.jboss.arquillian.container.test.impl.CustomExceptionRun;
 import org.jboss.arquillian.container.test.spi.command.Command;
 import org.jboss.arquillian.container.test.spi.command.CommandService;
 import org.jboss.arquillian.core.api.Event;
@@ -39,7 +40,7 @@ public class LocalCommandService implements CommandService {
     public <T> T execute(Command<T> command) {
         commandEvent.fire(command);
         if (command.getThrowable() != null) {
-            throw new RuntimeException(command.getThrowable());
+            throw new CustomExceptionRun(command.getThrowable());
         }
         return command.getResult();
     }
