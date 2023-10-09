@@ -33,6 +33,7 @@ import org.jboss.arquillian.core.spi.EventContext;
 public class ContainerCommandObserver {
     @Inject
     private Instance<ContainerController> controllerInst;
+    private static String success="SUCCESS";
 
     @SuppressWarnings({"rawtypes", "unchecked"}) // Generics not supported fully by core
     public void onException(@Observes EventContext<Command> event) {
@@ -50,17 +51,17 @@ public class ContainerCommandObserver {
         } else {
             controllerInst.get().start(event.getContainerQualifier(), event.getConfiguration());
         }
-        event.setResult("SUCCESS");
+        event.setResult(success);
     }
 
     public void stop(@Observes StopContainerCommand event) {
         controllerInst.get().stop(event.getContainerQualifier());
-        event.setResult("SUCCESS");
+        event.setResult(success);
     }
 
     public void kill(@Observes KillContainerCommand event) {
         controllerInst.get().kill(event.getContainerQualifier());
-        event.setResult("SUCCESS");
+        event.setResult(success);
     }
 
     public void isStarted(@Observes ContainerStartedCommand event) {
