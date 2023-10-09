@@ -41,6 +41,7 @@ public class ContainerDeployerCreator {
     private Instance<Injector> injector;
 
     public void createClientSideDeployer(@Observes BeforeSuite event) {
+        event.toString();
         deployer.set(injector.get().inject(new ContainerDeployer()));
     }
 }
