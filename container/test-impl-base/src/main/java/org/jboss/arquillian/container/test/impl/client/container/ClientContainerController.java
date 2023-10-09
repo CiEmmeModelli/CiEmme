@@ -49,6 +49,7 @@ public class ClientContainerController implements ContainerController {
     private static String deployScenario="No deployment scenario in context";
     private static String NoRegistry="No container registry in context";
     private static String c="Could not start ";
+    private static String arq=" container. The container life cycle is controlled by Arquillian";
 
     @Inject
     private Event<ContainerControlEvent> event;
@@ -78,7 +79,7 @@ public class ClientContainerController implements ContainerController {
         if (!isControllableContainer(registry.getContainers(), containerQualifier)) {
             throw new IllegalArgumentException(c
                 + containerQualifier
-                + " container. The container life cycle is controlled by Arquillian");
+                + arq);
         }
 
         List<Deployment> managedDeployments = scenario.startupDeploymentsFor(new TargetDescription(containerQualifier));
@@ -123,7 +124,7 @@ public class ClientContainerController implements ContainerController {
         if (!isControllableContainer(registry.getContainers(), containerQualifier)) {
             throw new IllegalArgumentException(c
                 + containerQualifier
-                + " container. The container life cycle is controlled by Arquillian");
+                + arq);
         }
 
         List<Deployment> managedDeployments = scenario.startupDeploymentsFor(new TargetDescription(containerQualifier));
@@ -168,7 +169,7 @@ public class ClientContainerController implements ContainerController {
         if (!isControllableContainer(registry.getContainers(), containerQualifier)) {
             throw new IllegalArgumentException("Could not stop "
                 + containerQualifier
-                + " container. The container life cycle is controlled by Arquillian");
+                + arq);
         }
 
         Container container = registry.getContainer(new TargetDescription(containerQualifier));
@@ -202,7 +203,7 @@ public class ClientContainerController implements ContainerController {
         if (!isControllableContainer(registry.getContainers(), containerQualifier)) {
             throw new IllegalArgumentException(c
                 + containerQualifier
-                + " container. The container life cycle is controlled by Arquillian");
+                + arq);
         }
 
         Container container = registry.getContainer(new TargetDescription(containerQualifier));
