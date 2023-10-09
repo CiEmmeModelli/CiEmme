@@ -44,7 +44,7 @@ public class ContainerURIResourceProvider extends ContainerURLResourceProvider {
         try {
             return ((URL) object).toURI();
         } catch (URISyntaxException e) {
-            throw new RuntimeException("Could not convert URL to URI: " + object, e);
+            throw new UriException("Could not convert URL to URI: " + object, e);
         }
     }
 }
