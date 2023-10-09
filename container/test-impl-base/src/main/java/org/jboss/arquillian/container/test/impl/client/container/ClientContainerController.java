@@ -132,9 +132,12 @@ public class ClientContainerController implements ContainerController {
 
         Container container = registry.getContainer(new TargetDescription(containerQualifier));
 
-        for (String name : config.keySet()) {
-            container.getContainerConfiguration().overrideProperty(name, config.get(name));
+        for (Map.Entry<String, String> entry : config.entrySet()) {
+            String name = entry.getKey();
+            String value = entry.getValue();
+            container.getContainerConfiguration().overrideProperty(name, value);
         }
+        
 
         log.info("Manual starting of a server instance with overridden configuration. New configuration: " +
             container.getContainerConfiguration().getContainerProperties());
