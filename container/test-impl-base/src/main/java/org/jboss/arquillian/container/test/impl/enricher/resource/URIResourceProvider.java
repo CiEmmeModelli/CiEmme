@@ -39,7 +39,7 @@ public class URIResourceProvider extends URLResourceProvider {
         try {
             return ((URL) object).toURI();
         } catch (URISyntaxException e) {
-            throw new RuntimeException("Could not convert URL to URI: " + object, e);
+            throw new ConvertException("Could not convert URL to URI: " + object, e);
         }
     }
 
