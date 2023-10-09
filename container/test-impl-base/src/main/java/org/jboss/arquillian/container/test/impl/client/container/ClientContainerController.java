@@ -46,6 +46,7 @@ import org.jboss.arquillian.core.api.annotation.Inject;
 public class ClientContainerController implements ContainerController {
 
     private final Logger log = Logger.getLogger(ClientContainerController.class.getName());
+    public static String deployScenario="No deployment scenario in context";
 
     @Inject
     private Event<ContainerControlEvent> event;
@@ -60,7 +61,7 @@ public class ClientContainerController implements ContainerController {
     public void start(String containerQualifier) {
         DeploymentScenario scenario = deploymentScenario.get();
         if (scenario == null) {
-            throw new IllegalArgumentException("No deployment scenario in context");
+            throw new IllegalArgumentException(deployScenario);
         }
 
         ContainerRegistry registry = containerRegistry.get();
@@ -105,7 +106,7 @@ public class ClientContainerController implements ContainerController {
     public void start(String containerQualifier, Map<String, String> config) {
         DeploymentScenario scenario = deploymentScenario.get();
         if (scenario == null) {
-            throw new IllegalArgumentException("No deployment scenario in context");
+            throw new IllegalArgumentException(deployScenario);
         }
 
         ContainerRegistry registry = containerRegistry.get();
@@ -150,7 +151,7 @@ public class ClientContainerController implements ContainerController {
     public void stop(String containerQualifier) {
         DeploymentScenario scenario = deploymentScenario.get();
         if (scenario == null) {
-            throw new IllegalArgumentException("No deployment scenario in context");
+            throw new IllegalArgumentException(deployScenario);
         }
 
         ContainerRegistry registry = containerRegistry.get();
