@@ -69,7 +69,7 @@ public class DeploymentCommandObserver {
                 out.write(buffer, 0, read);
             }
         } catch (final IOException ioe) {
-            throw new RuntimeException("Error in obtainting bytes from " + in, ioe);
+            throw new ObtException("Error in obtainting bytes from " + in, ioe);
         } finally {
             try {
                 in.close();
