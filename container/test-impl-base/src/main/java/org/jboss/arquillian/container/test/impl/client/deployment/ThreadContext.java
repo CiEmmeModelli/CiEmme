@@ -25,6 +25,8 @@ import java.util.logging.Logger;
  * @version $Revision: $
  */
 public class ThreadContext {
+    private ThreadContext(){
+    }
     private static ThreadLocal<ClassLoader> previousClassloader = new ThreadLocal<ClassLoader>();
 
     private static Logger log = Logger.getLogger(ThreadContext.class.getName());
