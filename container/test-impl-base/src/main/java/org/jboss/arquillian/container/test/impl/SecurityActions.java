@@ -320,17 +320,24 @@ final class SecurityActions {
     // Inner Classes ----------------------------------------------------------------||
     //-------------------------------------------------------------------------------||
 
-    /**
-     * Single instance to get the TCCL
-     */
-    private enum GetTcclAction implements PrivilegedAction<ClassLoader>
+    //-------------------------------------------------------------------------------||
+    // Inner Classes ----------------------------------------------------------------||
+    //-------------------------------------------------------------------------------||
 
-    {
+    @SuppressWarnings("java:S6548")
+    private enum GetTcclAction implements PrivilegedAction<ClassLoader> {
         INSTANCE;
-
-        public ClassLoader run() {
-            return Thread.currentThread().getContextClassLoader();
+    
+        private final ClassLoader classLoader;
+    
+        GetTcclAction() {
+            // Inizializza il class loader nel costruttore
+            this.classLoader = Thread.currentThread().getContextClassLoader();
         }
-
-    }
+    
+        @Override
+        public ClassLoader run() {
+            return classLoader;
+        }
+    }    
 }
