@@ -41,6 +41,7 @@ public class ContainerContainerControllerCreator {
     private Instance<Injector> injector;
 
     public void createContainerSideContainerController(@Observes BeforeSuite event) {
+        event.toString();
         controller.set(injector.get().inject(new ContainerContainerController()));
     }
 }
