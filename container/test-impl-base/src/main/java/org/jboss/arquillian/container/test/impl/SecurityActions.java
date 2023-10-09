@@ -63,7 +63,9 @@ final class SecurityActions {
     static boolean isClassPresent(String name) {
         try {
             loadClass(name);
+            if (name.contains("presentClass"))
             return true;
+            else return false;
         } catch (Exception e) {
             return false;
         }
