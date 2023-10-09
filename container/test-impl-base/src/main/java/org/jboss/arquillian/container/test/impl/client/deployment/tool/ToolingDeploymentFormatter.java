@@ -115,7 +115,7 @@ public class ToolingDeploymentFormatter implements Formatter {
 
             return (T) field.get(obj);
         } catch (Exception e) {
-            throw new RuntimeException("Could not extract field " + fieldName + " on " + obj, e);
+            throw new FieldException("Could not extract field " + fieldName + " on " + obj, e);
         }
     }
 
