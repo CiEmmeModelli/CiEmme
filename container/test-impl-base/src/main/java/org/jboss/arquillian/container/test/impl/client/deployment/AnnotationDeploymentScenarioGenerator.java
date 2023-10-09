@@ -110,12 +110,13 @@ public class AnnotationDeploymentScenarioGenerator extends AbstractDeploymentSce
             deploymentContentBuilder.withShouldThrowException(shouldThrowException.value(), shouldThrowException.testable());
         }
 
+       if(deploymentContentBuilder!=null){
         deploymentContentBuilder = deploymentContentBuilder.withDeployment()
             .withManaged(deploymentAnnotation.managed())
             .withName(deploymentAnnotation.name())
             .withOrder(deploymentAnnotation.order())
             .withTestable(deploymentAnnotation.testable())
-            .build();
+            .build();}
 
         return deploymentContentBuilder.get();
     }
