@@ -99,17 +99,13 @@ public class AnnotationDeploymentScenarioGenerator extends AbstractDeploymentSce
                 deploymentContentBuilder.withOverProtocol(overProtocolAnnotation.value());
             }
         }
-        
-
         if (deploymentMethod.isAnnotationPresent(TargetsContainer.class)) {
             TargetsContainer targetsContainerAnnotation = deploymentMethod.getAnnotation(TargetsContainer.class);
             if (targetsContainerAnnotation != null && deploymentContentBuilder != null) {
                 deploymentContentBuilder.withTargetsContainer(targetsContainerAnnotation.value());
             }
         }
-        
-
-        if (deploymentMethod.isAnnotationPresent(ShouldThrowException.class)) {
+        if (deploymentMethod.isAnnotationPresent(ShouldThrowException.class) && deploymentContentBuilder != null) {
             final ShouldThrowException shouldThrowException = deploymentMethod.getAnnotation(ShouldThrowException.class);
             deploymentContentBuilder.withShouldThrowException(shouldThrowException.value(), shouldThrowException.testable());
         }
