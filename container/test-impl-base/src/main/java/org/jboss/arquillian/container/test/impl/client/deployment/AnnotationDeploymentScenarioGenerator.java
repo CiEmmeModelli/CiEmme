@@ -130,7 +130,7 @@ public class AnnotationDeploymentScenarioGenerator extends AbstractDeploymentSce
         try {
             return type.cast(deploymentMethod.invoke(null));
         } catch (Exception e) {
-            throw new RuntimeException("Could not invoke deployment method: " + deploymentMethod, e);
+            throw new DeplException("Could not invoke deployment method: " + deploymentMethod, e);
         }
     }
 
