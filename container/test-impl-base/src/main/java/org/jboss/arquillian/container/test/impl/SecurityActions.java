@@ -76,7 +76,7 @@ final class SecurityActions {
             try {
                 return Class.forName(className, true, SecurityActions.class.getClassLoader());
             } catch (ClassNotFoundException e2) {
-                throw new RunExceptionForSecurity("Could not load class " + className, e2);
+                throw new RunExceptionForSecurityActions("Could not load class " + className, e2);
             }
         }
     }
@@ -86,7 +86,7 @@ final class SecurityActions {
         @SuppressWarnings("unchecked")
         Class<T> implClass = (Class<T>) loadClass(className);
         if (!expectedType.isAssignableFrom(implClass)) {
-            throw new RunExceptionForSecurity("Loaded class " + className + " is not of expected type " + expectedType);
+            throw new RunExceptionForSecurityActions("Loaded class " + className + " is not of expected type " + expectedType);
         }
         return newInstance(implClass, argumentTypes, arguments);
     }
@@ -97,13 +97,13 @@ final class SecurityActions {
         try {
             clazz = Class.forName(className, false, classLoader);
         } catch (Exception e) {
-            throw new RunExceptionForSecurity("Could not load class " + className, e);
+            throw new RunExceptionForSecurityActions("Could not load class " + className, e);
         }
         Object obj = newInstance(clazz, argumentTypes, arguments);
         try {
             return expectedType.cast(obj);
         } catch (Exception e) {
-            throw new RunExceptionForSecurity("Loaded class " + className + " is not of expected type " + expectedType, e);
+            throw new RunExceptionForSecurityActions("Loaded class " + className + " is not of expected type " + expectedType, e);
         }
     }
 
@@ -145,7 +145,7 @@ final class SecurityActions {
             }
             obj = constructor.newInstance(arguments);
         } catch (Exception e) {
-            throw new RunExceptionForSecurity("Could not create new instance of " + implClass, e);
+            throw new RunExceptionForSecurityActions("Could not create new instance of " + implClass, e);
         }
 
         return obj;
