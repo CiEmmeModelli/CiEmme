@@ -116,9 +116,11 @@ public class AnnotationDeploymentScenarioGenerator extends AbstractDeploymentSce
             .withName(deploymentAnnotation.name())
             .withOrder(deploymentAnnotation.order())
             .withTestable(deploymentAnnotation.testable())
-            .build();}
+            .build();
 
-        return deploymentContentBuilder.get();
+        
+        return deploymentContentBuilder.get();}
+        else return null;
     }
 
 
