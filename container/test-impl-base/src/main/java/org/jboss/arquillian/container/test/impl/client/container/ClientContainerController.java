@@ -50,6 +50,7 @@ public class ClientContainerController implements ContainerController {
     private static String NoRegistry="No container registry in context";
     private static String c="Could not start ";
     private static String arq=" container. The container life cycle is controlled by Arquillian";
+    private static String noContainer="No container with the specified name exists";
 
     @Inject
     private Event<ContainerControlEvent> event;
@@ -118,7 +119,7 @@ public class ClientContainerController implements ContainerController {
         }
 
         if (!containerExists(registry.getContainers(), containerQualifier)) {
-            throw new IllegalArgumentException("No container with the specified name exists");
+            throw new IllegalArgumentException(noContainer);
         }
 
         if (!isControllableContainer(registry.getContainers(), containerQualifier)) {
@@ -163,7 +164,7 @@ public class ClientContainerController implements ContainerController {
         }
 
         if (!containerExists(registry.getContainers(), containerQualifier)) {
-            throw new IllegalArgumentException("No container with the specified name exists");
+            throw new IllegalArgumentException(noContainer);
         }
 
         if (!isControllableContainer(registry.getContainers(), containerQualifier)) {
@@ -197,7 +198,7 @@ public class ClientContainerController implements ContainerController {
         }
 
         if (!containerExists(registry.getContainers(), containerQualifier)) {
-            throw new IllegalArgumentException("No container with the specified name exists");
+            throw new IllegalArgumentException(noContainer);
         }
 
         if (!isControllableContainer(registry.getContainers(), containerQualifier)) {
