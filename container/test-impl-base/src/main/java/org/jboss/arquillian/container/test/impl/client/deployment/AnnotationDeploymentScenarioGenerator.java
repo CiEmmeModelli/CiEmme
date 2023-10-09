@@ -39,6 +39,7 @@ import org.jboss.shrinkwrap.descriptor.api.Descriptor;
  * @version $Revision: $
  */
 public class AnnotationDeploymentScenarioGenerator extends AbstractDeploymentScenarioGenerator implements DeploymentScenarioGenerator {
+    private static String methodAnnotation="Method annotated with ";
 
     protected List<DeploymentConfiguration> generateDeploymentContent(TestClass testClass) {
 
@@ -56,12 +57,12 @@ public class AnnotationDeploymentScenarioGenerator extends AbstractDeploymentSce
     private void validate(Method deploymentMethod) {
         if (!Modifier.isStatic(deploymentMethod.getModifiers())) {
             throw new IllegalArgumentException(
-                "Method annotated with " + Deployment.class.getName() + " is not static. " + deploymentMethod);
+                methodAnnotation + Deployment.class.getName() + " is not static. " + deploymentMethod);
         }
         if (!Archive.class.isAssignableFrom(deploymentMethod.getReturnType()) && !Descriptor.class.isAssignableFrom(
             deploymentMethod.getReturnType())) {
             throw new IllegalArgumentException(
-                "Method annotated with "
+                methodAnnotation
                     + Deployment.class.getName()
                     +
                     " must have return type "
@@ -72,7 +73,7 @@ public class AnnotationDeploymentScenarioGenerator extends AbstractDeploymentSce
                     + deploymentMethod);
         }
         if (deploymentMethod.getParameterTypes().length != 0) {
-            throw new IllegalArgumentException("Method annotated with "
+            throw new IllegalArgumentException(methodAnnotation
                 + Deployment.class.getName()
                 + " can not accept parameters. "
                 + deploymentMethod);
