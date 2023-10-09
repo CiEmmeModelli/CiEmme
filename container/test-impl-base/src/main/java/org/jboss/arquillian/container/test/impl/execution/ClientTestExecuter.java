@@ -40,7 +40,8 @@ public class ClientTestExecuter {
     @Inject
     private Instance<Deployment> deployment;
 
-    public void execute(@Observes Test event) throws MyException {
+    //public void execute(@Observes Test event) throws MyException {
+        public void execute(@Observes Test event){
         boolean runAsClient = RunModeUtils.isRunAsClientAndCheck(
             this.deployment.get(),
             event.getTestClass(),
