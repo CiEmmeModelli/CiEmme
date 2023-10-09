@@ -52,6 +52,7 @@ public class ClientDeployer implements Deployer {
     @Inject
     private Instance<DeploymentScenario> deploymentScenario;
     private static String noScenario="No deployment scenario in context";
+    private static String noDeployment="No deployment in context found with name ";
 
     /* (non-Javadoc)
      * @see org.jboss.arquillian.api.Deployer#deploy(java.lang.String)
@@ -69,7 +70,7 @@ public class ClientDeployer implements Deployer {
 
         Deployment deployment = scenario.deployment(new DeploymentTargetDescription(name));
         if (deployment == null) {
-            throw new IllegalArgumentException("No deployment in context found with name " + name);
+            throw new IllegalArgumentException(noDeployment + name);
         }
 
         if (deployment.getDescription().managed()) {
@@ -103,7 +104,7 @@ public class ClientDeployer implements Deployer {
 
         Deployment deployment = scenario.deployment(new DeploymentTargetDescription(name));
         if (deployment == null) {
-            throw new IllegalArgumentException("No deployment in context found with name " + name);
+            throw new IllegalArgumentException(noDeployment + name);
         }
 
         if (deployment.getDescription().managed()) {
@@ -129,7 +130,7 @@ public class ClientDeployer implements Deployer {
         }
         Deployment deployment = scenario.deployment(new DeploymentTargetDescription(name));
         if (deployment == null) {
-            throw new IllegalArgumentException("No deployment in context found with name " + name);
+            throw new IllegalArgumentException(noDeployment+ name);
         }
 
         DeploymentDescription description = deployment.getDescription();
