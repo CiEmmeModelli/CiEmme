@@ -47,7 +47,7 @@ final class SecurityActions {
         throw new UnsupportedOperationException("No instantiation");
     }
 
-    String uncheckedException = "Obtained unchecked Exception; this code should never be reached";
+    static String uncheckedException = "Obtained unchecked Exception; this code should never be reached";
 
     //-------------------------------------------------------------------------------||
     // Utility Methods --------------------------------------------------------------||
@@ -218,11 +218,11 @@ final class SecurityActions {
             } else {
                 // No other checked Exception thrown by Class.getConstructor
                 try {
-                    throw (RuntimeException) t;
+                    throw (RunExceptionForSecurity) t;
                 }
                 // Just in case we've really messed up
                 catch (final ClassCastException cce) {
-                    throw new RuntimeException(uncheckedException, t);
+                    throw new RunExceptionForSecurity(uncheckedException, t);
                 }
             }
         }
