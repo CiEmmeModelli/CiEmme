@@ -48,7 +48,7 @@ public class ClientContainerController implements ContainerController {
     private final Logger log = Logger.getLogger(ClientContainerController.class.getName());
     private static String deployScenario="No deployment scenario in context";
     private static String NoRegistry="No container registry in context";
-
+    private static String c="Could not start ";
 
     @Inject
     private Event<ContainerControlEvent> event;
@@ -76,7 +76,7 @@ public class ClientContainerController implements ContainerController {
         }
 
         if (!isControllableContainer(registry.getContainers(), containerQualifier)) {
-            throw new IllegalArgumentException("Could not start "
+            throw new IllegalArgumentException(c
                 + containerQualifier
                 + " container. The container life cycle is controlled by Arquillian");
         }
@@ -121,7 +121,7 @@ public class ClientContainerController implements ContainerController {
         }
 
         if (!isControllableContainer(registry.getContainers(), containerQualifier)) {
-            throw new IllegalArgumentException("Could not start "
+            throw new IllegalArgumentException(c
                 + containerQualifier
                 + " container. The container life cycle is controlled by Arquillian");
         }
@@ -200,7 +200,7 @@ public class ClientContainerController implements ContainerController {
         }
 
         if (!isControllableContainer(registry.getContainers(), containerQualifier)) {
-            throw new IllegalArgumentException("Could not start "
+            throw new IllegalArgumentException(c
                 + containerQualifier
                 + " container. The container life cycle is controlled by Arquillian");
         }
