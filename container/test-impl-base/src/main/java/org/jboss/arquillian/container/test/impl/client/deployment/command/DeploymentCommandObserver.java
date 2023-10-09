@@ -80,12 +80,8 @@ public class DeploymentCommandObserver {
             }
             // We don't need to close the outstream, it's a byte array out
         }
-
-        // Represent as byte array
-        final byte[] content = out.toByteArray();
-
         // Return
-        return content;
+        return out.toByteArray();
     }
 
     @SuppressWarnings({"rawtypes", "unchecked"}) // Generics not supported fully by core
