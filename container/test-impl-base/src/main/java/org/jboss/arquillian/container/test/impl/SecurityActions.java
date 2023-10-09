@@ -63,11 +63,10 @@ final class SecurityActions {
     static boolean isClassPresent(String name) {
         try {
             loadClass(name);
-            if (!name.isEmpty()) return true;
+            return true;
         } catch (Exception e) {
             return false;
         }
-        return false;
     }
 
     static Class<?> loadClass(String className) {
