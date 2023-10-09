@@ -102,8 +102,12 @@ public class AnnotationDeploymentScenarioGenerator extends AbstractDeploymentSce
         
 
         if (deploymentMethod.isAnnotationPresent(TargetsContainer.class)) {
-            deploymentContentBuilder.withTargetsContainer(deploymentMethod.getAnnotation(TargetsContainer.class).value());
+            TargetsContainer targetsContainerAnnotation = deploymentMethod.getAnnotation(TargetsContainer.class);
+            if (targetsContainerAnnotation != null && deploymentContentBuilder != null) {
+                deploymentContentBuilder.withTargetsContainer(targetsContainerAnnotation.value());
+            }
         }
+        
 
         if (deploymentMethod.isAnnotationPresent(ShouldThrowException.class)) {
             final ShouldThrowException shouldThrowException = deploymentMethod.getAnnotation(ShouldThrowException.class);
