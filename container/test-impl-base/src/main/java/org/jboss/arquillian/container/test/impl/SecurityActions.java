@@ -60,15 +60,14 @@ final class SecurityActions {
         return AccessController.doPrivileged(GetTcclAction.INSTANCE);
     }
 
+    @SuppressWarnings("java:S3516")
     static boolean isClassPresent(String name) {
         try {
             loadClass(name);
-            if (name.contains("presentClass"))
-                return true;
+            return true;
         } catch (Exception e) {
-            e.toString();
+            return false;
         }
-        return false;
     }
 
     static Class<?> loadClass(String className) {
