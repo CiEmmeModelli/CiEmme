@@ -46,7 +46,9 @@ import org.jboss.arquillian.core.api.annotation.Inject;
 public class ClientContainerController implements ContainerController {
 
     private final Logger log = Logger.getLogger(ClientContainerController.class.getName());
-    public static String deployScenario="No deployment scenario in context";
+    private static String deployScenario="No deployment scenario in context";
+    private static String NoRegistry="No container registry in context";
+
 
     @Inject
     private Event<ContainerControlEvent> event;
@@ -66,7 +68,7 @@ public class ClientContainerController implements ContainerController {
 
         ContainerRegistry registry = containerRegistry.get();
         if (registry == null) {
-            throw new IllegalArgumentException("No container registry in context");
+            throw new IllegalArgumentException(NoRegistry);
         }
 
         if (!containerExists(registry.getContainers(), containerQualifier)) {
@@ -111,7 +113,7 @@ public class ClientContainerController implements ContainerController {
 
         ContainerRegistry registry = containerRegistry.get();
         if (registry == null) {
-            throw new IllegalArgumentException("No container registry in context");
+            throw new IllegalArgumentException(NoRegistry);
         }
 
         if (!containerExists(registry.getContainers(), containerQualifier)) {
@@ -156,7 +158,7 @@ public class ClientContainerController implements ContainerController {
 
         ContainerRegistry registry = containerRegistry.get();
         if (registry == null) {
-            throw new IllegalArgumentException("No container registry in context");
+            throw new IllegalArgumentException(NoRegistry);
         }
 
         if (!containerExists(registry.getContainers(), containerQualifier)) {
@@ -190,7 +192,7 @@ public class ClientContainerController implements ContainerController {
     public void kill(String containerQualifier) {
         ContainerRegistry registry = containerRegistry.get();
         if (registry == null) {
-            throw new IllegalArgumentException("No container registry in context");
+            throw new IllegalArgumentException(NoRegistry);
         }
 
         if (!containerExists(registry.getContainers(), containerQualifier)) {
@@ -214,7 +216,7 @@ public class ClientContainerController implements ContainerController {
     public boolean isStarted(String containerQualifier) {
         ContainerRegistry registry = containerRegistry.get();
         if (registry == null) {
-            throw new IllegalArgumentException("No container registry in context");
+            throw new IllegalArgumentException(NoRegistry);
         }
 
         if (!containerExists(registry.getContainers(), containerQualifier)) {
