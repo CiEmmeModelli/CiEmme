@@ -109,6 +109,7 @@ public class ToolingDeploymentFormatter implements Formatter {
     @SuppressWarnings("unchecked")
     private <T> T getInternalFieldValue(Class<T> type, String fieldName, Object obj) {
         try {
+            type.getName();
             Field field = obj.getClass().getDeclaredField(fieldName);
             field.setAccessible(true);
 
