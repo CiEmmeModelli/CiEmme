@@ -118,24 +118,4 @@ public class ToolingDeploymentFormatter implements Formatter {
             throw new FieldException("Could not extract field " + fieldName + " on " + obj, e);
         }
     }
-
-    //   private static class Deployment
-    //   {
-    //
-    //   }
-    //
-    //   private static class Node
-    //   {
-    //
-    //   }
-    //
-    //   private static class Source
-    //   {
-    //
-    //   }
-    //
-    //   private static class Content
-    //   {
-    //
-    //   }
 }
