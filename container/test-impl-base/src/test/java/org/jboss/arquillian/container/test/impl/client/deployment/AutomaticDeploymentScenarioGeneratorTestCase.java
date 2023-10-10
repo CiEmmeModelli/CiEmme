@@ -78,6 +78,7 @@ public class AutomaticDeploymentScenarioGeneratorTestCase {
         @BeforeDeployment
         public static Archive addDeploymentContent(Archive archive) {
             archive.add(new StringAsset("Hello"), "hello.txt");
+             Assert.assertTrue(archive.contains("Hello"));
             return archive;
         }
     }
