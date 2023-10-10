@@ -108,6 +108,7 @@ public class ProtocolRegistryTestCase {
 
     @Test
     public void shouldBeAbleToMatchAndConfigureProtocol() throws Exception {
+        Assert.assertNotNull(protocol);
     }
 
     public static class DummyProtocolConfiguration implements ProtocolConfiguration {
