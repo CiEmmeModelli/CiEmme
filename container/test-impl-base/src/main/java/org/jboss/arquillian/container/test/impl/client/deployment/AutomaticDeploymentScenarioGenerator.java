@@ -1,5 +1,6 @@
 package org.jboss.arquillian.container.test.impl.client.deployment;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
@@ -74,7 +75,7 @@ public class AutomaticDeploymentScenarioGenerator extends AbstractDeploymentScen
     private <T> T invoke(Class<T> type, Method deploymentMethod, Archive currentArchive) {
         try {
             return type.cast(deploymentMethod.invoke(null, currentArchive));
-        } catch (Exception e) {
+        } catch (InvocationTargetException | IllegalAccessException e) {
             throw new RuntimeException("Could not invoke deployment method: " + deploymentMethod, e);
         }
     }
