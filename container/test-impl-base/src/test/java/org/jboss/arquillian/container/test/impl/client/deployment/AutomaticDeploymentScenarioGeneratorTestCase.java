@@ -72,6 +72,7 @@ public class AutomaticDeploymentScenarioGeneratorTestCase {
         // given
         final AutomaticDeploymentScenarioGenerator automaticDeploymentScenarioGenerator = new AutomaticDeploymentScenarioGenerator();
         automaticDeploymentScenarioGenerator.automaticDeploymentLocator = automaticDeploymentLocator;
+        Assert.assertFalse(automaticDeploymentLocator.toString().isEmpty());
     }
 
     private static class BeforeDeploymentTest {
