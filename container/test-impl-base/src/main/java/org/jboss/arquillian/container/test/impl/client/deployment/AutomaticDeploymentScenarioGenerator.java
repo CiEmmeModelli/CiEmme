@@ -48,6 +48,7 @@ public class AutomaticDeploymentScenarioGenerator extends AbstractDeploymentScen
         return deploymentConfigurations;
     }
 
+    @SuppressWarnings("java:S3740")
     protected Archive manipulateArchive(TestClass testClass, String deploymentName, Archive archive) {
 
         final Method[] beforeDeploymentMethods = testClass.getMethods(BeforeDeployment.class);
