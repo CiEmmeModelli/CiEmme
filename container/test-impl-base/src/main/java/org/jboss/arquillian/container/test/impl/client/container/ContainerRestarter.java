@@ -62,11 +62,9 @@ public class ContainerRestarter {
         if (maxTestClasses == null) {
             return false;
         }
-        if (maxTestClasses > 0) {
-            if (maxTestClasses == testClassesCount) {
-                testClassesCount = 1;
-                return true;
-            }
+        if (maxTestClasses > 0 && maxTestClasses == testClassesCount) {
+            testClassesCount = 1;
+            return true;
         }
         testClassesCount++;
         return false;
