@@ -241,14 +241,17 @@ public class DeploymentGeneratorTestCase extends AbstractContainerTestTestBase {
 
         Assert.assertEquals(0, captor.getValue().getAuxiliaryArchives().size());
     }
+    public void assertMethod(Exception e){
+            Assert.assertTrue("Validate correct error message",
+                e.getMessage().contains("Please include at least 1 Deployable Container on your Classpath"));
+    }
 
     @Test(expected = ValidationException.class)
     public void shouldThrowExceptionOnMissingContainerReference() throws Exception {
         try {
             fire(createEvent(DeploymentWithContainerReference.class));
         } catch (Exception e) {
-            Assert.assertTrue("Validate correct error message",
-                e.getMessage().contains("Please include at least 1 Deployable Container on your Classpath"));
+            assertMethod(e);
             throw e;
         }
     }
