@@ -38,6 +38,7 @@ public abstract class AbstractDeploymentScenarioGenerator implements DeploymentS
         return deployments;
     }
 
+    @SuppressWarnings("java:S3740")
     protected Archive manipulateArchive(TestClass testClass, String deploymentName, Archive archive) {
         deploymentName.toString();
         return archive;
