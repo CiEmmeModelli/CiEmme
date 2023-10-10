@@ -223,7 +223,7 @@ public class ContainerEventControllerTestCase extends AbstractContainerTestTestB
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void shouldEnrichTestInstance() throws Exception {
         fire(new org.jboss.arquillian.test.spi.event.suite.Before(testClass(), testMethod()));
 
