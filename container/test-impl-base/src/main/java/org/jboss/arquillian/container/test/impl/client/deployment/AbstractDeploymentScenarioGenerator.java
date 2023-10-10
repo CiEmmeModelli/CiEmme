@@ -39,6 +39,7 @@ public abstract class AbstractDeploymentScenarioGenerator implements DeploymentS
     }
 
     protected Archive manipulateArchive(TestClass testClass, String deploymentName, Archive archive) {
+        deploymentName.toString();
         return archive;
     }
 
