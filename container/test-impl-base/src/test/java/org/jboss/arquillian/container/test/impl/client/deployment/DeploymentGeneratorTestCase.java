@@ -111,7 +111,7 @@ public class DeploymentGeneratorTestCase extends AbstractContainerTestTestBase {
         when(serviceLoader.onlyOne(DeployableContainer.class)).thenReturn(deployableContainer);
         when(deployableContainer.getDefaultProtocol()).thenReturn(new ProtocolDescription(PROTOCOL_NAME_1));
 
-        when(serviceLoader.all(eq(AuxiliaryArchiveAppender.class)))
+        when(serviceLoader.all(AuxiliaryArchiveAppender.class))
             .thenReturn(create(AuxiliaryArchiveAppender.class, injector.inject(new TestAuxiliaryArchiveAppender())));
         when(serviceLoader.all(eq(AuxiliaryArchiveProcessor.class)))
             .thenReturn(create(AuxiliaryArchiveProcessor.class, injector.inject(new TestAuxiliaryArchiveProcessor())));
