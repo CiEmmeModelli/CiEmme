@@ -48,7 +48,7 @@ public class ContainerRestarter {
     @Inject
     private Instance<ArquillianDescriptor> configuration;
 
-    public void restart(@Observes BeforeClass event) throws Exception {
+    public void restart(@Observes BeforeClass event) {
         if (shouldRestart()) {
             controlEvent.fire(new StopSuiteContainers());
             controlEvent.fire(new StartSuiteContainers());
