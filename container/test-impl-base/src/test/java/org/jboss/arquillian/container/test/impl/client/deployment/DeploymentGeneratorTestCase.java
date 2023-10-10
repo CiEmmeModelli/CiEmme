@@ -108,7 +108,7 @@ public class DeploymentGeneratorTestCase extends AbstractContainerTestTestBase {
         deploymentScenarioGenerators.add(new AnnotationDeploymentScenarioGenerator());
         when(serviceLoader.all(DeploymentScenarioGenerator.class))
             .thenReturn(deploymentScenarioGenerators);
-        when(serviceLoader.onlyOne(eq(DeployableContainer.class))).thenReturn(deployableContainer);
+        when(serviceLoader.onlyOne(DeployableContainer.class)).thenReturn(deployableContainer);
         when(deployableContainer.getDefaultProtocol()).thenReturn(new ProtocolDescription(PROTOCOL_NAME_1));
 
         when(serviceLoader.all(eq(AuxiliaryArchiveAppender.class)))
