@@ -221,7 +221,7 @@ public class DeploymentGeneratorTestCase extends AbstractContainerTestTestBase {
     @Test // ARQ-971
     @SuppressWarnings("unchecked")
     public void shouldFilterNullAuxiliaryArchiveAppenderResulsts() throws Exception {
-        when(serviceLoader.all(eq(AuxiliaryArchiveAppender.class)))
+        when(serviceLoader.all(AuxiliaryArchiveAppender.class))
             .thenReturn(
                 create(AuxiliaryArchiveAppender.class, injectorInst.get().inject(new NullAuxiliaryArchiveAppender())));
 
