@@ -301,7 +301,7 @@ public class DeploymentGeneratorTestCase extends AbstractContainerTestTestBase {
             throw e;
         }
     }
-
+    @SuppressWarnings("java:S5777")
     @Test(expected = ValidationException.class)
     public void shouldThrowExceptionOnManagedDeploymentOnCustomContainer() throws Exception {
         addContainer(CONTAINER_NAME_1).getContainerConfiguration().setMode("custom");
