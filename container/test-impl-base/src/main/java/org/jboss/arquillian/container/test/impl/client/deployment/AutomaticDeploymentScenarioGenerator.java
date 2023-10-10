@@ -23,6 +23,7 @@ import org.jboss.shrinkwrap.api.Archive;
 public class AutomaticDeploymentScenarioGenerator extends AbstractDeploymentScenarioGenerator implements DeploymentScenarioGenerator {
 
     AutomaticDeploymentLocator automaticDeploymentLocator;
+    private static String stringP1 = "Method annotated with ";
 
     public AutomaticDeploymentScenarioGenerator() {
         automaticDeploymentLocator = new AutomaticDeploymentLocator() {
@@ -83,11 +84,11 @@ public class AutomaticDeploymentScenarioGenerator extends AbstractDeploymentScen
     private void validate(Method deploymentMethod) {
         if (!Modifier.isStatic(deploymentMethod.getModifiers())) {
             throw new IllegalArgumentException(
-                "Method annotated with " + BeforeDeployment.class.getName() + " is not static. " + deploymentMethod);
+                stringP1 + BeforeDeployment.class.getName() + " is not static. " + deploymentMethod);
         }
         if (!Archive.class.isAssignableFrom(deploymentMethod.getReturnType())) {
             throw new IllegalArgumentException(
-                "Method annotated with "
+                stringP1
                     + BeforeDeployment.class.getName()
                     +
                     " must have return type "
@@ -97,7 +98,7 @@ public class AutomaticDeploymentScenarioGenerator extends AbstractDeploymentScen
         }
         if (deploymentMethod.getParameterTypes().length != 1
             && Archive.class == deploymentMethod.getParameterTypes()[0]) {
-            throw new IllegalArgumentException("Method annotated with "
+            throw new IllegalArgumentException(stringP1
                 + BeforeDeployment.class.getName()
                 + " only accept one parameter of type ." + Archive.class + " "
                 + deploymentMethod);
