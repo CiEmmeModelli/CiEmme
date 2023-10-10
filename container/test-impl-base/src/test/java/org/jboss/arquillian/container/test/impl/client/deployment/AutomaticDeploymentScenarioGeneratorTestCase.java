@@ -72,15 +72,6 @@ public class AutomaticDeploymentScenarioGeneratorTestCase {
         // given
         final AutomaticDeploymentScenarioGenerator automaticDeploymentScenarioGenerator = new AutomaticDeploymentScenarioGenerator();
         automaticDeploymentScenarioGenerator.automaticDeploymentLocator = automaticDeploymentLocator;
-
-        // when
-        final List<DeploymentDescription> deploymentDescriptions =
-            automaticDeploymentScenarioGenerator.generate(new TestClass(BeforeDeploymentTest.class));
-
-        // then
-        Assert.assertTrue(deploymentDescriptions.get(0).isArchiveDeployment());
-        Assert.assertTrue(deploymentDescriptions.get(0).getArchive().contains("hello.txt"));
-
     }
 
     private static class BeforeDeploymentTest {

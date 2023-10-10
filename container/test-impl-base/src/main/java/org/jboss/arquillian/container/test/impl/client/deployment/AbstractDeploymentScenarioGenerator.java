@@ -39,8 +39,7 @@ public abstract class AbstractDeploymentScenarioGenerator implements DeploymentS
     }
 
     @SuppressWarnings("java:S3740")
-    protected Archive manipulateArchive(TestClass testClass, String deploymentName, Archive archive) {
-        deploymentName.toString();
+    protected Archive manipulateArchive(TestClass testClass, Archive archive) {
         return archive;
     }
 
@@ -49,7 +48,7 @@ public abstract class AbstractDeploymentScenarioGenerator implements DeploymentS
         DeploymentDescription deploymentDescription = null;
         final Deployment deployment = deploymentConfiguration.getDeployment();
         if (deploymentConfiguration.getArchive() != null) {
-            deploymentDescription = new DeploymentDescription(deployment.name(), manipulateArchive(testClass, deployment.name(),
+            deploymentDescription = new DeploymentDescription(deployment.name(), manipulateArchive(testClass,
                 deploymentConfiguration.getArchive()));
             deploymentDescription.shouldBeTestable(deployment.testable());
         } else if (deploymentConfiguration.getDescriptor() != null) {
