@@ -115,7 +115,7 @@ public class DeploymentGeneratorTestCase extends AbstractContainerTestTestBase {
             .thenReturn(create(AuxiliaryArchiveAppender.class, injector.inject(new TestAuxiliaryArchiveAppender())));
         when(serviceLoader.all(AuxiliaryArchiveProcessor.class))
             .thenReturn(create(AuxiliaryArchiveProcessor.class, injector.inject(new TestAuxiliaryArchiveProcessor())));
-        when(serviceLoader.all(eq(ApplicationArchiveProcessor.class)))
+        when(serviceLoader.all(ApplicationArchiveProcessor.class))
             .thenReturn(create(ApplicationArchiveProcessor.class, injector.inject(new TestApplicationArchiveAppender())));
 
         containerRegistry = new LocalContainerRegistry(injector);
