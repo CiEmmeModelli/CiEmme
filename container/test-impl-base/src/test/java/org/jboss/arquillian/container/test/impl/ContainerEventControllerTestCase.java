@@ -99,8 +99,7 @@ public class ContainerEventControllerTestCase extends AbstractContainerTestTestB
         registry = new LocalContainerRegistry(injector.get());
         when(container1.getContainerName()).thenReturn(CONTAINER_1_NAME);
         //when(injector.get()).thenReturn(InjectorImpl.of(manager));
-        when(serviceLoader.onlyOne(eq(DeployableContainer.class))).thenReturn(deployableContainer1);
-
+        when(serviceLoader.onlyOne(DeployableContainer.class)).thenReturn(deployableContainer1);
         Archive<?> archive = ShrinkWrap.create(JavaArchive.class);
 
         scenario.addDeployment(
