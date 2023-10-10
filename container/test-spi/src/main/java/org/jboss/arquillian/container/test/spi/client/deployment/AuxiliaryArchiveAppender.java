@@ -24,6 +24,7 @@ import org.jboss.shrinkwrap.api.Archive;
  * @author <a href="mailto:aslak@conduct.no">Aslak Knutsen</a>
  * @version $Revision: $
  */
+@SuppressWarnings("java:S1452")
 public interface AuxiliaryArchiveAppender {
     /**
      * Create a archive containing the needed resources for this extension
@@ -31,5 +32,5 @@ public interface AuxiliaryArchiveAppender {
      *
      * @return A Archive of any type
      */
-    Archive<?> createAuxiliaryArchive();
+    Archive <?> createAuxiliaryArchive();
 }
