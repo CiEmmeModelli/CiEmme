@@ -113,7 +113,7 @@ public class DeploymentGeneratorTestCase extends AbstractContainerTestTestBase {
 
         when(serviceLoader.all(AuxiliaryArchiveAppender.class))
             .thenReturn(create(AuxiliaryArchiveAppender.class, injector.inject(new TestAuxiliaryArchiveAppender())));
-        when(serviceLoader.all(eq(AuxiliaryArchiveProcessor.class)))
+        when(serviceLoader.all(AuxiliaryArchiveProcessor.class))
             .thenReturn(create(AuxiliaryArchiveProcessor.class, injector.inject(new TestAuxiliaryArchiveProcessor())));
         when(serviceLoader.all(eq(ApplicationArchiveProcessor.class)))
             .thenReturn(create(ApplicationArchiveProcessor.class, injector.inject(new TestApplicationArchiveAppender())));
