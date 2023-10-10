@@ -77,7 +77,7 @@ public class AutomaticDeploymentScenarioGenerator extends AbstractDeploymentScen
         try {
             return type.cast(deploymentMethod.invoke(null, currentArchive));
         } catch (InvocationTargetException | IllegalAccessException e) {
-            throw new RuntimeException("Could not invoke deployment method: " + deploymentMethod, e);
+            throw new CustomRunTimeExc("Could not invoke deployment method: " + deploymentMethod, e);
         }
     }
 
