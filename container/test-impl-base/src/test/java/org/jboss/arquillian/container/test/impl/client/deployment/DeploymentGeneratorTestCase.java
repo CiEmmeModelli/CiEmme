@@ -256,6 +256,7 @@ public class DeploymentGeneratorTestCase extends AbstractContainerTestTestBase {
         }
     }
 
+    @SuppressWarnings("java:S5777")
     @Test(expected = ValidationException.class)
     public void shouldThrowExceptionOnWrongContainerReference() throws Exception {
         addContainer("test-contianer").getContainerConfiguration().setMode("suite");
