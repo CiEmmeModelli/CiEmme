@@ -68,7 +68,7 @@ public class AutomaticDeploymentScenarioGenerator extends AbstractDeploymentScen
     }
 
 
-
+    @SuppressWarnings("java:S3740")
     /**
      * @param deploymentMethod to invoke
      * @return result
