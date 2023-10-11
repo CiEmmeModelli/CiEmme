@@ -71,8 +71,8 @@ public class DeploymentGenerator {
 
     public void generateDeployment(@Observes GenerateDeployment event) {
 
-        final Collection<DeploymentScenarioGenerator> deploymentScenarioGenerators =
-            serviceLoader.get().all(DeploymentScenarioGenerator.class);
+        final Collection<DeploymentScenarioGenerator> deploymentScenarioGenerators = serviceLoader.get()
+                .all(DeploymentScenarioGenerator.class);
 
         DeploymentScenario scenario = new DeploymentScenario();
 
@@ -89,9 +89,10 @@ public class DeploymentGenerator {
         deployment.set(scenario);
     }
 
-    //-------------------------------------------------------------------------------------||
-    // Validate DeploymentScenario --------------------------------------------------------||
-    //-------------------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+    // Validate DeploymentScenario
+    // --------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
     protected void validate(DeploymentScenario scenario) {
         ContainerRegistry conReg = containerRegistry.get();
@@ -104,20 +105,19 @@ public class DeploymentGenerator {
 
         for (Deployment deploymentScenario : scenario.deployments()) {
             Container container = conReg.getContainer(deploymentScenario.getDescription().getTarget());
-            if ("custom".equalsIgnoreCase(container.getContainerConfiguration().getMode())) {
-                if (deploymentScenario.getDescription().managed()) {
-                    throw new ValidationException(
+            if ("custom".equalsIgnoreCase(container.getContainerConfiguration().getMode()) &&
+                    deploymentScenario.getDescription().managed()) {
+                throw new ValidationException(
                         "Deployment "
-                            + deploymentScenario.getDescription().getName()
-                            + " is targeted against container "
-                            +
-                            container.getName()
-                            + ". This container is set to mode custom which can not handle managed deployments. "
-                            +
-                            "Please verify the @"
-                            + TargetsContainer.class.getName()
-                            + " annotation or container@mode in arquillian.xml");
-                }
+                                + deploymentScenario.getDescription().getName()
+                                + " is targeted against container "
+                                +
+                                container.getName()
+                                + ". This container is set to mode custom which can not handle managed deployments. "
+                                +
+                                "Please verify the @"
+                                + TargetsContainer.class.getName()
+                                + " annotation or container@mode in arquillian.xml");
             }
         }
 
@@ -129,14 +129,15 @@ public class DeploymentGenerator {
             ProtocolDefinition protocol = proReg.getProtocol(proDesc);
             if (protocol == null) {
                 throw new ValidationException(DeploymentScenario.class.getSimpleName()
-                    + " contains protocols not maching any defined Protocol in the registry. " + proDesc.getName());
+                        + " contains protocols not maching any defined Protocol in the registry. " + proDesc.getName());
             }
         }
     }
 
-    //-------------------------------------------------------------------------------------||
-    // Enrich with Protocol Packaging -----------------------------------------------------||
-    //-------------------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+    // Enrich with Protocol Packaging
+    // -----------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
     /**
      * @param scenario
@@ -157,10 +158,10 @@ public class DeploymentGenerator {
             ProtocolDefinition protocolDefinition = protoReg.getProtocol(description.getProtocol());
             if (protocolDefinition == null) {
                 protocolDefinition = protoReg.getProtocol(
-                    containerRegistry.get()
-                        .getContainer(description.getTarget())
-                        .getDeployableContainer()
-                        .getDefaultProtocol());
+                        containerRegistry.get()
+                                .getContainer(description.getTarget())
+                                .getDeployableContainer()
+                                .getDefaultProtocol());
             }
             Protocol<?> protocol = protocolDefinition.getProtocol();
             DeploymentPackager packager = protocol.getPackager();
@@ -170,28 +171,29 @@ public class DeploymentGenerator {
             applyAuxiliaryProcessors(auxiliaryArchives);
 
             try {
-                // this should be made more reliable, does not work with e.g. a EnterpriseArchive
+                // this should be made more reliable, does not work with e.g. a
+                // EnterpriseArchive
                 if (ClassContainer.class.isInstance(applicationArchive)) {
                     ClassContainer<?> classContainer = ClassContainer.class.cast(applicationArchive);
                     classContainer.addClass(testCase.getJavaClass());
                     addAdditionalObserverClassesIfPresent(classContainer, testCase.getJavaClass());
                 }
             } catch (UnsupportedOperationException e) {
-            /*
-             * Quick Fix: https://jira.jboss.org/jira/browse/ARQ-118
-             * Keep in mind when rewriting for https://jira.jboss.org/jira/browse/ARQ-94
-             * that a ShrinkWrap archive might not support a Container if even tho the 
-             * ContianerBase implements it. Check the Archive Interface..  
-             */
+                /*
+                 * Quick Fix: https://jira.jboss.org/jira/browse/ARQ-118
+                 * Keep in mind when rewriting for https://jira.jboss.org/jira/browse/ARQ-94
+                 * that a ShrinkWrap archive might not support a Container if even tho the
+                 * ContianerBase implements it. Check the Archive Interface..
+                 */
             }
             description.setTestableArchive(
-                packager.generateDeployment(
-                    new TestDeployment(deployment.getDescription(), applicationArchive, auxiliaryArchives),
-                    serviceLoader.get().all(ProtocolArchiveProcessor.class)));
+                    packager.generateDeployment(
+                            new TestDeployment(deployment.getDescription(), applicationArchive, auxiliaryArchives),
+                            serviceLoader.get().all(ProtocolArchiveProcessor.class)));
         }
     }
 
-    private void addAdditionalObserverClassesIfPresent(ClassContainer<?> classContainer, Class<?> testClass){
+    private void addAdditionalObserverClassesIfPresent(ClassContainer<?> classContainer, Class<?> testClass) {
         if (testClass.isAnnotationPresent(Observer.class)) {
             Observer annotation = testClass.getAnnotation(Observer.class);
             Class<?>[] classes = annotation.value();
@@ -242,18 +244,18 @@ public class DeploymentGenerator {
 
     private void throwNoContainerFound(TargetDescription target) {
         throw new ValidationException("DeploymentScenario contains a target (" + target.getName()
-            + ") not matching any defined Container in the registry.\n"
-            + "Please include at least 1 Deployable Container on your Classpath.");
+                + ") not matching any defined Container in the registry.\n"
+                + "Please include at least 1 Deployable Container on your Classpath.");
     }
 
     private void throwNoMatchFound(ContainerRegistry conReg, TargetDescription target) {
         throw new ValidationException("DeploymentScenario contains a target (" + target.getName()
-            + ") not matching any defined Container in the registry.\n" + "Possible causes are: None of the "
-            + conReg.getContainers().size() + " Containers are marked as default or you have defined a " + "@"
-            + org.jboss.arquillian.container.test.api.Deployment.class.getSimpleName() + " with a @"
-            + TargetsContainer.class.getSimpleName() + " of value (" + target.getName() + ") that "
-            + "does not match any found/configured Containers (" + toString(conReg)
-            + "), see arquillian.xml container@qualifier");
+                + ") not matching any defined Container in the registry.\n" + "Possible causes are: None of the "
+                + conReg.getContainers().size() + " Containers are marked as default or you have defined a " + "@"
+                + org.jboss.arquillian.container.test.api.Deployment.class.getSimpleName() + " with a @"
+                + TargetsContainer.class.getSimpleName() + " of value (" + target.getName() + ") that "
+                + "does not match any found/configured Containers (" + toString(conReg)
+                + "), see arquillian.xml container@qualifier");
     }
 
     private String toString(ContainerRegistry reg) {
