@@ -173,11 +173,11 @@ public class DeploymentGenerator {
             try {
                 // this should be made more reliable, does not work with e.g. a
                 // EnterpriseArchive
-                if (ClassContainer.class.isInstance(applicationArchive)) {
-                    ClassContainer<?> classContainer = ClassContainer.class.cast(applicationArchive);
+                if (applicationArchive instanceof ClassContainer<?>) {
+                    ClassContainer<?> classContainer = (ClassContainer<?>) applicationArchive;
                     classContainer.addClass(testCase.getJavaClass());
                     addAdditionalObserverClassesIfPresent(classContainer, testCase.getJavaClass());
-                }
+                }                
             } catch (UnsupportedOperationException e) {
                 /*
                  * Quick Fix: https://jira.jboss.org/jira/browse/ARQ-118
