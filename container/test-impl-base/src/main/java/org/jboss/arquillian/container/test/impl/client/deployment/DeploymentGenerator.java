@@ -102,13 +102,13 @@ public class DeploymentGenerator {
             }
         }
 
-        for (Deployment deployment : scenario.deployments()) {
-            Container container = conReg.getContainer(deployment.getDescription().getTarget());
+        for (Deployment deploymentScenario : scenario.deployments()) {
+            Container container = conReg.getContainer(deploymentScenario.getDescription().getTarget());
             if ("custom".equalsIgnoreCase(container.getContainerConfiguration().getMode())) {
-                if (deployment.getDescription().managed()) {
+                if (deploymentScenario.getDescription().managed()) {
                     throw new ValidationException(
                         "Deployment "
-                            + deployment.getDescription().getName()
+                            + deploymentScenario.getDescription().getName()
                             + " is targeted against container "
                             +
                             container.getName()
