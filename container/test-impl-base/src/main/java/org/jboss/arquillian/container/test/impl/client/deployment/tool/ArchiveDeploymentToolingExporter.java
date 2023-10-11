@@ -49,12 +49,11 @@ public class ArchiveDeploymentToolingExporter {
     protected void writeOutToFile(File target, String content) {
         Validate.notNull(target, "Target must be specified");
         Validate.notNull(content, "Content must be specified");
-
+    
         FileOutputStream output = null;
         try {
             output = new FileOutputStream(target);
             output.write(content.getBytes());
-            output.close();
         } catch (Exception e) {
             throw new ToolRTException("Could not write content to file", e);
         } finally {
@@ -62,7 +61,7 @@ public class ArchiveDeploymentToolingExporter {
                 try {
                     output.close();
                 } catch (Exception e) {
-                    throw new ToolRTException("Could not close output stream", e);
+                    e.toString();
                 }
             }
         }
