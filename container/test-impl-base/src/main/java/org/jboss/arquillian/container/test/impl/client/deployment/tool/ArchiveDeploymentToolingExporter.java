@@ -34,7 +34,7 @@ import org.jboss.shrinkwrap.api.Archive;
 public class ArchiveDeploymentToolingExporter {
     static final String ARQUILLIAN_TOOLING_DEPLOYMENT_FOLDER = "arquillian.tooling.deployment.folder";
 
-    public void export(@Observes BeforeDeploy event) throws Exception {
+    public void export(@Observes BeforeDeploy event) throws RuntimeException {
         String deploymentOutputFolder = System.getProperty(ARQUILLIAN_TOOLING_DEPLOYMENT_FOLDER);
         if (deploymentOutputFolder == null) // tooling not activated, nothing to do
         {
