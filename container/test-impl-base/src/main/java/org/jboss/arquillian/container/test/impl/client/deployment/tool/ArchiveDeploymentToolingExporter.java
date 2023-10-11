@@ -40,10 +40,6 @@ public class ArchiveDeploymentToolingExporter {
         {
             return;
         }
-        Archive<?> deployment = event.getDeployment().getTestableArchive(); // deployment not in context?, nothing to do
-        if (deployment == null) {
-            return;
-        }
     }
 
     protected void writeOutToFile(File target, String content) {
