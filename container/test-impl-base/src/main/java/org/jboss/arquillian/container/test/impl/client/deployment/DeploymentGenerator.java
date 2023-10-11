@@ -78,8 +78,8 @@ public class DeploymentGenerator {
 
         for (DeploymentScenarioGenerator generator : deploymentScenarioGenerators) {
 
-            for (DeploymentDescription deployment : generator.generate(event.getTestClass())) {
-                scenario.addDeployment(deployment);
+            for (DeploymentDescription deploymentDesc : generator.generate(event.getTestClass())) {
+                scenario.addDeployment(deploymentDesc);
             }
         }
 
