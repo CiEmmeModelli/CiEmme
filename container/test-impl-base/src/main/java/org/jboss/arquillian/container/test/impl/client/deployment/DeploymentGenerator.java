@@ -153,7 +153,7 @@ public class DeploymentGenerator {
             if (!description.testable() || !description.isArchiveDeployment()) {
                 continue;
             }
-            List<Archive<?>> auxiliaryArchives = loadAuxiliaryArchives(description);
+            List<Archive<?>> auxiliaryArchives = loadAuxiliaryArchives();
 
             ProtocolDefinition protocolDefinition = protoReg.getProtocol(description.getProtocol());
             if (protocolDefinition == null) {
@@ -204,7 +204,7 @@ public class DeploymentGenerator {
 
     }
 
-    private List<Archive<?>> loadAuxiliaryArchives(DeploymentDescription deployment) {
+    private List<Archive<?>> loadAuxiliaryArchives() {
         List<Archive<?>> archives = new ArrayList<Archive<?>>();
 
         // load based on the Containers ClassLoader
