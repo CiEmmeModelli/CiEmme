@@ -29,7 +29,7 @@ import org.jboss.arquillian.container.test.spi.command.Command;
 public abstract class AbstractCommand<T> implements Command<T>, Serializable {
     private static final long serialVersionUID = 1L;
 
-    private T result;
+    private transient T result;
     private Throwable throwable;
 
     @Override
