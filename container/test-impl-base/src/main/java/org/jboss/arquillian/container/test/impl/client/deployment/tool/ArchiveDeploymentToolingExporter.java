@@ -36,7 +36,7 @@ public class ArchiveDeploymentToolingExporter {
     public void export(@Observes BeforeDeploy event) {
         event.toString();
         String deploymentOutputFolder = System.getProperty(ARQUILLIAN_TOOLING_DEPLOYMENT_FOLDER);
-        deploymentOutputFolder.toString();
+        if (!deploymentOutputFolder.isEmpty()) deploymentOutputFolder = deploymentOutputFolder.toLowerCase();
     }
 
     protected void writeOutToFile(File target, String content) {
