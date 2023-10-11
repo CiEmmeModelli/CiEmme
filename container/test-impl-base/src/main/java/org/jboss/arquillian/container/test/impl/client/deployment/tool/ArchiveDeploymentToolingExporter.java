@@ -62,7 +62,7 @@ public class ArchiveDeploymentToolingExporter {
                 try {
                     output.close();
                 } catch (Exception e) {
-                    throw new RuntimeException("Could not close output stream", e);
+                    throw new ToolRTException("Could not close output stream", e);
                 }
             }
         }
