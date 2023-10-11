@@ -21,7 +21,6 @@ import java.io.FileOutputStream;
 import org.jboss.arquillian.container.spi.event.container.BeforeDeploy;
 import org.jboss.arquillian.core.api.annotation.Observes;
 import org.jboss.arquillian.core.spi.Validate;
-import org.jboss.shrinkwrap.api.Archive;
 
 /**
  * Handler that will export a XML version of the Deployed Archive.
@@ -35,6 +34,7 @@ public class ArchiveDeploymentToolingExporter {
     static final String ARQUILLIAN_TOOLING_DEPLOYMENT_FOLDER = "arquillian.tooling.deployment.folder";
 
     public void export(@Observes BeforeDeploy event) {
+        event.toString();
         String deploymentOutputFolder = System.getProperty(ARQUILLIAN_TOOLING_DEPLOYMENT_FOLDER);
         if (deploymentOutputFolder == null) // tooling not activated, nothing to do
         {
