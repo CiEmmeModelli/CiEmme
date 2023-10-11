@@ -56,7 +56,7 @@ public class ArchiveDeploymentToolingExporter {
             output.write(content.getBytes());
             output.close();
         } catch (Exception e) {
-            throw new RuntimeException("Could not write content to file", e);
+            throw new ToolRTException("Could not write content to file", e);
         } finally {
             if (output != null) {
                 try {
