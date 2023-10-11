@@ -148,8 +148,8 @@ public class DeploymentGenerator {
     }
 
     private void buildTestableDeployments(DeploymentScenario scenario, TestClass testCase, ProtocolRegistry protoReg) {
-        for (Deployment deployment : scenario.deployments()) {
-            DeploymentDescription description = deployment.getDescription();
+        for (Deployment deploymentBuildTest : scenario.deployments()) {
+            DeploymentDescription description = deploymentBuildTest.getDescription();
             if (!description.testable() || !description.isArchiveDeployment()) {
                 continue;
             }
@@ -188,7 +188,7 @@ public class DeploymentGenerator {
             }
             description.setTestableArchive(
                     packager.generateDeployment(
-                            new TestDeployment(deployment.getDescription(), applicationArchive, auxiliaryArchives),
+                            new TestDeployment(deploymentBuildTest.getDescription(), applicationArchive, auxiliaryArchives),
                             serviceLoader.get().all(ProtocolArchiveProcessor.class)));
         }
     }
