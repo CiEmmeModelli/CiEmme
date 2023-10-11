@@ -236,7 +236,7 @@ public class DeploymentGenerator {
     }
 
     private void throwTargetNotFoundValidationException(ContainerRegistry conReg, TargetDescription target) {
-        if (conReg.getContainers().size() == 0) {
+        if (conReg.getContainers().isEmpty()) {
             throwNoContainerFound(target);
         }
         throwNoMatchFound(conReg, target);
