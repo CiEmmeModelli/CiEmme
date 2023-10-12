@@ -82,7 +82,7 @@ public class RemoteTestExecuter {
 
     @SuppressWarnings({"java:S112", "java:java:S1130"})
     public void execute(@Observes RemoteExecutionEvent event) throws CustomExceptionRun {
-        Container container = this.container.get();
+        Container containerInsideExecute = this.container.get();
         DeploymentDescription deployment = this.deployment.get();
 
         ProtocolRegistry protoReg = protocolRegistry.get();
@@ -90,14 +90,14 @@ public class RemoteTestExecuter {
         // if no default marked or specific protocol defined in the registry, use the DeployableContainers defaultProtocol.
         ProtocolDefinition protocol = protoReg.getProtocol(deployment.getProtocol());
         if (protocol == null) {
-            protocol = protoReg.getProtocol(container.getDeployableContainer().getDefaultProtocol());
+            protocol = protoReg.getProtocol(containerInsideExecute.getDeployableContainer().getDefaultProtocol());
         }
 
         ProtocolConfiguration protocolConfiguration;
 
-        if (container.hasProtocolConfiguration(protocol.getProtocolDescription())) {
+        if (containerInsideExecute.hasProtocolConfiguration(protocol.getProtocolDescription())) {
             protocolConfiguration = protocol.createProtocolConfiguration(
-                container.getProtocolConfiguration(protocol.getProtocolDescription()).getProtocolProperties());
+                containerInsideExecute.getProtocolConfiguration(protocol.getProtocolDescription()).getProtocolProperties());
         } else {
             protocolConfiguration = protocol.createProtocolConfiguration();
         }
