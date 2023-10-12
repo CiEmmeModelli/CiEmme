@@ -30,7 +30,7 @@ public class RemoteResourceCommandObserver {
             if (resourceProvider.canProvide(type)) {
                 Object value = resourceProvider.lookup(command.getResource(), command.getAnnotations());
                 if (value == null) {
-                    throw new RuntimeException(
+                    throw new CustomExceptionRunEnricher(
                         "Provider for type " + type + " returned a null value: " + resourceProvider);
                 }
                 command.setResult(value);
