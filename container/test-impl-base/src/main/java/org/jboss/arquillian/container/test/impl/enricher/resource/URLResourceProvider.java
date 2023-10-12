@@ -122,7 +122,7 @@ public class URLResourceProvider extends OperatesOnDeploymentAwareProvider {
         try {
             return servlet.getBaseURI().toURL();
         } catch (Exception e) {
-            throw new RuntimeException("Could not convert Servlet to URL, " + servlet, e);
+            throw new CustomExceptionRunEnricher("Could not convert Servlet to URL, " + servlet, e);
         }
     }
 
