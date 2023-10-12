@@ -44,7 +44,7 @@ public class ProtocolRegistryCreator {
     @ApplicationScoped
     private InstanceProducer<ProtocolRegistry> registryInstance;
 
-    public void createRegistry(@Observes ArquillianDescriptor event) throws Exception {
+    public void createRegistry(@Observes ArquillianDescriptor event) throws RuntimeException {
         @SuppressWarnings("rawtypes")
         Collection<Protocol> protocols = serviceLoader.get().all(Protocol.class);
 
