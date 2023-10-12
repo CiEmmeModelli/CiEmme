@@ -105,7 +105,6 @@ public class RemoteTestExecuter {
         testResult.set(executor.invoke(event.getExecutor()));
     }
 
-    // TODO: cast to raw type to get away from generic issue..
     @SuppressWarnings({"unchecked", "rawtypes"})
     public ContainerMethodExecutor getContainerMethodExecutor(ProtocolDefinition protocol,
         ProtocolConfiguration protocolConfiguration) {
