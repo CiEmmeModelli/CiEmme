@@ -67,6 +67,7 @@ public class URLResourceProvider extends OperatesOnDeploymentAwareProvider {
     
     private HTTPContext getContext(ArquillianResource resource, TargetsContainer targets, ProtocolMetaData metaData) {
         HTTPContext context = null;
+        resource.toString();
         if (targets != null) {
             context = locateNamedHttpContext(metaData, targets.value());
         } else {
