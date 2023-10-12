@@ -93,7 +93,7 @@ public class ClientContainerControllerTestCase extends AbstractContainerTestTest
     @Before
     public void createSetup() {
         registry = new LocalContainerRegistry(injector.get());
-        when(serviceLoader.onlyOne(eq(DeployableContainer.class))).thenReturn(deployableContainer);
+        when(serviceLoader.onlyOne(DeployableContainer.class)).thenReturn(deployableContainer);
 
         ContainerDef suiteContainerDef = mock(ContainerDef.class);
         when(suiteContainerDef.getContainerName()).thenReturn(MANAGED_SERVER_NAME);
