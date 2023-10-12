@@ -110,7 +110,7 @@ public class RemoteTestExecuter {
         ProtocolConfiguration protocolConfiguration) {
         final ContextSnapshot state = executorService.get().createSnapshotContext();
 
-        ContainerMethodExecutor executor = ((Protocol) protocol.getProtocol()).getExecutor(
+        return ((Protocol) protocol.getProtocol()).getExecutor(
             protocolConfiguration,
             protocolMetadata.get(), new CommandCallback() {
                 @Override
@@ -123,6 +123,5 @@ public class RemoteTestExecuter {
                     }
                 }
             });
-        return executor;
     }
 }
