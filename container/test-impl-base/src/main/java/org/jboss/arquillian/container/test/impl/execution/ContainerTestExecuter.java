@@ -32,7 +32,7 @@ public class ContainerTestExecuter {
     @Inject
     private Event<LocalExecutionEvent> localEvent;
 
-    public void execute(@Observes Test event) throws Exception {
+    public void execute(@Observes Test event) {
         localEvent.fire(new LocalExecutionEvent(event.getTestMethodExecutor()));
     }
 }
