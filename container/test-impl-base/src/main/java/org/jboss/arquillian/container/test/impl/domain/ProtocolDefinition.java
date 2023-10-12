@@ -67,7 +67,7 @@ public class ProtocolDefinition {
     /**
      * @return the protocol
      */
-    public Protocol<?> getProtocol() {
+    public Protocol<? extends ProtocolConfiguration> getProtocol() {
         return protocol;
     }
 
