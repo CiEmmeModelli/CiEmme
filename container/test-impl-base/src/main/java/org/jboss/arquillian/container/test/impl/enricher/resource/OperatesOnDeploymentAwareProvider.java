@@ -81,14 +81,15 @@ public abstract class OperatesOnDeploymentAwareProvider implements ResourceProvi
                         + ")");
                 }
                 OperateOnDeployment operatesOn = getOperatesOnDeployment(qualifiers);
-                deployment = scenario.deployment(new DeploymentTargetDescription(operatesOn.value()));
-                if (deployment == null) {
-                    throw new IllegalArgumentException(
-                        "Could not operate on deployment (@" + OperateOnDeployment.class.getSimpleName() + "), " +
+                if (operatesOn != null) { 
+                    deployment = scenario.deployment(new DeploymentTargetDescription(operatesOn.value()));
+                    if (deployment == null) {
+                        throw new IllegalArgumentException("Could not operate on deployment (@" + OperateOnDeployment.class.getSimpleName() + "), " +
                             "no deployment found with name: " + operatesOn.value());
+                    }
+                    context.activate(deployment);
+                    contextActivated = true;
                 }
-                context.activate(deployment);
-                contextActivated = true;
             }
             return runInContainerContext(deployment == null ? null : deployment.getDescription().getTarget(), resource,
                 qualifiers);
