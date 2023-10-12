@@ -130,7 +130,7 @@ public class URLResourceProvider extends OperatesOnDeploymentAwareProvider {
         try {
             return new URI("http", null, context.getHost(), context.getPort(), null, null, null).toURL();
         } catch (Exception e) {
-            throw new RuntimeException("Could not convert HTTPContext to URL, " + context, e);
+            throw new CustomExceptionRunEnricher("Could not convert HTTPContext to URL, " + context, e);
         }
     }
 }
