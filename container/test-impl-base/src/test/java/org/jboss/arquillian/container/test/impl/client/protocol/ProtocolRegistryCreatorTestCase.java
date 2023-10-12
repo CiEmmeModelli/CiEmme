@@ -35,6 +35,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
 /**
@@ -95,11 +96,15 @@ public class ProtocolRegistryCreatorTestCase extends AbstractContainerTestTestBa
     }
 
     @Test(expected = IllegalStateException.class)
-    public void shouldThrowExceptionIfDefaultDefinedProtocolNotFound() throws Exception {
+    public void shouldThrowExceptionIfDefaultDefinedProtocolNotFound() {
+        assertThrowsDefaultProtocolNotFoundException();
+    }
+
+    private void assertThrowsDefaultProtocolNotFoundException() {
         try {
             fire(createDescriptor("DOES_NOT_EXIST"));
         } catch (Exception e) {
-            Assert.assertTrue("Verify thrown exception", e.getMessage().contains("Defined default protocol"));
+            assertTrue("Verify thrown exception", e.getMessage().contains("Defined default protocol"));
             throw e;
         }
     }
