@@ -53,7 +53,6 @@ public class ProtocolRegistryCreator {
         if (defaultProtcolDef != null) {
             defaultProtocol = findMatch(new ProtocolDescription(defaultProtcolDef.getType()), protocols);
             if (defaultProtocol == null) {
-                // TODO: add printout of found protocols
                 throw new IllegalStateException(
                     "Defined default protocol " + defaultProtcolDef.getType() + " can not be found on classpath");
             }
