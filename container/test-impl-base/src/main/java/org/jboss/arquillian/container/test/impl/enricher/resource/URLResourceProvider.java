@@ -57,34 +57,38 @@ public class URLResourceProvider extends OperatesOnDeploymentAwareProvider {
             return null;
         }
         if (metaData.hasContext(HTTPContext.class)) {
-            HTTPContext context = null;
-            if (targets != null) {
-                context = locateNamedHttpContext(metaData, targets.value());
-            } else {
-                context = metaData.getContexts(HTTPContext.class).iterator().next();
-            }
-
-            if (resource.value() != null && resource.value() != ArquillianResource.class) {
-                // TODO: we need to check for class. Not all containers have ServletClass available.
-                Servlet servlet = context.getServletByName(resource.value().getSimpleName());
-                if (servlet == null) {
-                    servlet = context.getServletByName(resource.value().getName());
-                    //throw new RuntimeException("No Servlet named " + resource.value().getSimpleName() + " found in metadata");
-                }
-                if (servlet == null) {
-                    return null;
-                }
-                return toURL(servlet);
-            }
-            // TODO: evaluate, if all servlets are in the same context, and only one context exists, we can find the context
-            else if (allInSameContext(context.getServlets())) {
-                return toURL(context.getServlets().get(0));
-            } else {
-                return toURL(context);
+            HTTPContext context = getContext(resource, targets, metaData);
+            if (context != null) {
+                return getResourceURL(resource, context);
             }
         }
         return null;
     }
+    
+    private HTTPContext getContext(ArquillianResource resource, TargetsContainer targets, ProtocolMetaData metaData) {
+        HTTPContext context = null;
+        if (targets != null) {
+            context = locateNamedHttpContext(metaData, targets.value());
+        } else {
+            context = metaData.getContexts(HTTPContext.class).iterator().next();
+        }
+        return context;
+    }
+    
+    private Object getResourceURL(ArquillianResource resource, HTTPContext context) {
+        if (resource.value() != null && resource.value() != ArquillianResource.class) {
+            Servlet servlet = context.getServletByName(resource.value().getSimpleName());
+            if (servlet != null) {
+                return toURL(servlet);
+            }
+        } else if (allInSameContext(context.getServlets())) {
+            return toURL(context.getServlets().get(0));
+        } else {
+            return toURL(context);
+        }
+        return null;
+    }
+    
 
     private HTTPContext locateNamedHttpContext(ProtocolMetaData metaData, String value) {
         for (HTTPContext context : metaData.getContexts(HTTPContext.class)) {
