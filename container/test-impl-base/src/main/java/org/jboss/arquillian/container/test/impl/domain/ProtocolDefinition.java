@@ -67,7 +67,8 @@ public class ProtocolDefinition {
     /**
      * @return the protocol
      */
-    public Protocol<? extends ProtocolConfiguration> getProtocol() {
+    @SuppressWarnings("java:S1452")
+    public Protocol<?> getProtocol() {
         return protocol;
     }
 
