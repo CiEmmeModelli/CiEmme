@@ -29,7 +29,7 @@ import org.jboss.shrinkwrap.api.Archive;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
-
+@SuppressWarnings("java:S1452")
 public interface DeploymentPackager {
     /**
      * @param testDeployment
@@ -37,5 +37,5 @@ public interface DeploymentPackager {
      *
      * @return The prepared archive for deployment.
      */
-    Archive generateDeployment(TestDeployment testDeployment, Collection<ProtocolArchiveProcessor> processors);
+    Archive <?> generateDeployment(TestDeployment testDeployment, Collection<ProtocolArchiveProcessor> processors);
 }
