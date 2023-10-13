@@ -45,17 +45,9 @@ public class TestDeployment {
 
     private Archive<?> archiveForEnrichment;
 
-    /**
-     * @param applicationArchive
-     *     The user defined {@link Archive}
-     * @param auxiliaryArchives
-     *     All extra library {@link Archive}s defined by extensions / core / frameworks.
-     *
-     * @deprecated
-     */
     public TestDeployment(Archive<?> applicationArchive, Collection<Archive<?>> auxiliaryArchives) {
         this(null, applicationArchive, auxiliaryArchives);
-    }
+    }    
 
     /**
      * @param deploymentDescription
