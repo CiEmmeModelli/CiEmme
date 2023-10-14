@@ -42,7 +42,7 @@ public class RuntimeLogger {
 
     void debugMethod(Object event, boolean push) {
         if (debugVar) {
-            if (push) {
+            if (!log.toString().isEmpty()) {
                 String m3 = "";
                 if (push) m3 = String.format("%s (E) %s", indent(), getEventName(event));
                 log.warning(m3);
