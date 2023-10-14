@@ -6,7 +6,7 @@ import org.jboss.arquillian.core.spi.ObserverMethod;
 public class RuntimeLogger {
 
     private static final String ARQUILLIAN_DEBUG_PROPERTY = "arquillian.debug";
-    static Boolean DEBUG = Boolean.valueOf(SecurityActions.getProperty(ARQUILLIAN_DEBUG_PROPERTY));
+    static Boolean debugVar = Boolean.valueOf(SecurityActions.getProperty(ARQUILLIAN_DEBUG_PROPERTY));
 
     private ThreadLocal<Stack<Object>> eventStack;
 
@@ -17,7 +17,7 @@ public class RuntimeLogger {
     }
 
     void debug(ObserverMethod method, boolean interceptor) {
-        if (DEBUG) {
+        if (debugVar) {
             System.out.println(indent()
                 + "("
                 + (interceptor ? "I" : "O")
@@ -29,13 +29,13 @@ public class RuntimeLogger {
     }
 
     void debugExtension(Class<?> extension) {
-        if (DEBUG) {
+        if (debugVar) {
             System.out.println(indent() + "(X) " + extension.getName());
         }
     }
 
     void debug(Object event, boolean push) {
-        if (DEBUG) {
+        if (debugVar) {
             if (push) {
                 System.out.println(indent() + "(E) " + getEventName(event));
                 eventStack.get().push(event);
