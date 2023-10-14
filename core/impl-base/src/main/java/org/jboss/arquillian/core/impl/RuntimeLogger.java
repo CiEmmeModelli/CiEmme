@@ -33,7 +33,7 @@ public class RuntimeLogger {
 
     void debugExtension(Class<?> extension) {
         if (debugVar) {
-            System.out.println(indent() + "(X) " + extension.getName());
+            log.warning(indent() + "(X) " + extension.getName());
         }
     }
 
