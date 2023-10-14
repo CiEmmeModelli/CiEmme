@@ -36,6 +36,7 @@ import org.jboss.shrinkwrap.api.Node;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
+@SuppressWarnings("java:S1452")
 public class TestDeployment {
     private DeploymentDescription deploymentDescription;
 
