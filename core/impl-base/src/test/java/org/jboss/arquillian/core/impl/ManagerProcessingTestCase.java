@@ -31,7 +31,7 @@ import org.junit.Test;
  */
 public class ManagerProcessingTestCase {
     static {
-        RuntimeLogger.DEBUG = true;
+        RuntimeLogger.debugVar = true;
     }
 
     @Test

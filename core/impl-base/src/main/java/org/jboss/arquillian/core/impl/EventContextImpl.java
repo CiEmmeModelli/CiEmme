@@ -91,7 +91,7 @@ public class EventContextImpl<T> implements EventContext<T> {
             invokeNonManagedObserver();
         } else {
             ObserverMethod interceptor = interceptors.get(currentInterceptor++);
-            runtimeLogger.debug(interceptor, true);
+            runtimeLogger.debugMethod(interceptor, true);
             interceptor.invoke(manager, this);
         }
     }
@@ -99,7 +99,7 @@ public class EventContextImpl<T> implements EventContext<T> {
     private void invokeObservers() {
         for (ObserverMethod observer : observers) {
             try {
-                runtimeLogger.debug(observer, false);
+                runtimeLogger.debugMethod(observer, false);
                 observer.invoke(manager, event);
             } catch (InvocationException e) {
                 Throwable cause = e.getCause();

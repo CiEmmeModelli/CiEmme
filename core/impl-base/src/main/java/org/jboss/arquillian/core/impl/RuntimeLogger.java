@@ -6,7 +6,7 @@ import org.jboss.arquillian.core.spi.ObserverMethod;
 public class RuntimeLogger {
 
     private static final String ARQUILLIAN_DEBUG_PROPERTY = "arquillian.debugMethod";
-    static Boolean debugVar = Boolean.valueOf(SecurityActions.getProperty(ARQUILLIAN_DEBUG_PROPERTY));
+    static boolean debugVar = Boolean.valueOf(SecurityActions.getProperty(ARQUILLIAN_DEBUG_PROPERTY));
 
     private ThreadLocal<Stack<Object>> eventStack;
 
