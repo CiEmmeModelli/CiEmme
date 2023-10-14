@@ -40,7 +40,7 @@ public class RuntimeLogger {
     void debugMethod(Object event, boolean push) {
         if (debugVar) {
             if (push) {
-                System.out.println(indent() + "(E) " + getEventName(event));
+                log.warning(indent() + "(E) " + getEventName(event));
                 eventStack.get().push(event);
             } else {
                 if (!eventStack.get().isEmpty()) {
