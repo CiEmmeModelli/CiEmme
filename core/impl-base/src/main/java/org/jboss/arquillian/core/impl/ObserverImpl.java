@@ -37,9 +37,10 @@ public class ObserverImpl implements ObserverMethod, Comparable<ObserverMethod> 
     private Object target;
     private Method method;
 
-    //-------------------------------------------------------------------------------------||
-    // Public Factory Methods -------------------------------------------------------------||
-    //-------------------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+    // Public Factory Methods
+    // -------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
     ObserverImpl(Object target, Method method) {
         this.target = target;
@@ -50,11 +51,14 @@ public class ObserverImpl implements ObserverMethod, Comparable<ObserverMethod> 
         return new ObserverImpl(extension, observerMethod);
     }
 
-    //-------------------------------------------------------------------------------------||
-    // Required Implementations - ObserverMethod ------------------------------------------||
-    //-------------------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+    // Required Implementations - ObserverMethod
+    // ------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.jboss.arquillian.api.Typed#getType()
      */
     @Override
@@ -70,7 +74,9 @@ public class ObserverImpl implements ObserverMethod, Comparable<ObserverMethod> 
         return method;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.jboss.arquillian.api.ObserverMethod#invoke(java.lang.Object)
      */
     @Override
@@ -95,9 +101,11 @@ public class ObserverImpl implements ObserverMethod, Comparable<ObserverMethod> 
         } catch (Exception e) {
             throw new InvocationException(e);
         }
-    }    
+    }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see java.lang.Comparable#compareTo(java.lang.Object)
      */
     @Override
@@ -128,7 +136,8 @@ public class ObserverImpl implements ObserverMethod, Comparable<ObserverMethod> 
         final Class<?>[] argumentTypes = getMethod().getParameterTypes();
         int numberOfArguments = argumentTypes.length;
 
-        // we know that the first Argument is always the Event, and it will be there else this wouldn't be a Observer method
+        // we know that the first Argument is always the Event, and it will be there
+        // else this wouldn't be a Observer method
         Object[] arguments = new Object[numberOfArguments];
         arguments[0] = event;
 
@@ -137,10 +146,12 @@ public class ObserverImpl implements ObserverMethod, Comparable<ObserverMethod> 
             arguments[i] = manager.resolve(argumentType);
             if (arguments[i] == null) {
                 String message = "";
-                if (!argumentType.getSimpleName().isEmpty()) String.format("Argument %d (of type %s) for %s#%s is null. Observer method won't be invoked.",
-                    i + 1, argumentType.getSimpleName(), getMethod().getDeclaringClass().getName(), getMethod().getName());
+                if (!argumentType.getSimpleName().isEmpty())
+                    message = String.format("Argument %d (of type %s) for %s#%s is null. Observer method won't be invoked.",
+                            i + 1, argumentType.getSimpleName(), getMethod().getDeclaringClass().getName(),
+                            getMethod().getName());
                 log.warning(message);
-            }                     
+            }
         }
         return arguments;
     }
