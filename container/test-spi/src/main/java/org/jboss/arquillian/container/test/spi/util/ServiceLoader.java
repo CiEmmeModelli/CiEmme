@@ -187,9 +187,7 @@ public class ServiceLoader<S> implements Iterable<S> {
         if (comment > -1) {
             line = line.substring(0, comment);
         }
-    
         line = line.trim();
-    
         if (line.length() > 0) {
             try {
                 providers.add(createInstance(line));
