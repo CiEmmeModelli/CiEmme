@@ -1,4 +1,4 @@
-package org.jboss.arquillian.container.impl;
+package org.jboss.arquillian.container.test.spi.util;
 
 public class MyCustomException extends RuntimeException {
     public MyCustomException(String message) {
