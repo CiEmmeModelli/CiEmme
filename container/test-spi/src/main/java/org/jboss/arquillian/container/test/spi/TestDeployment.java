@@ -90,26 +90,30 @@ public class TestDeployment {
      */
     public Archive<?> getArchiveForEnrichment() {
         if (archiveForEnrichment == null) {
-            // TODO: Extend to EJBs once they are supported
             Map<ArchivePath, Node> nested = applicationArchive.getContent(Filters.include(".*\\.war"));
             if (!nested.isEmpty()) {
                 for (ArchivePath path : nested.keySet()) {
-                    try {
-                        GenericArchive genericArchive = applicationArchive.getAsType(GenericArchive.class, path);
-                        if (Testable.isArchiveToTest(genericArchive)) {
-                            if (archiveForEnrichment != null) {
-                                throw new UnsupportedOperationException("Multiple marked Archives found in "
-                                    + applicationArchive.getName() + ". Can not determine which to enrich");
-                            }
-                            archiveForEnrichment = genericArchive;
-                        }
-                    } catch (IllegalArgumentException e) {
-                        // no-op, Nested archive is not a ShrinkWrap archive.
-                    }
+                    archiveForEnrichment = createNewArchive(path);
                 }
             }
         } else {
             archiveForEnrichment = applicationArchive;
+        }
+        return archiveForEnrichment;
+    }
+
+    private Archive<?> createNewArchive(ArchivePath pathInCNA){
+        try {
+            GenericArchive genericArchive = applicationArchive.getAsType(GenericArchive.class, pathInCNA);
+            if (Testable.isArchiveToTest(genericArchive)) {
+                if (archiveForEnrichment != null) {
+                    throw new UnsupportedOperationException("Multiple marked Archives found in "
+                        + applicationArchive.getName() + ". Can not determine which to enrich");
+                }
+                archiveForEnrichment = genericArchive;
+            }
+        } catch (IllegalArgumentException e) {
+            e.toString();
         }
         return archiveForEnrichment;
     }
