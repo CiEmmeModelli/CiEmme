@@ -8,8 +8,8 @@ import org.jboss.arquillian.core.spi.ObserverMethod;
 public class RuntimeLogger {
 
     private static final String ARQUILLIAN_DEBUG_PROPERTY = "arquillian.debugMethod";
-    static boolean debugVar = Boolean.valueOf(SecurityActions.getProperty(ARQUILLIAN_DEBUG_PROPERTY));
-    private static Logger log = Logger.getLogger(ObserverImpl.class.getName());
+    static boolean debugVar = Boolean.parseBoolean(SecurityActions.getProperty(ARQUILLIAN_DEBUG_PROPERTY));
+    private static Logger log = Logger.getLogger(RuntimeLogger.class.getName());
 
     private ThreadLocal<Stack<Object>> eventStack;
 
@@ -21,26 +21,25 @@ public class RuntimeLogger {
 
     void debugMethod(ObserverMethod method, boolean interceptor) {
         if (debugVar) {
-            log.warning(indent()
-                + "("
-                + (interceptor ? "I" : "O")
-                + ") "
-                + method.getMethod().getDeclaringClass().getSimpleName()
-                + "."
-                + method.getMethod().getName());
+            log.warning(String.format("%s (%s) %s.%s",
+                    indent(),
+                    interceptor ? "I" : "O",
+                    method.getMethod().getDeclaringClass().getSimpleName(),
+                    method.getMethod().getName()));
+
         }
     }
 
     void debugExtension(Class<?> extension) {
         if (debugVar) {
-            log.warning(indent() + "(X) " + extension.getName());
+            log.warning(String.format("%s (X) %s", indent(), extension.getName()));
         }
     }
 
     void debugMethod(Object event, boolean push) {
         if (debugVar) {
             if (push) {
-                log.warning(indent() + "(E) " + getEventName(event));
+                log.warning(String.format("%s (E) %s", indent(), getEventName(event)));
                 eventStack.get().push(event);
             } else {
                 if (!eventStack.get().isEmpty()) {
@@ -52,10 +51,11 @@ public class RuntimeLogger {
 
     private String getEventName(Object object) {
         Class<?> eventClass = object.getClass();
-        // Print the Interface name of Anonymous classes to show the defined interface, not creation point.
+        // Print the Interface name of Anonymous classes to show the defined interface,
+        // not creation point.
         if (eventClass.isAnonymousClass()
-            && eventClass.getInterfaces().length == 1
-            && !eventClass.getInterfaces()[0].getName().startsWith("java")) {
+                && eventClass.getInterfaces().length == 1
+                && !eventClass.getInterfaces()[0].getName().startsWith("java")) {
             return eventClass.getInterfaces()[0].getSimpleName();
         }
         return eventClass.getSimpleName();
