@@ -22,6 +22,7 @@ package org.jboss.arquillian.core.api.event;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
+@SuppressWarnings("java:S2094")
 public class ManagerStarted {
 
 }
