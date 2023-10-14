@@ -1,12 +1,15 @@
 package org.jboss.arquillian.core.impl;
 
 import java.util.Stack;
+import java.util.logging.Logger;
+
 import org.jboss.arquillian.core.spi.ObserverMethod;
 
 public class RuntimeLogger {
 
     private static final String ARQUILLIAN_DEBUG_PROPERTY = "arquillian.debugMethod";
     static boolean debugVar = Boolean.valueOf(SecurityActions.getProperty(ARQUILLIAN_DEBUG_PROPERTY));
+    private static Logger log = Logger.getLogger(ObserverImpl.class.getName());
 
     private ThreadLocal<Stack<Object>> eventStack;
 
@@ -18,7 +21,7 @@ public class RuntimeLogger {
 
     void debugMethod(ObserverMethod method, boolean interceptor) {
         if (debugVar) {
-            System.out.println(indent()
+            log.warning(indent()
                 + "("
                 + (interceptor ? "I" : "O")
                 + ") "
