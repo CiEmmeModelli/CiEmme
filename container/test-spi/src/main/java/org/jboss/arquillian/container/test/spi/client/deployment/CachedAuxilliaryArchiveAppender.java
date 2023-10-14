@@ -27,6 +27,7 @@ import org.jboss.shrinkwrap.api.Archive;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
+@SuppressWarnings("java:S1452")
 public abstract class CachedAuxilliaryArchiveAppender implements AuxiliaryArchiveAppender {
     private static Map<Class<?>, Archive<?>> cached = new HashMap<Class<?>, Archive<?>>();
 
