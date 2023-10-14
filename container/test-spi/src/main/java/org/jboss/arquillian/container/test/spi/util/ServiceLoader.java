@@ -135,50 +135,61 @@ public class ServiceLoader<S> implements Iterable<S> {
      * This method is intended for use in situations in which new providers can
      * be installed into a running Java virtual machine.
      */
+
     public void reload() {
         providers = new LinkedHashSet<S>();
-        Enumeration<URL> enumeration = null;
-        boolean errorOccurred = false;
-
-        try {
-            enumeration = loader.getResources(serviceFile);
-        } catch (IOException ioe) {
-            errorOccurred = true;
+        Enumeration<URL> enumeration = getEnumeration();
+        
+        if (enumeration != null) {
+            processEnumeration(enumeration);
         }
-
-        if (!errorOccurred) {
-            while (enumeration.hasMoreElements()) {
-                try {
-                    final URL url = enumeration.nextElement();
-                    final InputStream is = url.openStream();
-                    final BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-
-                    String line = reader.readLine();
-                    while (null != line) {
-                        try {
-                            final int comment = line.indexOf('#');
-
-                            if (comment > -1) {
-                                line = line.substring(0, comment);
-                            }
-
-                            line.trim();
-
-                            if (line.length() > 0) {
-                                providers.add(createInstance(line));
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            // TODO Don't use exceptions for flow control!
-                            // try the next line
-                        }
-
-                        line = reader.readLine();
-                    }
-                    reader.close();
-                } catch (Exception e) {
-                    // try the next file
-                }
+    }
+    
+    private Enumeration<URL> getEnumeration() {
+        try {
+            return loader.getResources(serviceFile);
+        } catch (IOException ioe) {
+            return null;
+        }
+    }
+    
+    private void processEnumeration(Enumeration<URL> enumeration) {
+        while (enumeration.hasMoreElements()) {
+            URL url = enumeration.nextElement();
+    
+            try {
+                processURL(url);
+            } catch (Exception e) {
+                // Handle exception or log it
+            }
+        }
+    }
+    
+    private void processURL(URL url) throws IOException {
+        try (InputStream is = url.openStream();
+             BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"))) {
+    
+            String line = reader.readLine();
+            while (line != null) {
+                processLine(line);
+                line = reader.readLine();
+            }
+        }
+    }
+    
+    private void processLine(String line) {
+        int comment = line.indexOf('#');
+        if (comment > -1) {
+            line = line.substring(0, comment);
+        }
+    
+        line = line.trim();
+    
+        if (line.length() > 0) {
+            try {
+                providers.add(createInstance(line));
+            } catch (Exception e) {
+                // Handle exception or log it
             }
         }
     }
