@@ -112,7 +112,7 @@ public class ManagerImpl implements Manager {
     public <T> void fire(T event, NonManagedObserver<T> nonManagedObserver) {
         Validate.notNull(event, "Event must be specified");
 
-        runtimeLogger.debug(event, true);
+        runtimeLogger.debugMethod(event, true);
         // we start fresh pr new event
         handledThrowables.get().clear();
 
@@ -142,7 +142,7 @@ public class ManagerImpl implements Manager {
                 fireException(fireException);
             }
         } finally {
-            runtimeLogger.debug(event, false);
+            runtimeLogger.debugMethod(event, false);
             if (activatedApplicationContext && context.isActive()) {
                 context.deactivate();
             }
@@ -342,7 +342,7 @@ public class ManagerImpl implements Manager {
     }
 
     void fireException(Throwable event) {
-        runtimeLogger.debug(event, true);
+        runtimeLogger.debugMethod(event, true);
         try {
             List<ObserverMethod> observers = resolveObservers(event.getClass());
             if (observers.size() == 0) // no one is handling this Exception, throw it out.
@@ -352,7 +352,7 @@ public class ManagerImpl implements Manager {
             for (int i = 0; i < observers.size(); i++) {
                 ObserverMethod observer = observers.get(i);
                 try {
-                    runtimeLogger.debug(observer, false);
+                    runtimeLogger.debugMethod(observer, false);
                     observer.invoke(this, event);
                 } catch (Exception e) {
                     // getCause(InocationTargetException).getCause(RealCause);
@@ -372,7 +372,7 @@ public class ManagerImpl implements Manager {
                 }
             }
         } finally {
-            runtimeLogger.debug(event, false);
+            runtimeLogger.debugMethod(event, false);
         }
     }
 
