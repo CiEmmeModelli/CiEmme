@@ -166,13 +166,10 @@ public class ServiceLoader<S> implements Iterable<S> {
     }
 
     private void processURL(URL url) throws IOException {
-        InputStream is = null;
-        BufferedReader reader = null;
-        
         try {
-            is = url.openStream();
-            reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-            
+            final InputStream is = url.openStream();
+            final BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+        
             String line = reader.readLine();
             while (line != null) {
                 processLine(line);
@@ -180,16 +177,8 @@ public class ServiceLoader<S> implements Iterable<S> {
             }
         } catch (IOException e) {
             e.getMessage();
-        } finally {
-            if (reader != null) {
-                reader.close();
-            }
-            if (is != null) {
-                is.close();
-            }
         }
     }
-    
     
     private void processLine(String line) {
         int comment = line.indexOf('#');
