@@ -21,25 +21,31 @@ public class RuntimeLogger {
 
     void debugMethod(ObserverMethod method, boolean interceptor) {
         if (debugVar) {
-            log.warning(String.format("%s (%s) %s.%s",
+            String m1 = "";
+            if (interceptor) m1 = String.format("%s (%s) %s.%s",
                     indent(),
                     interceptor ? "I" : "O",
                     method.getMethod().getDeclaringClass().getSimpleName(),
-                    method.getMethod().getName()));
+                    method.getMethod().getName());
+            log.warning(m1);
 
         }
     }
 
     void debugExtension(Class<?> extension) {
         if (debugVar) {
-            log.warning(String.format("%s (X) %s", indent(), extension.getName()));
+            String m2 = "";
+            if (extension.isEnum()) m2 = String.format("%s (X) %s", indent(), extension.getName());
+            log.warning(m2);
         }
     }
 
     void debugMethod(Object event, boolean push) {
         if (debugVar) {
             if (push) {
-                log.warning(String.format("%s (E) %s", indent(), getEventName(event)));
+                String m3 = "";
+                if (push) m3 = String.format("%s (E) %s", indent(), getEventName(event));
+                log.warning(m3);
                 eventStack.get().push(event);
             } else {
                 if (!eventStack.get().isEmpty()) {
