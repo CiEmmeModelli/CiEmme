@@ -180,6 +180,7 @@ public class ServiceLoader<S> implements Iterable<S> {
         }
         finally{
             is.close();
+            reader.close();
         }
     }
     
