@@ -160,7 +160,7 @@ public class ServiceLoader<S> implements Iterable<S> {
             try {
                 processURL(url);
             } catch (Exception e) {
-              
+              e.getMessage();
             }
         }
     }
@@ -199,33 +199,31 @@ public class ServiceLoader<S> implements Iterable<S> {
     }
 
     public S createInstance(String line) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException,
-        NoClassDefFoundError, InstantiationException, IllegalAccessException {
-    try {
-        Class<? extends S> serviceClass = getServiceClass(line);
-        Constructor<? extends S> constructor = serviceClass.getConstructor();
-        if (!constructor.isAccessible()) {
-            constructor.setAccessible(true);
-        }
-        return constructor.newInstance();
-    } catch (NoClassDefFoundError | InstantiationException | IllegalAccessException e) {
-        throw e;
+    NoClassDefFoundError, InstantiationException, IllegalAccessException {
+try {
+    Class<? extends S> serviceClass = getServiceClass(line);
+    Constructor<? extends S> constructor = serviceClass.getConstructor();
+    if (!constructor.isAccessible()) {
+        constructor.setAccessible(true);
     }
+    return constructor.newInstance();
+} catch (NoClassDefFoundError | InstantiationException | IllegalAccessException e) {
+    e.getMessage();
+    throw e;
+    
+}
 }
 
-private Class<? extends S> getServiceClass(String line) {
-    Class<?> clazz=null;
-    try {
-        clazz = loader.loadClass(line);
-    } catch (ClassNotFoundException e) {
-        e.getMessage();
-    }
-    try {
-        return clazz.asSubclass(expectedType);
-    } catch (ClassCastException e) {
-        throw new IllegalStateException(
-            "Service " + line + " does not implement expected type " + expectedType.getName());
-    }
+private Class<? extends S> getServiceClass(String line) throws ClassNotFoundException {
+Class<?> clazz = loader.loadClass(line);
+try {
+    return clazz.asSubclass(expectedType);
+} catch (ClassCastException e) {
+    throw new IllegalStateException(
+        "Service " + line + " does not implement expected type " + expectedType.getName());
 }
+}
+
 
     
 
