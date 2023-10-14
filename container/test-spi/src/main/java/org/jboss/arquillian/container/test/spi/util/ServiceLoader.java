@@ -164,6 +164,7 @@ public class ServiceLoader<S> implements Iterable<S> {
             }
         }
     }
+    
     private void processURL(URL url) throws IOException {
             final InputStream is = url.openStream();
             final BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
