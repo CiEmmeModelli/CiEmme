@@ -136,8 +136,10 @@ public class ObserverImpl implements ObserverMethod, Comparable<ObserverMethod> 
             final Class<?> argumentType = argumentTypes[i];
             arguments[i] = manager.resolve(argumentType);
             if (arguments[i] == null) {
-                log.warning(String.format("Argument %d (of type %s) for %s#%s is null. Observer method won't be invoked.",
-                    i + 1, argumentType.getSimpleName(), getMethod().getDeclaringClass().getName(), getMethod().getName()));
+                String message = "";
+                if (!argumentType.getSimpleName().isEmpty()) String.format("Argument %d (of type %s) for %s#%s is null. Observer method won't be invoked.",
+                    i + 1, argumentType.getSimpleName(), getMethod().getDeclaringClass().getName(), getMethod().getName())
+                log.warning(message);
             }                     
         }
         return arguments;
