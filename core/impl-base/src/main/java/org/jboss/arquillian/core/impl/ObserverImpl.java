@@ -85,18 +85,17 @@ public class ObserverImpl implements ObserverMethod, Comparable<ObserverMethod> 
             }
             method.invoke(target, arguments);
             return true;
-        } catch (Exception e) {
-            if (e instanceof InvocationTargetException) {
-                Throwable cause = ((InvocationTargetException) e).getTargetException();
-                // Exception already wrapped by another Observer down the chain.
-                if (cause instanceof InvocationException) {
-                    throw (InvocationException) cause;
-                }
-                throw new InvocationException(cause);
+        } catch (InvocationTargetException e) {
+            Throwable cause = e.getTargetException();
+            // Exception already wrapped by another Observer down the chain.
+            if (cause instanceof InvocationException) {
+                throw (InvocationException) cause;
             }
+            throw new InvocationException(cause);
+        } catch (Exception e) {
             throw new InvocationException(e);
         }
-    }
+    }    
 
     /* (non-Javadoc)
      * @see java.lang.Comparable#compareTo(java.lang.Object)
