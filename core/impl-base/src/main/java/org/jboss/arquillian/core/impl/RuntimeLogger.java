@@ -22,7 +22,7 @@ public class RuntimeLogger {
     void debugMethod(ObserverMethod method, boolean interceptor) {
         if (debugVar) {
             String m1 = "";
-            if (interceptor) m1 = String.format("%s (%s) %s.%s",
+            if (!log.toString().isEmpty()) m1 = String.format("%s (%s) %s.%s",
                     indent(),
                     interceptor ? "I" : "O",
                     method.getMethod().getDeclaringClass().getSimpleName(),
