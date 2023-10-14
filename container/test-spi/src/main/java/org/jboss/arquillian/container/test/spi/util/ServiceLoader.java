@@ -164,7 +164,7 @@ public class ServiceLoader<S> implements Iterable<S> {
             }
         }
     }
-    
+
     private void processURL(URL url) throws IOException {
             final InputStream is = url.openStream();
             final BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
@@ -200,28 +200,36 @@ public class ServiceLoader<S> implements Iterable<S> {
 
     public S createInstance(String line) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException,
         NoClassDefFoundError, InstantiationException, IllegalAccessException {
-        try {
-            Class<?> clazz = loader.loadClass(line);
-            Class<? extends S> serviceClass;
-            try {
-                serviceClass = clazz.asSubclass(expectedType);
-            } catch (ClassCastException e) {
-                throw new IllegalStateException(
-                    "Service " + line + " does not implement expected type " + expectedType.getName());
-            }
-            Constructor<? extends S> constructor = serviceClass.getConstructor();
-            if (!constructor.isAccessible()) {
-                constructor.setAccessible(true);
-            }
-            return constructor.newInstance();
-        } catch (NoClassDefFoundError e) {
-            throw e;
-        } catch (InstantiationException e) {
-            throw e;
-        } catch (IllegalAccessException e) {
-            throw e;
+    try {
+        Class<? extends S> serviceClass = getServiceClass(line);
+        Constructor<? extends S> constructor = serviceClass.getConstructor();
+        if (!constructor.isAccessible()) {
+            constructor.setAccessible(true);
         }
+        return constructor.newInstance();
+    } catch (NoClassDefFoundError | InstantiationException | IllegalAccessException e) {
+        throw e;
     }
+}
+
+private Class<? extends S> getServiceClass(String line) {
+    Class<?> clazz=null;
+    try {
+        clazz = loader.loadClass(line);
+    } catch (ClassNotFoundException e) {
+        e.getMessage();
+    }
+    try {
+        return clazz.asSubclass(expectedType);
+    } catch (ClassCastException e) {
+        throw new IllegalStateException(
+            "Service " + line + " does not implement expected type " + expectedType.getName());
+    }
+}
+
+    
+
+
 
     /**
      * Lazily loads the available providers of this loader's service.
