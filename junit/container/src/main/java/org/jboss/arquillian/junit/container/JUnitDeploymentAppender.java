@@ -36,7 +36,7 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 public class JUnitDeploymentAppender extends CachedAuxilliaryArchiveAppender {
     @Override
     protected Archive<?> buildArchive() {
-        JavaArchive archive = ShrinkWrap.create(JavaArchive.class, "arquillian-junit.jar")
+        return ShrinkWrap.create(JavaArchive.class, "arquillian-junit.jar")
             .addPackages(
                 true,
                 "junit",
@@ -53,6 +53,5 @@ public class JUnitDeploymentAppender extends CachedAuxilliaryArchiveAppender {
             .addAsServiceProvider(
                 JUnitClassRulesFilter.class,
                 ContainerClassRulesFilter.class);
-        return archive;
     }
 }
