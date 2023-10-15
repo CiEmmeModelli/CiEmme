@@ -205,7 +205,7 @@ public class ManagerImpl implements Manager {
         ApplicationContext context = (ApplicationContext) getScopedContext(ApplicationScoped.class);
         boolean activatedByUs = false;
         try {
-            if (!context.isActive()) {
+            if (!context.isActive() && context!=null) {
                 context.activate();
                 activatedByUs = true;
             }
