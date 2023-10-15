@@ -111,26 +111,25 @@ public class ManagerImpl implements Manager {
     @Override
     public <T> void fire(T event, NonManagedObserver<T> nonManagedObserver) {
         Validate.notNull(event, "Event must be specified");
-
+    
         runtimeLogger.debugMethod(event, true);
-        // we start fresh pr new event
+        // we start fresh for new event
         handledThrowables.get().clear();
-
+    
         List<ObserverMethod> observers = resolveObservers(event.getClass());
         List<ObserverMethod> interceptorObservers = resolveInterceptorObservers(event.getClass());
-
+    
         ApplicationContext context = (ApplicationContext) getScopedContext(ApplicationScoped.class);
         // We need to know if we were to the one to Activate it to avoid:
         // * nested ApplicationContexts
-        // * ending the scope to soon (to low in the stack)
+        // * ending the scope too soon (too low in the stack)
         boolean activatedApplicationContext = false;
         try {
-            if (!context.isActive() && context!=null) {
+            if (context != null) {
                 context.activate();
                 activatedApplicationContext = true;
             }
-            new EventContextImpl<T>(this, interceptorObservers, observers, nonManagedObserver, event,
-                runtimeLogger).proceed();
+            new EventContextImpl<T>(this, interceptorObservers, observers, nonManagedObserver, event, runtimeLogger).proceed();
         } catch (Exception e) {
             Throwable fireException = e;
             if (fireException instanceof InvocationException) {
@@ -143,11 +142,12 @@ public class ManagerImpl implements Manager {
             }
         } finally {
             runtimeLogger.debugMethod(event, false);
-            if (activatedApplicationContext && context.isActive()) {
+            if (activatedApplicationContext && context != null && context.isActive()) {
                 context.deactivate();
             }
         }
     }
+    
 
     @Override
     public <T> void bind(Class<? extends Annotation> scope, Class<T> type, T instance) {
@@ -205,17 +205,18 @@ public class ManagerImpl implements Manager {
         ApplicationContext context = (ApplicationContext) getScopedContext(ApplicationScoped.class);
         boolean activatedByUs = false;
         try {
-            if (!context.isActive() && context!=null) {
+            if (context != null && !context.isActive()) {
                 context.activate();
                 activatedByUs = true;
             }
             return callable.call();
         } finally {
-            if (activatedByUs && context.isActive()) {
+            if (activatedByUs && context != null && context.isActive()) {
                 context.deactivate();
             }
         }
     }
+    
 
     public List<Context> getContexts() {
         return Collections.unmodifiableList(contexts);
