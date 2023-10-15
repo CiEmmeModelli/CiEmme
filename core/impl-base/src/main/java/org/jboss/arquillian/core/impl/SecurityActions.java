@@ -221,7 +221,7 @@ final class SecurityActions {
                 }
                 // Just in case we've really messed up
                 catch (final ClassCastException cce) {
-                    throw new RuntimeException(UNCHECKED_EXCP ,t);
+                    throw new LoadException(UNCHECKED_EXCP ,t);
                 }
             }
         }
