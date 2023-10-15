@@ -181,7 +181,7 @@ public class JavaSPIExtensionLoader implements ExtensionLoader {
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException("Could not load services for " + serviceClass.getName(), e);
+            throw new MyCustomException("Could not load services for " + serviceClass.getName(), e);
         }
         return providers;
     }
