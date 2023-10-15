@@ -290,17 +290,17 @@ public class ManagerImpl implements Manager {
     //-------------------------------------------------------------------------------------||
 
     public void fireProcessing() throws Exception {
-        final Set<Class<?>> extensions = new HashSet<Class<?>>();
+        final Set<Class<?>> extensionsLocal = new HashSet<Class<?>>();
         final Set<Class<? extends Context>> contexts = new HashSet<Class<? extends Context>>();
         fire(new ManagerProcessing() {
             @Override
             public ManagerProcessing observer(Class<?> observer) {
-                if (extensions.contains(observer)) {
+                if (extensionsLocal.contains(observer)) {
                     throw new IllegalArgumentException(
                         "Attempted to register the same Observer: " + observer.getName()
                             + " multiple times, please check classpath for conflicting jar versions");
                 }
-                extensions.add(observer);
+                extensionsLocal.add(observer);
                 return this;
             }
 
@@ -316,7 +316,7 @@ public class ManagerImpl implements Manager {
             }
         });
 
-        this.extensions.addAll(createExtensions(extensions));
+        this.extensions.addAll(createExtensions(extensionsLocal));
         this.contexts.addAll(createContexts(contexts));
     }
 
