@@ -36,7 +36,7 @@ import java.util.List;
  */
 final class SecurityActions {
 
-    private final static String UNCHECKED_EXCP="Obtained unchecked Exception; this code should never be reached";
+    private static final  String UNCHECKED_EXCP="Obtained unchecked Exception; this code should never be reached";
     //-------------------------------------------------------------------------------||
     // Constructor ------------------------------------------------------------------||
     //-------------------------------------------------------------------------------||
