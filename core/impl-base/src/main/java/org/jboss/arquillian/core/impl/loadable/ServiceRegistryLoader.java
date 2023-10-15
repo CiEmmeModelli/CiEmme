@@ -78,6 +78,7 @@ public class ServiceRegistryLoader implements ServiceLoader {
         try {
             one = onlyOne(serviceClass);
         } catch (Exception e) {
+            e.getMessage();
         }
 
         if (one == null) {
