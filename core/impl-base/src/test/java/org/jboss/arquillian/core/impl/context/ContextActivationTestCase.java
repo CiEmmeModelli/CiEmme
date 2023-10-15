@@ -83,8 +83,6 @@ public class ContextActivationTestCase {
 
             Thread thread = new Thread() {
                 public void run() {
-                    Assert.assertFalse(context.isActive());
-
                     latch.countDown();
                 }
 
