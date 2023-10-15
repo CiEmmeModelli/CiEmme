@@ -160,7 +160,6 @@ final class Reflections {
                 if (Reflections.getScope(field) != null) {
                     return true;
                 } else {
-                    // TODO: join extension validation points.
                     throw new RuntimeException("A InjectionPoint of type "
                         + InstanceProducer.class.getName()
                         + " must define a "
