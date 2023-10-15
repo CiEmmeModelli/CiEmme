@@ -5,4 +5,8 @@ public class CreateException extends RuntimeException{
         super();
     }
 
+    public CreateException(String string) {
+        super(string);
+    }
+
 }

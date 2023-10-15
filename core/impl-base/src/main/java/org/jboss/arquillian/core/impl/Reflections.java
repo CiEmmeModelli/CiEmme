@@ -160,7 +160,7 @@ final class Reflections {
                 if (Reflections.getScope(field) != null) {
                     return true;
                 } else {
-                    throw new RuntimeException("A InjectionPoint of type "
+                    throw new CreateException("A InjectionPoint of type "
                         + InstanceProducer.class.getName()
                         + " must define a "
                         + Scope.class.getName()
