@@ -6,4 +6,8 @@ public class LoadExcp extends RuntimeException{
         super(string,e2);
     }
 
+    public LoadExcp(String string) {
+        super(string);
+    }
+
 }
