@@ -111,7 +111,7 @@ public class JavaSPIExtensionLoader implements ExtensionLoader {
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException("Could not load exclusions from " + EXCLUSIONS, e);
+            throw new MyCustomException("Could not load exclusions from " + EXCLUSIONS, e);
         }
 
         return vetoed;
