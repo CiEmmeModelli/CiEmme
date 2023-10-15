@@ -272,38 +272,33 @@ public List<Method> run() {
 }
 
 
-    static String getProperty(final String key) {
-        try {
-            String value = AccessController.doPrivileged(new PrivilegedExceptionAction<String>() {
-                public String run() {
-                    return System.getProperty(key);
-                }
-            });
-            return value;
-        }
-        // Unwrap
-        catch (final PrivilegedActionException pae) {
-            final Throwable t = pae.getCause();
-            // Rethrow
-            if (t instanceof SecurityException) {
-                throw (SecurityException) t;
+static String getProperty(final String key) {
+    try {
+        return AccessController.doPrivileged(new PrivilegedExceptionAction<String>() {
+            public String run() {
+                return System.getProperty(key);
             }
-            if (t instanceof NullPointerException) {
-                throw (NullPointerException) t;
-            } else if (t instanceof IllegalArgumentException) {
-                throw (IllegalArgumentException) t;
-            } else {
-                // No other checked Exception thrown by System.getProperty
-                try {
-                    throw (RuntimeException) t;
-                }
-                // Just in case we've really messed up
-                catch (final ClassCastException cce) {
-                    throw new RuntimeException(UNCK_EXCP, t);
-                }
+        });
+    } catch (final PrivilegedActionException pae) {
+        final Throwable t = pae.getCause();
+        if (t instanceof SecurityException) {
+            throw (SecurityException) t;
+        }
+        if (t instanceof NullPointerException) {
+            throw (NullPointerException) t;
+        } else if (t instanceof IllegalArgumentException) {
+            throw (IllegalArgumentException) t;
+        } else {
+            // No other checked Exception thrown by System.getProperty
+            try {
+                throw (RuntimeException) t;
+            } catch (final ClassCastException cce) {
+                throw new RuntimeException(UNCK_EXCP, t);
             }
         }
     }
+}
+
 
     private static Collection<Method> filterBridgeMethods(Method... declaredMethods) {
         final List<Method> nonBridgeMethods = new ArrayList<Method>(declaredMethods.length);
