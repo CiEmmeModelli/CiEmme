@@ -25,7 +25,7 @@ package org.jboss.arquillian.core.api.event;
  */
 public class ManagerStopping {
     private String x;
-    private ManagerStopping (){
+    public ManagerStopping (){
         this.x=null;
     }
     

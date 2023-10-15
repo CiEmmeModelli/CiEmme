@@ -92,7 +92,7 @@ public class ManagerImpl implements Manager {
             fireProcessing();
             addContextsToApplicationScope();
         } catch (Exception e) {
-            throw new RuntimeException("Could not create and process manager", e);
+            throw new ProcessException("Could not create and process manager", e);
         }
     }
 
