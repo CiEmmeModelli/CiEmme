@@ -119,7 +119,7 @@ public class LoadableExtensionLoader {
             loaders = serviceLoader.all(LoadableExtensionLoader.class.getClassLoader(), ExtensionLoader.class);
         }
         if (loaders.size() > 1) {
-            throw new RuntimeException("Multiple ExtensionLoader's found on classpath: " + toString(loaders));
+            throw new MultipleException("Multiple ExtensionLoader's found on classpath: " + toString(loaders));
         }
         if (loaders.size() == 1) {
             return loaders.iterator().next();
