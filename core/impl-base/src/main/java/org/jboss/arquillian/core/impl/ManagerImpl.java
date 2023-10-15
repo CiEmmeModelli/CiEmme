@@ -402,19 +402,23 @@ public class ManagerImpl implements Manager {
         return created;
     }
 
-    private void createBuiltInServices() throws Exception {
+    private void createBuiltInServices() throws ServiceException {
         final ApplicationContext context = new ApplicationContextImpl();
         contexts.add(context);
-        executeInApplicationContext(new Callable<Object>() {
-            @Override
-            public Object call() throws Exception {
-                ManagerImpl.this.bind(
-                    ApplicationScoped.class, Injector.class, InjectorImpl.of(ManagerImpl.this));
-                ManagerImpl.this.bind(
-                    ApplicationScoped.class, ExecutorService.class, new ThreadedExecutorService(ManagerImpl.this));
-                return null;
-            }
-        });
+        try {
+            executeInApplicationContext(new Callable<Object>() {
+                @Override
+                public Object call() throws Exception {
+                    ManagerImpl.this.bind(
+                        ApplicationScoped.class, Injector.class, InjectorImpl.of(ManagerImpl.this));
+                    ManagerImpl.this.bind(
+                        ApplicationScoped.class, ExecutorService.class, new ThreadedExecutorService(ManagerImpl.this));
+                    return null;
+                }
+            });
+        } catch (Exception e) {
+            e.getMessage();
+        }
     }
 
     /**
