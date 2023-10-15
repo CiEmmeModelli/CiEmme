@@ -74,7 +74,7 @@ final class SecurityActions {
             try {
                 return Class.forName(className, true, SecurityActions.class.getClassLoader());
             } catch (ClassNotFoundException e2) {
-                throw new RuntimeException("Could not load class " + className, e2);
+                throw new LoadExcp("Could not load class " + className, e2);
             }
         }
     }
