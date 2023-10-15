@@ -425,19 +425,23 @@ public class ManagerImpl implements Manager {
      * @param objectStore
      */
     @SuppressWarnings("unchecked")
-    private void addContextsToApplicationScope() throws Exception {
-        executeInApplicationContext(new Callable<Void>() {
-            @Override
-            public Void call() throws Exception {
-                ApplicationContext appContext = getContext(ApplicationContext.class);
-                ObjectStore store = appContext.getObjectStore();
+    private void addContextsToApplicationScope() throws ServiceException {
+        try {
+            executeInApplicationContext(new Callable<Void>() {
+                @Override
+                public Void call() throws Exception {
+                    ApplicationContext appContext = getContext(ApplicationContext.class);
+                    ObjectStore store = appContext.getObjectStore();
 
-                for (Context context : contexts) {
-                    store.add((Class<Context>) context.getClass().getInterfaces()[0], context);
+                    for (Context context : contexts) {
+                        store.add((Class<Context>) context.getClass().getInterfaces()[0], context);
+                    }
+                    return null;
                 }
-                return null;
-            }
-        });
+            });
+        } catch (Exception e) {
+            e.getMessage();
+        }
     }
 
     /**
