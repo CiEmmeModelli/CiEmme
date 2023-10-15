@@ -291,7 +291,7 @@ public class ManagerImpl implements Manager {
 
     public void fireProcessing() throws Exception {
         final Set<Class<?>> extensionsLocal = new HashSet<Class<?>>();
-        final Set<Class<? extends Context>> contexts = new HashSet<Class<? extends Context>>();
+        final Set<Class<? extends Context>> contextsLocal = new HashSet<Class<? extends Context>>();
         fire(new ManagerProcessing() {
             @Override
             public ManagerProcessing observer(Class<?> observer) {
@@ -306,18 +306,18 @@ public class ManagerImpl implements Manager {
 
             @Override
             public ManagerProcessing context(Class<? extends Context> context) {
-                if (contexts.contains(context)) {
+                if (contextsLocal.contains(context)) {
                     throw new IllegalArgumentException(
                         "Attempted to register the same " + Context.class.getSimpleName() + " : " + context.getName()
                             + " multiple times, please check classpath for conflicting jar versions");
                 }
-                contexts.add(context);
+                contextsLocal.add(context);
                 return this;
             }
         });
 
         this.extensions.addAll(createExtensions(extensionsLocal));
-        this.contexts.addAll(createContexts(contexts));
+        this.contexts.addAll(createContexts(contextsLocal));
     }
 
     public void addExtension(Class<?> extensionClass) throws Exception {
