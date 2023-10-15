@@ -34,22 +34,25 @@ import org.jboss.arquillian.core.spi.LoadableExtension;
 import org.jboss.arquillian.core.spi.Validate;
 
 /**
- * ServiceLoader implementation that use META-INF/services/interface files to registered Services.
+ * ServiceLoader implementation that use META-INF/services/interface files to
+ * registered Services.
  *
  * @author <a href="mailto:aslak@conduct.no">Aslak Knutsen</a>
  * @version $Revision: $
  */
 public class JavaSPIExtensionLoader implements ExtensionLoader {
-    //-------------------------------------------------------------------------------------||
-    // Class Members ----------------------------------------------------------------------||
-    //-------------------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+    // Class Members
+    // ----------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
     private static final String SERVICES = "META-INF/services";
     private static final String EXCLUSIONS = "META-INF/exclusions";
 
-    //-------------------------------------------------------------------------------------||
-    // Required Implementations - ExtensionLoader -----------------------------------------||
-    //-------------------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+    // Required Implementations - ExtensionLoader
+    // -----------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
     @Override
     public Collection<LoadableExtension> load() {
@@ -61,23 +64,27 @@ public class JavaSPIExtensionLoader implements ExtensionLoader {
         return loadVetoed(JavaSPIExtensionLoader.class.getClassLoader());
     }
 
-    //-------------------------------------------------------------------------------------||
-    // General JDK SPI Loader -------------------------------------------------------------||
-    //-------------------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+    // General JDK SPI Loader
+    // -------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
     public <T> Collection<T> all(ClassLoader classLoader, Class<T> serviceClass) {
         Validate.notNull(classLoader, "ClassLoader must be provided");
         Validate.notNull(serviceClass, "ServiceClass must be provided");
 
         return createInstances(
-            serviceClass,
-            load(serviceClass, classLoader));
+                serviceClass,
+                load(serviceClass, classLoader));
     }
 
     /**
-     * This method first finds all files that are in claspath placed at META-INF/exclusions
-     * Each of this file has a name that represents the service type that needs to veto.
-     * The content of this file is a list of real implementations that you want to veto.
+     * This method first finds all files that are in claspath placed at
+     * META-INF/exclusions
+     * Each of this file has a name that represents the service type that needs to
+     * veto.
+     * The content of this file is a list of real implementations that you want to
+     * veto.
      *
      * @return List of vetos
      */
@@ -107,7 +114,7 @@ public class JavaSPIExtensionLoader implements ExtensionLoader {
                         addVetoedClasses(service, serviceImpls, classLoader, vetoed);
                     }
                 } finally {
-                        inStream.close();
+                    inStream.close();
                 }
             }
         } catch (IOException e) {
@@ -117,12 +124,13 @@ public class JavaSPIExtensionLoader implements ExtensionLoader {
         return vetoed;
     }
 
-    //-------------------------------------------------------------------------------------||
-    // Internal Helper Methods - Service Loading ------------------------------------------||
-    //-------------------------------------------------------------------------------------||
+    // -------------------------------------------------------------------------------------||
+    // Internal Helper Methods - Service Loading
+    // ------------------------------------------||
+    // -------------------------------------------------------------------------------------||
 
     private void addVetoedClasses(String serviceName, String serviceImpls, ClassLoader classLoader,
-        Map<Class<?>, Set<Class<?>>> vetoed) {
+            Map<Class<?>, Set<Class<?>>> vetoed) {
         try {
             final Class<?> serviceClass = classLoader.loadClass(serviceName);
             final Set<Class<?>> classes = loadVetoedServiceImpl(serviceImpls, classLoader);
@@ -156,18 +164,20 @@ public class JavaSPIExtensionLoader implements ExtensionLoader {
 
     private <T> Set<Class<? extends T>> load(Class<T> serviceClass, ClassLoader loader) {
         String serviceFile = SERVICES + "/" + serviceClass.getName();
-    
+
         Set<Class<? extends T>> providers = new LinkedHashSet<Class<? extends T>>();
         Set<Class<? extends T>> vetoedProviders = new LinkedHashSet<Class<? extends T>>();
-    
+
         try {
             Enumeration<URL> enumeration = loader.getResources(serviceFile);
             while (enumeration.hasMoreElements()) {
                 final URL url = enumeration.nextElement();
                 final InputStream is = url.openStream();
-    
+
                 try (BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"))) {
                     loadProviders(serviceClass, loader, reader, providers, vetoedProviders);
+                } finally {
+                    is.close();
                 }
             }
         } catch (IOException e) {
@@ -175,44 +185,41 @@ public class JavaSPIExtensionLoader implements ExtensionLoader {
         }
         return providers;
     }
-    
-    private <T> void loadProviders(Class<T> serviceClass, ClassLoader loader, BufferedReader reader, Set<Class<? extends T>> providers, Set<Class<? extends T>> vetoedProviders) throws IOException {
+
+    private <T> void loadProviders(Class<T> serviceClass, ClassLoader loader, BufferedReader reader,
+            Set<Class<? extends T>> providers, Set<Class<? extends T>> vetoedProviders) throws IOException {
         String line;
         while ((line = reader.readLine()) != null) {
             line = skipCommentAndTrim(line);
-    
+
             if (line.length() > 0) {
                 processProviderLine(serviceClass, loader, line, providers, vetoedProviders);
             }
         }
     }
-    
-    private <T> void processProviderLine(Class<T> serviceClass, ClassLoader loader, String line, Set<Class<? extends T>> providers, Set<Class<? extends T>> vetoedProviders) {
+
+    private <T> void processProviderLine(Class<T> serviceClass, ClassLoader loader, String line,
+            Set<Class<? extends T>> providers, Set<Class<? extends T>> vetoedProviders) {
         boolean mustBeVetoed = line.startsWith("!");
         if (mustBeVetoed) {
             line = line.substring(1);
         }
-    
+
         try {
             Class<? extends T> provider = loader.loadClass(line).asSubclass(serviceClass);
-    
+
             if (mustBeVetoed) {
                 vetoedProviders.add(provider);
             }
-    
+
             if (!vetoedProviders.contains(provider)) {
                 providers.add(provider);
             }
         } catch (ClassNotFoundException | ClassCastException e) {
-            throw new IllegalStateException("Service " + line + " does not implement expected type " + serviceClass.getName(), e);
+            throw new IllegalStateException(
+                    "Service " + line + " does not implement expected type " + serviceClass.getName(), e);
         }
     }
-    
-    // private String skipCommentAndTrim(String line) {
-    //     // Implement your skipCommentAndTrim logic here
-    //     return line;
-    // }
-    
 
     private String skipCommentAndTrim(String line) {
         final int comment = line.indexOf('#');
@@ -238,23 +245,23 @@ public class JavaSPIExtensionLoader implements ExtensionLoader {
      * Verifies that the found ServiceImpl implements Service.
      *
      * @param serviceType
-     *     The Service interface
+     *                    The Service interface
      * @param className
-     *     The name of the implementation class
+     *                    The name of the implementation class
      * @param loader
-     *     The ClassLoader to load the ServiceImpl from
+     *                    The ClassLoader to load the ServiceImpl from
      *
      * @return A new instance of the ServiceImpl
      *
      * @throws Exception
-     *     If problems creating a new instance
+     *                   If problems creating a new instance
      */
     private <T> T createInstance(Class<? extends T> serviceImplClass) {
         try {
             return SecurityActions.newInstance(serviceImplClass, new Class<?>[0], new Object[0]);
         } catch (Exception e) {
             throw new RuntimeException(
-                "Could not create a new instance of Service implementation " + serviceImplClass.getName(), e);
+                    "Could not create a new instance of Service implementation " + serviceImplClass.getName(), e);
         }
     }
 }
