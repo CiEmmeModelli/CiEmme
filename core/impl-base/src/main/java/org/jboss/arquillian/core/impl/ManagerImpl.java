@@ -290,7 +290,7 @@ public class ManagerImpl implements Manager {
     // Internal Helper Methods ------------------------------------------------------------||
     //-------------------------------------------------------------------------------------||
 
-    public void fireProcessing() throws Exception {
+    public void fireProcessing() throws ProcessException {
         final Set<Class<?>> extensionsLocal = new HashSet<Class<?>>();
         final Set<Class<? extends Context>> contextsLocal = new HashSet<Class<? extends Context>>();
         fire(new ManagerProcessing() {
