@@ -68,6 +68,7 @@ public interface LoadableExtension {
     }
 
     public static class Validate {
+        private Validate(){}
         public static boolean classExists(String className) {
             try {
                 Class.forName(className);
