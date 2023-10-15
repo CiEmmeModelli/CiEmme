@@ -115,7 +115,7 @@ public class LoadableExtensionLoader {
         if (SecurityActions.getThreadContextClassLoader() != null) {
             loaders = serviceLoader.all(SecurityActions.getThreadContextClassLoader(), ExtensionLoader.class);
         }
-        if (loaders.size() == 0) {
+        if (loaders.isEmpty()) {
             loaders = serviceLoader.all(LoadableExtensionLoader.class.getClassLoader(), ExtensionLoader.class);
         }
         if (loaders.size() > 1) {
