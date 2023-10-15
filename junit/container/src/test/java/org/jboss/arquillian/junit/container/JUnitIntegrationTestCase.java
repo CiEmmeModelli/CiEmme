@@ -32,7 +32,7 @@ public class JUnitIntegrationTestCase extends JUnitTestBaseClass {
         executeAllLifeCycles(adaptor);
 
         // when
-        Result result = run(adaptor, ClassWithArquillianRunnerWithRules.class);
+       Result result = run(adaptor, ClassWithArquillianRunnerWithRules.class);
 
         // then
         Assert.assertTrue(result.wasSuccessful());

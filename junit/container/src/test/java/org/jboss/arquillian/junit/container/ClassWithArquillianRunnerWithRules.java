@@ -1,6 +1,7 @@
 package org.jboss.arquillian.junit.container;
 
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.junit.container.JUnitTestBaseClass.Cycle;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assume;
@@ -20,7 +21,8 @@ import static org.jboss.arquillian.junit.container.JUnitTestBaseClass.Cycle;
 import static org.jboss.arquillian.junit.container.JUnitTestBaseClass.wasCalled;
 
 @RunWith(Arquillian.class)
-public class ClassWithArquillianRunnerWithRules {
+@SuppressWarnings("java:S3577")
+public class ClassWithArquillianRunnerWithRules{
 
     @ClassRule
     public static TestRule classRule = new TestRule() {
