@@ -125,7 +125,7 @@ public class ManagerImpl implements Manager {
         // * ending the scope to soon (to low in the stack)
         boolean activatedApplicationContext = false;
         try {
-            if (!context.isActive()) {
+            if (!context.isActive() && context!=null) {
                 context.activate();
                 activatedApplicationContext = true;
             }
