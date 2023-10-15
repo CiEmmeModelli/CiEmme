@@ -14,4 +14,8 @@ public class LoadExcp extends RuntimeException{
         super(string,e);
     }
 
+    public LoadExcp(String string, Throwable t) {
+        super(string,t);
+    }
+
 }
