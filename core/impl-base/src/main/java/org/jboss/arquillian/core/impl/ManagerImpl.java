@@ -355,7 +355,6 @@ public class ManagerImpl implements Manager {
                     runtimeLogger.debugMethod(observer, false);
                     observer.invoke(this, event);
                 } catch (Exception e) {
-                    // getCause(InocationTargetException).getCause(RealCause);
                     Throwable toBeFired = e.getCause();
                     // same type of exception being fired as caught and is the last observer, throw to avoid loop
                     if (toBeFired.getClass() == event.getClass()) {
