@@ -380,7 +380,7 @@ public class ManagerImpl implements Manager {
      * @param extensions
      * @return
      */
-    private List<Extension> createExtensions(Collection<Class<?>> extensionClasses) throws Exception {
+    private List<Extension> createExtensions(Collection<Class<?>> extensionClasses) throws ProcessException {
         List<Extension> created = new ArrayList<Extension>();
         for (Class<?> extensionClass : extensionClasses) {
             Extension extension = ExtensionImpl.of(Reflections.createInstance(extensionClass));
@@ -395,7 +395,7 @@ public class ManagerImpl implements Manager {
      * @param contexts2
      * @return
      */
-    private List<Context> createContexts(Collection<Class<? extends Context>> contextClasses) throws Exception {
+    private List<Context> createContexts(Collection<Class<? extends Context>> contextClasses) throws ProcessException {
         List<Context> created = new ArrayList<Context>();
         for (Class<? extends Context> contextClass : contextClasses) {
             created.add(Reflections.createInstance(contextClass));
