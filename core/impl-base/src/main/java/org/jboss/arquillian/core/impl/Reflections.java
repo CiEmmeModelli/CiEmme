@@ -100,7 +100,6 @@ final class Reflections {
         }
         return null;
     }
-
     public static <T> T createInstance(Class<T> clazz) throws CreateException {
         return SecurityActions.newInstance(clazz, new Class<?>[0], new Object[0]);
     }
