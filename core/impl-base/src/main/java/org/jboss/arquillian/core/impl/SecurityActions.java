@@ -287,7 +287,7 @@ static String getProperty(final String key) {
         } else if (t instanceof Error) {
             throw (Error) t;
         } else {
-            throw new RuntimeException("Unclassified exception", t);
+            throw new LoadException("Unclassified exception", t);
         }
     }
 }
