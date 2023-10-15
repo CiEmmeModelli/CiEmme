@@ -319,6 +319,7 @@ static String getProperty(final String key) {
     /**
      * Single instance to get the TCCL
      */
+    @SuppressWarnings("java:S6548")
     private enum GetTcclAction implements PrivilegedAction<ClassLoader>
 
     {
