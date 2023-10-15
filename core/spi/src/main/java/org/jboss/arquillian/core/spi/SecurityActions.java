@@ -293,7 +293,7 @@ static String getProperty(final String key) {
             try {
                 throw (RuntimeException) t;
             } catch (final ClassCastException cce) {
-                throw new RuntimeException(UNCK_EXCP, t);
+                throw new LoadExcp(UNCK_EXCP, t);
             }
         }
     }
