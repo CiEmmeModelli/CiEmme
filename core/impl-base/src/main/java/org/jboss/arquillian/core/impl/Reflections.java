@@ -177,19 +177,13 @@ final class Reflections {
      * @return
      */
     private static boolean isObserverMethod(Method method) {
-        if (method.getParameterTypes().length < 1 || method.getParameterAnnotations().length < 1) {
+        if (method.getParameterTypes().length < 1 || method.getParameterAnnotations().length < 1 || method.isBridge()) {
             return false;
         }
-
-        if (method.isBridge()) {
-            return false;
-        }
-
-        if (containsAnnotation(Observes.class, method.getParameterAnnotations()[0])) {
-            return true;
-        }
-        return false;
+    
+        return containsAnnotation(Observes.class, method.getParameterAnnotations()[0]);
     }
+    
 
     /**
      * @param annotations
