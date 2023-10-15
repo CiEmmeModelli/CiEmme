@@ -142,7 +142,7 @@ public class ManagerImpl implements Manager {
             }
         } finally {
             runtimeLogger.debugMethod(event, false);
-            if (activatedApplicationContext && context != null && context.isActive()) {
+            if (activatedApplicationContext && context.isActive()) {
                 context.deactivate();
             }
         }
@@ -211,7 +211,7 @@ public class ManagerImpl implements Manager {
             }
             return callable.call();
         } finally {
-            if (activatedByUs && context != null && context.isActive()) {
+            if (activatedByUs && context.isActive()) {
                 context.deactivate();
             }
         }
