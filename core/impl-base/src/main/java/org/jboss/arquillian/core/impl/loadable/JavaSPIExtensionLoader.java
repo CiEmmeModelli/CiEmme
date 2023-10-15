@@ -74,7 +74,6 @@ public class JavaSPIExtensionLoader implements ExtensionLoader {
         Validate.notNull(serviceClass, "ServiceClass must be provided");
 
         return createInstances(
-                serviceClass,
                 load(serviceClass, classLoader));
     }
 
@@ -231,7 +230,7 @@ public class JavaSPIExtensionLoader implements ExtensionLoader {
         return line;
     }
 
-    private <T> Set<T> createInstances(Class<T> serviceType, Set<Class<? extends T>> providers) {
+    private <T> Set<T> createInstances(Set<Class<? extends T>> providers) {
         Set<T> providerImpls = new LinkedHashSet<T>();
         for (Class<? extends T> serviceClass : providers) {
             providerImpls.add(createInstance(serviceClass));
