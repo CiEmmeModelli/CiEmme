@@ -466,10 +466,8 @@ public class ManagerImpl implements Manager {
         List<ObserverMethod> observers = new ArrayList<ObserverMethod>();
         for (Extension extension : extensions) {
             for (ObserverMethod observer : extension.getObservers()) {
-                if (Reflections.isType(observer.getType(), EventContext.class)) {
-                    if (Reflections.getType(observer.getType()).isAssignableFrom(eventType)) {
+                if (Reflections.isType(observer.getType(), EventContext.class)&& Reflections.getType(observer.getType()).isAssignableFrom(eventType)) {
                         observers.add(observer);
-                    }
                 }
             }
         }
