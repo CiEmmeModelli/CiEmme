@@ -34,10 +34,8 @@ abstract class MethodInvoker {
         });
         Throwable throwable = result.getThrowable();
         if (throwable != null) {
-            if (result.getStatus() == TestResult.Status.SKIPPED) {
-                if (throwable instanceof SkippedTestExecutionException) {
+            if (result.getStatus() == TestResult.Status.SKIPPED && throwable instanceof SkippedTestExecutionException) {
                     result.setThrowable(new AssumptionViolatedException(throwable.getMessage()));
-                }
             }
             throw result.getThrowable();
         }
