@@ -298,7 +298,7 @@ public class Arquillian extends BlockJUnit4ClassRunner {
                 }
             };
         } catch (Exception e) {
-            throw new RuntimeException("Could not create statement", e);
+            throw new TestClassException("Could not create statement", e);
         }
     }
     private void exceptionJunit(Statement stmtWithLifecycle) throws Throwable{

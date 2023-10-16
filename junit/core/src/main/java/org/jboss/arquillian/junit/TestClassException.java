@@ -6,4 +6,8 @@ public class TestClassException extends RuntimeException{
         super(format);
     }
 
+    public TestClassException(String string, Exception e) {
+        super(string,e);
+    }
+
 }
