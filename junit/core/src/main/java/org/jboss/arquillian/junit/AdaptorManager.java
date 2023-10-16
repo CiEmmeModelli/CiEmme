@@ -12,7 +12,6 @@ abstract class AdaptorManager {
             // to do anything else
             if (State.hasInitializationException()) {
                 // failed on suite level, ignore children
-                // notifier.fireTestIgnored(getFailureDescription());
                 handleSuiteLevelFailure(State.getInitializationException());
             } else {
                 try {
