@@ -49,7 +49,7 @@ abstract class AdaptorManager {
             }
             setAdaptor(null);
         } catch (Exception e) {
-            throw new RuntimeException("Could not run @AfterSuite", e);
+            throw new RunException("Could not run @AfterSuite", e);
         }
     }
 
