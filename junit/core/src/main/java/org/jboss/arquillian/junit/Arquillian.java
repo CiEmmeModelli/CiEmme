@@ -361,8 +361,11 @@ public class Arquillian extends BlockJUnit4ClassRunner {
     private static class EmptyStatement extends Statement {
         @Override
         public void evaluate() throws Throwable {
+            // This method intentionally left empty because there's nothing to evaluate.
+            // It satisfies the interface requirement.
         }
     }
+    
 
     private static class StatementLifecycleExecutor implements LifecycleMethodExecutor {
         private Statement statement;
