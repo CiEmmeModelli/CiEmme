@@ -274,12 +274,7 @@ public class Arquillian extends BlockJUnit4ClassRunner {
                                 }));
                         // If AroundRules (includes lifecycles) were not executed, invoke only lifecycles+test
                         if (integer.get() == 0) {
-                            try {
-                                stmtWithLifecycle.evaluate();
-                            } catch (Throwable t) {
-                                State.caughtExceptionAfterJunit(t);
-                                throw t;
-                            }
+                            exceptionJunit(stmtWithLifecycle);
                         }
                     } catch (Throwable t) {
                         State.caughtExceptionAfterJunit(t);
@@ -305,6 +300,15 @@ public class Arquillian extends BlockJUnit4ClassRunner {
         } catch (Exception e) {
             throw new RuntimeException("Could not create statement", e);
         }
+    }
+    private void exceptionJunit(Statement stmtWithLifecycle) throws Throwable{
+        try {
+            stmtWithLifecycle.evaluate();
+            } catch (Throwable t) {
+             State.caughtExceptionAfterJunit(t);
+             throw t;
+             }
+
     }
 
     @Override
