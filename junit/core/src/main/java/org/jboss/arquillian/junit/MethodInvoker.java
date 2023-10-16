@@ -40,6 +40,7 @@ abstract class MethodInvoker {
             throw result.getThrowable();
         }
     }
-
+    
+    @SuppressWarnings("java:S112")
     abstract void invokeMethod(Object... parameters) throws Throwable;
 }
