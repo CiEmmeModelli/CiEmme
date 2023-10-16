@@ -75,7 +75,7 @@ public class Arquillian extends BlockJUnit4ClassRunner {
     @Override
     public void run(final RunNotifier notifier) {
         if (State.hasAnyArquillianRule(this.getTestClass())) {
-            throw new RuntimeException(String.format("TestClass: %s contains Arquillian runner and Arquillian Rule."
+            throw new TestClassException(String.format("TestClass: %s contains Arquillian runner and Arquillian Rule."
                 + " Arquillian doesn't support @RunWith(Arquillian.class) and ArquillianTestClass or "
                     + "ArquillianTest to use at the same time. You have to decide whether you want use runner:"
                     + " http://arquillian.org/arquillian-core/#how-it-works or rules : http://arquillian.org/arquillian-core/#_how_to_use_it",
