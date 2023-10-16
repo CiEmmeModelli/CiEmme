@@ -8,6 +8,7 @@ import org.jboss.arquillian.test.spi.execution.SkippedTestExecutionException;
 import org.junit.internal.AssumptionViolatedException;
 import org.junit.runners.model.FrameworkMethod;
 
+@SuppressWarnings("java:S112")
 abstract class MethodInvoker {
 
     void invoke(final TestRunnerAdaptor adaptor, final FrameworkMethod method,
