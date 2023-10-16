@@ -6,4 +6,8 @@ public class RunException extends RuntimeException{
         super(string,e);
     }
 
+    public RunException(String exceptionMessage) {
+        super (exceptionMessage);
+    }
+
 }

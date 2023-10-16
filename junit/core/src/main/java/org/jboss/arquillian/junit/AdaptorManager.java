@@ -55,6 +55,7 @@ abstract class AdaptorManager {
 
     protected abstract void handleSuiteLevelFailure(Throwable initializationException);
 
+    @SuppressWarnings("java:S112")
     protected abstract void handleBeforeSuiteFailure(Exception e) throws Exception;
 
     protected abstract void setAdaptor(TestRunnerAdaptor testRunnerAdaptor);
