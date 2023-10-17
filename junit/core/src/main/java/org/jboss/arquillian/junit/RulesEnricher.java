@@ -59,7 +59,7 @@ public class RulesEnricher {
     public void enrichRulesAndTestInstance(@Observes RulesEnrichment event) throws EnrichException {
         Object testInstance = event.getTestInstance();
         List<Object> toEnrich = getRuleInstances(testInstance);
-        if (toEnrich != null && !toEnrich.isEmpty()) { // Modificato il controllo
+        if (!toEnrich.isEmpty()) { // Modificato il controllo
             toEnrich.add(testInstance);
             enrichInstances(toEnrich);
         }
