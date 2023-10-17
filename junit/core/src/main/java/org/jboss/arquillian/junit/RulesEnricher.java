@@ -105,7 +105,7 @@ public class RulesEnricher {
                 SecurityActions.getMethodsWithAnnotation(testInstance.getClass(), Rule.class);
             if (methodsWithAnnotation.isEmpty()) {
                 // there isn't any rule in the test class
-                return null;
+                return ruleInstances;
             } else {
                 log.warning("Please note that methods annotated with @Rule are not fully supported in Arquillian. "
                     + "Specifically, if you want to enrich a field in your Rule implementation class.");
