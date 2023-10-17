@@ -56,15 +56,15 @@ public class RulesEnricher {
     @Inject
     private Event<EnrichmentEvent> enrichmentEvent;
 
-    public void enrichRulesAndTestInstance(@Observes RulesEnrichment event) throws Exception {
+    public void enrichRulesAndTestInstance(@Observes RulesEnrichment event) throws EnrichException {
         Object testInstance = event.getTestInstance();
         List<Object> toEnrich = getRuleInstances(testInstance);
-        if (toEnrich == null) {
-            return;
+        if (toEnrich != null && !toEnrich.isEmpty()) { // Modificato il controllo
+            toEnrich.add(testInstance);
+            enrichInstances(toEnrich);
         }
-        toEnrich.add(testInstance);
-        enrichInstances(toEnrich);
     }
+    
 
     public void enrichStatement(@Observes BeforeRules event) throws EnrichException {
         List<Object> toEnrich = new ArrayList<Object>();
