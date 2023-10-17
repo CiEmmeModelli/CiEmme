@@ -95,7 +95,7 @@ public class RulesEnricher {
     /**
      * Retrieves instances of the TestRule and MethodRule classes
      */
-    private List<Object> getRuleInstances(Object testInstance) throws Exception {
+    private List<Object> getRuleInstances(Object testInstance) throws EnrichException {
         List<Object> ruleInstances = new ArrayList<Object>();
 
         List<Field> fieldsWithRuleAnnotation =
@@ -114,10 +114,16 @@ public class RulesEnricher {
             }
         } else {
             for (Field field : fieldsWithRuleAnnotation) {
-                Object fieldInstance = field.get(testInstance);
-                if (isRule(fieldInstance)) {
+                Object fieldInstance;
+                try {
+                    fieldInstance = field.get(testInstance);
+                    if (isRule(fieldInstance)) {
                     ruleInstances.add(fieldInstance);
                 }
+                } catch (IllegalArgumentException | IllegalAccessException e) {
+                    e.getMessage();
+                }
+                
             }
         }
         return ruleInstances;
