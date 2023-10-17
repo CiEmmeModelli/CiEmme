@@ -69,7 +69,7 @@ public class RulesEnricher {
     public void enrichStatement(@Observes BeforeRules event) throws EnrichException {
         List<Object> toEnrich = new ArrayList<Object>();
 
-        if (RunRules.class.isInstance(event.getStatementInstance())) {
+            if (event.getStatementInstance() instanceof RunRules) {
             try {
                 toEnrich.add(SecurityActions.getField(RunRules.class, "statement").get(event.getStatementInstance()));
             } catch (IllegalArgumentException | IllegalAccessException e) {
