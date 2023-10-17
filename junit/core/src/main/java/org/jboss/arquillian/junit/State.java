@@ -34,6 +34,8 @@ public class State {
      * Exception back to the client so the client side can throw it again. This to avoid a incontainer working but failing
      * on client side due to no Exception thrown.
      */
+    private State(){
+    }
     // Cleaned up in JUnitTestRunner
     private static ThreadLocal<Throwable> caughtTestException = new ThreadLocal<Throwable>();
 
