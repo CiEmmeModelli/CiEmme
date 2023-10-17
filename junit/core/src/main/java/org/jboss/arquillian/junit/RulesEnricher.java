@@ -133,6 +133,6 @@ public class RulesEnricher {
      * Decides whether the instance is a Rule or not
      */
     private boolean isRule(Object instance) {
-        return MethodRule.class.isInstance(instance) || TestRule.class.isInstance(instance);
+        return instance instanceof MethodRule || TestRule.class.isInstance(instance);
     }
 }
