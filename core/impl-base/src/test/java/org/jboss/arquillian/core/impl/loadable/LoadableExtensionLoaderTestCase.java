@@ -27,6 +27,7 @@ import org.junit.Test;
  */
 public class LoadableExtensionLoaderTestCase {
 
+    @SuppressWarnings("java:S2699")
     @Test
     public void shouldBeAbleTo() throws Exception {
 
