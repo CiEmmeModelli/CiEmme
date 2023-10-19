@@ -26,7 +26,7 @@ import org.junit.runners.model.TestClass;
  * the Rules should be invoked or not.
  */
 
- @SuppressWarnings("java:S110:")
+ @SuppressWarnings("java:S110")
 public class BeforeRules extends BeforeTestLifecycleEvent {
 
     private Object statementInstance;
