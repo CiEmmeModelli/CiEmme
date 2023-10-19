@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import static org.jboss.arquillian.junit.JUnitTestBaseClass.wasCalled;
 
+@SuppressWarnings("java:S3577")
 public class ClassWithArquillianClassAndMethodRule
 {
    @ClassRule
