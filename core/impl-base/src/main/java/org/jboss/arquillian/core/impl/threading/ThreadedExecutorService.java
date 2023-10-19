@@ -47,7 +47,7 @@ public class ThreadedExecutorService implements org.jboss.arquillian.core.api.th
                 }
             });
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RunCustomExceptionForTh(e);
         }
     }
 
