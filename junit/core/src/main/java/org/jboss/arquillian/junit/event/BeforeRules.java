@@ -25,6 +25,8 @@ import org.junit.runners.model.TestClass;
  * Event fired Before running the JUnit rules. LifecycleMethodExecutor controls if
  * the Rules should be invoked or not.
  */
+
+ @SuppressWarnings("java:S110:")
 public class BeforeRules extends BeforeTestLifecycleEvent {
 
     private Object statementInstance;
