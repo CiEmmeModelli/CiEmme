@@ -148,7 +148,7 @@ final class SecurityActions {
             }
             obj = constructor.newInstance(arguments);
         } catch (Exception e) {
-            throw new RuntimeException("Could not create new instance of " + implClass, e);
+            throw new MyCustomExceptionForSec("Could not create new instance of " + implClass, e);
         }
 
         return obj;
