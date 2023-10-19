@@ -257,7 +257,7 @@ final class SecurityActions {
 
     public static List<Method> getMethodsWithAnnotation(final Class<?> source,
         final Class<? extends Annotation> annotationClass) {
-        List<Method> declaredAccessableMethods = AccessController.doPrivileged(new PrivilegedAction<List<Method>>() {
+        return AccessController.doPrivileged(new PrivilegedAction<List<Method>>() {
             public List<Method> run() {
                 List<Method> foundMethods = new ArrayList<Method>();
                 Class<?> nextSource = source;
@@ -275,7 +275,6 @@ final class SecurityActions {
                 return foundMethods;
             }
         });
-        return declaredAccessableMethods;
     }
 
     static String getProperty(final String key) {
