@@ -183,7 +183,7 @@ final class SecurityActions {
                 }
                 // Just in case we've really messed up
                 catch (final ClassCastException cce) {
-                    throw new RuntimeException(errMessage, t);
+                    throw new MyCustomExceptionForSec(errMessage, t);
                 }
             }
         }
