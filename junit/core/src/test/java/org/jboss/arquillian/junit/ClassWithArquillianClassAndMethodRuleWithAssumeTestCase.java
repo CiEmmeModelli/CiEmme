@@ -11,6 +11,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import static org.jboss.arquillian.junit.JUnitTestBaseClass.wasCalled;
+import static org.junit.Assert.assertNotNull;
 
 public class ClassWithArquillianClassAndMethodRuleWithAssumeTestCase {
 
@@ -42,6 +43,7 @@ public class ClassWithArquillianClassAndMethodRuleWithAssumeTestCase {
 
     @Test
     public void shouldBeInvoked() throws Throwable {
+        assertNotNull(arquillianTest);
         wasCalled(Cycle.TEST);
         Assume.assumeTrue(false);
     }
