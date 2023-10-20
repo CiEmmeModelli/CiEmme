@@ -29,6 +29,7 @@ import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
 
 import static org.jboss.arquillian.junit.JUnitTestBaseClass.wasCalled;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(Arquillian.class)
 public class ClassWithArquillianRunnerWithExceptionInBeforeRuleTestCase {
@@ -67,6 +68,7 @@ public class ClassWithArquillianRunnerWithExceptionInBeforeRuleTestCase {
 
     @Test
     public void shouldBeInvoked() throws Throwable {
+        assertNotNull(rule);
         wasCalled(Cycle.TEST);
     }
 }
