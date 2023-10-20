@@ -105,6 +105,7 @@ public class InSequenceSorterTestCase extends JUnitTestBaseClass {
         @Test
         @InSequence(1)
         public void one() {
+            assertNotNull(getClass());
         }
     }
 
