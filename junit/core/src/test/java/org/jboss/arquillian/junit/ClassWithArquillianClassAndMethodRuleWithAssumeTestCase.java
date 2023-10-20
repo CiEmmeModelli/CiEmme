@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import static org.jboss.arquillian.junit.JUnitTestBaseClass.wasCalled;
 
-public class ClassWithArquillianClassAndMethodRuleWithAssume {
+public class ClassWithArquillianClassAndMethodRuleWithAssumeTestCase {
 
     @ClassRule
     public static ArquillianTestClass arquillianTestClass = new ArquillianTestClass();

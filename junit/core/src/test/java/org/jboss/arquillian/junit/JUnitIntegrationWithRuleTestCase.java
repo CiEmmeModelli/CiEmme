@@ -194,7 +194,7 @@ public class JUnitIntegrationWithRuleTestCase extends JUnitTestBaseClass {
             public void testAssumptionFailure(Failure failure) {
                 assumptionFailure.add(failure);
             }
-        }, ClassWithArquillianClassAndMethodRuleWithAssume.class);
+        }, ClassWithArquillianClassAndMethodRuleWithAssumeTestCase.class);
 
         Assert.assertEquals(1, assumptionFailure.size());
         Assert.assertTrue(result.wasSuccessful());
