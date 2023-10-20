@@ -47,7 +47,7 @@ public interface Manager {
     // clean
     void shutdown();
 
-    void addExtension(Class<?> extension) throws Exception;
+    void addExtension(Class<?> extension) throws MyCustomException;
 
     void removeExtension(Class<?> extension) throws Exception;
 }

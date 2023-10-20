@@ -37,6 +37,7 @@ import org.jboss.arquillian.core.spi.Extension;
 import org.jboss.arquillian.core.spi.InjectionPoint;
 import org.jboss.arquillian.core.spi.InvocationException;
 import org.jboss.arquillian.core.spi.Manager;
+import org.jboss.arquillian.core.spi.MyCustomException;
 import org.jboss.arquillian.core.spi.NonManagedObserver;
 import org.jboss.arquillian.core.spi.ObserverMethod;
 import org.jboss.arquillian.core.spi.Validate;
@@ -321,7 +322,7 @@ public class ManagerImpl implements Manager {
         this.contexts.addAll(createContexts(contextsLocal));
     }
 
-    public void addExtension(Class<?> extensionClass) throws Exception {
+    public void addExtension(Class<?> extensionClass) throws MyCustomException {
         runtimeLogger.debugExtension(extensionClass);
         ExtensionImpl newExtension = ExtensionImpl.of(Reflections.createInstance(extensionClass));
         inject(newExtension);
