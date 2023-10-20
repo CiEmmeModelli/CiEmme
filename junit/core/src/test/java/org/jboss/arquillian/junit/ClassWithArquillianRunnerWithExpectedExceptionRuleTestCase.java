@@ -29,7 +29,7 @@ import org.junit.runner.RunWith;
 import static org.jboss.arquillian.junit.JUnitTestBaseClass.wasCalled;
 
 @RunWith(Arquillian.class)
-public class ClassWithArquillianRunnerWithExpectedExceptionRule {
+public class ClassWithArquillianRunnerWithExpectedExceptionRuleTestCase {
     @Rule
     public ExpectedException e = ExpectedException.none();
 
