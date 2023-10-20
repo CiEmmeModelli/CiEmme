@@ -14,6 +14,7 @@ import org.junit.runners.model.Statement;
 
 import static org.jboss.arquillian.junit.JUnitTestBaseClass.wasCalled;
 
+@SuppressWarnings("java:S3577")
 public class ClassWithArquillianClassAndMethodRuleWithExceptionInAfterRule {
 
     @ClassRule
@@ -56,8 +57,10 @@ public class ClassWithArquillianClassAndMethodRuleWithExceptionInAfterRule {
         wasCalled(Cycle.AFTER);
     }
 
+     
     @Test
     public void shouldBeInvoked() throws Throwable {
         wasCalled(Cycle.TEST);
     }
+    
 }
