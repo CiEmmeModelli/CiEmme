@@ -31,7 +31,7 @@ import org.junit.runners.model.Statement;
 import static org.jboss.arquillian.junit.JUnitTestBaseClass.wasCalled;
 
 @RunWith(Arquillian.class)
-public class ClassWithArquillianRunnerWithExceptionInBeforeRule {
+public class ClassWithArquillianRunnerWithExceptionInBeforeRuleTestCase {
     @Rule
     public MethodRule rule = new MethodRule() {
         @Override
