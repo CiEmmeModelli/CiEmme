@@ -114,6 +114,7 @@ public class InSequenceSorterTestCase extends JUnitTestBaseClass {
     public static class UnOrderedTestCase {
         @Test
         public void Cone() {
+            assertNotNull(getClass());
         }
 
         @Test
