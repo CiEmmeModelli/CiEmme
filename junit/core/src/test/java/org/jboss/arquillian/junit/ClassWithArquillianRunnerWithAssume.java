@@ -34,6 +34,7 @@ import org.junit.runners.model.Statement;
 
 import static org.jboss.arquillian.junit.JUnitTestBaseClass.wasCalled;
 
+@SuppressWarnings("java:S3577")
 @RunWith(Arquillian.class)
 public class ClassWithArquillianRunnerWithAssume {
 
