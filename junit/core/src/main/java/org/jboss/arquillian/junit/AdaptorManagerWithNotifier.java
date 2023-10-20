@@ -14,6 +14,7 @@ abstract class AdaptorManagerWithNotifier extends AdaptorManager {
         this.notifier = notifier;
     }
 
+    @Override
     void initializeAdaptor() {
         try {
             super.initializeAdaptor();
