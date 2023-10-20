@@ -124,6 +124,7 @@ public class InSequenceSorterTestCase extends JUnitTestBaseClass {
 
         @Test
         public void Btwo() {
+            assertNotNull(getClass());
         }
     }
 }
