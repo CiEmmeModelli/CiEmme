@@ -30,6 +30,7 @@ import org.junit.runner.notification.RunListener;
 import org.junit.runners.MethodSorters;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.mock;
 
 /**
@@ -92,6 +93,7 @@ public class InSequenceSorterTestCase extends JUnitTestBaseClass {
         @Test
         @InSequence(2)
         public void two() {
+            assertNotNull(getClass());
         }
 
         @Test
