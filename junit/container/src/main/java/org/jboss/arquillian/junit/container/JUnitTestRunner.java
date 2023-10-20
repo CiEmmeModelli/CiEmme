@@ -102,11 +102,8 @@ public class JUnitTestRunner implements TestRunner {
             }
             exception = State.getTestException();
             Test test = failure.getDescription().getAnnotation(Test.class);
-            if (!(test != null && test.expected() != Test.None.class)) {
-                // Not Expected Exception, and non thrown internally
-                if (exception == null) {
-                    exception = failure.getException();
-                }
+            if (!(test != null && test.expected() != Test.None.class) && exception == null) {
+                exception = failure.getException();
             }
         }
 
