@@ -162,6 +162,7 @@ public class JUnitTestRunnerTestCase {
             Assert.assertTrue(true);
         }
 
+        @SuppressWarnings("java:S2699")
         @Test
         public void shouldPassOnAssumption() throws Exception {
             Assume.assumeTrue(true);
