@@ -229,7 +229,7 @@ public class JUnitIntegrationWithRuleTestCase extends JUnitTestBaseClass {
 
         executeAllLifeCycles(adaptor);
 
-        Result result = run(adaptor, ClassWithArquillianClassAndMethodRuleWithExceptionInBeforeRule.class);
+        Result result = run(adaptor, ClassWithArquillianClassAndMethodRuleWithExceptionInBeforeRuleTestCase.class);
 
         Assert.assertFalse(result.wasSuccessful());
         Assert.assertEquals(1, result.getFailureCount());

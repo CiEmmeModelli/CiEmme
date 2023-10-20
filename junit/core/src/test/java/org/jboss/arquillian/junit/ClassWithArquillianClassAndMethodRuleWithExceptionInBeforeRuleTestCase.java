@@ -14,7 +14,7 @@ import org.junit.runners.model.Statement;
 
 import static org.jboss.arquillian.junit.JUnitTestBaseClass.wasCalled;
 
-public class ClassWithArquillianClassAndMethodRuleWithExceptionInBeforeRule {
+public class ClassWithArquillianClassAndMethodRuleWithExceptionInBeforeRuleTestCase {
     @ClassRule
     public static ArquillianTestClass arquillianTestClass = new ArquillianTestClass();
 
