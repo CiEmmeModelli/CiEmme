@@ -119,6 +119,7 @@ public class InSequenceSorterTestCase extends JUnitTestBaseClass {
 
         @Test
         public void Atree() {
+            assertNotNull(getClass());
         }
 
         @Test
