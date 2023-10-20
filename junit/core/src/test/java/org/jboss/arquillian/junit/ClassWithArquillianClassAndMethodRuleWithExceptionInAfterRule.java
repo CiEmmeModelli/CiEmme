@@ -13,6 +13,7 @@ import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
 
 import static org.jboss.arquillian.junit.JUnitTestBaseClass.wasCalled;
+import static org.junit.Assert.assertNotNull;
 
 @SuppressWarnings("java:S3577")
 public class ClassWithArquillianClassAndMethodRuleWithExceptionInAfterRule {
@@ -60,6 +61,7 @@ public class ClassWithArquillianClassAndMethodRuleWithExceptionInAfterRule {
      
     @Test
     public void shouldBeInvoked() throws Throwable {
+        assertNotNull(arquillianTest);
         wasCalled(Cycle.TEST);
     }
     
