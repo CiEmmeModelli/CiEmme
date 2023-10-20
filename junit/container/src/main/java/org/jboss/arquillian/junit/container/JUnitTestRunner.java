@@ -110,10 +110,8 @@ public class JUnitTestRunner implements TestRunner {
         @Override
         public void testFinished(Description description) throws Exception {
             Test test = description.getAnnotation(Test.class);
-            if (test != null && test.expected() != Test.None.class) {
-                if (exception == null) {
-                    exception = State.getTestException();
-                }
+            if (test != null && test.expected() != Test.None.class && exception == null) {
+                exception = State.getTestException();
             }
             State.caughtTestException(null);
         }
