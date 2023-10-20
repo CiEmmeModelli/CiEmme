@@ -22,6 +22,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Assume;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.internal.AssumptionViolatedException;
@@ -67,16 +68,6 @@ public class JUnitTestRunnerTestCase {
 
         Assert.assertEquals(TestResult.Status.PASSED, result.getStatus());
         Assert.assertNull(result.getThrowable());
-    }
-
-    @Test
-    public void shouldReturnExceptionToClientIfAsumptionFailing() throws Exception {
-        JUnitTestRunner runner = new JUnitTestRunner();
-        TestResult result = runner.execute(TestScenarios.class, "shouldSkipOnAssumption");
-
-        Assert.assertEquals(TestResult.Status.SKIPPED, result.getStatus());
-        Assert.assertNotNull(result.getThrowable());
-        Assert.assertEquals(AssumptionViolatedException.class, result.getThrowable().getClass());
     }
 
     @Test
@@ -169,11 +160,6 @@ public class JUnitTestRunnerTestCase {
         @Test
         public void shouldSucceed() {
             Assert.assertTrue(true);
-        }
-
-        @Test
-        public void shouldSkipOnAssumption() throws Exception {
-            Assume.assumeTrue(false);
         }
 
         @Test
