@@ -5,7 +5,7 @@ import org.jboss.arquillian.test.spi.LifecycleMethodExecutor;
 abstract class ArquillianTestClassLifecycleManager extends AdaptorManager {
 
     protected void handleSuiteLevelFailure(Throwable initializationException) {
-        throw new RuntimeException(
+        throw new JunitRuntimeException(
             "Arquillian initialization has already been attempted, but failed. See previous exceptions for cause",
             initializationException);
     }
