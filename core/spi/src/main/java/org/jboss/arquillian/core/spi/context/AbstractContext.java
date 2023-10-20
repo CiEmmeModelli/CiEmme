@@ -92,7 +92,7 @@ public abstract class AbstractContext<T> implements Context, IdBoundContext<T> {
         if (isActive()) {
             return activeStore.get().peek().getStore();
         }
-        throw new RuntimeException("Context is not active: " + super.getClass().getSimpleName());
+        throw new RunCustomException("Context is not active: " + super.getClass().getSimpleName());
     }
 
     /* (non-Javadoc)
