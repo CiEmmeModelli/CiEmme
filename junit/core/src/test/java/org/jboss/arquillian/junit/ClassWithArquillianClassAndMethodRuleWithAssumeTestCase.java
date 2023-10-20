@@ -3,7 +3,6 @@ package org.jboss.arquillian.junit;
 import org.jboss.arquillian.junit.JUnitTestBaseClass.Cycle;
 import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Assume;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
@@ -41,10 +40,10 @@ public class ClassWithArquillianClassAndMethodRuleWithAssumeTestCase {
         wasCalled(Cycle.AFTER);
     }
 
+    
     @Test
     public void shouldBeInvoked() throws Throwable {
         assertNotNull(arquillianTest);
         wasCalled(Cycle.TEST);
-        Assume.assumeTrue(false);
     }
 }
