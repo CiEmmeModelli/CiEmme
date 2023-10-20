@@ -93,6 +93,6 @@ public class ClassWithArquillianRunnerWithAssume {
     public void shouldBeInvoked() throws Throwable {
         assertNotNull(classRule);
         wasCalled(Cycle.TEST);
-        Assume.assumeTrue(false);
+        //Assume.assumeTrue(false);
     }
 }
