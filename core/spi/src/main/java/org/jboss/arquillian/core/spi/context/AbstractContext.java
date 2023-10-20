@@ -41,7 +41,7 @@ public abstract class AbstractContext<T> implements Context, IdBoundContext<T> {
         }
     };
 
-    public AbstractContext() {
+    protected AbstractContext() {
         stores = new ConcurrentHashMap<T, ObjectStore>();
     }
 
