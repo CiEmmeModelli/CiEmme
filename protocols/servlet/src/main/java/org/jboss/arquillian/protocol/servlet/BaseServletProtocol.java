@@ -54,7 +54,7 @@ public abstract class BaseServletProtocol implements Protocol<ServletProtocolCon
     public ServletMethodExecutor getExecutor(ServletProtocolConfiguration protocolConfiguration,
         ProtocolMetaData metaData, CommandCallback callback) {
         Collection<HTTPContext> contexts = metaData.getContexts(HTTPContext.class);
-        if (contexts.size() == 0) {
+        if (contexts.isEmpty()) {
             throw new IllegalArgumentException(
                 "No " + HTTPContext.class.getName() + " found in " + ProtocolMetaData.class.getName() + ". " +
                     "Servlet protocol can not be used");
