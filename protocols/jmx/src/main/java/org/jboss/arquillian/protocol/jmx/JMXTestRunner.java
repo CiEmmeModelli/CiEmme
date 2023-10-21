@@ -131,7 +131,7 @@ public class JMXTestRunner extends NotificationBroadcasterSupport implements JMX
                 runner = TestRunners.getTestRunner(getClass().getClassLoader());
             }
 
-            log.fine("Load test class: " + className);
+            log.fine(String.format("Load test class: %s", className));
             Class<?> testClass = testClassLoader.loadTestClass(className);
             log.fine("Test class loaded from: " + testClass.getClassLoader());
 
