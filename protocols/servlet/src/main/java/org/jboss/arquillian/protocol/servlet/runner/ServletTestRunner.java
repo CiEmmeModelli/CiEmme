@@ -65,8 +65,8 @@ public class ServletTestRunner extends HttpServlet {
     @SuppressWarnings("java:S2696")
     @Override
     public void init() throws ServletException {
-        events = new ConcurrentHashMap<String, Command<?>>();
-        currentCall = new ThreadLocal<String>();
+        events = new ConcurrentHashMap<String, Command<?>>(); //risolto con dichiarazione suppress warnings
+        currentCall = new ThreadLocal<String>(); //risolto con dichiarazione suppress warnings
         currentServletContext = new ThreadLocal<ServletContext>();
     }
 
