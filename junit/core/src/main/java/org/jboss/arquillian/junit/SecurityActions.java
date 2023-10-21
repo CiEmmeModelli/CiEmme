@@ -316,11 +316,11 @@ final class SecurityActions {
             } else {
                 // No other checked Exception thrown by System.getProperty
                 try {
-                    throw (RuntimeException) t;
+                    throw (RunException) t;
                 }
                 // Just in case we've really messed up
                 catch (final ClassCastException cce) {
-                    throw new RuntimeException(mess1, t);
+                    throw new RunException(mess1, t);
                 }
             }
         }
