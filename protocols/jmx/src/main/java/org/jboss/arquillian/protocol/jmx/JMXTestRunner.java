@@ -133,7 +133,7 @@ public class JMXTestRunner extends NotificationBroadcasterSupport implements JMX
 
             log.fine(String.format("Load test class: %s", className));
             Class<?> testClass = testClassLoader.loadTestClass(className);
-            log.fine("Test class loaded from: " + testClass.getClassLoader());
+            log.fine(String.format("Test class loaded from: %s", testClass.getClassLoader()));
 
             log.fine("Execute: " + className + "." + methodName);
             result = doRunTestMethod(runner, testClass, methodName, protocolProps);
