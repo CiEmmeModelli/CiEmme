@@ -61,7 +61,7 @@ class JavaSPILoader {
         try {
             enumeration = loader.getResources(serviceFile);
         } catch (IOException e) {
-            throw new RuntimeException("Could not load services for " + serviceClass.getName(), e);
+            throw new CustomExceptionRun("Could not load services for " + serviceClass.getName(), e);
         }
     
         while (enumeration.hasMoreElements()) {
