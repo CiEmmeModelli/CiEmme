@@ -90,7 +90,13 @@ public class ServletTestRunner extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        execute(request, response);
+        try {
+            execute(request, response);
+        } catch (ServletException e) {
+           e.getMessage();
+        } catch (IOException e) {
+            e.getMessage();
+        }
     }
 
     protected void execute(HttpServletRequest request, HttpServletResponse response)
