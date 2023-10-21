@@ -60,8 +60,8 @@ public class JMXCommandService implements CommandService {
 public void threadSleep(){
     try {
             Thread.sleep(100);
-        } catch (Exception e) {
-                throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
         }
 
 }
