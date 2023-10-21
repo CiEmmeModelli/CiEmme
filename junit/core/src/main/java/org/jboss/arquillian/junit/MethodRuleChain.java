@@ -69,11 +69,11 @@ public class MethodRuleChain implements MethodRule {
      * @return a new {@code MethodRuleChain}.
      */
     public MethodRuleChain around(MethodRule enclosedRule) {
-        final List<MethodRule> rules = new ArrayList<MethodRule>();
+        final List<MethodRule> rulesInMR = new ArrayList<MethodRule>();
 
-        rules.add(enclosedRule);
-        rules.addAll(this.rules);
-        return new MethodRuleChain(rules);
+        rulesInMR.add(enclosedRule);
+        rulesInMR.addAll(this.rules);
+        return new MethodRuleChain(rulesInMR);
     }
 
     @Override
