@@ -40,7 +40,7 @@ final class Serializer {
             outObj.flush();
             return out.toByteArray();
         } catch (Exception e) {
-            throw new RuntimeException("Could not serialize object: " + object, e);
+            throw new SerializeException("Could not serialize object: " + object, e);
         }
     }
 
