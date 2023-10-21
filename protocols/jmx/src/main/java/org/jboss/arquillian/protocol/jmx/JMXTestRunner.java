@@ -79,7 +79,7 @@ public class JMXTestRunner extends NotificationBroadcasterSupport implements JMX
     public ObjectName registerMBean(MBeanServer mbeanServer) throws JMException {
         ObjectName oname = new ObjectName(this.objectName);
         mbeanServer.registerMBean(this, oname);
-        log.fine("JMXTestRunner registered: " + oname);
+        log.fine(String.format("JMXTestRunner registered: %s", oname));
         localMBeanServer = mbeanServer;
         return oname;
     }
