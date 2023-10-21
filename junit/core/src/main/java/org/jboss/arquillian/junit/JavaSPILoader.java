@@ -70,7 +70,7 @@ class JavaSPILoader {
                  BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"))) {
                 loadProviders(serviceClass, loader, reader, providers, vetoedProviders);
             } catch (IOException e) {
-                throw new RuntimeException("Error reading service file for " + serviceClass.getName(), e);
+                throw new CustomExceptionRun("Error reading service file for " + serviceClass.getName(), e);
             }
         }
     
