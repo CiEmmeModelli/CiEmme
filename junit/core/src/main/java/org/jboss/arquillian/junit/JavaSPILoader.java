@@ -17,6 +17,7 @@
 package org.jboss.arquillian.junit;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -52,60 +53,68 @@ class JavaSPILoader {
     }
 
     private <T> Set<Class<? extends T>> load(Class<T> serviceClass, ClassLoader loader) {
-        String serviceFile = SERVICES + "/" + serviceClass.getName();
+    String serviceFile = SERVICES + "/" + serviceClass.getName();
+    Set<Class<? extends T>> providers = new LinkedHashSet<Class<? extends T>>();
+    Set<Class<? extends T>> vetoedProviders = new LinkedHashSet<Class<? extends T>>();
 
-        Set<Class<? extends T>> providers = new LinkedHashSet<Class<? extends T>>();
-        Set<Class<? extends T>> vetoedProviders = new LinkedHashSet<Class<? extends T>>();
-
-        try {
-            Enumeration<URL> enumeration = loader.getResources(serviceFile);
-            while (enumeration.hasMoreElements()) {
-                final URL url = enumeration.nextElement();
-                final InputStream is = url.openStream();
-                BufferedReader reader = null;
-
-                try {
-                    reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-                    String line = reader.readLine();
-                    while (null != line) {
-                        line = skipCommentAndTrim(line);
-
-                        if (line.length() > 0) {
-                            try {
-                                boolean mustBeVetoed = line.startsWith("!");
-                                if (mustBeVetoed) {
-                                    line = line.substring(1);
-                                }
-
-                                Class<? extends T> provider = loader.loadClass(line).asSubclass(serviceClass);
-
-                                if (mustBeVetoed) {
-                                    vetoedProviders.add(provider);
-                                }
-
-                                if (vetoedProviders.contains(provider)) {
-                                    providers.remove(provider);
-                                } else {
-                                    providers.add(provider);
-                                }
-                            } catch (ClassCastException e) {
-                                throw new IllegalStateException("Service " + line + " does not implement expected type "
-                                    + serviceClass.getName());
-                            }
-                        }
-                        line = reader.readLine();
-                    }
-                } finally {
-                    if (reader != null) {
-                        reader.close();
-                    }
-                }
-            }
-        } catch (Exception e) {
-            throw new RuntimeException("Could not load services for " + serviceClass.getName(), e);
-        }
-        return providers;
+    Enumeration<URL> enumeration;
+    try {
+        enumeration = loader.getResources(serviceFile);
+    } catch (IOException e) {
+        throw new RuntimeException("Could not load services for " + serviceClass.getName(), e);
     }
+
+    while (enumeration.hasMoreElements()) {
+        final URL url = enumeration.nextElement();
+        try (InputStream is = url.openStream();
+             BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"))) {
+            loadProviders(serviceClass, loader, reader, providers, vetoedProviders);
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading service file for " + serviceClass.getName(), e);
+        }
+    }
+
+    return providers;
+}
+
+private <T> void loadProviders(Class<T> serviceClass, ClassLoader loader, BufferedReader reader,
+                               Set<Class<? extends T>> providers, Set<Class<? extends T>> vetoedProviders) throws IOException {
+    String line;
+    while ((line = reader.readLine()) != null) {
+        line = skipCommentAndTrim(line);
+
+        if (line.length() > 0) {
+            processLine(serviceClass, loader, line, providers, vetoedProviders);
+        }
+    }
+}
+
+private <T> void processLine(Class<T> serviceClass, ClassLoader loader, String line,
+                            Set<Class<? extends T>> providers, Set<Class<? extends T>> vetoedProviders) {
+    try {
+        boolean mustBeVetoed = line.startsWith("!");
+        if (mustBeVetoed) {
+            line = line.substring(1);
+        }
+
+        Class<? extends T> provider = loader.loadClass(line).asSubclass(serviceClass);
+
+        if (mustBeVetoed) {
+            vetoedProviders.add(provider);
+        }
+
+        if (vetoedProviders.contains(provider)) {
+            providers.remove(provider);
+        } else {
+            providers.add(provider);
+        }
+    } catch (ClassCastException e) {
+        throw new IllegalStateException("Service " + line + " does not implement expected type " + serviceClass.getName());
+    } catch (ClassNotFoundException e) {
+        throw new RuntimeException("Could not load class " + line, e);
+    }
+}
+
 
     private String skipCommentAndTrim(String line) {
         final int comment = line.indexOf('#');
