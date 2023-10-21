@@ -30,6 +30,8 @@ import java.io.ObjectOutputStream;
  * @version $Revision: $
  */
 final class Serializer {
+    private Serializer(){
+    }
     public static byte[] toByteArray(Object object) {
         try {
             ByteArrayOutputStream out = new ByteArrayOutputStream();
