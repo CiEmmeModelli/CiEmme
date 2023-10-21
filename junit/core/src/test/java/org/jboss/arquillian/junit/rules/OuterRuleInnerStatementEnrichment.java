@@ -29,6 +29,7 @@ import static org.junit.Assert.assertNotNull;
  *
  * @author <a href="mailto:mjobanek@redhat.com">Matous Jobanek</a>
  */
+@SuppressWarnings("java:S3577")
 public class OuterRuleInnerStatementEnrichment extends AbstractRuleStatementEnrichment {
     @Rule
     public TestingTestRuleInnerStatement testRuleInnerStatement = new TestingTestRuleInnerStatement();
