@@ -41,7 +41,7 @@ public final class ServletUtil {
         String host = config.getHost();
         Integer port = config.getPort();
 
-        String contextRoot = null; //protocolConfiguration.getContextRoot();
+        String contextRoot = null; 
 
         Servlet servlet = context.getServletByName(servletName);
         if (servlet != null) {
