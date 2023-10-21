@@ -30,7 +30,6 @@ public class ServletProtocolConfiguration implements ProtocolConfiguration {
     private String host = null;
     private Integer port = null;
     private String contextRoot = null;
-    ;
     private Integer pullInMilliSeconds = 100;
 
     /**
