@@ -10,4 +10,8 @@ public class CommandException extends RuntimeException{
         super(string);
     }
 
+    public CommandException(String string, Exception e) {
+        super(string,e);
+    }
+
 }
