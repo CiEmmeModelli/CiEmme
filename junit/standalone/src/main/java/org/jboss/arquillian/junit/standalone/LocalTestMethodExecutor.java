@@ -44,7 +44,7 @@ public class LocalTestMethodExecutor {
     @TestScoped
     private InstanceProducer<TestResult> testResult;
 
-    public void execute(@Observes Test event) throws Exception {
+    public void execute(@Observes Test event) throws ExecuteException {
         TestResult result = new TestResult();
         try {
             event.getTestMethodExecutor().invoke(
