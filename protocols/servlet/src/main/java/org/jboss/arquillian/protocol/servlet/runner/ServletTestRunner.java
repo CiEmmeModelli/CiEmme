@@ -201,6 +201,7 @@ public class ServletTestRunner extends HttpServlet {
         }
     }
 
+    @SuppressWarnings("java:S2118")
     private void writeObject(Object object, HttpServletResponse response) {
         try {
             // Set HttpServletResponse status BEFORE getting the output stream

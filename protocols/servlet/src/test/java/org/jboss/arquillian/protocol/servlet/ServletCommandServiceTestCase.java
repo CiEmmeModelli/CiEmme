@@ -49,10 +49,10 @@ public class ServletCommandServiceTestCase extends AbstractServerBase {
 
         TestResult result = executor.invoke(new MockTestExecutor());
 
-        Assert.assertEquals(
+       Assert.assertEquals(
             "Should have returned a passed test",
             MockTestRunner.wantedResults.getStatus(),
-            result.getStatus());
+            result.getStatus()); 
 
         Assert.assertNull(
             "Exception should have been thrown",
