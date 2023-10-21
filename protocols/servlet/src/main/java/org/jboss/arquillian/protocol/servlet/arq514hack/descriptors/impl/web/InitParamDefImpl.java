@@ -22,7 +22,6 @@ import org.jboss.shrinkwrap.descriptor.spi.node.Node;
 /**
  * @author Dan Allen
  */
-// TODO could be generic since servlet can use it too
 public class InitParamDefImpl extends WebAppDescriptorImpl implements InitParamDef {
     protected Node child;
 
