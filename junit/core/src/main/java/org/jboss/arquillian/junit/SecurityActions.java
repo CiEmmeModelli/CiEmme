@@ -251,7 +251,7 @@ final class SecurityActions {
     }
 
     public static Field getField(final Class<?> source, final String name) {
-        Field declaredAccessibleField = AccessController.doPrivileged(new PrivilegedAction<Field>() {
+        return AccessController.doPrivileged(new PrivilegedAction<Field>() {
             public Field run() {
                 Field foundField = null;
                 Class<?> nextSource = source;
@@ -270,7 +270,6 @@ final class SecurityActions {
                 return foundField;
             }
         });
-        return declaredAccessibleField;
     }
 
     public static List<Method> getMethodsWithAnnotation(final Class<?> source,
