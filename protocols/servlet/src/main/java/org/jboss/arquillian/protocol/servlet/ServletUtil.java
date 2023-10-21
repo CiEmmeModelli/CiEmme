@@ -41,7 +41,6 @@ public final class ServletUtil {
         String host = config.getHost();
         Integer port = config.getPort();
 
-        // TODO: can not set contextRoot in config, change to prefixContextRoot
         String contextRoot = null; //protocolConfiguration.getContextRoot();
 
         Servlet servlet = context.getServletByName(servletName);
