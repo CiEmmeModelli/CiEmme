@@ -90,7 +90,7 @@ public class JMXTestRunner extends NotificationBroadcasterSupport implements JMX
         ObjectName oname = new ObjectName(this.objectName);
         if (mbeanServer.isRegistered(oname)) {
             mbeanServer.unregisterMBean(oname);
-            log.fine("JMXTestRunner unregistered: " + oname);
+            log.fine(String.format("JMXTestRunner unregistered: %s", oname));
         }
         localMBeanServer = null;
     }
