@@ -131,7 +131,7 @@ public class ServletTestRunner extends HttpServlet {
             } else if (CMD_NAME_EVENT.equals(cmd)) {
                 executeEvent(request, response, className, methodName);
             } else {
-                throw new RuntimeException("Unknown value for parameter" + PARA_CMD_NAME + ": " + cmd);
+                throw new ParameterException("Unknown value for parameter" + PARA_CMD_NAME + ": " + cmd);
             }
         } catch (Exception e) {
             if (OUTPUT_MODE_SERIALIZED.equalsIgnoreCase(outputMode)) {
