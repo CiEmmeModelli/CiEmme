@@ -112,7 +112,7 @@ private <T> void processLine(Class<T> serviceClass, ClassLoader loader, String l
     } catch (ClassCastException e) {
         throw new IllegalStateException("Service " + line + " does not implement expected type " + serviceClass.getName());
     } catch (ClassNotFoundException e) {
-        throw new RuntimeException("Could not load class " + line, e);
+        throw new CustomExceptionRun("Could not load class " + line, e);
     }
 }
 
