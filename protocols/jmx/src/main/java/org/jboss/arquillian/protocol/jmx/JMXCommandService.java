@@ -44,7 +44,7 @@ public class JMXCommandService implements CommandService {
                 Command<?> newCommand = (Command<?>) server.invoke(runner, "receive", new Object[] {}, new String[] {});
                 if (newCommand != null) {
                     if (newCommand.getThrowable() != null) {
-                        throw new RuntimeException(newCommand.getThrowable());
+                        throw new CommandException(newCommand.getThrowable());
                     }
                     if (newCommand.getResult() != null) {
                         return (T) newCommand.getResult();
