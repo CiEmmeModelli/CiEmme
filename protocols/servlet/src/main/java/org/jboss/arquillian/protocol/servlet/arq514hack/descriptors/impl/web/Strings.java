@@ -26,6 +26,7 @@ import java.util.Iterator;
  * @author <a href="mailto:lincolnbaxter@gmail.com">Lincoln Baxter, III</a>
  */
 public class Strings {
+    private Strings(){}
     /**
      * Capitalize the given String: "input" -> "Input"
      */
