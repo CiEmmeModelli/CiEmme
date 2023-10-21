@@ -21,7 +21,6 @@ import javax.management.MBeanServer;
 import javax.management.ObjectName;
 import org.jboss.arquillian.container.test.spi.command.Command;
 import org.jboss.arquillian.container.test.spi.command.CommandService;
-
 /**
  * JMXCommandService
  *
@@ -35,8 +34,9 @@ public class JMXCommandService implements CommandService {
     @Override
     public <T> T execute(Command<T> command) {
         MBeanServer server = JMXTestRunner.localMBeanServer;
+        
         try {
-            ObjectName runner = new ObjectName(JMXTestRunner.OBJECT_NAME);
+           ObjectName runner = new ObjectName(JMXTestRunnerMBean.OBJECT_NAME);
             server.invoke(runner, "send", new Object[] {command}, new String[] {Command.class.getName()});
 
             long timeoutTime = System.currentTimeMillis() + timeout;
