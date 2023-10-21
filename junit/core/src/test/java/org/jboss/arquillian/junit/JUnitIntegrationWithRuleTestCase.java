@@ -283,7 +283,7 @@ public class JUnitIntegrationWithRuleTestCase extends JUnitTestBaseClass {
 
         Assert.assertEquals(2, result.getFailureCount());
         Assert.assertEquals("AfterException",result.getFailures().get(0).getMessage());
-        Assert.assertTrue(result.getFailures().get(1).getMessage().equals("AfterRuleException"));
+        Assert.assertEquals("AfterRuleException",result.getFailures().get(1).getMessage());
         assertCycle(1, Cycle.basics());
 
         verify(adaptor, times(1)).fireCustomLifecycle(isA(BeforeRules.class));
