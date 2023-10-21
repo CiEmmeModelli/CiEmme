@@ -132,19 +132,18 @@ public class JMXTestRunner extends NotificationBroadcasterSupport implements JMX
                 runner = TestRunners.getTestRunner(getClass().getClassLoader());
             }
 
-            log.fine(String.format("Load test class: %s", className));
+            log.fine("Load test class: %s".formatted(className));
             Class<?> testClass = testClassLoader.loadTestClass(className);
-            log.fine(String.format("Test class loaded from: %s", testClass.getClassLoader()));
-            log.fine(String.format("Execute: %s.%s", className, methodName));
+            log.fine("Test class loaded from: %s".formatted(testClass.getClassLoader()));
+            log.fine("Execute: %s.%s".formatted(className, methodName));
 
-          
             result = doRunTestMethod(runner, testClass, methodName);
         } catch (Throwable th) {
             result.setStatus(Status.FAILED);
             result.setEnd(System.currentTimeMillis());
             result.setThrowable(th);
         } finally {
-            log.fine(String.format("Result: %s", result));
+           log.fine("Result: %s".formatted(result));
             if (log.isLoggable(Level.SEVERE)) {
                 log.log(Level.SEVERE, "Failed: " + className + "." + methodName, result.getThrowable());
             }
