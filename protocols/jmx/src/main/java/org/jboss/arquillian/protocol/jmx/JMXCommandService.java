@@ -57,10 +57,10 @@ public class JMXCommandService implements CommandService {
             throw new RuntimeException("Could not communicate with client side", e);
         }
     }
-public void threadSleep(){
+public void threadSleep() throws InterruptedException{
     try {
             Thread.sleep(100);
-        } catch (InterruptedException e) {
+        } catch (InterException e) {
             Thread.currentThread().interrupt();
         }
 
