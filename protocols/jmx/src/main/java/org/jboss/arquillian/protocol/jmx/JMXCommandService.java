@@ -50,15 +50,20 @@ public class JMXCommandService implements CommandService {
                         return (T) newCommand.getResult();
                     }
                 }
-                try {
-                    Thread.sleep(100);
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
+                threadSleep();
             }
             throw new RuntimeException("No command response within timeout of " + timeout + " ms.");
         } catch (Exception e) {
             throw new RuntimeException("Could not communicate with client side", e);
         }
     }
+public void threadSleep(){
+    try {
+            Thread.sleep(100);
+        } catch (Exception e) {
+                throw new RuntimeException(e);
+        }
+
+}
+
 }
