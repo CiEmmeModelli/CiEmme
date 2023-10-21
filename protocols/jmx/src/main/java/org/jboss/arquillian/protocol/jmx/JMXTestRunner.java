@@ -81,7 +81,7 @@ public class JMXTestRunner extends NotificationBroadcasterSupport implements JMX
     public ObjectName registerMBean(MBeanServer mbeanServer) throws JMException {
         ObjectName oname = new ObjectName(this.objectName);
         mbeanServer.registerMBean(this, oname);
-        log.fine(String.format("JMXTestRunner registered: %s", oname));
+        log.fine("JMXTestRunner registered: %s".formatted(oname));
         localMBeanServer = mbeanServer;
         return oname;
     }
@@ -90,7 +90,7 @@ public class JMXTestRunner extends NotificationBroadcasterSupport implements JMX
         ObjectName oname = new ObjectName(this.objectName);
         if (mbeanServer.isRegistered(oname)) {
             mbeanServer.unregisterMBean(oname);
-            log.fine(String.format("JMXTestRunner unregistered: %s", oname));
+            log.fine("JMXTestRunner unregistered: %s".formatted(oname));
         }
     }
 
@@ -137,7 +137,7 @@ public class JMXTestRunner extends NotificationBroadcasterSupport implements JMX
             log.fine(String.format("Test class loaded from: %s", testClass.getClassLoader()));
             log.fine(String.format("Execute: %s.%s", className, methodName));
 
-            //result = doRunTestMethod(runner, testClass, methodName, protocolProps);
+          
             result = doRunTestMethod(runner, testClass, methodName);
         } catch (Throwable th) {
             result.setStatus(Status.FAILED);
@@ -154,7 +154,6 @@ public class JMXTestRunner extends NotificationBroadcasterSupport implements JMX
     }
 
     protected TestResult doRunTestMethod(TestRunner runner, Class<?> testClass, String methodName) {
-            //Map<String, String> protocolProps
         return runner.execute(testClass, methodName);
     }
 
