@@ -70,8 +70,8 @@ public class Strings {
     }
 
     public static boolean isTrue(String value) {
-        return value == null ? false : "true".equalsIgnoreCase(value.trim());
-    }
+        return value != null && "true".equalsIgnoreCase(value.trim());
+    }    
 
     public static boolean areEqual(String left, String right) {
         if (left == null && right == null) {
