@@ -53,29 +53,30 @@ class JavaSPILoader {
     }
 
     private <T> Set<Class<? extends T>> load(Class<T> serviceClass, ClassLoader loader) {
-    String serviceFile = SERVICES + "/" + serviceClass.getName();
-    Set<Class<? extends T>> providers = new LinkedHashSet<Class<? extends T>>();
-    Set<Class<? extends T>> vetoedProviders = new LinkedHashSet<Class<? extends T>>();
-
-    Enumeration<URL> enumeration;
-    try {
-        enumeration = loader.getResources(serviceFile);
-    } catch (IOException e) {
-        throw new RuntimeException("Could not load services for " + serviceClass.getName(), e);
-    }
-
-    while (enumeration.hasMoreElements()) {
-        final URL url = enumeration.nextElement();
-        try (InputStream is = url.openStream();
-             BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"))) {
-            loadProviders(serviceClass, loader, reader, providers, vetoedProviders);
+        String serviceFile = SERVICES + "/" + serviceClass.getName();
+        Set<Class<? extends T>> providers = new LinkedHashSet<Class<? extends T>>();
+        Set<Class<? extends T>> vetoedProviders = new LinkedHashSet<Class<? extends T>>();
+    
+        Enumeration<URL> enumeration;
+        try {
+            enumeration = loader.getResources(serviceFile);
         } catch (IOException e) {
-            throw new RuntimeException("Error reading service file for " + serviceClass.getName(), e);
+            throw new RuntimeException("Could not load services for " + serviceClass.getName(), e);
         }
+    
+        while (enumeration.hasMoreElements()) {
+            final URL url = enumeration.nextElement();
+            try (InputStream is = url.openStream();
+                 BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"))) {
+                loadProviders(serviceClass, loader, reader, providers, vetoedProviders);
+            } catch (IOException e) {
+                throw new RuntimeException("Error reading service file for " + serviceClass.getName(), e);
+            }
+        }
+    
+        return providers;
     }
-
-    return providers;
-}
+    
 
 private <T> void loadProviders(Class<T> serviceClass, ClassLoader loader, BufferedReader reader,
                                Set<Class<? extends T>> providers, Set<Class<? extends T>> vetoedProviders) throws IOException {
