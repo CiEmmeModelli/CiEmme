@@ -49,7 +49,7 @@ public class ServletCommandService implements CommandService {
                 Thread.sleep(100);
             } catch (Exception e) {
                 Thread.currentThread().interrupt();
-                throw new RuntimeException(e);
+                throw new ServletException(e);
             }
         }
         throw new RuntimeException("No command response within timeout of " + timeout + " ms.");
