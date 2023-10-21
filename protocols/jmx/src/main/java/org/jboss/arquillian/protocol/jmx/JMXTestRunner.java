@@ -54,6 +54,7 @@ public class JMXTestRunner extends NotificationBroadcasterSupport implements JMX
     // TestRunner to used for testing
     private TestRunner mockTestRunner;
     private TestClassLoader testClassLoader;
+    
 
     public JMXTestRunner(TestClassLoader classLoader) {
         this(classLoader, JMXTestRunnerMBean.OBJECT_NAME);
@@ -76,6 +77,7 @@ public class JMXTestRunner extends NotificationBroadcasterSupport implements JMX
         this.objectName = objectName;
     }
 
+    @SuppressWarnings("java:S2696")
     public ObjectName registerMBean(MBeanServer mbeanServer) throws JMException {
         ObjectName oname = new ObjectName(this.objectName);
         mbeanServer.registerMBean(this, oname);
