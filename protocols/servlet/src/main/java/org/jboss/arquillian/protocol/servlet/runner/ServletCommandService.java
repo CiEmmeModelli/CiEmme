@@ -39,7 +39,7 @@ public class ServletCommandService implements CommandService {
             Command<?> newCommand = ServletTestRunner.events.get(currentId);
             if (newCommand != null) {
                 if (newCommand.getThrowable() != null) {
-                    throw new RuntimeException(newCommand.getThrowable());
+                    throw new ServletException(newCommand.getThrowable());
                 }
                 if (newCommand.getResult() != null) {
                     return (T) newCommand.getResult();
