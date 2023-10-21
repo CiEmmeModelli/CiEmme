@@ -29,7 +29,7 @@ import org.jboss.arquillian.container.test.spi.command.CommandService;
  * @version $Revision: $
  */
 public class JMXCommandService implements CommandService {
-    private static long TIMEOUT = 30000;
+    private static long timeout = 30000;
 
     @SuppressWarnings("unchecked")
     @Override
@@ -39,7 +39,7 @@ public class JMXCommandService implements CommandService {
             ObjectName runner = new ObjectName(JMXTestRunner.OBJECT_NAME);
             server.invoke(runner, "send", new Object[] {command}, new String[] {Command.class.getName()});
 
-            long timeoutTime = System.currentTimeMillis() + TIMEOUT;
+            long timeoutTime = System.currentTimeMillis() + timeout;
             while (timeoutTime > System.currentTimeMillis()) {
                 Command<?> newCommand = (Command<?>) server.invoke(runner, "receive", new Object[] {}, new String[] {});
                 if (newCommand != null) {
@@ -56,7 +56,7 @@ public class JMXCommandService implements CommandService {
                     throw new RuntimeException(e);
                 }
             }
-            throw new RuntimeException("No command response within timeout of " + TIMEOUT + " ms.");
+            throw new RuntimeException("No command response within timeout of " + timeout + " ms.");
         } catch (Exception e) {
             throw new RuntimeException("Could not communicate with client side", e);
         }
