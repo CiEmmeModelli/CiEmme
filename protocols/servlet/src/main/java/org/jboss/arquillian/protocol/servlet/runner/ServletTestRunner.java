@@ -78,10 +78,16 @@ public class ServletTestRunner extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        execute(request, response);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            execute(request, response);
+        } catch (ServletException e) {
+           e.getMessage();
+        } catch (IOException e) {
+            e.getMessage();
+        }
     }
-
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         execute(request, response);
