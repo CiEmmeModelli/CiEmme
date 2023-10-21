@@ -122,6 +122,7 @@ public class JMXTestRunner extends NotificationBroadcasterSupport implements JMX
         return Serializer.toByteArray(result);
     }
 
+    @SuppressWarnings("java:S3457")
     private TestResult runTestMethodInternal(String className, String methodName, Map<String, String> protocolProps) {
         currentCall.set(className + methodName);
         TestResult result = new TestResult();
@@ -143,9 +144,10 @@ public class JMXTestRunner extends NotificationBroadcasterSupport implements JMX
             result.setThrowable(th);
         } finally {
             log.fine(String.format("Result: %s", result));
-            if (result.getStatus() == Status.FAILED) {
+            if (log.isLoggable(Level.SEVERE)) {
                 log.log(Level.SEVERE, "Failed: " + className + "." + methodName, result.getThrowable());
             }
+                     
         }
         return result;
     }
