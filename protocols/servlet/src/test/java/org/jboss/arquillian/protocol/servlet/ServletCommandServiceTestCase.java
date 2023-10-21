@@ -71,7 +71,7 @@ public class ServletCommandServiceTestCase extends AbstractServerBase {
 
     @Test
     public void shouldDisableCommandService() throws Exception {
-        Field f = ServletCommandService.class.getDeclaredField("TIMEOUT");
+        Field f = ServletCommandService.class.getDeclaredField("timeout");
         f.setAccessible(true);
         f.set(null, 500);
 

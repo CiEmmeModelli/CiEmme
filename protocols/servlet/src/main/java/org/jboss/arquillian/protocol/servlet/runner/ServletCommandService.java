@@ -27,14 +27,14 @@ import org.jboss.arquillian.container.test.spi.command.CommandService;
  * @version $Revision: $
  */
 public class ServletCommandService implements CommandService {
-    private static long TIMEOUT = 30000;
+    private static long timeout = 30000;
 
     @SuppressWarnings("unchecked")
     public <T> T execute(Command<T> command) {
         String currentId = ServletTestRunner.currentCall.get();
         ServletTestRunner.events.put(currentId, command);
 
-        long timeoutTime = System.currentTimeMillis() + TIMEOUT;
+        long timeoutTime = System.currentTimeMillis() + timeout;
         while (timeoutTime > System.currentTimeMillis()) {
             Command<?> newCommand = ServletTestRunner.events.get(currentId);
             if (newCommand != null) {
@@ -51,6 +51,6 @@ public class ServletCommandService implements CommandService {
                 throw new RuntimeException(e);
             }
         }
-        throw new RuntimeException("No command response within timeout of " + TIMEOUT + " ms.");
+        throw new RuntimeException("No command response within timeout of " + timeout + " ms.");
     }
 }
