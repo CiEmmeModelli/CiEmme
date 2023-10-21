@@ -153,7 +153,6 @@ public class ServletTestRunner extends HttpServlet {
         if (OUTPUT_MODE_SERIALIZED.equalsIgnoreCase(outputMode)) {
             writeObject(testResult, response);
         } else {
-            // TODO: implement a html view of the result
             response.setContentType("text/html");
             response.setStatus(HttpServletResponse.SC_OK);
             PrintWriter writer = response.getWriter();
