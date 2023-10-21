@@ -54,7 +54,7 @@ public class Strings {
     }
 
     public static String join(Collection<?> collection, String delimiter) {
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder buffer = new StringBuilder();
         Iterator<?> iter = collection.iterator();
         while (iter.hasNext()) {
             buffer.append(iter.next());
