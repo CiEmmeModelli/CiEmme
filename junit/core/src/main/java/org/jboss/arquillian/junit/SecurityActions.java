@@ -172,11 +172,11 @@ final class SecurityActions {
             } else {
                 // No other checked Exception thrown by Class.getConstructor
                 try {
-                    throw (RuntimeException) t;
+                    throw (RunException) t;
                 }
                 // Just in case we've really messed up
                 catch (final ClassCastException cce) {
-                    throw new RuntimeException("Obtained unchecked Exception; this code should never be reached", t);
+                    throw new RunException("Obtained unchecked Exception; this code should never be reached", t);
                 }
             }
         }
