@@ -52,7 +52,7 @@ public class JMXCommandService implements CommandService {
                 }
                 threadSleep();
             }
-            throw new RuntimeException("No command response within timeout of " + timeout + " ms.");
+            throw new CommandException("No command response within timeout of " + timeout + " ms.");
         } catch (Exception e) {
             throw new RuntimeException("Could not communicate with client side", e);
         }
