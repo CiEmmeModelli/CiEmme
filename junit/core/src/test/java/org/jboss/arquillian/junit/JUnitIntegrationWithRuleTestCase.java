@@ -301,13 +301,11 @@ public class JUnitIntegrationWithRuleTestCase extends JUnitTestBaseClass {
 
         Assert.assertFalse(result.wasSuccessful());
         assertCycle(0, Cycle.basics());
-
-        Assert.assertTrue(result.getFailures().get(0).getMessage().equals(
-            "TestClass: org.jboss.arquillian.junit.ClassWithArquillianClassAndMethodRuleAndWithArquillianRunner contains "
+        Assert.assertEquals("TestClass: org.jboss.arquillian.junit.ClassWithArquillianClassAndMethodRuleAndWithArquillianRunner contains "
                 + "Arquillian runner and Arquillian Rule. Arquillian doesn't support @RunWith(Arquillian.class) and "
                 + "ArquillianTestClass or ArquillianTest to use at the same time. You have to decide whether you want use "
                 + "runner: http://arquillian.org/arquillian-core/#how-it-works or "
-                + "rules : http://arquillian.org/arquillian-core/#_how_to_use_it"));
+                + "rules : http://arquillian.org/arquillian-core/#_how_to_use_it",result.getFailures().get(0).getMessage());
     }
 
     @Test
