@@ -318,9 +318,7 @@ public class JUnitIntegrationWithRuleTestCase extends JUnitTestBaseClass {
         Assert.assertFalse(result.wasSuccessful());
         assertCycle(1, Cycle.BEFORE_CLASS, Cycle.AFTER_CLASS);
         assertCycle(0, Cycle.BEFORE, Cycle.BEFORE_RULE, Cycle.AFTER_RULE, Cycle.AFTER);
-
-        Assert.assertTrue(result.getFailures().get(0).getMessage().equals(
-            "arquillian not initialized. Please make sure to define `ArquillianTestClass` Rule in your testclass. "
-                + "This could be one of the reason for arquillian not to be initialized."));
+        Assert.assertEquals("arquillian not initialized. Please make sure to define `ArquillianTestClass` Rule in your testclass. "
+                + "This could be one of the reason for arquillian not to be initialized.",result.getFailures().get(0).getMessage());
     }
 }
