@@ -51,7 +51,7 @@ final class Serializer {
 
             return type.cast(object);
         } catch (Exception e) {
-            throw new RuntimeException("Could not deserialize object: " + objectArray, e);
+            throw new SerializeException("Could not deserialize object: " + objectArray, e);
         }
     }
 
