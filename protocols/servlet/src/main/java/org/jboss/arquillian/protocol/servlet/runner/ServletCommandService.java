@@ -48,6 +48,7 @@ public class ServletCommandService implements CommandService {
             try {
                 Thread.sleep(100);
             } catch (Exception e) {
+                Thread.currentThread().interrupt();
                 throw new RuntimeException(e);
             }
         }
