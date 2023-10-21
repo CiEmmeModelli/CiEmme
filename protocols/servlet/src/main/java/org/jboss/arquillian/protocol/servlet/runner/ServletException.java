@@ -6,4 +6,8 @@ public class ServletException extends RuntimeException {
         super(throwable);
     }
 
+    public ServletException(String string) {
+        super(string);
+    }
+
 }

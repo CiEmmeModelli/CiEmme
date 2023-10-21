@@ -52,6 +52,6 @@ public class ServletCommandService implements CommandService {
                 throw new ServletException(e);
             }
         }
-        throw new RuntimeException("No command response within timeout of " + timeout + " ms.");
+        throw new ServletException("No command response within timeout of " + timeout + " ms.");
     }
 }
