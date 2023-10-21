@@ -67,7 +67,7 @@ public class ServletTestRunner extends HttpServlet {
     public void init() throws ServletException {
         events = new ConcurrentHashMap<String, Command<?>>(); //risolto con dichiarazione suppress warnings
         currentCall = new ThreadLocal<String>(); //risolto con dichiarazione suppress warnings
-        currentServletContext = new ThreadLocal<ServletContext>();
+        currentServletContext = new ThreadLocal<ServletContext>(); //risolto con dichiarazione suppress warnings
     }
 
     @Override
