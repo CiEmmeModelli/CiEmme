@@ -62,6 +62,7 @@ public class ServletTestRunner extends HttpServlet {
         return currentServletContext.get();
     }
 
+    @SuppressWarnings("java:S2696")
     @Override
     public void init() throws ServletException {
         events = new ConcurrentHashMap<String, Command<?>>();
