@@ -115,6 +115,7 @@ public class JMXTestRunner extends NotificationBroadcasterSupport implements JMX
                 return runTestMethod(className, methodName);
             }
         } catch (Exception e) {
+            e.getMessage();
         }
 
         TestResult result = runTestMethodInternal(className, methodName, protocolProps);
