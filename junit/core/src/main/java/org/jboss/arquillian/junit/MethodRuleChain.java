@@ -36,8 +36,8 @@ public class MethodRuleChain implements MethodRule {
 
     private final List<MethodRule> rules;
 
-    private MethodRuleChain(List<MethodRule> rules) {
-        this.rules = rules;
+    private MethodRuleChain(List<MethodRule> rulesInMethod) {
+        this.rules = rulesInMethod;
     }
 
     /**
