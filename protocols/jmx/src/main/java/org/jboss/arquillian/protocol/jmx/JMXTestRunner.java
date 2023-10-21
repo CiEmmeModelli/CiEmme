@@ -137,7 +137,8 @@ public class JMXTestRunner extends NotificationBroadcasterSupport implements JMX
             log.fine(String.format("Test class loaded from: %s", testClass.getClassLoader()));
             log.fine(String.format("Execute: %s.%s", className, methodName));
 
-            result = doRunTestMethod(runner, testClass, methodName, protocolProps);
+            //result = doRunTestMethod(runner, testClass, methodName, protocolProps);
+            result = doRunTestMethod(runner, testClass, methodName);
         } catch (Throwable th) {
             result.setStatus(Status.FAILED);
             result.setEnd(System.currentTimeMillis());
@@ -152,8 +153,8 @@ public class JMXTestRunner extends NotificationBroadcasterSupport implements JMX
         return result;
     }
 
-    protected TestResult doRunTestMethod(TestRunner runner, Class<?> testClass, String methodName,
-        Map<String, String> protocolProps) {
+    protected TestResult doRunTestMethod(TestRunner runner, Class<?> testClass, String methodName) {
+            //Map<String, String> protocolProps
         return runner.execute(testClass, methodName);
     }
 
