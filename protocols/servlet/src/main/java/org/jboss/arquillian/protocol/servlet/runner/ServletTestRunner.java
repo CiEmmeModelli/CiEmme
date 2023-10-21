@@ -81,8 +81,6 @@ public class ServletTestRunner extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         try {
             execute(request, response);
-        } catch (ServletException e) {
-           e.getMessage();
         } catch (IOException e) {
             e.getMessage();
         }
@@ -92,15 +90,13 @@ public class ServletTestRunner extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
             execute(request, response);
-        } catch (ServletException e) {
-           e.getMessage();
-        } catch (IOException e) {
+        }catch (IOException e) {
             e.getMessage();
         }
     }
 
     protected void execute(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
+        throws IOException {
         String outputMode = OUTPUT_MODE_HTML;
         String cmd = CMD_NAME_TEST;
         try {
@@ -177,6 +173,7 @@ public class ServletTestRunner extends HttpServlet {
         }
     }
 
+    @SuppressWarnings("java:S2118")
     public void executeEvent(HttpServletRequest request, HttpServletResponse response, String className,
         String methodName)
         throws ClassNotFoundException, IOException {
@@ -201,7 +198,7 @@ public class ServletTestRunner extends HttpServlet {
         }
     }
 
-    @SuppressWarnings("java:S2118")
+    
     private void writeObject(Object object, HttpServletResponse response) {
         try {
             // Set HttpServletResponse status BEFORE getting the output stream
