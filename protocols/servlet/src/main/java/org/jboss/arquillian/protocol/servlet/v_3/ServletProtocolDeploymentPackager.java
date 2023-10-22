@@ -121,7 +121,6 @@ public class ServletProtocolDeploymentPackager implements DeploymentPackager {
                     + applicationArchive.getName()
                     + ". Can not determine which to enrich");
             } else if (!archiveToTest.getName().endsWith(".war")) {
-                //TODO: Removed throwing an exception when EJB modules are supported as well
                 throw new UnsupportedOperationException("Archive to test is not a WebArchive!");
             } else {
                 handleArchive(
