@@ -172,14 +172,6 @@ public class ExceptionProxy implements Externalizable {
             try {
                 ByteArrayInputStream originalIn = new ByteArrayInputStream(originalExceptionData);
                 ObjectInputStream input = new ObjectInputStream(originalIn);
-                //           // Uncomment to run ExceptionProxySerializationTestCase
-                //            {
-                //               @Override
-                //               protected Class<?> resolveClass(ObjectStreamClass desc) throws IOException, ClassNotFoundException
-                //               {
-                //                  return Class.forName(desc.getName(), false, Thread.currentThread().getContextClassLoader());
-                //               }
-                //            };
                 original = (Throwable) input.readObject();
 
                 if (causeProxy != null) {
