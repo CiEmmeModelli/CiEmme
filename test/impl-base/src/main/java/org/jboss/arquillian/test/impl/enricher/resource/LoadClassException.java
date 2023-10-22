@@ -10,4 +10,8 @@ public class LoadClassException extends RuntimeException{
         super(string);
     }
 
+    public LoadClassException(String string, Exception e) {
+        super(string,e);
+    }
+
 }
