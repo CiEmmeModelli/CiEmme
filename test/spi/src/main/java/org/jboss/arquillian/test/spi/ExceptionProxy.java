@@ -137,10 +137,8 @@ public class ExceptionProxy implements Externalizable {
      */
     public Throwable getCause() {
         // lazy create cause
-        if (cause == null) {
-            if (causeProxy != null) {
+        if (cause == null && causeProxy != null)  {
                 cause = causeProxy.createException();
-            }
         }
         return cause;
     }
