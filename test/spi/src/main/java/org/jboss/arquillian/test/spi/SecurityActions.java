@@ -35,6 +35,7 @@ import java.util.List;
  * @version $Revision: $
  */
 final class SecurityActions {
+    private static final String EXCP_STRING="Obtained unchecked Exception; this code should never be reached";
 
     //-------------------------------------------------------------------------------||
     // Constructor ------------------------------------------------------------------||
@@ -176,7 +177,7 @@ final class SecurityActions {
                 }
                 // Just in case we've really messed up
                 catch (final ClassCastException cce) {
-                    throw new NotLoadException("Obtained unchecked Exception; this code should never be reached", t);
+                    throw new NotLoadException(EXCP_STRING, t);
                 }
             }
         }
@@ -220,7 +221,7 @@ final class SecurityActions {
                 }
                 // Just in case we've really messed up
                 catch (final ClassCastException cce) {
-                    throw new RuntimeException("Obtained unchecked Exception; this code should never be reached", t);
+                    throw new RuntimeException(EXCP_STRING, t);
                 }
             }
         }
@@ -299,7 +300,7 @@ final class SecurityActions {
                 }
                 // Just in case we've really messed up
                 catch (final ClassCastException cce) {
-                    throw new RuntimeException("Obtained unchecked Exception; this code should never be reached", t);
+                    throw new RuntimeException(EXCP_STRING, t);
                 }
             }
         }
