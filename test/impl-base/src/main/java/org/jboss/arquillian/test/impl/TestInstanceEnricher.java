@@ -42,7 +42,7 @@ public class TestInstanceEnricher {
     @Inject
     private Event<EnrichmentEvent> enrichmentEvent;
 
-    public void enrich(@Observes Before event) throws Exception {
+    public void enrich(@Observes Before event) throws EnrEventException {
         Object instance = event.getTestInstance();
         Method method = event.getTestMethod();
         enrichmentEvent.fire(new BeforeEnrichment(instance, method));
