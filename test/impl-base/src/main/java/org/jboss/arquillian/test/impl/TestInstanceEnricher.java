@@ -43,6 +43,7 @@ public class TestInstanceEnricher {
     private Event<EnrichmentEvent> enrichmentEvent;
 
     public void enrich(@Observes Before event) throws EnrEventException {
+        try{
         Object instance = event.getTestInstance();
         Method method = event.getTestMethod();
         enrichmentEvent.fire(new BeforeEnrichment(instance, method));
@@ -51,5 +52,9 @@ public class TestInstanceEnricher {
             enricher.enrich(instance);
         }
         enrichmentEvent.fire(new AfterEnrichment(instance, method));
+        }
+        catch(EnrEventException e){
+            e.getMessage();
+        }
     }
 }
