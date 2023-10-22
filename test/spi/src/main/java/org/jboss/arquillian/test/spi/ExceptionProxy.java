@@ -118,11 +118,10 @@ public class ExceptionProxy implements Externalizable {
             return original;
         }
 
-        Throwable throwable = createProxyException(
+        return createProxyException(
             "Original exception caused: " + (serializationProcessException != null
                 ? serializationProcessException.getClass() + ": " + serializationProcessException.getMessage()
                 : "Unknown serialization issue"));
-        return throwable;
     }
 
     public ArquillianProxyException createProxyException(String reason) {
