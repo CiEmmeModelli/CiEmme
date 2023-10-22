@@ -14,4 +14,8 @@ public class NotLoadException extends RuntimeException{
         super(string,e);
     }
 
+    public NotLoadException(String string, Throwable t) {
+        super(string,t);
+    }
+
 }
