@@ -46,5 +46,6 @@ public interface TestMethodExecutor {
      *
      * @throws Throwable
      */
+    @SuppressWarnings("java:S112")
     void invoke(Object... parameters) throws Throwable;
 }
