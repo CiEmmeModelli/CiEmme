@@ -10,4 +10,8 @@ public class NotLoadException extends RuntimeException{
         super(string);
     }
 
+    public NotLoadException(String string, Exception e) {
+        super(string,e);
+    }
+
 }
