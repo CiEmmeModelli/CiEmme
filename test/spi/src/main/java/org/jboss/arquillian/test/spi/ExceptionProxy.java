@@ -176,11 +176,11 @@ public class ExceptionProxy implements Externalizable {
 
                 if (causeProxy != null) {
                     // reset the cause, so we can de-serialize them individual
-                    Throwable cause = causeProxy.createException();
+                    Throwable causeLocal = causeProxy.createException();
                     if (original instanceof InvocationTargetException) {
-                        SecurityActions.setFieldValue(InvocationTargetException.class, original, "target", cause);
+                        SecurityActions.setFieldValue(InvocationTargetException.class, original, "target", causeLocal);
                     } else {
-                        SecurityActions.setFieldValue(Throwable.class, original, "cause", cause);
+                        SecurityActions.setFieldValue(Throwable.class, original, "cause", causeLocal);
                     }
                 }
             } catch (Throwable e) // Possible ClassNotFoundExcpetion / NoClassDefFoundError
