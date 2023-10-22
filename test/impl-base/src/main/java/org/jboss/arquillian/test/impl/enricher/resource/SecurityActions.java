@@ -229,7 +229,7 @@ final class SecurityActions {
 
     public static List<Field> getFieldsWithAnnotation(final Class<?> source,
         final Class<? extends Annotation> annotationClass) {
-        List<Field> declaredAccessableFields = AccessController.doPrivileged(new PrivilegedAction<List<Field>>() {
+        return AccessController.doPrivileged(new PrivilegedAction<List<Field>>() {
             public List<Field> run() {
                 List<Field> foundFields = new ArrayList<Field>();
                 Class<?> nextSource = source;
@@ -247,7 +247,6 @@ final class SecurityActions {
                 return foundFields;
             }
         });
-        return declaredAccessableFields;
     }
 
     public static List<Method> getMethodsWithAnnotation(final Class<?> source,
