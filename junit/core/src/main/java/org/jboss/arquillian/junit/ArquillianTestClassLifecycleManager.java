@@ -1,7 +1,6 @@
 package org.jboss.arquillian.junit;
 
 import org.jboss.arquillian.core.spi.MyCustomException;
-import org.jboss.arquillian.test.spi.CustomExc;
 import org.jboss.arquillian.test.spi.LifecycleMethodExecutor;
 
 abstract class ArquillianTestClassLifecycleManager extends AdaptorManager {
