@@ -66,9 +66,9 @@ public interface TestRunnerAdaptor {
      * Activate a new TestInstance.<br/>
      * This will trigger the Before event.
      *
-     * @throws Exception
+     * @throws MyCustomException
      */
-    void before(Object testInstance, Method testMethod, LifecycleMethodExecutor executor) throws Exception;
+    void before(Object testInstance, Method testMethod, LifecycleMethodExecutor executor) throws MyCustomException;
 
     /**
      * Deactivate the TestInstance.<br/>
