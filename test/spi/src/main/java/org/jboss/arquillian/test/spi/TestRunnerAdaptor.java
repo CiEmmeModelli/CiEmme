@@ -17,6 +17,8 @@
 package org.jboss.arquillian.test.spi;
 
 import java.lang.reflect.Method;
+
+import org.jboss.arquillian.core.spi.MyCustomException;
 import org.jboss.arquillian.test.spi.event.suite.TestLifecycleEvent;
 
 /**
@@ -48,9 +50,9 @@ public interface TestRunnerAdaptor {
      * Activate a new TestClass.<br/>
      * This will trigger the BeforeClass event.
      *
-     * @throws Exception
+     * @throws MyCustomException
      */
-    void beforeClass(Class<?> testClass, LifecycleMethodExecutor executor) throws Exception;
+    void beforeClass(Class<?> testClass, LifecycleMethodExecutor executor) throws MyCustomException;
 
     /**
      * Deactivate the TestClass.<br/>

@@ -25,6 +25,7 @@ import org.jboss.arquillian.core.api.annotation.Inject;
 import org.jboss.arquillian.core.api.annotation.Observer;
 import org.jboss.arquillian.core.spi.Manager;
 import org.jboss.arquillian.core.spi.ManagerBuilder;
+import org.jboss.arquillian.core.spi.MyCustomException;
 import org.jboss.arquillian.core.spi.NonManagedObserver;
 import org.jboss.arquillian.core.spi.ServiceLoader;
 import org.jboss.arquillian.core.spi.Validate;
@@ -76,7 +77,7 @@ public class EventTestRunnerAdaptor implements TestRunnerAdaptor {
         manager.fire(new AfterSuite());
     }
 
-    public void beforeClass(Class<?> testClass, LifecycleMethodExecutor executor) throws Exception {
+    public void beforeClass(Class<?> testClass, LifecycleMethodExecutor executor) throws MyCustomException {
         Validate.notNull(testClass, "TestClass must be specified");
 
         if (testClass.isAnnotationPresent(Observer.class)) {
