@@ -151,7 +151,7 @@ public class EventTestRunnerAdaptor implements TestRunnerAdaptor {
     }
 
     @Override
-    public <T extends TestLifecycleEvent> void fireCustomLifecycle(T event) throws Exception {
+    public <T extends TestLifecycleEvent> void fireCustomLifecycle(T event) throws CustomExc {
         Validate.notNull(event, "Event must be specified");
 
         ExecutionDecision executionDecision = resolveExecutionDecision(manager, event.getTestMethod());

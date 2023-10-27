@@ -95,9 +95,9 @@ public interface TestRunnerAdaptor {
      * @param event
      *     Any event
      *
-     * @throws Exception
+     * @throws CustomExc
      */
-    <T extends TestLifecycleEvent> void fireCustomLifecycle(T event) throws Exception;
+    <T extends TestLifecycleEvent> void fireCustomLifecycle(T event) throws CustomExc;
 
     /**
      * Shutdown Arquillian cleanly.
