@@ -65,9 +65,9 @@ public class ServletTestRunner extends HttpServlet {
     @SuppressWarnings("java:S2696")
     @Override
     public void init() throws ServletException {
-        events = new ConcurrentHashMap<String, Command<?>>(); //risolto con dichiarazione suppress warnings
-        currentCall = new ThreadLocal<String>(); //risolto con dichiarazione suppress warnings
-        currentServletContext = new ThreadLocal<ServletContext>(); //risolto con dichiarazione suppress warnings
+        events = new ConcurrentHashMap<String, Command<?>>(); 
+        currentCall = new ThreadLocal<String>(); 
+        currentServletContext = new ThreadLocal<ServletContext>(); 
     }
 
     @Override
@@ -182,7 +182,7 @@ public class ServletTestRunner extends HttpServlet {
         if (request.getContentLength() > 0) {
             response.setStatus(HttpServletResponse.SC_NO_CONTENT);
             ObjectInputStream input = new ObjectInputStream(new BufferedInputStream(request.getInputStream()));
-            Command<?> result = (Command<?>) input.readObject();
+            Command<?> result = (Command<?>) input.readUnshared();
 
             events.put(eventKey, result);
         } else {
