@@ -17,6 +17,7 @@
  */
 package org.jboss.arquillian.junit;
 
+import org.jboss.arquillian.test.spi.CustomExc;
 import org.jboss.arquillian.test.spi.TestRunnerAdaptor;
 import org.junit.Assert;
 import org.junit.Test;
@@ -45,7 +46,7 @@ public class InitializationExceptionTestCase extends JUnitTestBaseClass
    {
       String exceptionMessage = "TEST_EXCEPTION_BEFORE_SUITE_FAILING";
       TestRunnerAdaptor adaptor = mock(TestRunnerAdaptor.class);
-      doThrow(new Exception(exceptionMessage)).when(adaptor).beforeSuite();
+      doThrow(new CustomExc(exceptionMessage)).when(adaptor).beforeSuite();
 
       Result result = run(adaptor, ClassWithArquillianRunner.class, ClassWithArquillianRunner.class);
       

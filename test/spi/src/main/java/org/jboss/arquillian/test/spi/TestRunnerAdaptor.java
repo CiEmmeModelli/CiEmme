@@ -32,9 +32,9 @@ public interface TestRunnerAdaptor {
      * Activate a new TestSuite.<br/>
      * This will trigger the BeforeSuite event.
      *
-     * @throws Exception
+     * @throws CustomExc
      */
-    void beforeSuite() throws Exception;
+    void beforeSuite() throws CustomExc;
 
     /**
      * Deactivate the TestSuite.<br/>

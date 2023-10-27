@@ -28,6 +28,7 @@ import org.jboss.arquillian.core.spi.ManagerBuilder;
 import org.jboss.arquillian.core.spi.NonManagedObserver;
 import org.jboss.arquillian.core.spi.ServiceLoader;
 import org.jboss.arquillian.core.spi.Validate;
+import org.jboss.arquillian.test.spi.CustomExc;
 import org.jboss.arquillian.test.spi.LifecycleMethodExecutor;
 import org.jboss.arquillian.test.spi.TestMethodExecutor;
 import org.jboss.arquillian.test.spi.TestResult;
@@ -67,7 +68,7 @@ public class EventTestRunnerAdaptor implements TestRunnerAdaptor {
         this.manager = manager;
     }
 
-    public void beforeSuite() throws Exception {
+    public void beforeSuite() throws CustomExc {
         manager.fire(new BeforeSuite());
     }
 

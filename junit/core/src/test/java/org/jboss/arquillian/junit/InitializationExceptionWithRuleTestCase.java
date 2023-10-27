@@ -1,5 +1,6 @@
 package org.jboss.arquillian.junit;
 
+import org.jboss.arquillian.test.spi.CustomExc;
 import org.jboss.arquillian.test.spi.TestRunnerAdaptor;
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,7 +28,7 @@ public class InitializationExceptionWithRuleTestCase extends JUnitTestBaseClass 
     public void shouldKeepInitializationExceptionBetweenTestCases() throws Exception {
         String exceptionMessage = "TEST_EXCEPTION_BEFORE_SUITE_FAILING";
         TestRunnerAdaptor adaptor = mock(TestRunnerAdaptor.class);
-        doThrow(new Exception(exceptionMessage)).when(adaptor).beforeSuite();
+        doThrow(new CustomExc(exceptionMessage)).when(adaptor).beforeSuite();
 
         Result result =
             run(adaptor, ClassWithArquillianClassAndMethodRule.class, ClassWithArquillianClassAndMethodRule.class);
