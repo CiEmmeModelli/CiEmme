@@ -117,7 +117,7 @@ public class EventTestRunnerAdaptor implements TestRunnerAdaptor {
         manager.fire(new Before(testInstance, testMethod, executor));
     }
 
-    public void after(Object testInstance, Method testMethod, LifecycleMethodExecutor executor) throws Exception {
+    public void after(Object testInstance, Method testMethod, LifecycleMethodExecutor executor) throws CustomExc {
         Validate.notNull(testInstance, "TestInstance must be specified");
         Validate.notNull(testMethod, "TestMethod must be specified");
 

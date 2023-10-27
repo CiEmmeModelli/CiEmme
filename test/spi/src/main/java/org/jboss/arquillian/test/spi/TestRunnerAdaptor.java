@@ -74,9 +74,9 @@ public interface TestRunnerAdaptor {
      * Deactivate the TestInstance.<br/>
      * This will trigger the After event.
      *
-     * @throws Exception
+     * @throws CustomExc
      */
-    void after(Object testInstance, Method testMethod, LifecycleMethodExecutor executor) throws Exception;
+    void after(Object testInstance, Method testMethod, LifecycleMethodExecutor executor) throws CustomExc;
 
     /**
      * Activate a TestMethod execution.<br/>
