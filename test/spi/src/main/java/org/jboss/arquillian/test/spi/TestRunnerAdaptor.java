@@ -82,9 +82,9 @@ public interface TestRunnerAdaptor {
      * Activate a TestMethod execution.<br/>
      * This will trigger the Test event.
      *
-     * @throws Exception
+     * @throws CustomExc
      */
-    TestResult test(TestMethodExecutor testMethodExecutor) throws Exception;
+    TestResult test(TestMethodExecutor testMethodExecutor) throws CustomExc;
 
     /**
      * Fire any custom Test Lifecycle event.<br/>

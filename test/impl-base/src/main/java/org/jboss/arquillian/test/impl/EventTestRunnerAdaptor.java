@@ -129,7 +129,7 @@ public class EventTestRunnerAdaptor implements TestRunnerAdaptor {
         manager.fire(new After(testInstance, testMethod, executor));
     }
 
-    public TestResult test(TestMethodExecutor testMethodExecutor) throws Exception {
+    public TestResult test(TestMethodExecutor testMethodExecutor) throws CustomExc {
         Validate.notNull(testMethodExecutor, "TestMethodExecutor must be specified");
 
         ExecutionDecision executionDecision = resolveExecutionDecision(manager, testMethodExecutor.getMethod());
