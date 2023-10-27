@@ -40,9 +40,9 @@ public interface TestRunnerAdaptor {
      * Deactivate the TestSuite.<br/>
      * This will trigger the AfterSuite event.
      *
-     * @throws Exception
+     * @throws CustomExc
      */
-    void afterSuite() throws Exception;
+    void afterSuite() throws CustomExc;
 
     /**
      * Activate a new TestClass.<br/>

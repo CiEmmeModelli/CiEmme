@@ -72,7 +72,7 @@ public class EventTestRunnerAdaptor implements TestRunnerAdaptor {
         manager.fire(new BeforeSuite());
     }
 
-    public void afterSuite() throws Exception {
+    public void afterSuite() throws CustomExc {
         manager.fire(new AfterSuite());
     }
 
