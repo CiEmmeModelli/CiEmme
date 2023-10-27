@@ -58,9 +58,9 @@ public interface TestRunnerAdaptor {
      * Deactivate the TestClass.<br/>
      * This will trigger the AfterClass event.
      *
-     * @throws Exception
+     * @throws MyCustomException
      */
-    void afterClass(Class<?> testClass, LifecycleMethodExecutor executor) throws Exception;
+    void afterClass(Class<?> testClass, LifecycleMethodExecutor executor) throws MyCustomException;
 
     /**
      * Activate a new TestInstance.<br/>
