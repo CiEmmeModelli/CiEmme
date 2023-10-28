@@ -11,6 +11,10 @@ import org.junit.Test;
 
 import static org.jboss.arquillian.junit.JUnitTestBaseClass.wasCalled;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
+
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 public class TestClassWithArquillianClassAndMethodRuleWithTimeout {
     @ClassRule
@@ -43,6 +47,10 @@ public class TestClassWithArquillianClassAndMethodRuleWithTimeout {
     public void shouldBeInvoked() throws Throwable {
         wasCalled(Cycle.TEST);
         assertNotNull(arquillianTest);
-        Thread.sleep(1001);
+        final CountDownLatch latch = new CountDownLatch(1);
+
+        if (!latch.await(500, TimeUnit.MILLISECONDS)) {    
+            fail("Timeout!");
+        }
     }
 }
