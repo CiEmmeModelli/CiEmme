@@ -1,5 +1,7 @@
 package org.jboss.arquillian.junit;
 
+import static org.junit.Assert.assertNotNull;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -42,6 +44,7 @@ public class ClassWithArquillianClassAndMethodRuleAndWithArquillianRunner {
 
     @Test
     public void shouldBeInvoked() throws Throwable {
+        assertNotNull(arquillianTest);
         wasCalled(JUnitTestBaseClass.Cycle.TEST);
     }
 }
