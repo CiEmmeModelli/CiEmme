@@ -29,7 +29,7 @@ import static org.junit.Assert.assertNotNull;
  *
  * @author <a href="mailto:mjobanek@redhat.com">Matous Jobanek</a>
  */
-public class OuterRuleOuterStatementEnrichment extends AbstractRuleStatementEnrichment {
+public class TestOuterRuleOuterStatementEnrichment extends AbstractRuleStatementEnrichment {
     @Rule
     public TestingTestRule testRule = new TestingTestRule();
     @Rule

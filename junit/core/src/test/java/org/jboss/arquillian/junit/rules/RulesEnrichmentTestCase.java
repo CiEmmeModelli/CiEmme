@@ -90,12 +90,12 @@ public class RulesEnrichmentTestCase extends AbstractTestTestBase {
 
     @Test
     public void shouldEnrichOuterTestRuleOuterStatement() throws Throwable {
-        testTestRuleEnrichment(new OuterRuleOuterStatementEnrichment());
+        testTestRuleEnrichment(new TestOuterRuleOuterStatementEnrichment());
     }
 
     @Test
     public void shouldEnrichOuterMethodRuleOuterStatement() throws Throwable {
-        testMethodRuleEnrichment(new OuterRuleOuterStatementEnrichment());
+        testMethodRuleEnrichment(new TestOuterRuleOuterStatementEnrichment());
     }
 
     private void testTestRuleEnrichment(AbstractRuleStatementEnrichment test) throws Throwable {
