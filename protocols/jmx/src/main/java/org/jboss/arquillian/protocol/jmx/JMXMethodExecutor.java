@@ -59,6 +59,7 @@ public class JMXMethodExecutor implements ContainerMethodExecutor {
         this.protocolProps = protocolProps;
     }
 
+    @SuppressWarnings("java:S3457")
     public TestResult invoke(TestMethodExecutor testMethodExecutor) {
         if (testMethodExecutor == null) {
             throw new IllegalArgumentException("TestMethodExecutor null");
