@@ -24,5 +24,7 @@ package org.jboss.arquillian.test.spi.event.suite;
  */
 public class AfterSuite extends SuiteEvent {
     public AfterSuite() {
+        super();
     }
+
 }
