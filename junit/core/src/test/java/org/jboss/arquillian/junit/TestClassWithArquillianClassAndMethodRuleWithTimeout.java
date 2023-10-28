@@ -10,6 +10,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import static org.jboss.arquillian.junit.JUnitTestBaseClass.wasCalled;
+import static org.junit.Assert.assertNotNull;
 
 public class TestClassWithArquillianClassAndMethodRuleWithTimeout {
     @ClassRule
@@ -41,6 +42,7 @@ public class TestClassWithArquillianClassAndMethodRuleWithTimeout {
     @Test(timeout = 500)
     public void shouldBeInvoked() throws Throwable {
         wasCalled(Cycle.TEST);
+        assertNotNull(arquillianTest);
         Thread.sleep(1001);
     }
 }
