@@ -17,6 +17,8 @@
  */
 package org.jboss.arquillian.test.spi;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -39,6 +41,7 @@ public class ExceptionProxySerializationTestCase {
     @Test
     @Ignore // not ready for automation, uncomment ObjectInputStream override in ExceptionProxy.readExternal to run
     public void shouldBeAbleToDeserialize() throws Exception {
+        assertNotNull(getClass());
         ByteArrayOutputStream output = new ByteArrayOutputStream();
 
         ObjectOutputStream out = new ObjectOutputStream(output);
