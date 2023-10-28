@@ -50,11 +50,11 @@ public class JMXMethodExecutor implements ContainerMethodExecutor {
         this(mbeanServer, callback, JMXTestRunnerMBean.OBJECT_NAME, null);
     }
 
-    public JMXMethodExecutor(MBeanServerConnection mbeanServer, CommandCallback callback, String objectName,
+    public JMXMethodExecutor(MBeanServerConnection mbeanServer, CommandCallback callback, String objectNameInMethod,
         Map<String, String> protocolProps) {
         this.mbeanServer = mbeanServer;
         this.callback = callback;
-        this.objectName = objectName;
+        this.objectName = objectNameInMethod;
         this.protocolProps = protocolProps;
     }
 
