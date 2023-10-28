@@ -27,7 +27,7 @@ import org.junit.runner.RunWith;
 import static org.jboss.arquillian.junit.JUnitTestBaseClass.wasCalled;
 
 @RunWith(Arquillian.class)
-public class ClassWithArquillianRunner {
+public class TestClassWithArquillianRunner {
 
    @BeforeClass
    public static void beforeClass() throws Throwable

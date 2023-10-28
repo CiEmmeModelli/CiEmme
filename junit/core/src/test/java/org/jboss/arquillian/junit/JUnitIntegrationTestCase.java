@@ -55,7 +55,7 @@ public class JUnitIntegrationTestCase extends JUnitTestBaseClass {
         TestRunnerAdaptor adaptor = mock(TestRunnerAdaptor.class);
         when(adaptor.test(isA(TestMethodExecutor.class))).thenReturn(TestResult.passed());
 
-        Result result = run(adaptor, ClassWithArquillianRunner.class);
+        Result result = run(adaptor, TestClassWithArquillianRunner.class);
 
         Assert.assertTrue(result.wasSuccessful());
         assertCycle(0, Cycle.basics());
@@ -69,7 +69,7 @@ public class JUnitIntegrationTestCase extends JUnitTestBaseClass {
         TestRunnerAdaptor adaptor = mock(TestRunnerAdaptor.class);
         executeAllLifeCycles(adaptor);
 
-        Result result = run(adaptor, ClassWithArquillianRunner.class);
+        Result result = run(adaptor, TestClassWithArquillianRunner.class);
 
         Assert.assertTrue(result.wasSuccessful());
         assertCycle(1, Cycle.basics());
@@ -88,7 +88,7 @@ public class JUnitIntegrationTestCase extends JUnitTestBaseClass {
 
         throwException(Cycle.BEFORE_CLASS, new Throwable());
 
-        Result result = run(adaptor, ClassWithArquillianRunner.class);
+        Result result = run(adaptor, TestClassWithArquillianRunner.class);
         Assert.assertFalse(result.wasSuccessful());
 
         assertCycle(1, Cycle.BEFORE_CLASS, Cycle.AFTER_CLASS);
@@ -105,7 +105,7 @@ public class JUnitIntegrationTestCase extends JUnitTestBaseClass {
 
         throwException(Cycle.BEFORE, new Throwable());
 
-        Result result = run(adaptor, ClassWithArquillianRunner.class);
+        Result result = run(adaptor, TestClassWithArquillianRunner.class);
         Assert.assertFalse(result.wasSuccessful());
 
         assertCycle(1, Cycle.BEFORE_CLASS, Cycle.AFTER_CLASS, Cycle.BEFORE, Cycle.AFTER);
@@ -120,8 +120,8 @@ public class JUnitIntegrationTestCase extends JUnitTestBaseClass {
         TestRunnerAdaptor adaptor = mock(TestRunnerAdaptor.class);
         executeAllLifeCycles(adaptor);
 
-        Result result = run(adaptor, ClassWithArquillianRunner.class, ClassWithArquillianRunner.class,
-            ClassWithArquillianRunner.class, ClassWithArquillianRunner.class);
+        Result result = run(adaptor, TestClassWithArquillianRunner.class, TestClassWithArquillianRunner.class,
+            TestClassWithArquillianRunner.class, TestClassWithArquillianRunner.class);
         Assert.assertTrue(result.wasSuccessful());
 
         verify(adaptor, times(1)).beforeSuite();
@@ -138,7 +138,7 @@ public class JUnitIntegrationTestCase extends JUnitTestBaseClass {
 
         throwException(Cycle.TEST, new Throwable());
 
-        Result result = run(adaptor, ClassWithArquillianRunner.class);
+        Result result = run(adaptor, TestClassWithArquillianRunner.class);
         Assert.assertFalse(result.wasSuccessful());
 
         assertCycle(1, Cycle.basics());

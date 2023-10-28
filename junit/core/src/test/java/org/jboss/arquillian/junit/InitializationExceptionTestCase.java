@@ -48,7 +48,7 @@ public class InitializationExceptionTestCase extends JUnitTestBaseClass
       TestRunnerAdaptor adaptor = mock(TestRunnerAdaptor.class);
       doThrow(new CustomExc(exceptionMessage)).when(adaptor).beforeSuite();
 
-      Result result = run(adaptor, ClassWithArquillianRunner.class, ClassWithArquillianRunner.class);
+      Result result = run(adaptor, TestClassWithArquillianRunner.class, TestClassWithArquillianRunner.class);
       
       Assert.assertFalse(result.wasSuccessful());
       // both should be marked failed, the second with the real exception as cause 
