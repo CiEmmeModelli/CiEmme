@@ -39,7 +39,7 @@ import org.junit.Test;
 public class ExceptionProxySerializationTestCase {
 
     @Test
-    @Ignore // not ready for automation, uncomment ObjectInputStream override in ExceptionProxy.readExternal to run
+    @Ignore("Not ready for automation")
     public void shouldBeAbleToDeserialize() throws Exception {
         assertNotNull(getClass());
         ByteArrayOutputStream output = new ByteArrayOutputStream();
