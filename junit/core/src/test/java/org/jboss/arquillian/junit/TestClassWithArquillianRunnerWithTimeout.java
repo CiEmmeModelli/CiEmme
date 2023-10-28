@@ -25,6 +25,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.jboss.arquillian.junit.JUnitTestBaseClass.wasCalled;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(Arquillian.class)
 public class TestClassWithArquillianRunnerWithTimeout {
@@ -51,6 +52,7 @@ public class TestClassWithArquillianRunnerWithTimeout {
     @Test(timeout = 500)
     public void shouldBeInvoked() throws Throwable {
         wasCalled(Cycle.TEST);
+        assertNotNull(Cycle.TEST);
         Thread.sleep(1001);
     }
 }
