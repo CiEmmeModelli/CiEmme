@@ -93,7 +93,7 @@ public class JMXMethodExecutor implements ContainerMethodExecutor {
                 }
             }
         }
-        log.fine("Result: " + result);
+        log.fine(String.format("Result: %s", result));
         if (result.getStatus() == Status.FAILED) {
             log.log(Level.SEVERE, "Failed: " + testCanonicalName, result.getThrowable());
         }
