@@ -277,7 +277,7 @@ public class JUnitIntegrationWithRuleTestCase extends JUnitTestBaseClass {
             .after(any(Object.class), any(Method.class), any(LifecycleMethodExecutor.class));
         doAnswer(new TestExecuteLifecycle(TestResult.passed())).when(adaptor).test(any(TestMethodExecutor.class));
 
-        Result result = run(adaptor, ClassWithArquillianClassAndMethodRuleWithExceptionInAfterAndAfterRule.class);
+        Result result = run(adaptor, TestClassWithArquillianClassAndMethodRuleWithExceptionInAfterAndAfterRule.class);
 
         Assert.assertFalse(result.wasSuccessful());
 
