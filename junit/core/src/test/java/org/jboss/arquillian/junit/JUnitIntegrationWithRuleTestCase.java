@@ -297,11 +297,11 @@ public class JUnitIntegrationWithRuleTestCase extends JUnitTestBaseClass {
         TestRunnerAdaptor adaptor = mock(TestRunnerAdaptor.class);
         executeAllLifeCycles(adaptor);
 
-        Result result = run(adaptor, ClassWithArquillianClassAndMethodRuleAndWithArquillianRunner.class);
+        Result result = run(adaptor, TestClassWithArquillianClassAndMethodRuleAndWithArquillianRunner.class);
 
         Assert.assertFalse(result.wasSuccessful());
         assertCycle(0, Cycle.basics());
-        Assert.assertEquals("TestClass: org.jboss.arquillian.junit.ClassWithArquillianClassAndMethodRuleAndWithArquillianRunner contains "
+        Assert.assertEquals("TestClass: org.jboss.arquillian.junit.TestClassWithArquillianClassAndMethodRuleAndWithArquillianRunner contains "
                 + "Arquillian runner and Arquillian Rule. Arquillian doesn't support @RunWith(Arquillian.class) and "
                 + "ArquillianTestClass or ArquillianTest to use at the same time. You have to decide whether you want use "
                 + "runner: http://arquillian.org/arquillian-core/#how-it-works or "

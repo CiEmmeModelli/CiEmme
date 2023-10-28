@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
 import static org.jboss.arquillian.junit.JUnitTestBaseClass.wasCalled;
 
 @RunWith(Arquillian.class)
-public class ClassWithArquillianClassAndMethodRuleAndWithArquillianRunner {
+public class TestClassWithArquillianClassAndMethodRuleAndWithArquillianRunner {
 
     @ClassRule
     public static ArquillianTestClass arquillianTestClass = new ArquillianTestClass();
