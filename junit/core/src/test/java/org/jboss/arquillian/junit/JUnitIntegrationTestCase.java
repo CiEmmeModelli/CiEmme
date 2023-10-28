@@ -290,7 +290,7 @@ public class JUnitIntegrationTestCase extends JUnitTestBaseClass {
             .after(any(Object.class), any(Method.class), any(LifecycleMethodExecutor.class));
         doAnswer(new TestExecuteLifecycle(TestResult.passed())).when(adaptor).test(any(TestMethodExecutor.class));
 
-        Result result = run(adaptor, ClassWithArquillianRunnerWithExceptionInAfterAndAfterRule.class);
+        Result result = run(adaptor, TestClassWithArquillianRunnerWithExceptionInAfterAndAfterRule.class);
 
         Assert.assertFalse(result.wasSuccessful());
         Assert.assertEquals(2, result.getFailureCount());
