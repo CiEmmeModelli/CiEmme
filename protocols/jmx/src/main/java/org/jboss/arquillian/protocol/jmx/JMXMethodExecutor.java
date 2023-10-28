@@ -77,7 +77,7 @@ public class JMXMethodExecutor implements ContainerMethodExecutor {
             mbeanServer.addNotificationListener(objectName, commandListener, null, null);
 
             JMXTestRunnerMBean testRunner = getMBeanProxy(objectName, JMXTestRunnerMBean.class);
-            log.fine("Invoke " + testCanonicalName);
+            log.fine(String.format("Invoke %s", testCanonicalName));
             result =
                 Serializer.toObject(TestResult.class, testRunner.runTestMethod(testClass, testMethod, protocolProps));
         } catch (final Throwable th) {
