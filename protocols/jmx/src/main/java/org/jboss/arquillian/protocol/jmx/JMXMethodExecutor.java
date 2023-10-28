@@ -27,6 +27,7 @@ import javax.management.ObjectName;
 import org.jboss.arquillian.container.test.spi.ContainerMethodExecutor;
 import org.jboss.arquillian.container.test.spi.command.Command;
 import org.jboss.arquillian.container.test.spi.command.CommandCallback;
+import org.jboss.arquillian.core.spi.context.RunCustomException;
 import org.jboss.arquillian.test.spi.TestMethodExecutor;
 import org.jboss.arquillian.test.spi.TestResult;
 import org.jboss.arquillian.test.spi.TestResult.Status;
@@ -121,7 +122,7 @@ public class JMXMethodExecutor implements ContainerMethodExecutor {
                     new String[] {String.class.getName(),
                         byte[].class.getName()});
             } catch (Exception e) {
-                throw new RuntimeException("Could not return command result for command " + command, e);
+                throw new RunCustomException("Could not return command result for command " + command, e);
             }
         }
     }
