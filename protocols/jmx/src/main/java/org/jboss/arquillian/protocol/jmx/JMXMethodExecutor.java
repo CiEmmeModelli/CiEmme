@@ -85,8 +85,9 @@ public class JMXMethodExecutor implements ContainerMethodExecutor {
             result = new TestResult(Status.FAILED);
             result.setThrowable(th);
         } finally {
-            result.setEnd(System.currentTimeMillis());
-            if (objectName != null && commandListener != null) {
+
+            if (objectName != null && commandListener != null && result != null) {
+                result.setEnd(System.currentTimeMillis());
                 try {
                     mbeanServer.removeNotificationListener(objectName, commandListener);
                 } catch (Throwable th) {
