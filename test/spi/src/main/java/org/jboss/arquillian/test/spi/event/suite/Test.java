@@ -32,7 +32,6 @@ public class Test extends TestEvent {
      *     The executor responsible for executing the test method
      */
     public Test(TestMethodExecutor testMethodExecutor) {
-        // TODO: how to validate testMethodExecutor
         super(testMethodExecutor.getInstance(), testMethodExecutor.getMethod());
 
         //Validate.notNull(testMethodExecutor, "TestMethodExecutor must be specified");
