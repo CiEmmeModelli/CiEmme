@@ -172,8 +172,8 @@ public class ServletTestRunner extends HttpServlet {
             writer.write("</body>\n");
         }
     }
-
-    @SuppressWarnings("java:S2118")
+    
+    @SuppressWarnings({"java:S2118", "javasecurity:S5135"})
     public void executeEvent(HttpServletRequest request, HttpServletResponse response, String className,
         String methodName)
         throws ClassNotFoundException, IOException {
@@ -182,7 +182,7 @@ public class ServletTestRunner extends HttpServlet {
         if (request.getContentLength() > 0) {
             response.setStatus(HttpServletResponse.SC_NO_CONTENT);
             ObjectInputStream input = new ObjectInputStream(new BufferedInputStream(request.getInputStream()));
-            Command<?> result = (Command<?>) input.readUnshared();
+            Command<?> result = (Command<?>) input.readObject();
 
             events.put(eventKey, result);
         } else {
