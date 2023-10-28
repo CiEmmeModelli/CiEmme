@@ -32,7 +32,7 @@ import static org.junit.Assert.assertNotNull;
  *
  * @author <a href="mailto:mjobanek@redhat.com">Matous Jobanek</a>
  */
-public class InnerRuleInnerStatementEnrichment extends AbstractRuleStatementEnrichment {
+public class TestInnerRuleInnerStatementEnrichment extends AbstractRuleStatementEnrichment {
     @ArquillianResource
     private ResourceStub testResources;
 
