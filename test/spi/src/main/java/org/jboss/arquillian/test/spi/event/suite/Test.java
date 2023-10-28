@@ -34,8 +34,6 @@ public class Test extends TestEvent {
     public Test(TestMethodExecutor testMethodExecutor) {
         super(testMethodExecutor.getInstance(), testMethodExecutor.getMethod());
 
-        //Validate.notNull(testMethodExecutor, "TestMethodExecutor must be specified");
-
         this.testMethodExecutor = testMethodExecutor;
     }
 
