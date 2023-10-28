@@ -153,7 +153,7 @@ public class JUnitIntegrationTestCase extends JUnitTestBaseClass {
 
         executeAllLifeCycles(adaptor);
 
-        Result result = run(adaptor, ClassWithArquillianRunnerWithTimeout.class);
+        Result result = run(adaptor, TestClassWithArquillianRunnerWithTimeout.class);
 
         Assert.assertFalse(result.wasSuccessful());
         Assert.assertTrue(result.getFailures().get(0).getMessage().contains("timed out"));
