@@ -41,7 +41,7 @@ public class JUnitIntegrationTestCase extends JUnitTestBaseClass {
         System.setProperty("arquillian.debug", "true");
         TestRunnerAdaptor adaptor = spy(TestRunnerAdaptorBuilder.build());
 
-        Result result = run(adaptor, ArquillianClass1.class);
+        Result result = run(adaptor, TestArquillianClass1.class);
 
         Assert.assertTrue(result.wasSuccessful());
         assertCycle(1, Cycle.values());
