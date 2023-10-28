@@ -25,6 +25,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.jboss.arquillian.junit.JUnitTestBaseClass.wasCalled;
+import static org.junit.Assert.assertNotNull;
 
 /*
  * Predfined TestClass
@@ -53,6 +54,7 @@ public class TestArquillianClass1 {
 
     @Test
     public void shouldBeInvoked() throws Throwable {
+        assertNotNull(Cycle.TEST);
         wasCalled(Cycle.TEST);
     }
 }
