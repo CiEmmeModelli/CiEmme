@@ -246,7 +246,7 @@ public class JUnitIntegrationTestCase extends JUnitTestBaseClass {
 
         Assert.assertFalse(result.wasSuccessful());
         Assert.assertEquals(1, result.getFailureCount());
-        Assert.assertTrue(result.getFailures().get(0).getMessage().equals("BeforeRuleException"));
+        Assert.assertEquals("BeforeRuleException", result.getFailures().get(0).getMessage());
         assertCycle(1, Cycle.BEFORE_CLASS, Cycle.AFTER_CLASS);
         assertCycle(0, Cycle.BEFORE, Cycle.TEST, Cycle.AFTER);
 
