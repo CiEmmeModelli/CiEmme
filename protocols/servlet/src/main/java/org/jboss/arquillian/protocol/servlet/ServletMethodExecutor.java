@@ -16,6 +16,7 @@
  */
 package org.jboss.arquillian.protocol.servlet;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ConnectException;
@@ -122,7 +123,7 @@ public class ServletMethodExecutor implements ContainerMethodExecutor {
     }
     
 
-    protected <T> T execute(String url, Class<T> returnType, Object requestObject) throws Exception {
+    protected <T> T execute(String url, Class<T> returnType, Object requestObject) throws IOException, ClassNotFoundException {
         URLConnection connection = new URL(url).openConnection();
         if (!(connection instanceof HttpURLConnection)) {
             throw new IllegalStateException("Not an http connection! " + connection);
