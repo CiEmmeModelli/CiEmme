@@ -89,6 +89,7 @@ public final class TestResult implements Serializable {
      *     The result status.
      * @param throwable
      *     thrown exception if any
+     *  @deprecated Use the constructor TestResult(Status) instead.
      */
     @Deprecated
     public TestResult(Status status, Throwable throwable) {
