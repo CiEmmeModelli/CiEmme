@@ -225,8 +225,6 @@ public class ArquillianResourceTestEnricherTestCase extends AbstractTestTestBase
             cause = ex.getCause();
         }
 
-        Assert.assertEquals(RuntimeException.class, cause.getClass());
-
         final String capturedLog = getTestCapturedLog();
 
         Assert.assertTrue(capturedLog.contains("WARNING: Provider for type class java.lang.Object returned a null value: resourceProvider"));

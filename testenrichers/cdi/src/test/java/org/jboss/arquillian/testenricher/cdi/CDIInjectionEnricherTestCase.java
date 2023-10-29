@@ -16,6 +16,8 @@
  */
 package org.jboss.arquillian.testenricher.cdi;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -100,6 +102,7 @@ public class CDIInjectionEnricherTestCase extends AbstractTestTestBase {
 
     @Test
     public void shouldInjectMethodArguments() throws Exception {
+        assertNotNull(injector);
         Method testMethod = TestClass.class.getMethod("testMethod", Service.class, Service.class);
 
         Object[] resolvedBeans = enricher.resolve(testMethod);
