@@ -77,7 +77,7 @@ public class MethodParameterInjectionPoint<T> implements InjectionPoint {
       /*
        * Due to bug in Weld 1.0.0.SP4(fixed in trunk). Remove this when 1.1.0 is out. 
        */
-        if (qualifiers.size() == 0) {
+        if (qualifiers.isEmpty()) {
             qualifiers.add(new DefaultLiteral());
         }
         return qualifiers;
