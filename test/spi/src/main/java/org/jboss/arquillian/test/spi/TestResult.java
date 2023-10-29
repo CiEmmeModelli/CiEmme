@@ -73,6 +73,7 @@ public final class TestResult implements Serializable {
      *
      * @param status
      *     The result status.
+     *      @deprecated Use the constructor TestResult(Status) instead.
      */
     @Deprecated
     public TestResult(Status status) {
