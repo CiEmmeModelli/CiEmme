@@ -122,7 +122,7 @@ public class EventTestRunnerAdaptor implements TestRunnerAdaptor {
         Validate.notNull(testMethod, "TestMethod must be specified");
 
         ExecutionDecision executionDecision = resolveExecutionDecision(manager, testMethod);
-        if (executionDecision.getDecision() == Decision.DONT_EXECUTE) {
+        if (executionDecision != null && executionDecision.getDecision() == Decision.DONT_EXECUTE) {
             return;
         }
 
@@ -133,7 +133,7 @@ public class EventTestRunnerAdaptor implements TestRunnerAdaptor {
         Validate.notNull(testMethodExecutor, "TestMethodExecutor must be specified");
 
         ExecutionDecision executionDecision = resolveExecutionDecision(manager, testMethodExecutor.getMethod());
-        if (executionDecision.getDecision() == Decision.DONT_EXECUTE) {
+        if (executionDecision != null && executionDecision.getDecision() == Decision.DONT_EXECUTE) {
             return TestResult.skipped(new SkippedTestExecutionException(executionDecision.getReason()));
         }
 
@@ -155,7 +155,7 @@ public class EventTestRunnerAdaptor implements TestRunnerAdaptor {
         Validate.notNull(event, "Event must be specified");
 
         ExecutionDecision executionDecision = resolveExecutionDecision(manager, event.getTestMethod());
-        if (executionDecision.getDecision() == Decision.DONT_EXECUTE) {
+        if (executionDecision != null && executionDecision.getDecision() == Decision.DONT_EXECUTE) {
             return;
         }
         manager.fire(event);
