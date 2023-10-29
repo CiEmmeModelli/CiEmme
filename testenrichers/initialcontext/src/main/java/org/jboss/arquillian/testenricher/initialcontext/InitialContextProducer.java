@@ -38,6 +38,7 @@ public class InitialContextProducer {
     private InstanceProducer<Context> contextProducer;
 
     public void createContext(@Observes ManagerStarted event) throws NamingException {
+        event.toString();
         contextProducer.set(new InitialContext());
     }
 }
