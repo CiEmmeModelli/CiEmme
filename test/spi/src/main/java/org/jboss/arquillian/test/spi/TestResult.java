@@ -56,6 +56,11 @@ public final class TestResult implements Serializable {
      * <br/>
      * Start time is set to Current Milliseconds.
      */
+    /**
+     * Constructs a new TestResult with the given status.
+     *
+     * @deprecated Use the constructor TestResult(Status) instead.
+     */
     @Deprecated
     public TestResult() {
         this(null);
