@@ -175,6 +175,12 @@ public final class TestResult implements Serializable {
         return status;
     }
 
+    /**
+     * Constructs a new TestResult with the given status.
+     *
+     * @param status The status of the test result.
+     * @deprecated Use the constructor TestResult(Status) instead.
+     */
     @Deprecated
     public TestResult setStatus(Status status) {
         this.status = status;
