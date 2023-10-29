@@ -30,6 +30,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Logger;
 import org.jboss.arquillian.container.spi.client.protocol.metadata.HTTPContext;
+import org.jboss.arquillian.container.spi.client.protocol.metadata.RunCustomExc;
 import org.jboss.arquillian.container.test.spi.ContainerMethodExecutor;
 import org.jboss.arquillian.container.test.spi.command.Command;
 import org.jboss.arquillian.container.test.spi.command.CommandCallback;
@@ -148,7 +149,7 @@ public class ServletMethodExecutor implements ContainerMethodExecutor {
                 try {
                     ous.writeObject(requestObject);
                 } catch (Exception e) {
-                    throw new RuntimeException("Error sending request Object, " + requestObject, e);
+                    throw new RunCustomExc("Error sending request Object, " + requestObject, e);
                 } finally {
                     ous.flush();
                     ous.close();
