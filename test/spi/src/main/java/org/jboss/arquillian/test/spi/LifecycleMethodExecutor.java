@@ -27,6 +27,7 @@ package org.jboss.arquillian.test.spi;
 public interface LifecycleMethodExecutor {
     public static final LifecycleMethodExecutor NO_OP = new LifecycleMethodExecutor() {
         public void invoke() throws Throwable {
+            // Questo metodo è vuoto di proposito in quanto rappresenta un'esecuzione "senza operazione".
         }
     };
 
