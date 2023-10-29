@@ -74,24 +74,29 @@ public class ServletMethodExecutor implements ContainerMethodExecutor {
         if (testMethodExecutor == null) {
             throw new IllegalArgumentException("TestMethodExecutor must be specified");
         }
-
+    
         URI targetBaseURI = uriHandler.locateTestServlet(testMethodExecutor.getMethod());
-
+    
         Class<?> testClass = testMethodExecutor.getInstance().getClass();
-
+    
         Timer eventTimer = null;
+    
         try {
             String urlEncodedMethodName = URLEncoder.encode(testMethodExecutor.getMethodName(), "UTF-8");
             final String url = targetBaseURI.toASCIIString() + ARQUILLIAN_SERVLET_MAPPING
                 + "?outputMode=serializedObject&className=" + testClass.getName() + "&methodName="
                 + urlEncodedMethodName;
-
+    
             final String eventUrl = targetBaseURI.toASCIIString() + ARQUILLIAN_SERVLET_MAPPING
                 + "?outputMode=serializedObject&className=" + testClass.getName() + "&methodName="
                 + urlEncodedMethodName + "&cmd=event";
-
+    
             eventTimer = createCommandServicePullTimer(eventUrl);
             return executeWithRetry(url, TestResult.class);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new IllegalStateException("Error launching test " + testClass.getName() + " "
+                + testMethodExecutor.getMethod(), e);
         } catch (Exception e) {
             throw new IllegalStateException("Error launching test " + testClass.getName() + " "
                 + testMethodExecutor.getMethod(), e);
@@ -101,6 +106,7 @@ public class ServletMethodExecutor implements ContainerMethodExecutor {
             }
         }
     }
+    
 
     protected <T> T executeWithRetry(String url, Class<T> type) throws InterruptedException, IOException, ClassNotFoundException {
         long timeoutTime = System.currentTimeMillis() + 1000;
