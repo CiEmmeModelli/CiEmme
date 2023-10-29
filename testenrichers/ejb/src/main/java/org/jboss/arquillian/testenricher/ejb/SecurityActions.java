@@ -95,7 +95,7 @@ final class SecurityActions {
         try {
             clazz = Class.forName(className, false, classLoader);
         } catch (Exception e) {
-            throw new RuntimeException("Could not load class " + className, e);
+            throw new NameException("Could not load class " + className, e);
         }
         Object obj = newInstance(clazz, argumentTypes, arguments);
         try {

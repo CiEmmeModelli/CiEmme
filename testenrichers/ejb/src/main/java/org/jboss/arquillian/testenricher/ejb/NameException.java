@@ -10,4 +10,8 @@ public class NameException extends RuntimeException{
         super(string);
     }
 
+    public NameException(String string, Exception e) {
+        super(string,e);
+    }
+
 }
