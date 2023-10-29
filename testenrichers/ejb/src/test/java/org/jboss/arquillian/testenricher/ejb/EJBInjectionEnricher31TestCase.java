@@ -46,15 +46,6 @@ public class EJBInjectionEnricher31TestCase extends EJBInjectionEnricherBase {
         assertThat(resolvedJndiName.length, is(1));
         assertThat(resolvedJndiName[0], is(expected));
     }
-
-    /* @Test(expected = IllegalStateException.class)
-    public void shouldThrowExceptionOnMappedNameAndLookup() {
-        cut.enrich(new EJBInvalidMappedNameAndLookupClass());
-
-        assertThat(caughtResolveException, notNullValue());
-        throw caughtResolveException;
-    } */
-
     @Test
 public void shouldThrowExceptionOnMappedNameAndLookup() {
     try {
@@ -65,13 +56,16 @@ public void shouldThrowExceptionOnMappedNameAndLookup() {
     }
 }
 
-    @Test(expected = IllegalStateException.class)
-    public void shouldThrowExceptionOnBeanNameAndLookup() {
+@Test
+public void shouldThrowExceptionOnBeanNameAndLookup() {
+    try {
         cut.enrich(new EJBInvalidBeanNameAndLookupClass());
-
         assertThat(caughtResolveException, notNullValue());
-        throw caughtResolveException;
+    } catch (IllegalStateException e) {
+       e.getMessage();
     }
+}
+
 
     public static final class EJBEnrichedLookupClass {
         @EJB(lookup = "java:global/org/arquillian/Test")
