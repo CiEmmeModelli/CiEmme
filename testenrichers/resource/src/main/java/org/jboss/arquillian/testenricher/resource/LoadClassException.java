@@ -14,4 +14,8 @@ public class LoadClassException extends RuntimeException{
         super(string,e);
     }
 
+    public LoadClassException(String string, Throwable t) {
+        super(string,t);
+    }
+
 }
