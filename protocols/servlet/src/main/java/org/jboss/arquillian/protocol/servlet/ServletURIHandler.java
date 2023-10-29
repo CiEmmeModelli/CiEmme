@@ -42,7 +42,7 @@ public class ServletURIHandler {
         if (config == null) {
             throw new IllegalArgumentException("ServletProtocolConfiguration must be specified");
         }
-        if (contexts == null || contexts.size() == 0) {
+        if (contexts == null || contexts.isEmpty()) {
             throw new IllegalArgumentException("HTTPContext must be specified");
         }
         this.config = config;
