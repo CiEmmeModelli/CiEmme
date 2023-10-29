@@ -217,7 +217,7 @@ public class ServletMethodExecutor implements ContainerMethodExecutor {
                             callback.fired(command);
                             execute(eventUrl, Object.class, command);
                         } else {
-                            throw new RuntimeException("Recived a non " + Command.class.getName()
+                            throw new RunCustomExc("Recived a non " + Command.class.getName()
                                 + " object on event channel");
                         }
                     }
