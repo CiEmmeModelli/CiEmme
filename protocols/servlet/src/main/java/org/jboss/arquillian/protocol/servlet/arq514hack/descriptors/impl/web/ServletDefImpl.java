@@ -29,6 +29,7 @@ import org.jboss.shrinkwrap.descriptor.spi.node.Node;
  */
 public class ServletDefImpl extends WebAppDescriptorImpl implements ServletDef {
     private final Node servlet;
+    private static String servletClassName = "servlet-class";
 
     public ServletDefImpl(String descriptorName, Node webApp, Node servlet) {
         super(descriptorName, webApp);
@@ -75,14 +76,14 @@ public class ServletDefImpl extends WebAppDescriptorImpl implements ServletDef {
 
     @Override
     public ServletDef servletClass(String clazz) {
-        servlet.getOrCreate("servlet-class").text(clazz);
+        servlet.getOrCreate(servletClassName).text(clazz);
         return this;
     }
 
     @Override
     public String getServletClass() {
-        if (servlet.getSingle("servlet-class") != null) {
-            return servlet.getSingle("servlet-class").getText();
+        if (servlet.getSingle(servletClassName) != null) {
+            return servlet.getSingle(servletClassName).getText();
         }
         return null;
     }
