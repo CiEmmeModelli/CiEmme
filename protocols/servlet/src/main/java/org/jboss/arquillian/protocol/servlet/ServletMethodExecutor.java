@@ -44,7 +44,7 @@ import org.jboss.arquillian.test.spi.TestResult;
 public class ServletMethodExecutor implements ContainerMethodExecutor {
     public static final String ARQUILLIAN_SERVLET_NAME = "ArquillianServletRunner";
     public static final String ARQUILLIAN_SERVLET_MAPPING = "/" + ARQUILLIAN_SERVLET_NAME;
-    private static final Logger log = Logger.getLogger(ContainerMethodExecutor.class.getName());
+    private static final Logger log = Logger.getLogger(ServletMethodExecutor.class.getName());
     protected ServletURIHandler uriHandler;
     protected CommandCallback callback;
     protected ServletProtocolConfiguration config;
