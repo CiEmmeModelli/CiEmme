@@ -272,12 +272,11 @@ final class SecurityActions {
 
     static String getProperty(final String key) {
         try {
-            String value = AccessController.doPrivileged(new PrivilegedExceptionAction<String>() {
+            return AccessController.doPrivileged(new PrivilegedExceptionAction<String>() {
                 public String run() {
                     return System.getProperty(key);
                 }
             });
-            return value;
         }
         // Unwrap
         catch (final PrivilegedActionException pae) {
