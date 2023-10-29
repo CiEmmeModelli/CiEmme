@@ -211,10 +211,8 @@ public final class TestResult implements Serializable {
      * the root cause.
      */
     public Throwable getThrowable() {
-        if (throwable == null) {
-            if (exceptionProxy != null) {
+        if (throwable == null && exceptionProxy != null) {
                 throwable = exceptionProxy.createException();
-            }
         }
         return throwable;
     }
