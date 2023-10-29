@@ -16,10 +16,13 @@
  */
 package org.jboss.arquillian.protocol.jmx;
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
 public class DummyTestCase {
     @Test
     public void testMethod() throws Exception {
+        assertTrue(!this.getClass().toString().isEmpty());
     }
 }
