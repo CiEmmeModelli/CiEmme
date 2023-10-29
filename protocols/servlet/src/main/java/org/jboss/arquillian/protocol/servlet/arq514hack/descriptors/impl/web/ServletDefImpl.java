@@ -122,7 +122,8 @@ public class ServletDefImpl extends WebAppDescriptorImpl implements ServletDef {
     @Override
     public int getLoadOnStartup() throws NumberFormatException {
         String tex = servlet.getTextValueForPatternName("load-on-startup");
-        return tex == null ? null : Integer.valueOf(tex);
+        if (tex == null) return 0; 
+        else return Integer.valueOf(tex);
     }
 
     public Node getNode() {
