@@ -135,6 +135,34 @@ public class EventTestRunnerAdaptorTestCase extends AbstractTestTestBase {
         assertEventNotFiredInContext(org.jboss.arquillian.test.spi.event.suite.Test.class, ClassContext.class);
         assertEventNotFiredInContext(org.jboss.arquillian.test.spi.event.suite.Test.class, TestContext.class);
 
+        shouldSkipWhenUsingExecutionDeciderSecondPart();
+    }
+
+    @Test
+    public void shouldSkipWhenUsingExecutionDeciderSecondPart() throws Exception {
+
+        List<TestExecutionDecider> deciders = new ArrayList<TestExecutionDecider>();
+        deciders.add(NEGATIVE_EXECUTION_DECIDER);
+
+        ServiceLoader serviceLoder = Mockito.mock(ServiceLoader.class);
+        Mockito.when(serviceLoder.all(TestExecutionDecider.class)).thenReturn(deciders);
+
+        Manager manager = Mockito.spy(getManager());
+        Mockito.when(manager.resolve(ServiceLoader.class)).thenReturn(serviceLoder);
+
+        EventTestRunnerAdaptor adaptor = new EventTestRunnerAdaptor(manager);
+
+        Class<?> testClass = getClass();
+        Method testMethod = testClass.getMethod("shouldSkipWhenUsingExecutionDecider");
+        Object testInstance = this;
+
+        TestMethodExecutor testExecutor = Mockito.mock(TestMethodExecutor.class);
+        Mockito.when(testExecutor.getInstance()).thenReturn(testInstance);
+        Mockito.when(testExecutor.getMethod()).thenReturn(testMethod);
+
+        // ApplicationContext is auto started, deactivate to be future proof
+        manager.getContext(ApplicationContext.class).deactivate();
+
         verifyNoActiveContext(manager);
 
         adaptor.after(testInstance, testMethod, LifecycleMethodExecutor.NO_OP);
