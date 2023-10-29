@@ -178,17 +178,15 @@ public class EventTestRunnerAdaptor implements TestRunnerAdaptor {
             if (!deciders.isEmpty()) {
                 Collections.sort(deciders, new TestExecutionDeciderComparator());
                 Collections.reverse(deciders);
-
+            
                 for (final TestExecutionDecider decider : deciders) {
                     final ExecutionDecision tempExecutionDecision = decider.decide(testMethod);
-
-                    if (tempExecutionDecision == null) {
-                        continue;
-                    } else {
+            
+                    if (tempExecutionDecision != null) {
                         executionDecision = tempExecutionDecision;
                     }
-
-                    if (executionDecision.getDecision() == Decision.DONT_EXECUTE) {
+            
+                    if (executionDecision != null && executionDecision.getDecision() == Decision.DONT_EXECUTE) {
                         break;
                     }
                 }
