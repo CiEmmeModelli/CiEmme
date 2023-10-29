@@ -45,6 +45,7 @@ public interface JMXTestRunnerMBean extends NotificationBroadcaster {
      *
      * @deprecated
      */
+    @SuppressWarnings("java:S1133")
     @Deprecated
     public byte[] runTestMethod(String className, String methodName);
 
