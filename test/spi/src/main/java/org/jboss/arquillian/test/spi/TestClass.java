@@ -26,30 +26,30 @@ import java.lang.reflect.Method;
  * @version $Revision: $
  */
 public class TestClass {
-    private Class<?> testClass;
+    private Class<?> currentTestClass;
 
     public TestClass(Class<?> testClass) {
         if (testClass == null) {
             throw new IllegalArgumentException("Null testClass");
         }
 
-        this.testClass = testClass;
+        this.currentTestClass = testClass;
     }
 
     public Class<?> getJavaClass() {
-        return testClass;
+        return currentTestClass;
     }
 
     public String getName() {
-        return testClass.getName();
+        return currentTestClass.getName();
     }
 
     public boolean isAnnotationPresent(Class<? extends Annotation> annotation) {
-        return testClass.isAnnotationPresent(annotation);
+        return currentTestClass.isAnnotationPresent(annotation);
     }
 
     public <A extends Annotation> A getAnnotation(Class<A> annotation) {
-        return testClass.getAnnotation(annotation);
+        return currentTestClass.getAnnotation(annotation);
     }
 
     public Method getMethod(Class<? extends Annotation> annotation) {
@@ -61,6 +61,6 @@ public class TestClass {
     }
 
     public Method[] getMethods(Class<? extends Annotation> annotation) {
-        return SecurityActions.getMethodsWithAnnotation(testClass, annotation).toArray(new Method[0]);
+        return SecurityActions.getMethodsWithAnnotation(currentTestClass, annotation).toArray(new Method[0]);
     }
 }
