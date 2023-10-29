@@ -19,6 +19,7 @@ package org.jboss.arquillian.test.spi;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,12 +35,18 @@ import java.util.Map;
 public final class TestResult implements Serializable {
     private static final long serialVersionUID = 1L;
     private Status status;
-    private String description = "";
     transient private Throwable throwable;
+    private String description = "";
     private ExceptionProxy exceptionProxy;
     private long start;
     private long end;
 
+    /**
+     * Constructs a new TestResult with the given status.
+     *
+     * @param status The status of the test result.
+     * @deprecated Use the constructor TestResult(Status) instead.
+     */
     @Deprecated
     public TestResult(Status status, String description) {
         this(status);
@@ -50,6 +57,11 @@ public final class TestResult implements Serializable {
      * Create a empty result.<br/>
      * <br/>
      * Start time is set to Current Milliseconds.
+     */
+    /**
+     * Constructs a new TestResult with the given status.
+     *
+     * @deprecated Use the constructor TestResult(Status) instead.
      */
     @Deprecated
     public TestResult() {
@@ -63,6 +75,7 @@ public final class TestResult implements Serializable {
      *
      * @param status
      *     The result status.
+     *      @deprecated Use the constructor TestResult(Status) instead.
      */
     @Deprecated
     public TestResult(Status status) {
@@ -78,6 +91,7 @@ public final class TestResult implements Serializable {
      *     The result status.
      * @param throwable
      *     thrown exception if any
+     *  @deprecated Use the constructor TestResult(Status) instead.
      */
     @Deprecated
     public TestResult(Status status, Throwable throwable) {
@@ -113,7 +127,7 @@ public final class TestResult implements Serializable {
 
     public static TestResult flatten(Collection<TestResult> results) {
         final TestResult combinedResult = new TestResult(Status.PASSED);
-        final Map<Status, TestResult> resultsPerStatus = new HashMap<Status, TestResult>();
+        final Map<Status, TestResult> resultsPerStatus = new EnumMap<>(Status.class);
         final List<Throwable> allExceptions = new ArrayList<Throwable>();
 
         for (TestResult result : results) {
@@ -136,14 +150,12 @@ public final class TestResult implements Serializable {
 
     private static void propagateExceptions(TestResult combinedResult, List<Throwable> allExceptions) {
         if (!allExceptions.isEmpty()) {
-            switch (allExceptions.size()) {
-                case 1:
-                    combinedResult.setThrowable(allExceptions.get(0));
-                    break;
-                default:
-                    combinedResult.setThrowable(new CombinedException("Combined test result exceptions", allExceptions));
+            if (allExceptions.size() == 1) {
+                combinedResult.setThrowable(allExceptions.get(0));
+            } else {
+                combinedResult.setThrowable(new CombinedException("Combined test result exceptions", allExceptions));
             }
-        }
+        }        
     }
 
     private static void propagateTestResultStatus(TestResult combinedResult, Map<Status, TestResult> resultsPerStatus) {
@@ -163,6 +175,12 @@ public final class TestResult implements Serializable {
         return status;
     }
 
+    /**
+     * Constructs a new TestResult with the given status.
+     *
+     * @param status The status of the test result.
+     * @deprecated Use the constructor TestResult(Status) instead.
+     */
     @Deprecated
     public TestResult setStatus(Status status) {
         this.status = status;
@@ -173,6 +191,13 @@ public final class TestResult implements Serializable {
         return description;
     }
 
+
+    /**
+     * Constructs a new TestResult with the given status.
+     *
+     * @param description The description of the test result.
+     * @deprecated Use the constructor TestResult(Status) instead.
+     */
     @Deprecated
     public void setDescription(String description) {
         this.description = description;
@@ -187,10 +212,8 @@ public final class TestResult implements Serializable {
      * the root cause.
      */
     public Throwable getThrowable() {
-        if (throwable == null) {
-            if (exceptionProxy != null) {
+        if (throwable == null && exceptionProxy != null) {
                 throwable = exceptionProxy.createException();
-            }
         }
         return throwable;
     }
