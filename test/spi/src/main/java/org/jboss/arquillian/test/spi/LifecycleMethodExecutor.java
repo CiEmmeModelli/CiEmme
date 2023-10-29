@@ -24,6 +24,7 @@ package org.jboss.arquillian.test.spi;
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
  */
+@SuppressWarnings("java:S112")
 public interface LifecycleMethodExecutor {
     public static final LifecycleMethodExecutor NO_OP = new LifecycleMethodExecutor() {
         public void invoke() throws Throwable {
