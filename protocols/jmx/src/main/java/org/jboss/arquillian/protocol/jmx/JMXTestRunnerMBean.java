@@ -76,6 +76,7 @@ public interface JMXTestRunnerMBean extends NotificationBroadcaster {
      *
      * @return command Command object containing the result, null if none received (yet)
      */
+    @SuppressWarnings("java:s1452")
     Command<?> receive();
 
     /**
