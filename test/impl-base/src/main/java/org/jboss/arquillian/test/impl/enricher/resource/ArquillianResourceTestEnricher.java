@@ -29,6 +29,7 @@ import java.util.logging.Logger;
 import org.jboss.arquillian.core.api.Instance;
 import org.jboss.arquillian.core.api.annotation.Inject;
 import org.jboss.arquillian.core.spi.ServiceLoader;
+import org.jboss.arquillian.core.spi.context.RunCustomException;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.arquillian.test.spi.TestEnricher;
 import org.jboss.arquillian.test.spi.enricher.resource.ResourceProvider;
@@ -65,7 +66,7 @@ public class ArquillianResourceTestEnricher implements TestEnricher {
 
                 value = lookup(field.getType(), field.getAnnotation(ArquillianResource.class), qualifiers);
             } catch (Exception e) {
-                throw new RuntimeException("Could not lookup value for field " + field, e);
+                throw new RunCustomException("Could not lookup value for field " + field, e);
             }
             try {
                 if (!field.isAccessible()) {
