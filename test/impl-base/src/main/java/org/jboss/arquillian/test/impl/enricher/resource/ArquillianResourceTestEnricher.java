@@ -115,8 +115,8 @@ public class ArquillianResourceTestEnricher implements TestEnricher {
         for (ResourceProvider resourceProvider : resourceProviders) {
             if (resourceProvider.canProvide(type)) {
                 Object value = resourceProvider.lookup(resource, qualifiers.toArray(new Annotation[0]));
-                if (value == null && type != null && resourceProvider != null) {
-                    logger.warning(String.format("Provider for type %s returned a null value: %s", type, resourceProvider));
+                if (value == null) {
+                    if (type != null) logger.warning(String.format("Provider for type %s returned a null value: %s", type, resourceProvider));
                     failedToLookUpResources.add(resourceProvider);
                     continue;
                 }
