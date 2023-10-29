@@ -32,6 +32,7 @@ public class ApplicationDescriptorImpl extends NodeDescriptorImplBase implements
     // -------------------------------------------------------------------------------------||
 
     private final Node model;
+    private static String module1 = "module";
 
     // -------------------------------------------------------------------------------------||
     // Constructor ------------------------------------------------------------------------||
@@ -95,7 +96,7 @@ public class ApplicationDescriptorImpl extends NodeDescriptorImplBase implements
      */
     @Override
     public ApplicationDescriptor ejbModule(String uri) {
-        model.createChild("module").createChild("ejb").text(uri);
+        model.createChild(module1).createChild("ejb").text(uri);
         return this;
     }
 
@@ -106,7 +107,7 @@ public class ApplicationDescriptorImpl extends NodeDescriptorImplBase implements
      */
     @Override
     public ApplicationDescriptor javaModule(String uri) {
-        model.createChild("module").createChild("java").text(uri);
+        model.createChild(module1).createChild("java").text(uri);
         return this;
     }
 
@@ -118,7 +119,7 @@ public class ApplicationDescriptorImpl extends NodeDescriptorImplBase implements
      */
     @Override
     public ApplicationDescriptor connectorModule(String uri) {
-        model.createChild("module").createChild("connector").text(uri);
+        model.createChild(module1).createChild("connector").text(uri);
         return this;
     }
 
@@ -130,7 +131,7 @@ public class ApplicationDescriptorImpl extends NodeDescriptorImplBase implements
      */
     @Override
     public ApplicationDescriptor webModule(String uri, String contextRoot) {
-        Node web = model.createChild("module").createChild("web");
+        Node web = model.createChild(module1).createChild("web");
         web.createChild("web-uri").text(uri);
         web.createChild("context-root").text(contextRoot);
         return this;
