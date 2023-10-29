@@ -113,6 +113,7 @@ public class CDIInjectionEnricherTestCase extends AbstractTestTestBase {
 
     @Test
     public void shouldInjectMethodArgumentsEvent() throws Exception {
+        assertNotNull(injector);
         Method testMethod = TestClass.class.getMethod("testEvent", Event.class, Event.class);
 
         Object[] resolvedBeans = enricher.resolve(testMethod);
