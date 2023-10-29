@@ -74,7 +74,7 @@ public class ArquillianResourceTestEnricher implements TestEnricher {
                 }
                 field.set(testCase, value);
             } catch (Exception e) {
-                throw new RuntimeException("Could not set value on field " + field + " using " + value, e);
+                throw new RunCustomException("Could not set value on field " + field + " using " + value, e);
             }
         }
     }
