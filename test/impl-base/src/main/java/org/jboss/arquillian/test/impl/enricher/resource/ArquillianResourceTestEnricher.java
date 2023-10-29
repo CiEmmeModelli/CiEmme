@@ -124,7 +124,7 @@ public class ArquillianResourceTestEnricher implements TestEnricher {
             }
         }
         if (!failedToLookUpResources.isEmpty()) {
-            throw new RuntimeException(
+            throw new RunCustomException(
                 "All Providers for type " + type + " returned a null value: " + failedToLookUpResources);
         }
         throw new IllegalArgumentException("No ResourceProvider found for type: " + type);
