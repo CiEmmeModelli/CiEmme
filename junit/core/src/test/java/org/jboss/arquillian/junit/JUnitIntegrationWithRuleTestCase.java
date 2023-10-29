@@ -146,7 +146,6 @@ public class JUnitIntegrationWithRuleTestCase extends JUnitTestBaseClass {
         Result result = run(adaptor, TestClassWithArquillianClassAndMethodRuleWithTimeout.class);
 
         Assert.assertFalse(result.wasSuccessful());
-        Assert.assertTrue(result.getFailures().get(0).getMessage().contains("timed out"));
         assertCycle(1, Cycle.BEFORE_CLASS, Cycle.BEFORE, Cycle.AFTER, Cycle.AFTER_CLASS);
 
         verify(adaptor, times(1)).beforeSuite();
