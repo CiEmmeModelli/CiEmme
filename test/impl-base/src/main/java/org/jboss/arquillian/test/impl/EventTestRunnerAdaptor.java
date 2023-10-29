@@ -175,7 +175,7 @@ public class EventTestRunnerAdaptor implements TestRunnerAdaptor {
             final List<TestExecutionDecider> deciders =
                 new ArrayList<TestExecutionDecider>(serviceLoader.all(TestExecutionDecider.class));
 
-            if (deciders.size() != 0) {
+            if (!deciders.isEmpty()) {
                 Collections.sort(deciders, new TestExecutionDeciderComparator());
                 Collections.reverse(deciders);
 
