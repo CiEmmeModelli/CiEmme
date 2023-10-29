@@ -109,6 +109,7 @@ public class ArquillianResourceTestEnricher implements TestEnricher {
      * @throws RuntimeException
      *     If ResourceProvider return null
      */
+    @SuppressWarnings("java:S2629")
     private Object lookup(Class<?> type, ArquillianResource resource, List<Annotation> qualifiers) {
         Collection<ResourceProvider> resourceProviders = loader.get().all(ResourceProvider.class);
         List<ResourceProvider> failedToLookUpResources = new ArrayList<ResourceProvider>();
