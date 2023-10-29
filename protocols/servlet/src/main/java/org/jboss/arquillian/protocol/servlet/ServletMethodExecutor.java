@@ -112,13 +112,15 @@ public class ServletMethodExecutor implements ContainerMethodExecutor {
                 Thread.sleep(200);
             } catch (InterruptedException e) {
                 interrupted = true;
+                Thread.currentThread().interrupt();
             }
         }
         if (interrupted) {
-            Thread.currentThread().interrupt();
+            throw new InterruptedException("Thread interrupted during sleep");
         }
         throw new IllegalStateException("Error launching request at " + url + ". No result returned");
     }
+    
 
     protected <T> T execute(String url, Class<T> returnType, Object requestObject) throws Exception {
         URLConnection connection = new URL(url).openConnection();
