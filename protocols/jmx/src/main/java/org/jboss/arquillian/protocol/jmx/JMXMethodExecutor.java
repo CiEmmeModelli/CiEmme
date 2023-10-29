@@ -70,14 +70,14 @@ public class JMXMethodExecutor implements ContainerMethodExecutor {
         String testCanonicalName = testClass + "." + testMethod;
 
         NotificationListener commandListener = null;
-        ObjectName objectName = null;
+        ObjectName objectNameInTest = null;
         TestResult result = null;
         try {
-            objectName = new ObjectName(this.objectName);
-            commandListener = new CallbackNotificationListener(objectName);
-            mbeanServer.addNotificationListener(objectName, commandListener, null, null);
+            objectNameInTest = new ObjectName(this.objectName);
+            commandListener = new CallbackNotificationListener(objectNameInTest);
+            mbeanServer.addNotificationListener(objectNameInTest, commandListener, null, null);
 
-            JMXTestRunnerMBean testRunner = getMBeanProxy(objectName, JMXTestRunnerMBean.class);
+            JMXTestRunnerMBean testRunner = getMBeanProxy(objectNameInTest, JMXTestRunnerMBean.class);
             String m0 = "";
             if (!testCanonicalName.isEmpty()) {
                 m0 = String.format("Invoke %s", testCanonicalName);
@@ -91,10 +91,10 @@ public class JMXMethodExecutor implements ContainerMethodExecutor {
             result.setThrowable(th);
         } finally {
 
-            if (objectName != null && commandListener != null && result != null) {
+            if (objectNameInTest != null && commandListener != null && result != null) {
                 result.setEnd(System.currentTimeMillis());
                 try {
-                    mbeanServer.removeNotificationListener(objectName, commandListener);
+                    mbeanServer.removeNotificationListener(objectNameInTest, commandListener);
                 } catch (Throwable th) {
                     log.log(Level.SEVERE, "Cannot remove notification listener", th);
                 }
