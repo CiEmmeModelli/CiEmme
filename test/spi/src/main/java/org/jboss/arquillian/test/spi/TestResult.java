@@ -34,11 +34,11 @@ import java.util.Map;
 public final class TestResult implements Serializable {
     private static final long serialVersionUID = 1L;
     private Status status;
-    transient private Throwable throwable;
     private String description = "";
     private ExceptionProxy exceptionProxy;
     private long start;
     private long end;
+    transient private Throwable throwable;
 
     /**
      * Constructs a new TestResult with the given status.
