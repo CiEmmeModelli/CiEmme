@@ -110,7 +110,7 @@ public class EventTestRunnerAdaptor implements TestRunnerAdaptor {
         Validate.notNull(testMethod, "TestMethod must be specified");
 
         ExecutionDecision executionDecision = resolveExecutionDecision(manager, testMethod);
-        if (executionDecision.getDecision() == Decision.DONT_EXECUTE) {
+        if (executionDecision != null && executionDecision.getDecision() == Decision.DONT_EXECUTE) {
             return;
         }
 
