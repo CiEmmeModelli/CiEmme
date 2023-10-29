@@ -6,4 +6,8 @@ public class NameException extends RuntimeException{
         super(string,e2);
     }
 
+    public NameException(String string) {
+        super(string);
+    }
+
 }
