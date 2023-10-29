@@ -149,14 +149,12 @@ public final class TestResult implements Serializable {
 
     private static void propagateExceptions(TestResult combinedResult, List<Throwable> allExceptions) {
         if (!allExceptions.isEmpty()) {
-            switch (allExceptions.size()) {
-                case 1:
-                    combinedResult.setThrowable(allExceptions.get(0));
-                    break;
-                default:
-                    combinedResult.setThrowable(new CombinedException("Combined test result exceptions", allExceptions));
+            if (allExceptions.size() == 1) {
+                combinedResult.setThrowable(allExceptions.get(0));
+            } else {
+                combinedResult.setThrowable(new CombinedException("Combined test result exceptions", allExceptions));
             }
-        }
+        }        
     }
 
     private static void propagateTestResultStatus(TestResult combinedResult, Map<Status, TestResult> resultsPerStatus) {
