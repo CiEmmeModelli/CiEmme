@@ -19,6 +19,7 @@ package org.jboss.arquillian.test.spi;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -125,7 +126,7 @@ public final class TestResult implements Serializable {
 
     public static TestResult flatten(Collection<TestResult> results) {
         final TestResult combinedResult = new TestResult(Status.PASSED);
-        final Map<Status, TestResult> resultsPerStatus = new HashMap<Status, TestResult>();
+        final Map<Status, TestResult> resultsPerStatus = new EnumMap<>(Status.class);
         final List<Throwable> allExceptions = new ArrayList<Throwable>();
 
         for (TestResult result : results) {
