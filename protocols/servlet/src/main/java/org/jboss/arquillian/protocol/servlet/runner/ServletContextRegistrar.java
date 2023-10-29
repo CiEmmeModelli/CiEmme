@@ -30,6 +30,7 @@ public class ServletContextRegistrar {
     private InstanceProducer<ServletContext> servletContextInstanceProducer;
 
     public void registerServletContext(@Observes ManagerStarted managerStarted) {
+        managerStarted.toString();
         servletContextInstanceProducer.set(ServletTestRunner.getCurrentServletContext());
     }
 }
