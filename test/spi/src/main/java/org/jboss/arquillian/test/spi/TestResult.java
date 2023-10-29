@@ -191,6 +191,13 @@ public final class TestResult implements Serializable {
         return description;
     }
 
+
+    /**
+     * Constructs a new TestResult with the given status.
+     *
+     * @param description The description of the test result.
+     * @deprecated Use the constructor TestResult(Status) instead.
+     */
     @Deprecated
     public void setDescription(String description) {
         this.description = description;
