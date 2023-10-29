@@ -30,7 +30,7 @@ import java.util.Map;
  * @author Pete Muir
  * @author <a href="mailto:aknutsen@redhat.com">Aslak Knutsen</a>
  */
-@SuppressWarnings("java:S1133")
+@SuppressWarnings({"java:S1133","java:S1124"})
 public final class TestResult implements Serializable {
     private static final long serialVersionUID = 1L;
     private Status status;
