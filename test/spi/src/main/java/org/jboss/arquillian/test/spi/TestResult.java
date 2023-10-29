@@ -33,11 +33,12 @@ import java.util.Map;
 public final class TestResult implements Serializable {
     private static final long serialVersionUID = 1L;
     private Status status;
-    private String description = "";
     transient private Throwable throwable;
+    private String description = "";
     private ExceptionProxy exceptionProxy;
     private long start;
     private long end;
+
 
     @Deprecated
     public TestResult(Status status, String description) {
