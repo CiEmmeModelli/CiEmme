@@ -102,7 +102,7 @@ public class ServletMethodExecutor implements ContainerMethodExecutor {
         }
     }
 
-    protected <T> T executeWithRetry(String url, Class<T> type) throws Exception {
+    protected <T> T executeWithRetry(String url, Class<T> type) throws InterruptedException, IOException, ClassNotFoundException {
         long timeoutTime = System.currentTimeMillis() + 1000;
         boolean interrupted = false;
         while (timeoutTime > System.currentTimeMillis()) {
@@ -222,7 +222,7 @@ public class ServletMethodExecutor implements ContainerMethodExecutor {
                         }
                     }
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    e.getMessage();
                 }
             }
         }, 0, config.getPullInMilliSeconds());
