@@ -220,7 +220,7 @@ final class SecurityActions {
                 }
                 // Just in case we've really messed up
                 catch (final ClassCastException cce) {
-                    throw new RuntimeException(OBT_EXP, t);
+                    throw new LoadClassException(OBT_EXP, t);
                 }
             }
         }
