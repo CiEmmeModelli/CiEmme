@@ -52,10 +52,8 @@ public class BeansXMLProtocolProcessor implements ProtocolArchiveProcessor {
                 if (!protocolArchive.contains("WEB-INF/beans.xml")) {
                     protocolArchive.as(WebArchive.class).addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
                 }
-            } else if (Validate.isArchiveOfType(JavaArchive.class, protocolArchive)) {
-                if (!protocolArchive.contains("META-INF/beans.xml")) {
+            } else if (Validate.isArchiveOfType(JavaArchive.class, protocolArchive) && !protocolArchive.contains("META-INF/beans.xml") ) {
                     protocolArchive.as(JavaArchive.class).addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
-                }
             }
         }
     }
