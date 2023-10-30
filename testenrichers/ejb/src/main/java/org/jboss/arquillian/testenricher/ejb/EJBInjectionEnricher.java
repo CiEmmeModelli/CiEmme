@@ -77,7 +77,6 @@ public class EJBInjectionEnricher implements TestEnricher {
      * @throws IllegalArgumentException
      *     If either argument is not specified
      */
-    // TODO Hack, this leaks out privileged operations outside the package. Extract out properly.
     protected List<Field> getFieldsWithAnnotation(final Class<?> clazz, final Class<? extends Annotation> annotation)
         throws IllegalArgumentException {
         // Precondition checks
