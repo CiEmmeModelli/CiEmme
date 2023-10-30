@@ -25,6 +25,7 @@ import org.jboss.arquillian.core.spi.event.Event;
  * @version $Revision: $
  */
 public class SuiteEvent implements Event {
+    // This method is empty because ...
     public SuiteEvent() {
     }
 }
