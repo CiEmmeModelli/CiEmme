@@ -297,11 +297,11 @@ final class SecurityActions {
             } else {
                 // No other checked Exception thrown by System.getProtocolProperty
                 try {
-                    throw (RuntimeException) t;
+                    throw (RunCustomException) t;
                 }
                 // Just in case we've really messed up
                 catch (final ClassCastException cce) {
-                    throw new RuntimeException("Obtained unchecked Exception; this code should never be reached", t);
+                    throw new RunCustomException("Obtained unchecked Exception; this code should never be reached", t);
                 }
             }
         }
