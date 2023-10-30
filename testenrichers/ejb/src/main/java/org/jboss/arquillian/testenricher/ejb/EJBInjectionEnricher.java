@@ -225,7 +225,6 @@ public class EJBInjectionEnricher implements TestEnricher {
 
     protected String[] getJndiNamesForAnonymousEJB(Class<?> fieldType) {
         String[] jndiNames;
-        // TODO: These names are not spec compliant; fieldType needs to be a bean type here, but usually is just an interface of a bean. These seldom work.
         jndiNames = new String[] {
             "java:global/test.ear/test/" + fieldType.getSimpleName() + "Bean",
             "java:global/test.ear/test/" + fieldType.getSimpleName(),
