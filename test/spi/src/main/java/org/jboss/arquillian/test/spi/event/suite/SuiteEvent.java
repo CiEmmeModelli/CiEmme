@@ -25,7 +25,10 @@ import org.jboss.arquillian.core.spi.event.Event;
  * @version $Revision: $
  */
 public class SuiteEvent implements Event {
-    // This method is empty because ...
     public SuiteEvent() {
+    // Questo metodo è vuoto perché è inteso per l'override nelle sottoclassi.
+    // Se non è necessario alcun comportamento specifico, è possibile mantenerlo vuoto.
+    // Se si ha intenzione di implementare comportamenti personalizzati, si dovrebbe sovrascrivere questo metodo nelle sottoclassi.
+    // Se non è previsto alcun comportamento specifico per le sottoclassi, potremmo anche lanciare un'UnsupportedOperationException qui.
     }
 }
