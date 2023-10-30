@@ -170,7 +170,7 @@ private TestResult executeTestMethod(final IHookCallBack callback, final ITestRe
     }
 }
 
-private void copyAndRunTestMethod(IHookCallBack callback, ITestResult testResult, Object[] parameters) throws Throwable {
+private void copyAndRunTestMethod(IHookCallBack callback, ITestResult testResult, Object[] parameters) throws CopyException {
     copyParameters(parameters, callback.getParameters());
     callback.runTestMethod(testResult);
     swapWithClassNames(callback.getParameters());
