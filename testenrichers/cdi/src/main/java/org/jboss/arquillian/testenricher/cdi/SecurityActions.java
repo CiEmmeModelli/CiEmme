@@ -28,6 +28,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.jboss.arquillian.core.spi.context.RunCustomException;
+
 /**
  * A set of privileged actions that are not to leak out
  * of this package
@@ -74,7 +76,7 @@ final class SecurityActions {
             try {
                 return Class.forName(className, true, SecurityActions.class.getClassLoader());
             } catch (ClassNotFoundException e2) {
-                throw new RuntimeException("Could not load class " + className, e2);
+                throw new RunCustomException("Could not load class " + className, e2);
             }
         }
     }
