@@ -199,10 +199,8 @@ private void swapWithClassNames(Object[] source) {
 private void handleTestExceptions(TestResult result, ITestResult testResult) {
     Throwable throwable = result.getThrowable();
     if (throwable != null) {
-        if (result.getStatus() == Status.SKIPPED) {
-            if (throwable instanceof SkippedTestExecutionException) {
+        if (result.getStatus() == Status.SKIPPED && throwable instanceof SkippedTestExecutionException)  {
                 result.setThrowable(new SkipException(throwable.getMessage()));
-            }
         }
         testResult.setThrowable(result.getThrowable());
         testResult.setStatus(2);
