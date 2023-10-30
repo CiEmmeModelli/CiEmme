@@ -246,7 +246,6 @@ public class EJBInjectionEnricher implements TestEnricher {
     }
 
     protected Object lookupEJB(String[] jndiNames) throws Exception {
-        // TODO: figure out test context ?
         Context initcontext = createContext();
 
         for (String jndiName : jndiNames) {
