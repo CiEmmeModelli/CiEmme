@@ -244,6 +244,8 @@ private void handleTestExceptions(TestResult result, ITestResult testResult) {
 
         @Override
         public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
+            testResult.getName();
+            method.toString();
         }
     }
 }
