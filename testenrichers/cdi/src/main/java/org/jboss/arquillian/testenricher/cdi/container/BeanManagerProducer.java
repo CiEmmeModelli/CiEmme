@@ -45,12 +45,12 @@ public class BeanManagerProducer {
 
     @Inject
     @ApplicationScoped
-    private InstanceProducer<BeanManager> beanManagerProducer;
+    private InstanceProducer<BeanManager> beanManagerProducerVar;
 
     public void findBeanManager(@Observes Context context) {
         BeanManager manager = lookup(context);
         if (manager != null) {
-            beanManagerProducer.set(manager);
+            beanManagerProducerVar.set(manager);
         }
     }
 
