@@ -51,6 +51,7 @@ public abstract class Arquillian implements IHookable {
     public static final String ARQUILLIAN_DATA_PROVIDER = "ARQUILLIAN_DATA_PROVIDER";
     private static InheritableThreadLocal<TestRunnerAdaptor> deployableTest = new InheritableThreadLocal<TestRunnerAdaptor>();
     private static InheritableThreadLocal<Stack<Cycle>> cycleStack = new InheritableThreadLocal<Stack<Cycle>>() {
+        @Override
         protected java.util.Stack<Cycle> initialValue() {
             return new Stack<Cycle>();
         }
