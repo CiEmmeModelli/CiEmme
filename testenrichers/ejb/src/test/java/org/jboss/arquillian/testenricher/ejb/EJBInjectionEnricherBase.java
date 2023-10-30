@@ -21,6 +21,8 @@ import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -41,7 +43,7 @@ public class EJBInjectionEnricherBase {
     public void before() throws Exception {
         cut = new EJBInjectionEnricher() {
             @Override
-            protected Context createContext() throws Exception {
+            protected Context createContext() throws NamingException {
                 // just need to return non null. lookupEJB is overwritten so usage of context is under our control
                 return new InitialContext();
             }

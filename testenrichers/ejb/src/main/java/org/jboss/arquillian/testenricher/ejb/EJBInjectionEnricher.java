@@ -260,7 +260,7 @@ public class EJBInjectionEnricher implements TestEnricher {
         throw new NamingException("No EJB found in JNDI, tried the following names: " + joinJndiNames(jndiNames));
     }
 
-    protected Context createContext() throws Exception {
+    protected Context createContext() throws NamingException {
         return contextInst.get();
     }
 
