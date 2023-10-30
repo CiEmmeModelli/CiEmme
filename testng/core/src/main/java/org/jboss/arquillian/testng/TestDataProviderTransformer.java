@@ -38,12 +38,10 @@ public class TestDataProviderTransformer implements IAnnotationTransformer {
      */
     @SuppressWarnings("rawtypes")
     public void transform(ITestAnnotation testAnnotation, Class clazz, Constructor constructor, Method method) {
-        if (testAnnotation.getDataProviderClass() == null) {
-            if (testAnnotation instanceof TestAnnotation) {
+        if (testAnnotation.getDataProviderClass() == null && testAnnotation instanceof TestAnnotation ) {
                 TestAnnotation annotation = (TestAnnotation) testAnnotation;
                 annotation.setDataProviderClass(TestEnricherDataProvider.class);
                 annotation.setDataProvider(TestEnricherDataProvider.PROVIDER_NAME);
-            }
         }
     }
 }
