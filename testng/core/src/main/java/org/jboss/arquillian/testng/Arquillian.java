@@ -130,78 +130,84 @@ public abstract class Arquillian implements IHookable {
         deployableTest.get().after(this, testMethod, LifecycleMethodExecutor.NO_OP);
     }
 
-    public void run(final IHookCallBack callback, final ITestResult testResult) {
-        verifyTestRunnerAdaptorHasBeenSet();
-        TestResult result;
-        try {
-            result = deployableTest.get().test(new TestMethodExecutor() {
-                public void invoke(Object... parameters) throws Throwable {
-               /*
-                *  The parameters are stored in the InvocationHandler, so we can't set them on the test result directly.
-                *  Copy the Arquillian found parameters to the InvocationHandlers parameters
-                */
-                    copyParameters(parameters, callback.getParameters());
-                    callback.runTestMethod(testResult);
+    
+ public void run(final IHookCallBack callback, final ITestResult testResult) {
+    verifyTestRunnerAdaptorHasBeenSet();
 
-                    // Parameters can be contextual, so extract information
-                    swapWithClassNames(callback.getParameters());
-                    testResult.setParameters(callback.getParameters());
-                    if (testResult.getThrowable() != null) {
-                        throw testResult.getThrowable();
-                    }
-                }
+    TestResult result = executeTestMethod(callback, testResult);
 
-                private void copyParameters(Object[] source, Object[] target) {
-                    for (int i = 0; i < source.length; i++) {
-                        if (source[i] != null) {
-                            target[i] = source[i];
-                        }
-                    }
-                }
+    handleTestExceptions(result, testResult);
+}
 
-                private void swapWithClassNames(Object[] source) {
-                    // clear parameters. they can be contextual and might fail TestNG during the report writing.
-                    for (int i = 0; source != null && i < source.length; i++) {
-                        Object parameter = source[i];
-                        if (parameter != null) {
-                            source[i] = parameter.toString();
-                        } else {
-                            source[i] = "null";
-                        }
-                    }
-                }
-
-                public String getMethodName() {
-                    return testResult.getMethod().getMethodName();
-                }
-
-                public Method getMethod() {
-                    return testResult.getMethod().getMethod();
-                }
-
-                public Object getInstance() {
-                    return Arquillian.this;
-                }
-            });
-            Throwable throwable = result.getThrowable();
-            if (throwable != null) {
-                if (result.getStatus() == Status.SKIPPED) {
-                    if (throwable instanceof SkippedTestExecutionException) {
-                        result.setThrowable(new SkipException(throwable.getMessage()));
-                    }
-                }
-                testResult.setThrowable(result.getThrowable());
-
-                // setting status as failed.
-                testResult.setStatus(2);
+private TestResult executeTestMethod(final IHookCallBack callback, final ITestResult testResult) {
+    try {
+        TestResult result = deployableTest.get().test(new TestMethodExecutor() {
+            public void invoke(Object... parameters) throws Throwable {
+                copyAndRunTestMethod(callback, testResult, parameters);
             }
 
-            // calculate test end time. this is overwritten in the testng invoker..
-            testResult.setEndMillis((result.getStart() - result.getEnd()) + testResult.getStartMillis());
-        } catch (Exception e) {
-            testResult.setThrowable(e);
+            public String getMethodName() {
+                return testResult.getMethod().getMethodName();
+            }
+
+            public Method getMethod() {
+                return testResult.getMethod().getMethod();
+            }
+
+            public Object getInstance() {
+                return Arquillian.this;
+            }
+        });
+
+        handleTestExceptions(result, testResult);
+
+        testResult.setEndMillis((result.getStart() - result.getEnd()) + testResult.getStartMillis());
+
+        return result;
+    } catch (Exception e) {
+        testResult.setThrowable(e);
+        return new TestResult();
+    }
+}
+
+private void copyAndRunTestMethod(IHookCallBack callback, ITestResult testResult, Object[] parameters) throws Throwable {
+    copyParameters(parameters, callback.getParameters());
+    callback.runTestMethod(testResult);
+    swapWithClassNames(callback.getParameters());
+    testResult.setParameters(callback.getParameters());
+}
+
+private void copyParameters(Object[] source, Object[] target) {
+    for (int i = 0; i < source.length; i++) {
+        if (source[i] != null) {
+            target[i] = source[i];
         }
     }
+}
+
+private void swapWithClassNames(Object[] source) {
+    for (int i = 0; source != null && i < source.length; i++) {
+        Object parameter = source[i];
+        if (parameter != null) {
+            source[i] = parameter.toString();
+        } else {
+            source[i] = "null";
+        }
+    }
+}
+
+private void handleTestExceptions(TestResult result, ITestResult testResult) {
+    Throwable throwable = result.getThrowable();
+    if (throwable != null) {
+        if (result.getStatus() == Status.SKIPPED) {
+            if (throwable instanceof SkippedTestExecutionException) {
+                result.setThrowable(new SkipException(throwable.getMessage()));
+            }
+        }
+        testResult.setThrowable(result.getThrowable());
+        testResult.setStatus(2);
+    }
+}
 
     @DataProvider(name = Arquillian.ARQUILLIAN_DATA_PROVIDER)
     public Object[][] arquillianArgumentProvider(Method method) {
