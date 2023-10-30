@@ -155,7 +155,7 @@ public class EJBInjectionEnricher implements TestEnricher {
                 method.invoke(testCase, ejb);
             }
         } catch (Exception e) {
-            throw new RuntimeException("Could not inject members", e);
+            throw new RunCustomExc("Could not inject members", e);
         }
     }
 
