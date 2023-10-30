@@ -26,6 +26,8 @@ import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.naming.Context;
 import javax.naming.NamingException;
+
+import org.jboss.arquillian.container.spi.client.protocol.metadata.RunCustomExc;
 import org.jboss.arquillian.core.api.Instance;
 import org.jboss.arquillian.core.api.annotation.Inject;
 import org.jboss.arquillian.core.spi.Validate;
@@ -125,7 +127,7 @@ public class EJBInjectionEnricher implements TestEnricher {
 
             for (Method method : methods) {
                 if (method.getParameterTypes().length != 1) {
-                    throw new RuntimeException("@EJB only allowed on single argument methods");
+                    throw new RunCustomExc("@EJB only allowed on single argument methods");
                 }
                 if (!method.getName().startsWith("set")) {
                     throw new RuntimeException("@EJB only allowed on 'set' methods");
