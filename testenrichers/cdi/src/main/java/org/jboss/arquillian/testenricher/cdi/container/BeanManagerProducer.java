@@ -36,7 +36,6 @@ public class BeanManagerProducer {
 
     private static final String SERVLET_BEAN_MANAGER_JNDI_NAME = "java:comp/env/BeanManager";
 
-    // TODO: Hack until BeanManager binding fixed in JBoss AS
     private static final String JBOSSAS_BEAN_MANAGER_JNDI_NAME = "BeanManager";
 
     private static final String[] BEAN_MANAGER_JNDI_NAMES =
