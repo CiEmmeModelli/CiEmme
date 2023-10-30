@@ -55,8 +55,6 @@ public abstract class Arquillian implements IHookable {
         protected java.util.Stack<Cycle> initialValue() {
             return new Stack<Cycle>();
         }
-
-        ;
     };
 
     @BeforeSuite(groups = "arquillian", inheritGroups = true)
