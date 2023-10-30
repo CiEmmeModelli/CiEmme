@@ -40,7 +40,7 @@ import org.jboss.arquillian.test.spi.TestEnricher;
 public class EJBInjectionEnricher implements TestEnricher {
     private static final String ANNOTATION_NAME = "javax.ejb.EJB";
 
-    private static final Logger log = Logger.getLogger(TestEnricher.class.getName());
+    private static final Logger log = Logger.getLogger(EJBInjectionEnricher.class.getName());
 
     @Inject
     private Instance<Context> contextInst;
