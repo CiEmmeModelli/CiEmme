@@ -227,7 +227,7 @@ private void handleTestExceptions(TestResult result, ITestResult testResult) {
         }
     }
 
-    private static enum Cycle
+    private enum Cycle
 
     {
         BEFORE_SUITE, BEFORE_CLASS, BEFORE, TEST, AFTER, AFTER_CLASS, AFTER_SUITE
