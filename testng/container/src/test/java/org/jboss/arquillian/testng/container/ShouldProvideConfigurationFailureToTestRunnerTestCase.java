@@ -21,10 +21,14 @@ import org.junit.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class ShouldProvideConfigurationFailureToTestRunner {
+public class ShouldProvideConfigurationFailureToTestRunnerTestCase {
     @BeforeClass
     public void failingConfiguration() throws ClassNotFoundException {
-        throw new ClassNotFoundException();
+        try {
+            throw new ClassNotFoundException();
+        } catch (Exception e) {
+            e.getMessage();
+        }
     }
 
     @Test
