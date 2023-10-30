@@ -147,7 +147,7 @@ public class TestNGIntegrationTestCase extends TestNGTestBaseClass {
         TestRunnerAdaptor adaptor = mock(TestRunnerAdaptor.class);
         executeAllLifeCycles(adaptor);
 
-        TestListenerAdapter result = run(adaptor, NonArquillianClass1.class);
+        TestListenerAdapter result = run(adaptor, NonArquillianClass1TestCase.class);
         Assert.assertTrue(wasSuccessful(result));
 
         assertCycle(0, Cycle.values());
@@ -159,7 +159,7 @@ public class TestNGIntegrationTestCase extends TestNGTestBaseClass {
         executeAllLifeCycles(adaptor);
 
         TestListenerAdapter result =
-            run(new String[] {"non-arq"}, adaptor, NonArquillianClass1.class, ArquillianClass1TestCase.class);
+            run(new String[] {"non-arq"}, adaptor, NonArquillianClass1TestCase.class, ArquillianClass1TestCase.class);
         Assert.assertTrue(wasSuccessful(result));
 
         assertCycle(0, Cycle.values());
@@ -172,7 +172,7 @@ public class TestNGIntegrationTestCase extends TestNGTestBaseClass {
         executeAllLifeCycles(adaptor);
 
         TestListenerAdapter result =
-            run(new String[] {"arq"}, adaptor, NonArquillianClass1.class, ArquillianClass2.class);
+            run(new String[] {"arq"}, adaptor, NonArquillianClass1TestCase.class, ArquillianClass2.class);
         Assert.assertTrue(wasSuccessful(result));
 
         assertCycle(1, Cycle.values());
@@ -184,7 +184,7 @@ public class TestNGIntegrationTestCase extends TestNGTestBaseClass {
         executeAllLifeCycles(adaptor);
 
         TestListenerAdapter result =
-            run(new String[] {"arq", "arquillian"}, adaptor, NonArquillianClass1.class, ArquillianClass2.class);
+            run(new String[] {"arq", "arquillian"}, adaptor, NonArquillianClass1TestCase.class, ArquillianClass2.class);
         Assert.assertTrue(wasSuccessful(result));
 
         assertCycle(1, Cycle.values());

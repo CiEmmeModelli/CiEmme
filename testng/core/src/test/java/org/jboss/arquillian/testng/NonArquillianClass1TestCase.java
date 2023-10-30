@@ -21,7 +21,7 @@ import org.testng.annotations.Test;
 /*
  * Predfined TestClass
  */
-public class NonArquillianClass1 {
+public class NonArquillianClass1TestCase {
     @Test(groups = "non-arq")
     public void shouldBeInvoked() throws Throwable {
     }
