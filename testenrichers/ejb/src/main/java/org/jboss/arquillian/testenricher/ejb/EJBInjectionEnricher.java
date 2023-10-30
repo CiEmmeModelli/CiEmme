@@ -130,7 +130,7 @@ public class EJBInjectionEnricher implements TestEnricher {
                     throw new RunCustomExc("@EJB only allowed on single argument methods");
                 }
                 if (!method.getName().startsWith("set")) {
-                    throw new RuntimeException("@EJB only allowed on 'set' methods");
+                    throw new RunCustomExc("@EJB only allowed on 'set' methods");
                 }
                 EJB parameterAnnotation = null; // method.getParameterAnnotations()[0]
                 for (Annotation annotation : method.getParameterAnnotations()[0]) {
