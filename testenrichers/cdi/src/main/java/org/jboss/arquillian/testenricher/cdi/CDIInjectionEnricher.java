@@ -24,6 +24,7 @@ import javax.enterprise.inject.spi.InjectionTarget;
 import org.jboss.arquillian.core.api.Instance;
 import org.jboss.arquillian.core.api.InstanceProducer;
 import org.jboss.arquillian.core.api.annotation.Inject;
+import org.jboss.arquillian.core.spi.context.RunCustomException;
 import org.jboss.arquillian.test.spi.TestEnricher;
 import org.jboss.arquillian.test.spi.annotation.TestScoped;
 
@@ -114,7 +115,7 @@ public class CDIInjectionEnricher implements TestEnricher {
                     "BeanManager cannot be located in context. Either you are using an archive with no beans.xml or the BeanManager has not been produced.");
             }
         } catch (Exception e) {
-            throw new RuntimeException("Could not inject members", e);
+            throw new RunCustomException("Could not inject members", e);
         }
     }
 
