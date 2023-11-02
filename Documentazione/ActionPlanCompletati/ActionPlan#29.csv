@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiD0G2882CViJqbmZw;To-Do;New;Normal;Matteo Scuro;CiEmmeModelli_CiEmme:container/impl-base/src/test/java/org/jboss/arquillian/container/impl/client/container/ContainerDeployControllerTestCase.java;"java:S6068:  ""Remove this useless eq(...) invocation; pass the values directly.""";MINOR;2;2023/10/7;2023/10/7;1;"startLine: 118;startOffset: 35;endOffset: 37;endLine: 118";Maintenance (Code Smells);3343c74

@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiD0WN882CViJqbmd7;To-Do;New;Normal;Matteo Scuro;CiEmmeModelli_CiEmme:config/impl-base/src/main/java/org/jboss/arquillian/config/descriptor/impl/ArquillianDescriptorImpl.java;"java:S1192:  ""Define a constant instead of duplicating this literal defaultProtocol 3 times.""";CRITICAL;8;2023/9/30;2023/9/30;2;"startLine: 69;startOffset: 88;endOffset: 105;endLine: 69";Maintenance (Code Smells);02e2a34

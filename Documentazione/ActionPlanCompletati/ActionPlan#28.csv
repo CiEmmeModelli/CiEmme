@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiD0HA882CViJqbmZx;To-Do;New;Normal;Claudia Stefanizzi;CiEmmeModelli_CiEmme:container/impl-base/src/test/java/org/jboss/arquillian/container/impl/MapObjectTestCase.java;"java:S2699:  ""Add at least one assertion to this test case.""";BLOCKER;10;2023-10-07;2023-10-07;5;"startLine: 72;startOffset: 16;endOffset: 44;endLine: 72";Maintenance (Code Smells);765b4a9

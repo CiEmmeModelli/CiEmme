@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiD0GC882CViJqbmZg;To-Do;New;Normal;Matteo Scuro;CiEmmeModelli_CiEmme:container/impl-base/src/main/java/org/jboss/arquillian/container/impl/MultilineTrimmer.java;"java:S1118:  ""Add a private constructor to hide the implicit public one.""";MAJOR;5;2023/10/5;2023/10/5;1;"startLine: 19;startOffset: 6;endOffset: 22;endLine: 19";Maintenance (Code Smells);657a62e

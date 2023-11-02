@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiD0Vt882CViJqbmd0;To-Do;New;Normal;Claudia Stefanizzi;CiEmmeModelli_CiEmme:config/impl-base/src/main/java/org/jboss/arquillian/config/impl/extension/SystemPropertiesConfigurationPlaceholderResolver.java;"java:S1135:  ""Complete the task associated to this TODO comment.""";INFO;0;04/10/23;04/10/23;1;"startLine: 29;startOffset: 0;endOffset: 66;endLine: 29";Maintenance (Code Smells);59b40fd
