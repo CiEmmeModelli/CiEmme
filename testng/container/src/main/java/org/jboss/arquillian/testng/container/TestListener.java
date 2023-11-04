@@ -61,6 +61,8 @@ public class TestListener implements ITestListener {
     }
 
     public void onTestSuccess(ITestResult paramITestResult) {
+        // In questo commento spieghiamo perché il 
+        // metodo è vuoto 
     }
 
     public TestResult getTestResult() {
