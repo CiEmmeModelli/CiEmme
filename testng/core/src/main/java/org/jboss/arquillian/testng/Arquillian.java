@@ -120,7 +120,7 @@ public abstract class Arquillian implements IHookable {
     }
 
     @AfterMethod(groups = "arquillian", inheritGroups = true, alwaysRun = true)
-    public void arquillianAfterTest(Method testMethod) throws Exception {
+    public void arquillianAfterTest(Method testMethod) throws CustomExc {
         if (cycleStack.get().empty()) {
             return;
         }
