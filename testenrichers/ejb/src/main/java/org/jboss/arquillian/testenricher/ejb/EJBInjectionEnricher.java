@@ -45,6 +45,7 @@ public class EJBInjectionEnricher implements TestEnricher {
     private static final Logger log = Logger.getLogger(EJBInjectionEnricher.class.getName());
 
     private static String globTest = "java:global/test/";
+    private static String globInterface = "/no-interface";
 
     @Inject
     private Instance<Context> contextInst;
@@ -267,14 +268,14 @@ public class EJBInjectionEnricher implements TestEnricher {
             "java:global/test.ear/test/" + fieldType.getSimpleName(),
             globTest + fieldType.getSimpleName(),
             globTest + fieldType.getSimpleName() + "Bean",
-            globTest + fieldType.getSimpleName() + "/no-interface",
+            globTest + fieldType.getSimpleName() + globInterface,
             "java:module/" + fieldType.getSimpleName(),
             "test/" + fieldType.getSimpleName() + "Bean/local",
             "test/" + fieldType.getSimpleName() + "Bean/remote",
-            "test/" + fieldType.getSimpleName() + "/no-interface",
+            "test/" + fieldType.getSimpleName() + globInterface,
             fieldType.getSimpleName() + "Bean/local",
             fieldType.getSimpleName() + "Bean/remote",
-            fieldType.getSimpleName() + "/no-interface",
+            fieldType.getSimpleName() + globInterface,
             // WebSphere Application Server Local EJB default binding
             "ejblocal:" + fieldType.getCanonicalName(),
             // WebSphere Application Server Remote EJB default binding
