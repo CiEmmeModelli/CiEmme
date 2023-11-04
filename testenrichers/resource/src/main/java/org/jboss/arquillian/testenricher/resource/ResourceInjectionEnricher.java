@@ -158,11 +158,8 @@ public class ResourceInjectionEnricher implements TestEnricher {
 
     private boolean isPrimitiveNull(Object currentValue) {
         String stringValue = String.valueOf(currentValue);
-        if ("0".equals(stringValue) || "0.0".equals(stringValue) || "false".equals(stringValue) && currentValue instanceof Character && (Character) currentValue == (char) 0) {
-            return true;
-        }
-        return false;
-    }    
+        return ("0".equals(stringValue) || "0.0".equals(stringValue) || "false".equals(stringValue)) && (currentValue instanceof Character && (Character) currentValue == (char) 0);
+    }      
 
     protected Object lookup(String jndiName) throws NamingException {
         Context context = getContainerContext();
