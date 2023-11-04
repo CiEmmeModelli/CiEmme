@@ -180,7 +180,7 @@ public class ResourceInjectionEnricher implements TestEnricher {
      *
      * @throws NamingException
      */
-    protected Context getContainerContext() throws NamingException {
+    protected Context getContainerContext() {
         return contextInst.get();
     }
 

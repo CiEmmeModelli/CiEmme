@@ -19,6 +19,8 @@ package org.jboss.arquillian.testenricher.resource;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.Resource;
+import javax.naming.NamingException;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -47,7 +49,7 @@ public class ResourceInjectionEnricherTestCase {
         InjectableTestClass testClass = new InjectableTestClass();
 
         new ResourceInjectionEnricher() {
-            protected Object lookup(String jndiName) throws Exception {
+            protected Object lookup(String jndiName) throws NamingException {
                 return injectionValueMap.get(jndiName);
             }
 
