@@ -33,7 +33,7 @@ import org.junit.Test;
  *
  * @author PedroKowalski
  */
-public class EJBInjectionEnricherBase {
+public class TestEJBInjectionEnricherBase {
     protected EJBInjectionEnricher cut;
 
     protected String[] resolvedJndiName;

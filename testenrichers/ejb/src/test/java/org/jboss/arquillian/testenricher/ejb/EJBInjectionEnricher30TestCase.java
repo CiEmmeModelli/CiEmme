@@ -33,7 +33,7 @@ import static org.junit.Assert.assertThat;
  * @author PedroKowalski
  * @author <a href="mailto:aknutsen@redhat.com">Aslak Knutsen</a>
  */
-public class EJBInjectionEnricher30TestCase extends EJBInjectionEnricherBase {
+public class EJBInjectionEnricher30TestCase extends TestEJBInjectionEnricherBase {
     @Test
     public void testResolveJNDIName() {
         cut.enrich(new EJBEnrichedSimpleInjectionClass());

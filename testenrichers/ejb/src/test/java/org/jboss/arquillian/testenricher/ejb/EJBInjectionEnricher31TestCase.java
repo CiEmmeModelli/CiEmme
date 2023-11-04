@@ -31,7 +31,7 @@ import static org.junit.Assert.assertThat;
  * @author PedroKowalski
  * @author <a href="mailto:aknutsen@redhat.com">Aslak Knutsen</a>
  */
-public class EJBInjectionEnricher31TestCase extends EJBInjectionEnricherBase {
+public class EJBInjectionEnricher31TestCase extends TestEJBInjectionEnricherBase {
 
     @Test
     public void testResolveJNDINameLookupSpecified() {
