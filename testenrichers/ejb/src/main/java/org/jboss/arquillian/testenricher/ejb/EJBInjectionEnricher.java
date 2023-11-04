@@ -232,8 +232,9 @@ public class EJBInjectionEnricher implements TestEnricher {
 
         MessageFormat msg = new MessageFormat(
             "Trying to resolve JNDI name for field \"{0}\" with mappedName=\"{1}\" and beanName=\"{2}\"");
+        String logMess = msg.format(new Object[] {fieldType, mappedName, beanName});
         if (mappedName.length()>1) {
-            log.finer(msg.format(new Object[] {fieldType, mappedName, beanName}));
+            log.finer(logMess);
         }
         
         Validate.notNull(fieldType, "EJB enriched field cannot to be null.");
