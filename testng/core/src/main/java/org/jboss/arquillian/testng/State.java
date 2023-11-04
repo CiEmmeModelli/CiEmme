@@ -26,6 +26,10 @@ package org.jboss.arquillian.testng;
 public class State {
     private static ThreadLocal<Throwable> caughtExceptionAfter = new ThreadLocal<Throwable>();
 
+    private State() {
+        // Costruttore privato per nascondere il costruttore pubblico implicito
+    }
+
     public static Throwable caughtExceptionAfter() {
         return caughtExceptionAfter.get();
     }
