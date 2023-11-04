@@ -113,7 +113,7 @@ public abstract class Arquillian implements IHookable {
     }
 
     @BeforeMethod(groups = "arquillian", inheritGroups = true)
-    public void arquillianBeforeTest(Method testMethod) throws Exception {
+    public void arquillianBeforeTest(Method testMethod) throws MyCustomException {
         verifyTestRunnerAdaptorHasBeenSet();
         cycleStack.get().push(Cycle.BEFORE);
         deployableTest.get().before(this, testMethod, LifecycleMethodExecutor.NO_OP);
