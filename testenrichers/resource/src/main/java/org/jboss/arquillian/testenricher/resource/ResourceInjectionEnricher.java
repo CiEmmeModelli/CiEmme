@@ -166,7 +166,7 @@ public class ResourceInjectionEnricher implements TestEnricher {
         return false;
     }    
 
-    protected Object lookup(String jndiName) throws Exception {
+    protected Object lookup(String jndiName) throws NamingException {
         // TODO: figure out test context ?
         Context context = getContainerContext();
         return context.lookup(jndiName);
