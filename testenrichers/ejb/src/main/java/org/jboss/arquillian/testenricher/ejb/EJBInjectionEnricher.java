@@ -320,12 +320,8 @@ public class EJBInjectionEnricher implements TestEnricher {
      * @return true if <tt>string</tt> is not null and has non-empty value; false otherwise.
      */
     private boolean hasValue(String string) {
-        if (string != null && (!string.trim().equals(""))) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+        return string != null && !string.trim().isEmpty();
+    }    
 
     private boolean isMoreThanOneValueTrue(boolean... values) {
         boolean trueFound = false;
