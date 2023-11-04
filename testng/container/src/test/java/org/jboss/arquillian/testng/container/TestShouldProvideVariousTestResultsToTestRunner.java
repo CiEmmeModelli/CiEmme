@@ -22,7 +22,7 @@ import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.DataProvider;
 
-public class ShouldProvideVariousTestResultsToTestRunner {
+public class TestShouldProvideVariousTestResultsToTestRunner {
     @DataProvider(name = "xx")
     public static Object[][] getCurrentMethod(Method m) {
         return new Object[][] {new Object[] {m}};

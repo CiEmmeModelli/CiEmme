@@ -27,7 +27,7 @@ public class TestNGTestRunnerTestCase extends Arquillian {
     public void shouldReturnPassedTest() throws Exception {
         TestNGTestRunner runner = new TestNGTestRunner();
         TestResult result =
-            runner.execute(ShouldProvideVariousTestResultsToTestRunner.class, "shouldProvidePassingTestToRunner");
+            runner.execute(TestShouldProvideVariousTestResultsToTestRunner.class, "shouldProvidePassingTestToRunner");
 
         Assert.assertNotNull(result);
         Assert.assertEquals(TestResult.Status.PASSED, result.getStatus());
@@ -38,7 +38,7 @@ public class TestNGTestRunnerTestCase extends Arquillian {
     public void shouldReturnFailedTest() throws Exception {
         TestNGTestRunner runner = new TestNGTestRunner();
         TestResult result =
-            runner.execute(ShouldProvideVariousTestResultsToTestRunner.class, "shouldProvideFailingTestToRunner");
+            runner.execute(TestShouldProvideVariousTestResultsToTestRunner.class, "shouldProvideFailingTestToRunner");
 
         Assert.assertNotNull(result);
         Assert.assertEquals(TestResult.Status.FAILED, result.getStatus());
@@ -49,7 +49,7 @@ public class TestNGTestRunnerTestCase extends Arquillian {
     public void shouldReturnSkippedTest() throws Exception {
         TestNGTestRunner runner = new TestNGTestRunner();
         TestResult result =
-            runner.execute(ShouldProvideVariousTestResultsToTestRunner.class, "shouldProvideSkippingTestToRunner");
+            runner.execute(TestShouldProvideVariousTestResultsToTestRunner.class, "shouldProvideSkippingTestToRunner");
 
         Assert.assertNotNull(result);
         Assert.assertEquals(TestResult.Status.SKIPPED, result.getStatus());
@@ -69,7 +69,7 @@ public class TestNGTestRunnerTestCase extends Arquillian {
     public void shouldReturnExceptionOnPassedTest() throws Exception {
         TestNGTestRunner runner = new TestNGTestRunner();
         TestResult result =
-            runner.execute(ShouldProvideVariousTestResultsToTestRunner.class, "shouldProvideExpectedExceptionToRunner");
+            runner.execute(TestShouldProvideVariousTestResultsToTestRunner.class, "shouldProvideExpectedExceptionToRunner");
 
         Assert.assertNotNull(result);
         Assert.assertEquals(TestResult.Status.PASSED, result.getStatus());
@@ -82,7 +82,7 @@ public class TestNGTestRunnerTestCase extends Arquillian {
     public void shouldBeAbleToUseOtherDataProviders() throws Exception {
         TestNGTestRunner runner = new TestNGTestRunner();
         TestResult result =
-            runner.execute(ShouldProvideVariousTestResultsToTestRunner.class, "shouldBeAbleToUseOtherDataProviders");
+            runner.execute(TestShouldProvideVariousTestResultsToTestRunner.class, "shouldBeAbleToUseOtherDataProviders");
 
         Assert.assertNotNull(result);
         Assert.assertEquals(TestResult.Status.PASSED, result.getStatus());
