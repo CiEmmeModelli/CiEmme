@@ -102,7 +102,7 @@ public class ResourceInjectionEnricher implements TestEnricher {
                 method.invoke(testCase, resource);
             }
         } catch (Exception e) {
-            throw new RuntimeException("Could not inject members", e);
+            throw new RunCustomExc("Could not inject members", e);
         }
     }
 
