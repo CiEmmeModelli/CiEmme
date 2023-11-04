@@ -232,7 +232,7 @@ public class EJBInjectionEnricher implements TestEnricher {
 
         MessageFormat msg = new MessageFormat(
             "Trying to resolve JNDI name for field \"{0}\" with mappedName=\"{1}\" and beanName=\"{2}\"");
-        if (msg != null) {
+        if (mappedName.length()>1) {
             log.finer(msg.format(new Object[] {fieldType, mappedName, beanName}));
         }
         
@@ -297,6 +297,7 @@ public class EJBInjectionEnricher implements TestEnricher {
         throw new NamingException("No EJB found in JNDI, tried the following names: " + joinJndiNames(jndiNames));
     }
 
+    @SuppressWarnings("java:S1130")
     protected Context createContext() throws NamingException {
         return contextInst.get();
     }
