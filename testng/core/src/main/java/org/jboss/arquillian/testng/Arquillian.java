@@ -19,6 +19,7 @@ package org.jboss.arquillian.testng;
 import java.lang.reflect.Method;
 import java.util.Stack;
 
+import org.jboss.arquillian.core.spi.MyCustomException;
 import org.jboss.arquillian.test.spi.CustomExc;
 import org.jboss.arquillian.test.spi.LifecycleMethodExecutor;
 import org.jboss.arquillian.test.spi.TestMethodExecutor;
@@ -91,7 +92,7 @@ public abstract class Arquillian implements IHookable {
     }
 
     @BeforeClass(groups = "arquillian", inheritGroups = true)
-    public void arquillianBeforeClass() throws Exception {
+    public void arquillianBeforeClass() throws MyCustomException {
         verifyTestRunnerAdaptorHasBeenSet();
         cycleStack.get().push(Cycle.BEFORE_CLASS);
         deployableTest.get().beforeClass(getClass(), LifecycleMethodExecutor.NO_OP);
