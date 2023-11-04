@@ -70,7 +70,7 @@ public abstract class Arquillian implements IHookable {
     }
 
     @AfterSuite(groups = "arquillian", inheritGroups = true, alwaysRun = true)
-    public void arquillianAfterSuite() throws Exception {
+    public void arquillianAfterSuite() throws CustomExc {
         if (deployableTest.get() == null) {
             return; // beforeSuite failed
         }
