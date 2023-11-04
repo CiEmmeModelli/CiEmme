@@ -99,7 +99,7 @@ public abstract class Arquillian implements IHookable {
     }
 
     @AfterClass(groups = "arquillian", inheritGroups = true, alwaysRun = true)
-    public void arquillianAfterClass() throws Exception {
+    public void arquillianAfterClass() throws MyCustomException {
         if (cycleStack.get().empty()) {
             return;
         }
