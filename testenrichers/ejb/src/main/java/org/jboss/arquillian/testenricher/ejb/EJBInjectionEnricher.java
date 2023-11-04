@@ -46,6 +46,7 @@ public class EJBInjectionEnricher implements TestEnricher {
 
     private static String globTest = "java:global/test/";
     private static String globInterface = "/no-interface";
+    private static String testString = "test/";
 
     @Inject
     private Instance<Context> contextInst;
@@ -270,9 +271,9 @@ public class EJBInjectionEnricher implements TestEnricher {
             globTest + fieldType.getSimpleName() + "Bean",
             globTest + fieldType.getSimpleName() + globInterface,
             "java:module/" + fieldType.getSimpleName(),
-            "test/" + fieldType.getSimpleName() + "Bean/local",
-            "test/" + fieldType.getSimpleName() + "Bean/remote",
-            "test/" + fieldType.getSimpleName() + globInterface,
+            testString + fieldType.getSimpleName() + "Bean/local",
+            testString + fieldType.getSimpleName() + "Bean/remote",
+            testString + fieldType.getSimpleName() + globInterface,
             fieldType.getSimpleName() + "Bean/local",
             fieldType.getSimpleName() + "Bean/remote",
             fieldType.getSimpleName() + globInterface,
