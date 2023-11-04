@@ -160,13 +160,13 @@ public class ResourceInjectionEnricher implements TestEnricher {
         String stringValue = String.valueOf(currentValue);
         if ("0".equals(stringValue) || "0.0".equals(stringValue) || "false".equals(stringValue)) {
             return true;
-        } else if (Character.class.isInstance(currentValue)) {
-            if (Character.class.cast(currentValue) == (char) 0) {
+        } else if (currentValue instanceof Character) {
+            if ((Character) currentValue == (char) 0) {
                 return true;
             }
         }
         return false;
-    }
+    }    
 
     protected Object lookup(String jndiName) throws Exception {
         // TODO: figure out test context ?
