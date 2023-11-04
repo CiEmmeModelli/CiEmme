@@ -51,6 +51,8 @@ public class TestListener implements ITestListener {
     }
 
     public void onTestSkipped(ITestResult paramITestResult) {
+        // In questo commento spieghiamo perché il 
+        // metodo è vuoto 
     }
 
     public void onTestStart(ITestResult paramITestResult) {
