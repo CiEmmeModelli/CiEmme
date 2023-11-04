@@ -31,7 +31,6 @@ import org.jboss.arquillian.container.spi.client.protocol.metadata.RunCustomExc;
 import org.jboss.arquillian.core.api.Instance;
 import org.jboss.arquillian.core.api.annotation.Inject;
 import org.jboss.arquillian.core.spi.Validate;
-import org.jboss.arquillian.test.spi.CustomExc;
 import org.jboss.arquillian.test.spi.TestEnricher;
 
 /**
@@ -44,6 +43,8 @@ public class EJBInjectionEnricher implements TestEnricher {
     private static final String ANNOTATION_NAME = "javax.ejb.EJB";
 
     private static final Logger log = Logger.getLogger(EJBInjectionEnricher.class.getName());
+
+    private static String globTest = "java:global/test/";
 
     @Inject
     private Instance<Context> contextInst;
@@ -264,9 +265,9 @@ public class EJBInjectionEnricher implements TestEnricher {
         jndiNames = new String[] {
             "java:global/test.ear/test/" + fieldType.getSimpleName() + "Bean",
             "java:global/test.ear/test/" + fieldType.getSimpleName(),
-            "java:global/test/" + fieldType.getSimpleName(),
-            "java:global/test/" + fieldType.getSimpleName() + "Bean",
-            "java:global/test/" + fieldType.getSimpleName() + "/no-interface",
+            globTest + fieldType.getSimpleName(),
+            globTest + fieldType.getSimpleName() + "Bean",
+            globTest + fieldType.getSimpleName() + "/no-interface",
             "java:module/" + fieldType.getSimpleName(),
             "test/" + fieldType.getSimpleName() + "Bean/local",
             "test/" + fieldType.getSimpleName() + "Bean/remote",
