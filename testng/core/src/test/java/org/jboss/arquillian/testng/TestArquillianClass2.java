@@ -21,7 +21,7 @@ import org.testng.annotations.Test;
 /*
  * Predfined TestClass
  */
-public class ArquillianClass2 extends Arquillian {
+public class TestArquillianClass2 extends Arquillian {
     @Test(groups = "arq")
     public void shouldBeInvoked2() throws Throwable {
     }

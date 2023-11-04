@@ -109,7 +109,7 @@ public class TestNGIntegrationTestCase extends TestNGTestBaseClass {
         // throwException removes exception marker when thrown
         throwException(Cycle.BEFORE_CLASS, new Throwable());
 
-        TestListenerAdapter result = run(adaptor, ArquillianClass1TestCase.class, ArquillianClass2.class);
+        TestListenerAdapter result = run(adaptor, ArquillianClass1TestCase.class, TestArquillianClass2.class);
         Assert.assertFalse(wasSuccessful(result));
 
         assertCycle(2, Cycle.BEFORE_CLASS, Cycle.AFTER_CLASS);
@@ -123,7 +123,7 @@ public class TestNGIntegrationTestCase extends TestNGTestBaseClass {
         TestRunnerAdaptor adaptor = mock(TestRunnerAdaptor.class);
         executeAllLifeCycles(adaptor);
 
-        TestListenerAdapter result = run(adaptor, ArquillianClass1TestCase.class, ArquillianClass2.class);
+        TestListenerAdapter result = run(adaptor, ArquillianClass1TestCase.class, TestArquillianClass2.class);
         Assert.assertTrue(wasSuccessful(result));
 
         assertCycle(1, Cycle.BEFORE_SUITE, Cycle.AFTER_SUITE);
@@ -172,7 +172,7 @@ public class TestNGIntegrationTestCase extends TestNGTestBaseClass {
         executeAllLifeCycles(adaptor);
 
         TestListenerAdapter result =
-            run(new String[] {"arq"}, adaptor, NonArquillianClass1TestCase.class, ArquillianClass2.class);
+            run(new String[] {"arq"}, adaptor, NonArquillianClass1TestCase.class, TestArquillianClass2.class);
         Assert.assertTrue(wasSuccessful(result));
 
         assertCycle(1, Cycle.values());
@@ -184,7 +184,7 @@ public class TestNGIntegrationTestCase extends TestNGTestBaseClass {
         executeAllLifeCycles(adaptor);
 
         TestListenerAdapter result =
-            run(new String[] {"arq", "arquillian"}, adaptor, NonArquillianClass1TestCase.class, ArquillianClass2.class);
+            run(new String[] {"arq", "arquillian"}, adaptor, NonArquillianClass1TestCase.class, TestArquillianClass2.class);
         Assert.assertTrue(wasSuccessful(result));
 
         assertCycle(1, Cycle.values());
