@@ -31,6 +31,7 @@ import org.jboss.arquillian.container.spi.client.protocol.metadata.RunCustomExc;
 import org.jboss.arquillian.core.api.Instance;
 import org.jboss.arquillian.core.api.annotation.Inject;
 import org.jboss.arquillian.core.spi.Validate;
+import org.jboss.arquillian.test.spi.CustomExc;
 import org.jboss.arquillian.test.spi.TestEnricher;
 
 /**
@@ -95,69 +96,100 @@ public class EJBInjectionEnricher implements TestEnricher {
 
     protected void injectClass(Object testCase) {
         try {
-            @SuppressWarnings("unchecked")
-            Class<? extends Annotation> ejbAnnotation =
-                (Class<? extends Annotation>) SecurityActions.getThreadContextClassLoader().loadClass(ANNOTATION_NAME);
-
-            List<Field> annotatedFields = SecurityActions.getFieldsWithAnnotation(
-                testCase.getClass(),
-                ejbAnnotation);
-
-            for (Field field : annotatedFields) {
-                if (field.get(testCase) == null) // only try to lookup fields that are not already set
-                {
-                    EJB fieldAnnotation = (EJB) field.getAnnotation(ejbAnnotation);
-                    try {
-                        String mappedName = fieldAnnotation.mappedName();
-                        ;
-                        String beanName = fieldAnnotation.beanName();
-                        String lookup = attemptToGet31LookupField(fieldAnnotation);
-
-                        String[] jndiNames = resolveJNDINames(field.getType(), mappedName, beanName, lookup);
-                        Object ejb = lookupEJB(jndiNames);
-                        field.set(testCase, ejb);
-                    } catch (Exception e) {
-                        log.fine("Could not lookup " + fieldAnnotation + ", other Enrichers might, move on. Exception: "
-                            + e.getMessage());
-                    }
-                }
-            }
-
-            List<Method> methods = SecurityActions.getMethodsWithAnnotation(testCase.getClass(), ejbAnnotation);
-
-            for (Method method : methods) {
-                if (method.getParameterTypes().length != 1) {
-                    throw new RunCustomExc("@EJB only allowed on single argument methods");
-                }
-                if (!method.getName().startsWith("set")) {
-                    throw new RunCustomExc("@EJB only allowed on 'set' methods");
-                }
-                EJB parameterAnnotation = null; // method.getParameterAnnotations()[0]
-                for (Annotation annotation : method.getParameterAnnotations()[0]) {
-                    if (EJB.class.isAssignableFrom(annotation.annotationType())) {
-                        parameterAnnotation = (EJB) annotation;
-                    }
-                }
-
-                // Default values of the annotation attributes.
-                String mappedName = null;
-                String beanName = null;
-                String lookup = null;
-
-                if (parameterAnnotation != null) {
-                    mappedName = parameterAnnotation.mappedName();
-                    beanName = parameterAnnotation.beanName();
-                    lookup = attemptToGet31LookupField(parameterAnnotation);
-                }
-
-                String[] jndiNames = resolveJNDINames(method.getParameterTypes()[0], mappedName, beanName, lookup);
-                Object ejb = lookupEJB(jndiNames);
-                method.invoke(testCase, ejb);
-            }
+            Class<? extends Annotation> ejbAnnotation = loadEJBAnnotationClass();
+    
+            injectFields(testCase, ejbAnnotation);
+            injectMethods(testCase, ejbAnnotation);
         } catch (Exception e) {
             throw new RunCustomExc("Could not inject members", e);
         }
     }
+    
+    private Class<? extends Annotation> loadEJBAnnotationClass() throws ClassNotFoundException {
+        @SuppressWarnings("unchecked")
+        Class<? extends Annotation> ejbAnnotation =
+            (Class<? extends Annotation>) SecurityActions.getThreadContextClassLoader().loadClass(ANNOTATION_NAME);
+        return ejbAnnotation;
+    }
+    
+    private void injectFields(Object testCase, Class<? extends Annotation> ejbAnnotation) throws IllegalAccessException {
+        List<Field> annotatedFields = SecurityActions.getFieldsWithAnnotation(
+            testCase.getClass(),
+            ejbAnnotation);
+    
+        for (Field field : annotatedFields) {
+            if (field.get(testCase) == null) {
+                injectField(testCase, field, ejbAnnotation);
+            }
+        }
+    }
+    
+    private void injectField(Object testCase, Field field, Class<? extends Annotation> ejbAnnotation) {
+        EJB fieldAnnotation = (EJB) field.getAnnotation(ejbAnnotation);
+        try {
+            String mappedName = fieldAnnotation.mappedName();
+            String beanName = fieldAnnotation.beanName();
+            String lookup = attemptToGet31LookupField(fieldAnnotation);
+    
+            String[] jndiNames = resolveJNDINames(field.getType(), mappedName, beanName, lookup);
+            Object ejb = lookupEJB(jndiNames);
+            field.set(testCase, ejb);
+        } catch (Exception e) {
+            log.fine("Could not lookup " + fieldAnnotation + ", other Enrichers might, move on. Exception: " + e.getMessage());
+        }
+    }
+    
+    private void injectMethods(Object testCase, Class<? extends Annotation> ejbAnnotation) throws IllegalAccessException {
+        List<Method> methods = SecurityActions.getMethodsWithAnnotation(testCase.getClass(), ejbAnnotation);
+    
+        for (Method method : methods) {
+            if (method.getParameterTypes().length != 1) {
+                throw new RunCustomExc("@EJB only allowed on single argument methods");
+            }
+            if (!method.getName().startsWith("set")) {
+                throw new RunCustomExc("@EJB only allowed on 'set' methods");
+            }
+            EJB parameterAnnotation = getParameterEJBAnnotation(method.getParameterAnnotations()[0]);
+            String[] jndiNames = resolveJNDINamesForMethod(method, parameterAnnotation);
+            Object ejb;
+            try {
+                ejb = lookupEJB(jndiNames);
+                method.invoke(testCase, ejb);
+            } catch (InvocationTargetException | NamingException e) {
+                e.getMessage();
+            }
+            
+        }
+    }
+    
+    private EJB getParameterEJBAnnotation(Annotation[] annotations) {
+        for (Annotation annotation : annotations) {
+            if (EJB.class.isAssignableFrom(annotation.annotationType())) {
+                return (EJB) annotation;
+            }
+        }
+        return null;
+    }
+    
+    private String[] resolveJNDINamesForMethod(Method method, EJB parameterAnnotation) {
+        String mappedName = null;
+        String beanName = null;
+        String lookup = null;
+    
+        if (parameterAnnotation != null) {
+            mappedName = parameterAnnotation.mappedName();
+            beanName = parameterAnnotation.beanName();
+            try {
+                lookup = attemptToGet31LookupField(parameterAnnotation);
+            } catch (InvocationTargetException | IllegalAccessException e) {
+                e.getMessage();
+            
+            }
+        }
+        
+        return resolveJNDINames(method.getParameterTypes()[0], mappedName, beanName, lookup);
+    }
+    
 
     protected String attemptToGet31LookupField(EJB annotation) throws IllegalAccessException,
         InvocationTargetException {
@@ -247,7 +279,7 @@ public class EJBInjectionEnricher implements TestEnricher {
         return jndiNames;
     }
 
-    protected Object lookupEJB(String[] jndiNames) throws Exception {
+    protected Object lookupEJB(String[] jndiNames) throws NamingException {
         Context initcontext = createContext();
 
         for (String jndiName : jndiNames) {

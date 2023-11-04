@@ -49,7 +49,7 @@ public class EJBInjectionEnricherBase {
             }
 
             @Override
-            protected Object lookupEJB(String[] jndiNames) throws Exception {
+            protected Object lookupEJB(String[] jndiNames) throws NamingException {
                 resolvedJndiName = jndiNames;
                 return new ExemplaryEJBMockImpl();
             }
