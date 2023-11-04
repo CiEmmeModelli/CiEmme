@@ -96,7 +96,7 @@ public class ResourceInjectionEnricher implements TestEnricher {
                     throw new RunCustomExc("@Resource only allowed on single argument methods");
                 }
                 if (!method.getName().startsWith("set")) {
-                    throw new RuntimeException("@Resource only allowed on 'set' methods");
+                    throw new RunCustomExc("@Resource only allowed on 'set' methods");
                 }
                 Object resource = resolveResource(method);
                 method.invoke(testCase, resource);
