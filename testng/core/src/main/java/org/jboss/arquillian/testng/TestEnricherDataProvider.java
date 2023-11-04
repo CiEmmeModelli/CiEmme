@@ -29,6 +29,10 @@ public class TestEnricherDataProvider {
 
     public static final String PROVIDER_NAME = "enrich";
 
+    private TestEnricherDataProvider() {
+        // Costruttore privato per nascondere il costruttore pubblico implicito
+    }
+
     @DataProvider(name = PROVIDER_NAME)
     public static Object[][] enrich(Method method) {
         // actual enrichment happens inside a Observer
