@@ -81,15 +81,7 @@ public class ResourceInjectionEnricher implements TestEnricher {
              */
                 Object currentValue = field.get(testCase);
                 if (shouldInject(field, currentValue)) {
-                    try {
-                        Object resource = resolveResource(field);
-                        field.set(testCase, resource);
-                    } catch (Exception e) {
-                        log.fine("Could not lookup for "
-                            + field
-                            + ", other Enrichers might, move on. Exception: "
-                            + e.getMessage());
-                    }
+                    newMethod(field, testCase);
                 }
             }
 
@@ -110,6 +102,18 @@ public class ResourceInjectionEnricher implements TestEnricher {
         } catch (Exception e) {
             throw new RuntimeException("Could not inject members", e);
         }
+    }
+
+    public void newMethod(Field fieldInNewMethod, Object testCaseInMethod){
+        try {
+                        Object resource = resolveResource(fieldInNewMethod);
+                        fieldInNewMethod.set(testCaseInMethod, resource);
+                    } catch (Exception e) {
+                        log.fine("Could not lookup for "
+                            + fieldInNewMethod
+                            + ", other Enrichers might, move on. Exception: "
+                            + e.getMessage());
+                    }
     }
 
     /**
