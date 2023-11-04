@@ -72,7 +72,7 @@ public class EJBInjectionEnricher30TestCase extends EJBInjectionEnricherBase {
         cut.enrich(new EJBInvalidBeanAndMappedNameClass());
         try {
              assertThat(caughtResolveException, notNullValue());
-        } catch (Exception e) {
+        } catch (IllegalStateException e) {
             e.getMessage();
         }
        
