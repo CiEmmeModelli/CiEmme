@@ -18,6 +18,8 @@ package org.jboss.arquillian.testng;
 
 import java.lang.reflect.Method;
 import java.util.Stack;
+
+import org.jboss.arquillian.test.spi.CustomExc;
 import org.jboss.arquillian.test.spi.LifecycleMethodExecutor;
 import org.jboss.arquillian.test.spi.TestMethodExecutor;
 import org.jboss.arquillian.test.spi.TestResult;
@@ -58,7 +60,7 @@ public abstract class Arquillian implements IHookable {
     };
 
     @BeforeSuite(groups = "arquillian", inheritGroups = true)
-    public void arquillianBeforeSuite() throws Exception {
+    public void arquillianBeforeSuite() throws CustomExc {
         if (deployableTest.get() == null) {
             TestRunnerAdaptor adaptor = TestRunnerAdaptorBuilder.build();
             adaptor.beforeSuite();

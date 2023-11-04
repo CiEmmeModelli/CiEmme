@@ -67,7 +67,7 @@ final class Serializer {
             try {
                 input.close();
             } catch (Exception e) {
-                e.printStackTrace();
+                e.getMessage();
             }
         }
     }
