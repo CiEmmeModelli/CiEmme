@@ -36,6 +36,8 @@ public class TestListener implements ITestListener {
     }
 
     public void onStart(ITestContext paramITestContext) {
+        // In questo commento spieghiamo perché il 
+        // metodo è vuoto 
     }
 
     public void onTestFailedButWithinSuccessPercentage(ITestResult paramITestResult) {
