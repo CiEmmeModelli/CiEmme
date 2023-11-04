@@ -128,7 +128,7 @@ public class ResourceInjectionEnricher implements TestEnricher {
      *
      * @throws Exception
      */
-    protected Object resolveResource(AnnotatedElement element) throws Exception {
+    protected Object resolveResource(AnnotatedElement element) throws NamingException {
         Object resolvedResource = null;
         // This implementation is based on previous behavior in injectClass()
         if (Field.class.isAssignableFrom(element.getClass())) {
@@ -158,10 +158,8 @@ public class ResourceInjectionEnricher implements TestEnricher {
 
     private boolean isPrimitiveNull(Object currentValue) {
         String stringValue = String.valueOf(currentValue);
-        if ("0".equals(stringValue) || "0.0".equals(stringValue) || "false".equals(stringValue)) {
+        if ("0".equals(stringValue) || "0.0".equals(stringValue) || "false".equals(stringValue) && currentValue instanceof Character && (Character) currentValue == (char) 0) {
             return true;
-        } else if (currentValue instanceof Character && (Character) currentValue == (char) 0) {
-                return true;
         }
         return false;
     }    

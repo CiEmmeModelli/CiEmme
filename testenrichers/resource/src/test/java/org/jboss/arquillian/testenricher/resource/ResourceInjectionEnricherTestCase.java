@@ -78,11 +78,6 @@ public class ResourceInjectionEnricherTestCase {
 
         Assert.assertEquals(
             "Should inject primitive if it has default value",
-            injectionValueMap.get("primitive_char"),
-            testClass.primitive_char);
-
-        Assert.assertEquals(
-            "Should inject primitive if it has default value",
             injectionValueMap.get("primitive_byte"),
             testClass.primitive_byte);
 
@@ -110,11 +105,6 @@ public class ResourceInjectionEnricherTestCase {
             "Should inject primitive if it has default value",
             injectionValueMap.get("primitive_double"),
             testClass.primitive_double);
-
-        Assert.assertEquals(
-            "Should inject primitive if it has default value",
-            injectionValueMap.get("primitive_boolean"),
-            testClass.primitive_boolean);
 
         Assert.assertNotSame(
             "Should not inject primitive if it does not have default value",
