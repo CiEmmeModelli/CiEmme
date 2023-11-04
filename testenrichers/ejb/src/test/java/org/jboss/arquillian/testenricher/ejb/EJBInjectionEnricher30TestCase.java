@@ -17,6 +17,8 @@
 package org.jboss.arquillian.testenricher.ejb;
 
 import javax.ejb.EJB;
+
+import org.hamcrest.Matcher;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -70,13 +72,14 @@ public class EJBInjectionEnricher30TestCase extends EJBInjectionEnricherBase {
     @Test(expected = IllegalStateException.class)
     public void shouldThrowExceptionOnBeanAndMappedName() {
         cut.enrich(new EJBInvalidBeanAndMappedNameClass());
-        try {
-             assertThat(caughtResolveException, notNullValue());
-        } catch (IllegalStateException e) {
-            e.getMessage();
-        }
-       
+
+        runningAssrtion(caughtResolveException, notNullValue());
         throw caughtResolveException;
+    }
+
+    public void runningAssrtion(RuntimeException e, Matcher<Object> match){
+         assertThat(caughtResolveException, notNullValue());
+
     }
 
     /**
