@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiD0SW882CViJqbmcq;To-Do;New;Normal;Claudia Stefanizzi;CiEmmeModelli_CiEmme:protocols/servlet/src/main/java/org/jboss/arquillian/protocol/servlet/ServletProtocolConfiguration.java;"java:S1116:  ""Remove this empty statement.""";MINOR;2;2023-10-21;2023-10-21;1;"startLine: 33;startOffset: 4;endOffset: 5;endLine: 33";Maintenance (Code Smells);db082cf

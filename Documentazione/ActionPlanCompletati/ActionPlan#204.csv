@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiDz8I882CViJqbmVA;To-Do;New;Normal;Claudia Stefanizzi;CiEmmeModelli_CiEmme:testenrichers/cdi/src/main/java/org/jboss/arquillian/testenricher/cdi/client/BeansXMLProtocolProcessor.java;"java:S1066:  ""Merge this if statement with the enclosing one.""";MAJOR;5;2023-10-29;2023-10-29;2;"startLine: 56;startOffset: 16;endOffset: 18;endLine: 56";Maintenance (Code Smells);f9892b8

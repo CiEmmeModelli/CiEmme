@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiD0Rr882CViJqbmcM;To-Do;New;Normal;Matteo Scuro;CiEmmeModelli_CiEmme:protocols/servlet/src/main/java/org/jboss/arquillian/protocol/servlet/ServletURIHandler.java;"java:S1155:  ""Use isEmpty() to check whether the collection is empty or not.""";MINOR;2;2023/10/29;2023/10/29;1;"startLine: 45;startOffset: 32;endOffset: 52;endLine: 45";Maintenance (Code Smells);3b060e1

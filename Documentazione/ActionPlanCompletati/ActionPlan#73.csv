@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiD0CH882CViJqbmXM;To-Do;New;Normal;Matteo Scuro;CiEmmeModelli_CiEmme:container/test-impl-base/src/main/java/org/jboss/arquillian/container/test/impl/domain/ProtocolDefinition.java;"java:S1452:  ""Remove usage of generic wildcard type.""";CRITICAL;20;2023/10/12;2023/10/12;3;"startLine: 70;startOffset: 20;endOffset: 21;endLine: 70";Maintenance (Code Smells);f28d641

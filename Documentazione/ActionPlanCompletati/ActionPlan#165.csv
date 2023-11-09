@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiD0Tx882CViJqbmcw;To-Do;New;Normal;Matteo Scuro;CiEmmeModelli_CiEmme:protocols/jmx/src/test/java/org/jboss/arquillian/protocol/jmx/DummyTestCase.java;"java:S2699:  ""Add at least one assertion to this test case.""";BLOCKER;10;2023/10/29;2023/10/29;4;"startLine: 23;startOffset: 16;endOffset: 26;endLine: 23";Maintenance (Code Smells);402977a

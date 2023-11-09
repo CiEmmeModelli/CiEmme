@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiDz3T882CViJqbmTb;To-Do;New;Normal;Matteo Scuro;CiEmmeModelli_CiEmme:core/api/src/main/java/org/jboss/arquillian/core/api/event/ManagerStarted.java;"java:S2094:  ""Remove this empty class write its code or make it an interface.""";MINOR;5;2023/10/14;2023/10/14;1;"startLine: 25;startOffset: 13;endOffset: 27;endLine: 25";Maintenance (Code Smells);08027bd

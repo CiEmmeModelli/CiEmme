@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiD0KY882CViJqbmaN;To-Do;New;Normal;Matteo Scuro;CiEmmeModelli_CiEmme:container/spi/src/test/java/org/jboss/arquillian/container/spi/client/protocol/metadata/ServletTest.java;"java:S5785:  ""Use assertEquals instead.""";MAJOR;2;2023/10/8;2023/10/8;1;"startLine: 88;startOffset: 12;endOffset: 22;endLine: 88";Maintenance (Code Smells);9e22fb3

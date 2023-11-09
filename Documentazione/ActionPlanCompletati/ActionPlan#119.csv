@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiD0ck882CViJqbmfg;To-Do;New;Normal;Matteo Scuro;CiEmmeModelli_CiEmme:junit/core/src/main/java/org/jboss/arquillian/junit/AdaptorManagerWithNotifier.java;"java:S1161:  ""Add the @Override annotation above this method signature""";MAJOR;5;2023/10/20;2023/10/20;1;"startLine: 17;startOffset: 9;endOffset: 26;endLine: 17";Maintenance (Code Smells);746044d

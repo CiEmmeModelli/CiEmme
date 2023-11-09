@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiDz5S882CViJqbmTh;To-Do;New;Normal;Claudia Stefanizzi;CiEmmeModelli_CiEmme:core/impl-base/src/main/java/org/jboss/arquillian/core/impl/loadable/ServiceRegistryLoader.java;"java:S108:  ""Either remove or fill this block of code.""";MAJOR;5;2023-10-15;2023-10-15;1;"startLine: 80;startOffset: 30;endOffset: 31;endLine: 80";Maintenance (Code Smells);78c5745

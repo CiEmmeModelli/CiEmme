@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiD0Sg882CViJqbmcr;To-Do;New;Normal;Matteo Scuro;CiEmmeModelli_CiEmme:protocols/servlet/src/main/java/org/jboss/arquillian/protocol/servlet/v_2_5/ServletProtocolDeploymentPackager.java;"java:S1135:  ""Complete the task associated to this TODO comment.""";INFO;0;2023/10/29;2023/10/29;0;"startLine: 138;startOffset: 0;endOffset: 92;endLine: 138";Maintenance (Code Smells);613f03f

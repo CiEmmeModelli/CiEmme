@@ -1,0 +1,2 @@
+Key,Tracker,Status,Priority,Owner,Filepath,Subject,Category,Estimated time [min],Start date,End date,Time spent [min],Description,Caratteristica di riferimento,Commit hash
+AYqiD0Oj882CViJqbmbZ,To-Do,New,Normal,Matteo Scuro,CiEmmeModelli_CiEmme:test/spi/src/main/java/org/jboss/arquillian/test/spi/event/suite/After.java,"java:S110:  ""This class has 6 parents which is greater than 5 authorized.""",MAJOR,270,,,,startLine: 28;startOffset: 13;endOffset: 18;endLine: 28,Maintenance (Code Smells),

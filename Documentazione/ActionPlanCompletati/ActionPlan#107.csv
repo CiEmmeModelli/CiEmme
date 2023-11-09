@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiDz5K882CViJqbmTg;To-Do;New;Normal;Matteo Scuro;CiEmmeModelli_CiEmme:core/impl-base/src/main/java/org/jboss/arquillian/core/impl/threading/ThreadedExecutorService.java;"java:S112:  ""Define and throw a dedicated exception instead of using a generic one.""";MAJOR;20;2023/10/19;2023/10/19;1;"startLine: 50;startOffset: 22;endOffset: 38;endLine: 50";Maintenance (Code Smells);d60397a

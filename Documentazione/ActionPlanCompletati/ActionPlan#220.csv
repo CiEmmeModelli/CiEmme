@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiD0fd882CViJqbmgU;To-Do;New;Normal;Claudia Stefanizzi;CiEmmeModelli_CiEmme:testng/core/src/main/java/org/jboss/arquillian/testng/TestDataProviderTransformer.java;"java:S1066:  ""Merge this if statement with the enclosing one.""";MAJOR;5;2023-10-30;2023-10-30;2;"startLine: 42;startOffset: 12;endOffset: 14;endLine: 42";Maintenance (Code Smells);f168d81

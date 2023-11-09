@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiD0dR882CViJqbmfy;To-Do;New;Normal;Matteo Scuro;CiEmmeModelli_CiEmme:junit/core/src/main/java/org/jboss/arquillian/junit/MethodRuleChain.java;"java:S1117:  ""Rename rules which hides the field declared at line 37.""";MAJOR;5;2023/10/21;2023/10/21;4;"startLine: 72;startOffset: 31;endOffset: 36;endLine: 72";Maintenance (Code Smells);ee1343b

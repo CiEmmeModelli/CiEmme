@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiDz4b882CViJqbmTf;To-Do;New;Normal;Claudia Stefanizzi;CiEmmeModelli_CiEmme:core/impl-base/src/test/java/org/jboss/arquillian/core/impl/context/ContextActivationTestCase.java;"java:S2186:  ""Remove this assertion.""";CRITICAL;30;2023-10-15;2023-10-15;5;"startLine: 86;startOffset: 27;endOffset: 38;endLine: 86";Maintenance (Code Smells);8435d4a

@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiD0dB882CViJqbmfu;To-Do;New;Normal;Matteo Scuro;CiEmmeModelli_CiEmme:junit/core/src/main/java/org/jboss/arquillian/junit/ArquillianTestClassLifecycleManager.java;"java:S112:  ""Define and throw a dedicated exception instead of using a generic one.""";MAJOR;20;2023/10/20;2023/10/20;3;"startLine: 8;startOffset: 18;endOffset: 34;endLine: 8";Maintenance (Code Smells);a6b16be

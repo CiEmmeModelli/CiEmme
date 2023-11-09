@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiDz89882CViJqbmVS;To-Do;New;Normal;Matteo Scuro;CiEmmeModelli_CiEmme:testenrichers/ejb/src/test/java/org/jboss/arquillian/testenricher/ejb/EJBInjectionEnricher30TestCase.java;"java:S5777:  ""Move assertions into separate method or use assertThrows or try-catch instead.""";MINOR;5;2023/10/4;2023/10/4;3;"startLine: 70;startOffset: 10;endOffset: 48;endLine: 70";Maintenance (Code Smells);58f90a0

@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiD0fk882CViJqbmgV;To-Do;New;Normal;Matteo Scuro;CiEmmeModelli_CiEmme:testng/core/src/main/java/org/jboss/arquillian/testng/State.java;"java:S1118:  ""Add a private constructor to hide the implicit public one.""";MAJOR;5;2023/11/4;2023/11/4;5;"startLine: 26;startOffset: 13;endOffset: 18;endLine: 26";Maintenance (Code Smells);975c6a2

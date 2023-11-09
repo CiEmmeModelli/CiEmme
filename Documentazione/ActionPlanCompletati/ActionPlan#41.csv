@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiD0I9882CViJqbmZ6;To-Do;New;Normal;Matteo Scuro;CiEmmeModelli_CiEmme:container/spi/src/main/java/org/jboss/arquillian/container/spi/client/protocol/metadata/Servlet.java;"java:S1126:  ""Replace this if-then-else statement by a single return statement.""";MINOR;2;2023/10/8;2023/10/8;2;"startLine: 171;startOffset: 8;endOffset: 10;endLine: 171";Maintenance (Code Smells);76dd83f

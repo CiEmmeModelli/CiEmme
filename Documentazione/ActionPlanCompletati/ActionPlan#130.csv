@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiD0cX882CViJqbmfe;To-Do;New;Normal;Claudia Stefanizzi;CiEmmeModelli_CiEmme:junit/core/src/main/java/org/jboss/arquillian/junit/event/BeforeRules.java;"java:S110:  ""This class has 6 parents which is greater than 5 authorized.""";MAJOR;270;2023-10-19;2023-10-19;30;"startLine: 28;startOffset: 13;endOffset: 24;endLine: 28";Maintenance (Code Smells);7e56ae4

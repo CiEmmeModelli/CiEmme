@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiD0cK882CViJqbmfc;To-Do;New;Normal;Claudia Stefanizzi;CiEmmeModelli_CiEmme:junit/core/src/main/java/org/jboss/arquillian/junit/InSequenceSorter.java;"java:S3358:  ""Extract this nested ternary operation into an independent statement.""";MAJOR;5;2023-10-16;2023-10-16;3;"startLine: 42;startOffset: 42;endOffset: 68;endLine: 42";Maintenance (Code Smells);2a6f5e1

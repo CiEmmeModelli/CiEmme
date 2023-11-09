@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiDz-b882CViJqbmV9;To-Do;New;Normal;Matteo Scuro;CiEmmeModelli_CiEmme:container/test-impl-base/src/main/java/org/jboss/arquillian/container/test/impl/client/deployment/command/AbstractCommand.java;"java:S1948:  ""Make result transient or serializable.""";CRITICAL;30;2023/10/11;2023/10/11;1;"startLine: 32;startOffset: 14;endOffset: 20;endLine: 32";Maintenance (Code Smells);fea2a0d

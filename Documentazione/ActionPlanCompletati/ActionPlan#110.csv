@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiDz2q882CViJqbmTa;To-Do;New;Normal;Claudia Stefanizzi;CiEmmeModelli_CiEmme:core/spi/src/main/java/org/jboss/arquillian/core/spi/LoadableExtension.java;"java:S1118:  ""Add a private constructor to hide the implicit public one.""";MAJOR;5;2023-10-15;2023-10-15;2;"startLine: 70;startOffset: 24;endOffset: 32;endLine: 70";Maintenance (Code Smells);6f39f3a

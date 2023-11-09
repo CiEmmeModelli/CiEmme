@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiD0Hs882CViJqbmZy;To-Do;New;Normal;Claudia Stefanizzi;CiEmmeModelli_CiEmme:container/spi/src/main/java/org/jboss/arquillian/container/spi/event/container/ContainerEvent.java;"java:S1452:  ""Remove usage of generic wildcard type.""";CRITICAL;20;2023-10-08;2023-10-08;20;"startLine: 40;startOffset: 31;endOffset: 32;endLine: 40";Maintenance (Code Smells);be667a2

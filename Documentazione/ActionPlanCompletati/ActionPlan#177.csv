@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiD0Ry882CViJqbmcN;To-Do;New;Normal;Matteo Scuro;CiEmmeModelli_CiEmme:protocols/servlet/src/main/java/org/jboss/arquillian/protocol/servlet/runner/ServletContextRegistrar.java;"java:S1172:  ""Remove this unused method parameter managerStarted.""";MAJOR;5;2023/10/29;2023/10/29;2;"startLine: 32;startOffset: 64;endOffset: 78;endLine: 32";Maintenance (Code Smells);837dc51

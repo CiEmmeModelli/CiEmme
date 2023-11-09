@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiD0RL882CViJqbmcK;To-Do;New;Normal;Claudia Stefanizzi;CiEmmeModelli_CiEmme:protocols/servlet/src/main/java/org/jboss/arquillian/protocol/servlet/arq514hack/descriptors/impl/web/InitParamDefImpl.java;"java:S1135:  ""Complete the task associated to this TODO comment.""";INFO;0;2023-10-21;2023-10-21;1;"startLine: 25;startOffset: 0;endOffset: 53;endLine: 25";Maintenance (Code Smells);c4e203e

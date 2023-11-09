@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiD0J0882CViJqbmaH;To-Do;New;Normal;Matteo Scuro;CiEmmeModelli_CiEmme:container/spi/src/main/java/org/jboss/arquillian/container/spi/client/deployment/Validate.java;"java:S1125:  ""Remove the unnecessary boolean literal.""";MINOR;5;2023/10/8;2023/10/8;1;"startLine: 139;startOffset: 88;endOffset: 93;endLine: 139";Maintenance (Code Smells);e9307e0

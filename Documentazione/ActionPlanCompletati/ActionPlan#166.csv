@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiD0S4882CViJqbmct;To-Do;New;Normal;Claudia Stefanizzi;CiEmmeModelli_CiEmme:protocols/servlet/src/main/java/org/jboss/arquillian/protocol/servlet/BaseServletProtocol.java;"java:S1155:  ""Use isEmpty() to check whether the collection is empty or not.""";MINOR;2;2023-10-21;2023-10-21;2;"startLine: 57;startOffset: 12;endOffset: 32;endLine: 57";Maintenance (Code Smells);b49eefc

@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiD0JG882CViJqbmZ7;To-Do;New;Normal;Claudia Stefanizzi;CiEmmeModelli_CiEmme:container/spi/src/main/java/org/jboss/arquillian/container/spi/client/protocol/Validate.java;"java:S1125:  ""Remove the unnecessary boolean literal.""";MINOR;5;2023-10-07;2023-10-07;1;"startLine: 99;startOffset: 88;endOffset: 93;endLine: 99";Maintenance (Code Smells);d9e7af4

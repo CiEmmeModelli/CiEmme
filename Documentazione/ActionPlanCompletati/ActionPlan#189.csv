@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiD0Pw882CViJqbmbt;To-Do;New;Normal;Matteo Scuro;CiEmmeModelli_CiEmme:test/spi/src/main/java/org/jboss/arquillian/test/spi/TestClass.java;"java:S1700:  ""Rename field testClass""";MAJOR;10;2023/10/29;2023/10/29;2;"startLine: 29;startOffset: 21;endOffset: 30;endLine: 29";Maintenance (Code Smells);f00fe56

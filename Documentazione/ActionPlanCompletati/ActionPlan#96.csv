@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiDz3a882CViJqbmTc;To-Do;New;Normal;Claudia Stefanizzi;CiEmmeModelli_CiEmme:core/api/src/main/java/org/jboss/arquillian/core/api/event/ManagerStopping.java;"java:S2094:  ""Remove this empty class write its code or make it an interface.""";MINOR;5;2023-10-15;2023-10-15;3;"startLine: 26;startOffset: 13;endOffset: 28;endLine: 26";Maintenance (Code Smells);1f019c1

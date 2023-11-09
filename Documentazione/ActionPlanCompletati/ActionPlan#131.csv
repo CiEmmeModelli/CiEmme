@@ -1,0 +1,2 @@
+Key,Tracker,Status,Priority,Owner,Filepath,Subject,Category,Estimated time [min],Start date,End date,Time spent [min],Description,Caratteristica di riferimento,Commit hash
+AYqiD0cd882CViJqbmff,To-Do,New,Normal,Matteo Scuro,CiEmmeModelli_CiEmme:junit/core/src/main/java/org/jboss/arquillian/junit/event/RulesEnrichment.java,"java:S110:  ""This class has 6 parents which is greater than 5 authorized.""",MAJOR,270,,,,startLine: 29;startOffset: 13;endOffset: 28;endLine: 29,Maintenance (Code Smells),

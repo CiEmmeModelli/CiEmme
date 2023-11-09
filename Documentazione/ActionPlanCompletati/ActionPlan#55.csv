@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiD0AT882CViJqbmWo;To-Do;New;Normal;Matteo Scuro;CiEmmeModelli_CiEmme:container/test-impl-base/src/main/java/org/jboss/arquillian/container/test/impl/client/container/ClientContainerControllerCreator.java;"java:S1172:  ""Remove this unused method parameter event.""";MAJOR;5;2023/10/9;2023/10/9;1;"startLine: 43;startOffset: 78;endOffset: 83;endLine: 43";Maintenance (Code Smells);f6139b1

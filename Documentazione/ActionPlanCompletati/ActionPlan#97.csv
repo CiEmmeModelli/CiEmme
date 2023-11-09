@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiDz3i882CViJqbmTd;To-Do;New;Normal;Matteo Scuro;CiEmmeModelli_CiEmme:core/api/src/main/resources/arquillian_1_0.xsd;"xml:S125:  ""Remove this commented out code.""";MAJOR;5;2023/10/14;2023/10/14;1;"startLine: 89;startOffset: 8;endOffset: 11;endLine: 91";Maintenance (Code Smells);64b3e44

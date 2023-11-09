@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiD0QA882CViJqbmb2;To-Do;New;Normal;Claudia Stefanizzi;CiEmmeModelli_CiEmme:test/spi/src/main/java/org/jboss/arquillian/test/spi/TestMethodExecutor.java;"java:S112:  ""Define and throw a dedicated exception instead of using a generic one.""";MAJOR;20;2023-10-22;2023-10-22;15;"startLine: 49;startOffset: 45;endOffset: 54;endLine: 49";Maintenance (Code Smells);55242c4

@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiDz3s882CViJqbmTe;To-Do;New;Normal;Matteo Scuro;CiEmmeModelli_CiEmme:core/impl-base/src/test/java/org/jboss/arquillian/core/impl/loadable/LoadableExtensionLoaderTestCase.java;"java:S2699:  ""Add at least one assertion to this test case.""";BLOCKER;10;2023/10/19;2023/10/19;1;"startLine: 31;startOffset: 16;endOffset: 30;endLine: 31";Maintenance (Code Smells);2b8687e

@@ -1,0 +1,2 @@
+Key;Tracker;Status;Priority;Owner;Filepath;Subject;Category;Estimated time [min];Start date;End date;Time spent [min];Description;Caratteristica di riferimento;Commit hash
+AYqiD0DA882CViJqbmXy;To-Do;New;Normal;Claudia Stefanizzi;CiEmmeModelli_CiEmme:container/test-impl-base/src/test/java/org/jboss/arquillian/container/test/impl/domain/ProtocolRegistryTestCase.java;"java:S2699:  ""Add at least one assertion to this test case.""";BLOCKER;10;2023-10-10;2023-10-10;5;"startLine: 110;startOffset: 16;endOffset: 55;endLine: 110";Maintenance (Code Smells);14d8546
